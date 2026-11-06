@@ -1,0 +1,283 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - generic [ref=f3e3]:
+      - link "PL Projukti Labs" [ref=f3e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e5]: PL
+        - generic [ref=f3e7]: Projukti Labs
+      - navigation [ref=f3e8]:
+        - link "Home" [ref=f3e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f3e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f3e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f3e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f3e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f3e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f3e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f3e16]:
+        - button "Switch to light theme" [ref=f3e17] [cursor=pointer]
+        - link [ref=f3e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f3e25]
+  - main [ref=f3e30]:
+    - generic [ref=f3e31]:
+      - generic [ref=f3e32]:
+        - generic [ref=f3e33]:
+          - generic [ref=f3e34]: Flagship Vertical
+          - generic [ref=f3e35]: E-commerce & Digital Commerce
+          - generic [ref=f3e36]: 0% Platform Revenue Fees
+        - heading "Complete Production-Ready E-commerce Platform" [level=1] [ref=f3e37]
+        - paragraph [ref=f3e38]: A high-performance digital commerce engine engineered for speed, frictionless checkout, and effortless order fulfillment. Complete with local (bKash, Nagad, SSLCommerz) and international (Stripe) payment integrations.
+        - generic [ref=f3e39]:
+          - link "Get Started with Growth Storefront" [ref=f3e40] [cursor=pointer]:
+            - /url: /get-a-quote?service=complete-ecommerce-website&package=Growth+Storefront
+          - link "Compare Commerce Packages" [ref=f3e43] [cursor=pointer]:
+            - /url: "#pricing-tiers"
+      - generic [ref=f3e44]:
+        - generic [ref=f3e45]:
+          - generic [ref=f3e46]: Platform Architecture
+          - heading "End-to-End Commerce Flow & Integration" [level=2] [ref=f3e47]
+          - paragraph [ref=f3e48]: Engineered to eliminate checkout friction, automate fulfillment, and keep your data private.
+        - generic [ref=f3e49]:
+          - generic [ref=f3e50]:
+            - generic [ref=f3e51]: MODULE 01
+            - heading "Ultra-Fast Storefront" [level=3] [ref=f3e55]
+            - paragraph [ref=f3e56]: Instant product browsing, multi-category filters, search autocomplete, and responsive mobile-first UI.
+          - generic [ref=f3e57]:
+            - generic [ref=f3e58]: MODULE 02
+            - heading "2-Step Checkout" [level=3] [ref=f3e65]
+            - paragraph [ref=f3e66]: Sub-100ms cart updates, guest checkout support, address memory, and coupon code calculation.
+          - generic [ref=f3e67]:
+            - generic [ref=f3e68]: MODULE 03
+            - heading "Payment Gateways" [level=3] [ref=f3e72]
+            - paragraph [ref=f3e73]: Native bKash PGW, Nagad, SSLCommerz, and Stripe integration with automated webhook payment verification.
+          - generic [ref=f3e74]:
+            - generic [ref=f3e75]: MODULE 04
+            - heading "Automated Dispatch" [level=3] [ref=f3e82]
+            - paragraph [ref=f3e83]: One-click parcel creation via Steadfast/Pathao API, automated tracking code, and transactional SMS alerts.
+          - generic [ref=f3e84]:
+            - generic [ref=f3e85]: MODULE 05
+            - heading "Admin Control Center" [level=3] [ref=f3e91]
+            - paragraph [ref=f3e92]: Real-time inventory levels, order status updates, printable invoice PDFs, and revenue telemetry.
+      - generic [ref=f3e93]:
+        - generic [ref=f3e94]:
+          - generic [ref=f3e95]: Radical Transparency
+          - heading "Third-Party Operating Costs & Payment Fees" [level=3] [ref=f3e96]
+          - paragraph [ref=f3e97]:
+            - text: Unlike closed SaaS platforms that quietly charge 1%–2% on every sale, Projukti Labs charges
+            - strong [ref=f3e98]: 0% ongoing sales commission
+            - text: . You own your store completely.
+        - generic [ref=f3e99]:
+          - generic [ref=f3e100]:
+            - heading "Payment Gateway Fees" [level=4] [ref=f3e101]
+            - paragraph [ref=f3e107]: Transaction merchant fees (~1.5% for bKash, ~2%–2.5% for SSLCommerz, ~2.9% + 30¢ for Stripe) are settled directly between you and the payment provider. Zero middleman markup.
+          - generic [ref=f3e108]:
+            - heading "SMS Notification Credits" [level=4] [ref=f3e109]
+            - paragraph [ref=f3e112]: Transactional order SMS credits (typically ~৳ 0.25 to ৳ 0.40 per SMS in Bangladesh) are purchased directly from your preferred telecom aggregator (e.g. Greenweb, BulkSMSBD).
+          - generic [ref=f3e113]:
+            - heading "Courier Fulfillment Costs" [level=4] [ref=f3e114]
+            - paragraph [ref=f3e120]: Courier parcel delivery fees and Cash-on-Delivery (COD) reconciliation charges are paid directly to your contracted courier partner (Steadfast, Pathao, RedX, or eCourier).
+      - generic [ref=f3e121]:
+        - generic [ref=f3e122]:
+          - generic [ref=f3e123]: Scope Boundaries
+          - heading "Included Platform Deliverables vs Exclusions" [level=2] [ref=f3e124]
+        - generic [ref=f3e125]:
+          - generic [ref=f3e126]:
+            - heading "What We Deliver" [level=3] [ref=f3e127]
+            - list [ref=f3e131]:
+              - listitem [ref=f3e132]:
+                - generic [ref=f3e135]: "Modern responsive storefront: catalog, categories, product filters, quick view"
+              - listitem [ref=f3e136]:
+                - generic [ref=f3e139]: Frictionless 2-step checkout supporting guest checkout and address auto-save
+              - listitem [ref=f3e140]:
+                - generic [ref=f3e143]: "Integrated payment gateways: bKash PGW, Nagad, SSLCommerz, and Stripe"
+              - listitem [ref=f3e144]:
+                - generic [ref=f3e147]: "Administrative commerce dashboard: orders, products, inventory, coupons, reports"
+              - listitem [ref=f3e148]:
+                - generic [ref=f3e151]: Transactional SMS/email triggers on Order Placed, Paid, Shipped, Delivered
+              - listitem [ref=f3e152]:
+                - generic [ref=f3e155]: E-commerce Meta Pixel & GA4 standard purchase events with currency telemetry
+              - listitem [ref=f3e156]:
+                - generic [ref=f3e159]: 30-day post-launch technical warranty and handover documentation
+          - generic [ref=f3e160]:
+            - heading "What Is Excluded" [level=3] [ref=f3e161]
+            - list [ref=f3e166]:
+              - listitem [ref=f3e167]:
+                - generic [ref=f3e168]: —
+                - generic [ref=f3e169]: Payment gateway operator per-transaction merchant fees (paid to bKash/SSL/Stripe directly)
+              - listitem [ref=f3e170]:
+                - generic [ref=f3e171]: —
+                - generic [ref=f3e172]: Third-party SMS credit packages (purchased directly from SMS provider)
+              - listitem [ref=f3e173]:
+                - generic [ref=f3e174]: —
+                - generic [ref=f3e175]: Manual product data entry over 50 SKU seed items (bulk CSV import tool provided)
+              - listitem [ref=f3e176]:
+                - generic [ref=f3e177]: —
+                - generic [ref=f3e178]: Courier API subscription fees (Pathao/Steadfast accounts held by client)
+      - generic [ref=f3e179]:
+        - generic [ref=f3e180]:
+          - generic [ref=f3e181]: Commerce Packages
+          - heading "E-commerce Platform Packages" [level=2] [ref=f3e182]
+          - paragraph [ref=f3e183]: Fixed milestone investments. Launch with complete code ownership and zero monthly royalties.
+        - generic [ref=f3e184]:
+          - generic [ref=f3e185]:
+            - generic [ref=f3e186]:
+              - generic [ref=f3e187]: Commerce Starter
+              - generic [ref=f3e189]:
+                - generic [ref=f3e190]: ৳ 65,000
+                - generic [ref=f3e191]: or $650 USD · Complete ownership
+              - paragraph [ref=f3e192]: Essential e-commerce platform for boutique brands and single-category direct-to-consumer stores.
+            - generic [ref=f3e193]:
+              - generic [ref=f3e194]:
+                - paragraph [ref=f3e195]: "Included Capabilities:"
+                - list [ref=f3e196]:
+                  - listitem [ref=f3e197]:
+                    - generic [ref=f3e201]: Up to 100 products catalog capacity
+                  - listitem [ref=f3e202]:
+                    - generic [ref=f3e206]: bKash / Nagad or SSLCommerz payment integration
+                  - listitem [ref=f3e207]:
+                    - generic [ref=f3e211]: Admin order management & invoice generator
+                  - listitem [ref=f3e212]:
+                    - generic [ref=f3e216]: Mobile-first shopping cart and checkout
+                  - listitem [ref=f3e217]:
+                    - generic [ref=f3e221]: 14-day launch timeline
+              - link "Select Commerce Starter" [ref=f3e223] [cursor=pointer]:
+                - /url: /get-a-quote?service=complete-ecommerce-website&package=Commerce%20Starter
+          - generic [ref=f3e226]:
+            - generic [ref=f3e227]:
+              - generic [ref=f3e228]:
+                - generic [ref=f3e229]: Growth Storefront
+                - generic [ref=f3e230]: Best Value
+              - generic [ref=f3e231]:
+                - generic [ref=f3e232]: ৳ 110,000
+                - generic [ref=f3e233]: or $1100 USD · Complete ownership
+              - paragraph [ref=f3e234]: Full-scale commerce engine with local + international gateways, discount rules, and automated courier sync.
+            - generic [ref=f3e235]:
+              - generic [ref=f3e236]:
+                - paragraph [ref=f3e237]: "Included Capabilities:"
+                - list [ref=f3e238]:
+                  - listitem [ref=f3e239]:
+                    - generic [ref=f3e243]: Unlimited products catalog with multi-variant options (size, color, weight)
+                  - listitem [ref=f3e244]:
+                    - generic [ref=f3e248]: "Multi-gateway checkout: SSLCommerz, bKash PGW, and Stripe"
+                  - listitem [ref=f3e249]:
+                    - generic [ref=f3e253]: Automated courier API integration (Steadfast / Pathao parcel dispatch)
+                  - listitem [ref=f3e254]:
+                    - generic [ref=f3e258]: Discount coupons, flash sales, and customer order history portal
+                  - listitem [ref=f3e259]:
+                    - generic [ref=f3e263]: E-commerce GA4 and Meta Pixel Purchase event tracking
+                  - listitem [ref=f3e264]:
+                    - generic [ref=f3e268]: 21-day launch timeline
+              - link "Select Growth Storefront" [ref=f3e270] [cursor=pointer]:
+                - /url: /get-a-quote?service=complete-ecommerce-website&package=Growth%20Storefront
+          - generic [ref=f3e273]:
+            - generic [ref=f3e274]:
+              - generic [ref=f3e275]: Custom Scale Commerce
+              - generic [ref=f3e277]:
+                - generic [ref=f3e278]: ৳ 180,000
+                - generic [ref=f3e279]: or $1800 USD · Complete ownership
+              - paragraph [ref=f3e280]: High-volume, bespoke commerce architecture with headless capabilities, ERP sync, and multi-warehouse support.
+            - generic [ref=f3e281]:
+              - generic [ref=f3e282]:
+                - paragraph [ref=f3e283]: "Included Capabilities:"
+                - list [ref=f3e284]:
+                  - listitem [ref=f3e285]:
+                    - generic [ref=f3e289]: Bespoke high-concurrency checkout with edge caching
+                  - listitem [ref=f3e290]:
+                    - generic [ref=f3e294]: Dual currency (BDT & USD) auto-geolocation switcher
+                  - listitem [ref=f3e295]:
+                    - generic [ref=f3e299]: Custom warehouse & inventory synchronization API
+                  - listitem [ref=f3e300]:
+                    - generic [ref=f3e304]: Comprehensive administrative analytics and automated client reports
+                  - listitem [ref=f3e305]:
+                    - generic [ref=f3e309]: 30-day launch timeline with dedicated staging test period
+              - link "Select Custom Scale Commerce" [ref=f3e311] [cursor=pointer]:
+                - /url: /get-a-quote?service=complete-ecommerce-website&package=Custom%20Scale%20Commerce
+      - generic [ref=f3e314]:
+        - generic [ref=f3e315]:
+          - generic [ref=f3e316]: Commerce Inquiries
+          - heading "E-commerce Platform FAQ" [level=2] [ref=f3e317]
+        - generic [ref=f3e318]:
+          - generic [ref=f3e319]:
+            - button "How do you handle bKash and Nagad payments?" [expanded] [ref=f3e320] [cursor=pointer]
+            - paragraph [ref=f3e325]: We integrate the official bKash Payment Gateway (PGW) and Nagad Merchant API. Customers enter their wallet number, verify with an OTP directly in the secure payment interface, and return to your store with instant order confirmation. Orders are marked as 'Paid' automatically via secure server webhooks.
+          - button "Can we accept both local Bangladeshi Taka and international USD?" [ref=f3e327] [cursor=pointer]
+          - button "Do you provide maintenance after the store is launched?" [ref=f3e332] [cursor=pointer]
+      - generic [ref=f3e336]:
+        - heading "Ready to Launch Your High-Performance Store?" [level=2] [ref=f3e337]
+        - paragraph [ref=f3e338]: Request an official project quotation or consult with our engineering team on payment gateway workflows.
+        - generic [ref=f3e339]:
+          - link "Request E-commerce Quotation" [ref=f3e340] [cursor=pointer]:
+            - /url: /get-a-quote?service=complete-ecommerce-website
+          - link "Schedule Technical Discussion" [ref=f3e343] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f3e344]:
+    - generic [ref=f3e345]:
+      - generic [ref=f3e346]:
+        - generic [ref=f3e347]:
+          - link "PL Projukti Labs" [ref=f3e348] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f3e349]: PL
+            - generic [ref=f3e350]: Projukti Labs
+          - paragraph [ref=f3e351]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f3e352]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f3e353] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f3e354]:
+          - heading "Launch Services" [level=4] [ref=f3e355]
+          - list [ref=f3e356]:
+            - listitem [ref=f3e357]:
+              - link "Web Development & Design" [ref=f3e358] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f3e359]:
+              - link "E-commerce & Digital Commerce" [ref=f3e360] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f3e361]:
+              - link "Maintenance & Support" [ref=f3e362] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f3e363]:
+              - link "Landing Page + Meta Pixel" [ref=f3e364] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f3e365]:
+              - link "Complete E-commerce Ready" [ref=f3e366] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f3e367]:
+          - heading "Studio" [level=4] [ref=f3e368]
+          - list [ref=f3e369]:
+            - listitem [ref=f3e370]:
+              - link "About Us" [ref=f3e371] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f3e372]:
+              - link "Founder Profile" [ref=f3e373] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f3e374]:
+              - link "Selected Projects" [ref=f3e375] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f3e376]:
+              - link "Frequently Asked Questions" [ref=f3e377] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f3e378]:
+              - link "Contact" [ref=f3e379] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f3e380]:
+          - heading "Client Inquiries" [level=4] [ref=f3e381]
+          - paragraph [ref=f3e382]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f3e384] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f3e385]:
+            - text: "Domain:"
+            - code [ref=f3e386]: projuktilabs.tech
+      - generic [ref=f3e387]:
+        - paragraph [ref=f3e388]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f3e389]:
+          - link "Design Tokens" [ref=f3e390] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f3e391] [cursor=pointer]:
+            - /url: /contact

@@ -1,0 +1,268 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "PL Projukti Labs" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: PL
+        - generic [ref=e7]: Projukti Labs
+      - generic [ref=e323]:
+        - button "Switch to light theme" [ref=e324] [cursor=pointer]
+        - button "Toggle navigation menu" [expanded] [active] [ref=e331] [cursor=pointer]
+    - generic [ref=e337]:
+      - link "Home" [ref=e338] [cursor=pointer]:
+        - /url: /
+      - link "Services" [ref=e339] [cursor=pointer]:
+        - /url: /services
+      - link "Work" [ref=e340] [cursor=pointer]:
+        - /url: /portfolio
+      - link "About" [ref=e341] [cursor=pointer]:
+        - /url: /about
+      - link "Founder" [ref=e342] [cursor=pointer]:
+        - /url: /founder
+      - link "FAQ" [ref=e343] [cursor=pointer]:
+        - /url: /faq
+      - link "Contact" [ref=e344] [cursor=pointer]:
+        - /url: /contact
+      - link [ref=e346] [cursor=pointer]:
+        - /url: /get-a-quote
+        - button "Get a Quote" [ref=e347]
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e37]: Official Studio Launch
+          - generic [ref=e38]: "|"
+          - generic [ref=e39]: Focusing on 3 Core Service Verticals
+        - heading "Building Digital Solutions. Engineering the Future." [level=1] [ref=e40]
+        - paragraph [ref=e41]: We architect ultra-fast web platforms, conversion-engineered landing pages with verified Meta Pixel tracking, and resilient e-commerce engines for Bangladesh and global visionaries.
+        - generic [ref=e42]:
+          - link "Request a Project Quote" [ref=e43] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Explore Launch Services" [ref=e46] [cursor=pointer]:
+            - /url: /services
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - paragraph [ref=e50]: < 1.2s
+            - paragraph [ref=e51]: Mobile LCP Speed
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: 100%
+            - paragraph [ref=e54]: Typed API Contracts
+          - generic [ref=e55]:
+            - paragraph [ref=e56]: 300+ PoPs
+            - paragraph [ref=e57]: Cloudflare Edge Delivery
+          - generic [ref=e58]:
+            - paragraph [ref=e59]: WCAG 2.1
+            - paragraph [ref=e60]: Accessible & Inclusive
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e64]: Launch Service Catalog
+            - heading "Three Focused Verticals. Absolute Execution." [level=2] [ref=e65]
+            - paragraph [ref=e66]: Rather than scattering effort across premature generic offerings, we launch with three deeply mastered engineering disciplines.
+          - link "View All Services & Pricing" [ref=e67] [cursor=pointer]:
+            - /url: /services
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: Active Service 01
+              - heading "Web Development & Design" [level=3] [ref=e79]
+              - paragraph [ref=e80]: High-speed modern websites and conversion engines built on Next.js and Cloudflare edge.
+            - generic [ref=e81]:
+              - generic [ref=e82]:
+                - generic [ref=e83]:
+                  - generic [ref=e84]: Flagship Solution
+                  - generic [ref=e85]: High Demand
+                - heading "Landing Page with Meta Pixel & Analytics" [level=3] [ref=e86]
+                - paragraph [ref=e87]: Dual client & server-side CAPI event deduplication with sub-1.2s mobile load speeds.
+              - list [ref=e88]:
+                - listitem [ref=e89]:
+                  - generic [ref=e93]: Sub-second Core Web Vitals optimization
+                - listitem [ref=e94]:
+                  - generic [ref=e98]: Verified Meta Events Manager test reporting
+                - listitem [ref=e99]:
+                  - generic [ref=e103]: Custom corporate and marketing platforms
+              - link "Explore Landing Page Solution" [ref=e105] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+          - generic [ref=e108]:
+            - generic [ref=e116]:
+              - generic [ref=e117]: Active Service 02
+              - heading "E-commerce & Digital Commerce" [level=3] [ref=e118]
+              - paragraph [ref=e119]: Production-grade storefronts, checkout engines, and secure local & global payment integrations.
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - generic [ref=e122]:
+                  - generic [ref=e123]: Flagship Solution
+                  - generic [ref=e124]: Commercial Scale
+                - heading "Complete E-commerce Platform" [level=3] [ref=e125]
+                - paragraph [ref=e126]: Seamless bKash, Nagad, SSLCommerz, and Stripe checkout with admin order workflows.
+              - list [ref=e127]:
+                - listitem [ref=e128]:
+                  - generic [ref=e132]: Zero monthly platform revenue commission
+                - listitem [ref=e133]:
+                  - generic [ref=e137]: Automated courier parcel booking & SMS alerts
+                - listitem [ref=e138]:
+                  - generic [ref=e142]: Cart-to-checkout drop-off minimization
+              - link "Explore E-commerce Platform" [ref=e144] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+          - generic [ref=e147]:
+            - generic [ref=e153]:
+              - generic [ref=e154]: Active Service 03
+              - heading "Maintenance & Support" [level=3] [ref=e155]
+              - paragraph [ref=e156]: SLA-backed monthly engineering retainers, security patches, and automated backup drills.
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]:
+                  - generic [ref=e160]: Flagship Solution
+                  - generic [ref=e161]: SLA Guaranteed
+                - heading "Proactive Care Retainers" [level=3] [ref=e162]
+                - paragraph [ref=e163]: 4 care tiers from Basic Care to Custom Enterprise with 1h–48h emergency response.
+              - list [ref=e164]:
+                - listitem [ref=e165]:
+                  - generic [ref=e169]: 5-minute automated uptime & SSL health checks
+                - listitem [ref=e170]:
+                  - generic [ref=e174]: Weekly off-site backup verification drills
+                - listitem [ref=e175]:
+                  - generic [ref=e179]: Dedicated developer hours included monthly
+              - link "Explore Retainer Plans" [ref=e181] [cursor=pointer]:
+                - /url: /services/website-maintenance
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]: The Projukti Standard
+          - heading "Engineering Precision Over Generic Agency Slop" [level=2] [ref=e187]
+          - paragraph [ref=e188]: Most digital agencies sell heavy, pre-packaged WordPress themes loaded with 60 plugins that crash under traffic. We build lean, high-availability software systems.
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - heading "Edge Performance First" [level=3] [ref=e194]
+            - paragraph [ref=e195]: Every millisecond of latency costs revenue. We distribute computing to Cloudflare's global edge network, serving static assets and dynamic SSR close to your visitors.
+          - generic [ref=e196]:
+            - heading "Type-Safe & Maintainable" [level=3] [ref=e202]
+            - paragraph [ref=e203]: We eliminate runtime errors with strict TypeScript, Zod schema validation, and SQL ORM contracts. You receive clean, auditable code that your team can scale for years.
+          - generic [ref=e204]:
+            - heading "Proactive Care & Integrity" [level=3] [ref=e209]
+            - paragraph [ref=e210]: We never abandon a client after launch. Our maintenance plans provide continuous backup verification, dependency audits, and direct escalation to the Principal Architect.
+      - generic [ref=e211]:
+        - generic [ref=e212]:
+          - generic [ref=e213]: Development Lifecycle
+          - heading "How We Deliver Production Systems" [level=2] [ref=e214]
+          - paragraph [ref=e215]: A disciplined, milestone-driven methodology ensuring transparency, predictability, and zero launch-day surprises.
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - generic [ref=e218]: "01"
+            - heading "Discovery & Architecture" [level=3] [ref=e219]
+            - paragraph [ref=e220]: Deep analysis of your target audience, conversion objectives, payment requirements, and technical constraints.
+          - generic [ref=e221]:
+            - generic [ref=e222]: "02"
+            - heading "Design System & UX" [level=3] [ref=e223]
+            - paragraph [ref=e224]: Tailored UI design tokens, wireframes, and typography hierarchies aligned with WCAG 2.1 AA accessibility.
+          - generic [ref=e225]:
+            - generic [ref=e226]: "03"
+            - heading "Edge Implementation" [level=3] [ref=e227]
+            - paragraph [ref=e228]: Clean component development on Next.js App Router, Cloudflare Workers, and strict TypeScript contracts.
+          - generic [ref=e229]:
+            - generic [ref=e230]: "04"
+            - heading "Telemetry & QA Verification" [level=3] [ref=e231]
+            - paragraph [ref=e232]: Rigorous testing with Playwright MCP, Meta Events Manager test tool verification, and Core Web Vitals profiling.
+          - generic [ref=e233]:
+            - generic [ref=e234]: "05"
+            - heading "Zero-Downtime Launch" [level=3] [ref=e235]
+            - paragraph [ref=e236]: DNS migration, SSL certificate hardening, CDN cache warming, and production smoke tests.
+          - generic [ref=e237]:
+            - generic [ref=e238]: "06"
+            - heading "SLA Care & Optimization" [level=3] [ref=e239]
+            - paragraph [ref=e240]: Continuous uptime telemetry, automated off-site backups, and monthly performance tuning.
+      - generic [ref=e243]:
+        - generic [ref=e244]:
+          - generic [ref=e245]: Leadership & Direct Craft
+          - heading "Direct Engineering Leadership. No Account Manager Middlemen." [level=2] [ref=e246]
+          - paragraph [ref=e247]:
+            - text: Projukti Labs is led by
+            - strong [ref=e248]: Md Parvezul Islam
+            - text: ", Principal Software Architect. When you partner with us, your technical specifications, architecture blueprints, and code reviews are handled directly by senior leadership."
+          - paragraph [ref=e249]: Whether deploying a conversion-critical landing page for a high-budget ad campaign or scaling a multi-gateway e-commerce platform, we deliver engineering rigor with honest communication.
+          - generic [ref=e250]:
+            - link "Read Founder Manifesto & Profile" [ref=e251] [cursor=pointer]:
+              - /url: /founder
+            - link "Learn More About the Studio" [ref=e254] [cursor=pointer]:
+              - /url: /about
+        - generic [ref=e256]:
+          - generic [ref=e257]: PI
+          - generic [ref=e258]:
+            - heading "Md Parvezul Islam" [level=3] [ref=e259]
+            - paragraph [ref=e260]: Founder & Principal Architect
+            - paragraph [ref=e261]: Systems Architecture · Edge Computing · Next.js · Distributed Cloud
+          - generic [ref=e262]:
+            - generic [ref=e263]: Verified Technical Lead
+            - generic [ref=e264]: projuktilabs.tech
+      - generic [ref=e266]:
+        - generic [ref=e267]:
+          - heading "Ready to Build Something Extraordinary?" [level=2] [ref=e268]
+          - paragraph [ref=e269]: Tell us about your project specifications. We will review your goals and provide a structured scope of work and quotation within 24 business hours.
+        - generic [ref=e270]:
+          - link "Request an Official Quotation" [ref=e271] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Schedule a Technical Call" [ref=e274] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=e275]:
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - generic [ref=e278]:
+          - link "PL Projukti Labs" [ref=e279] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e280]: PL
+            - generic [ref=e281]: Projukti Labs
+          - paragraph [ref=e282]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=e283]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=e284] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=e285]:
+          - heading "Launch Services" [level=4] [ref=e286]
+          - list [ref=e287]:
+            - listitem [ref=e288]:
+              - link "Web Development & Design" [ref=e289] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=e290]:
+              - link "E-commerce & Digital Commerce" [ref=e291] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=e292]:
+              - link "Maintenance & Support" [ref=e293] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=e294]:
+              - link "Landing Page + Meta Pixel" [ref=e295] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=e296]:
+              - link "Complete E-commerce Ready" [ref=e297] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=e298]:
+          - heading "Studio" [level=4] [ref=e299]
+          - list [ref=e300]:
+            - listitem [ref=e301]:
+              - link "About Us" [ref=e302] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e303]:
+              - link "Founder Profile" [ref=e304] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=e305]:
+              - link "Selected Projects" [ref=e306] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=e307]:
+              - link "Frequently Asked Questions" [ref=e308] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e309]:
+              - link "Contact" [ref=e310] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e311]:
+          - heading "Client Inquiries" [level=4] [ref=e312]
+          - paragraph [ref=e313]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=e315] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=e316]:
+            - text: "Domain:"
+            - code [ref=e317]: projuktilabs.tech
+      - generic [ref=e318]:
+        - paragraph [ref=e319]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=e320]:
+          - link "Design Tokens" [ref=e321] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=e322] [cursor=pointer]:
+            - /url: /contact

@@ -1,0 +1,144 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - generic [ref=f6e3]:
+      - link "PL Projukti Labs" [ref=f6e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f6e5]: PL
+        - generic [ref=f6e7]: Projukti Labs
+      - navigation [ref=f6e8]:
+        - link "Home" [ref=f6e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f6e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f6e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f6e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f6e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f6e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f6e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f6e16]:
+        - button "Switch to light theme" [ref=f6e17] [cursor=pointer]
+        - link [ref=f6e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f6e25]
+  - main [ref=f6e30]:
+    - generic [ref=f6e31]:
+      - generic [ref=f6e32]:
+        - generic [ref=f6e33]: Studio Philosophy & Story
+        - heading "We Build Technology That Lasts. Engineered with Precision." [level=1] [ref=f6e34]
+        - paragraph [ref=f6e35]:
+          - text: Projukti Labs is an independent technology studio founded by
+          - strong [ref=f6e36]: Md Parvezul Islam
+          - text: . We reject the generic agency model of bloated templates and unaccountable subcontracting in favor of deep engineering rigor, sub-second speeds, and transparent client partnerships.
+      - generic [ref=f6e37]:
+        - generic [ref=f6e38]:
+          - generic [ref=f6e39]: Origin Story
+          - heading "Bridging Local Potential with Global Engineering Standards" [level=2] [ref=f6e40]
+          - paragraph [ref=f6e41]: In modern digital business, web applications and online storefronts are the direct drivers of revenue. Yet, too many businesses in Bangladesh and emerging markets suffer from fragile, slow-loading websites that crash during marketing campaigns and leak ad spend through unverified tracking pixels.
+          - paragraph [ref=f6e42]: "Projukti Labs was created to deliver a higher standard: enterprise-grade software engineering tailored for commercial agility."
+        - generic [ref=f6e43]:
+          - generic [ref=f6e44]:
+            - heading "Zero Bloat Architecture" [level=3] [ref=f6e48]
+            - paragraph [ref=f6e50]: We build on modern edge runtimes (Next.js, Cloudflare Workers) and type-safe databases. No unnecessary plugins, no security patch nightmares, and no artificial slowdowns.
+          - generic [ref=f6e51]:
+            - heading "Verified Telemetry" [level=3] [ref=f6e55]
+            - paragraph [ref=f6e57]: We believe in verified proof. From Meta Conversions API event deduplication to Core Web Vitals telemetry, our implementations are tested and verified before handover.
+          - generic [ref=f6e58]:
+            - heading "Dual Market Expertise" [level=3] [ref=f6e63]
+            - paragraph [ref=f6e65]: We understand Bangladesh's unique commerce ecosystem (bKash, Nagad, courier APIs) while seamlessly delivering international-standard payment and compliance systems (Stripe, GDPR, WCAG).
+          - generic [ref=f6e66]:
+            - heading "Long-Term Retainer Care" [level=3] [ref=f6e73]
+            - paragraph [ref=f6e75]: We stand behind our code. Our SLA-backed monthly maintenance retainers provide continuous monitoring, automated backups, and dedicated monthly development capacity.
+      - generic [ref=f6e76]:
+        - generic [ref=f6e77]:
+          - generic [ref=f6e78]: Our Code of Conduct
+          - heading "Engineering Values We Refuse to Compromise On" [level=2] [ref=f6e79]
+        - generic [ref=f6e80]:
+          - generic [ref=f6e81]:
+            - text: "01"
+            - heading "Truthful Engineering" [level=3] [ref=f6e82]
+            - paragraph [ref=f6e83]: We never fabricate metrics, client testimonials, or fake discounts. If a technical approach has tradeoffs, we explain them clearly before you sign a contract.
+          - generic [ref=f6e84]:
+            - text: "02"
+            - heading "Direct Accountability" [level=3] [ref=f6e85]
+            - paragraph [ref=f6e86]: You communicate directly with software engineers who write the code and architect the database. No sales executives or confusing intermediate handoffs.
+          - generic [ref=f6e87]:
+            - text: "03"
+            - heading "Total Code Ownership" [level=3] [ref=f6e88]
+            - paragraph [ref=f6e89]: Upon project completion and milestone clearance, you own 100% of your source code, deployment scripts, database schemas, and documentation. Zero vendor lock-in.
+      - generic [ref=f6e90]:
+        - heading "Interested in Collaborating with Projukti Labs?" [level=2] [ref=f6e91]
+        - paragraph [ref=f6e92]: Explore our launch service packages or submit a structured project brief for an engineering consultation.
+        - generic [ref=f6e93]:
+          - link "Request a Project Quote" [ref=f6e94] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Meet the Founder" [ref=f6e97] [cursor=pointer]:
+            - /url: /founder
+  - contentinfo [ref=f6e98]:
+    - generic [ref=f6e99]:
+      - generic [ref=f6e100]:
+        - generic [ref=f6e101]:
+          - link "PL Projukti Labs" [ref=f6e102] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f6e103]: PL
+            - generic [ref=f6e104]: Projukti Labs
+          - paragraph [ref=f6e105]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f6e106]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f6e107] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f6e108]:
+          - heading "Launch Services" [level=4] [ref=f6e109]
+          - list [ref=f6e110]:
+            - listitem [ref=f6e111]:
+              - link "Web Development & Design" [ref=f6e112] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f6e113]:
+              - link "E-commerce & Digital Commerce" [ref=f6e114] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f6e115]:
+              - link "Maintenance & Support" [ref=f6e116] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f6e117]:
+              - link "Landing Page + Meta Pixel" [ref=f6e118] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f6e119]:
+              - link "Complete E-commerce Ready" [ref=f6e120] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f6e121]:
+          - heading "Studio" [level=4] [ref=f6e122]
+          - list [ref=f6e123]:
+            - listitem [ref=f6e124]:
+              - link "About Us" [ref=f6e125] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f6e126]:
+              - link "Founder Profile" [ref=f6e127] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f6e128]:
+              - link "Selected Projects" [ref=f6e129] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f6e130]:
+              - link "Frequently Asked Questions" [ref=f6e131] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f6e132]:
+              - link "Contact" [ref=f6e133] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f6e134]:
+          - heading "Client Inquiries" [level=4] [ref=f6e135]
+          - paragraph [ref=f6e136]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f6e138] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f6e139]:
+            - text: "Domain:"
+            - code [ref=f6e140]: projuktilabs.tech
+      - generic [ref=f6e141]:
+        - paragraph [ref=f6e142]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f6e143]:
+          - link "Design Tokens" [ref=f6e144] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f6e145] [cursor=pointer]:
+            - /url: /contact

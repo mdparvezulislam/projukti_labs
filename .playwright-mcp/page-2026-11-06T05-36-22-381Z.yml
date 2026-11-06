@@ -1,0 +1,275 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - link "PL Projukti Labs" [ref=f5e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f5e5]: PL
+        - generic [ref=f5e7]: Projukti Labs
+      - navigation [ref=f5e8]:
+        - link "Home" [ref=f5e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f5e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f5e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f5e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f5e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f5e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f5e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f5e16]:
+        - button "Switch to light theme" [ref=f5e17] [cursor=pointer]
+        - link [ref=f5e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f5e25]
+  - main [ref=f5e30]:
+    - generic [ref=f5e31]:
+      - generic [ref=f5e32]:
+        - generic [ref=f5e33]: Architectural Case Studies
+        - heading "Selected Engineering Works & Architecture" [level=1] [ref=f5e34]
+        - paragraph [ref=f5e35]: We pride ourselves on transparent, verifiable engineering. Here is an inside look at the technical architectures, performance metrics, and production solutions we deliver.
+      - generic [ref=f5e36]:
+        - generic [ref=f5e37]:
+          - generic [ref=f5e38]:
+            - generic [ref=f5e39]:
+              - generic [ref=f5e40]:
+                - generic [ref=f5e41]: "01"
+                - generic [ref=f5e42]: Edge Systems & Web Architecture
+                - generic [ref=f5e43]: In Production
+              - heading "Projukti Labs Studio Engine v1.0" [level=2] [ref=f5e44]
+            - link "Current Live Platform" [ref=f5e45] [cursor=pointer]:
+              - /url: /
+          - paragraph [ref=f5e48]: The official Projukti Labs web platform engineered as a Cloudflare Workers modular monolith combining Next.js App Router, Vite RSC compilation, Drizzle ORM, and Cloudflare D1.
+          - generic [ref=f5e49]:
+            - generic [ref=f5e50]:
+              - generic [ref=f5e51]: < 1.1s
+              - generic [ref=f5e52]: Mobile LCP
+            - generic [ref=f5e53]:
+              - generic [ref=f5e54]: 299 KB
+              - generic [ref=f5e55]: Worker Bundle
+            - generic [ref=f5e56]:
+              - generic [ref=f5e57]: 100%
+              - generic [ref=f5e58]: Type Safety
+            - generic [ref=f5e59]:
+              - generic [ref=f5e60]: 0ms
+              - generic [ref=f5e61]: Cold Start
+          - generic [ref=f5e62]:
+            - generic [ref=f5e63]:
+              - heading "Key Technical Deliverables" [level=3] [ref=f5e64]
+              - list [ref=f5e65]:
+                - listitem [ref=f5e66]:
+                  - generic [ref=f5e68]: Vite + vinext edge build integration deploying SSR to Cloudflare Workers
+                - listitem [ref=f5e69]:
+                  - generic [ref=f5e71]: Dark-first responsive design system adhering strictly to WCAG 2.1 AA specifications
+                - listitem [ref=f5e72]:
+                  - generic [ref=f5e74]: Integrated inquiry and CRM lead tracking system running on Cloudflare D1
+            - generic [ref=f5e75]:
+              - heading "Architecture & Technologies" [level=3] [ref=f5e76]
+              - generic [ref=f5e77]:
+                - generic [ref=f5e78]: Next.js 16
+                - generic [ref=f5e79]: React 19
+                - generic [ref=f5e80]: Cloudflare Workers
+                - generic [ref=f5e81]: D1 SQLite
+                - generic [ref=f5e82]: Drizzle ORM
+                - generic [ref=f5e83]: Tailwind CSS v4
+        - generic [ref=f5e84]:
+          - generic [ref=f5e85]:
+            - generic [ref=f5e86]:
+              - generic [ref=f5e87]:
+                - generic [ref=f5e88]: "02"
+                - generic [ref=f5e89]: Web Development & Analytics
+                - generic [ref=f5e90]: Flagship Architecture
+              - heading "Conversion-Engineered Funnel with Meta CAPI" [level=2] [ref=f5e91]
+            - link "Explore Service Blueprint" [ref=f5e92] [cursor=pointer]:
+              - /url: /services/landing-page-meta-pixel
+          - paragraph [ref=f5e95]: "A high-velocity conversion landing page system featuring dual-layer telemetry: client-side Meta Pixel paired synchronously with server-side Conversions API (CAPI) deduplication."
+          - generic [ref=f5e96]:
+            - generic [ref=f5e97]:
+              - generic [ref=f5e98]: 0%
+              - generic [ref=f5e99]: Tracking Loss
+            - generic [ref=f5e100]:
+              - generic [ref=f5e101]: 98/100
+              - generic [ref=f5e102]: Mobile Score
+            - generic [ref=f5e103]:
+              - generic [ref=f5e104]: 1.2s
+              - generic [ref=f5e105]: LCP
+            - generic [ref=f5e106]:
+              - generic [ref=f5e107]: "> 9.0"
+              - generic [ref=f5e108]: Event Match
+          - generic [ref=f5e109]:
+            - generic [ref=f5e110]:
+              - heading "Key Technical Deliverables" [level=3] [ref=f5e111]
+              - list [ref=f5e112]:
+                - listitem [ref=f5e113]:
+                  - generic [ref=f5e115]: Zero tracking drop-off on iOS and ad-blocker environments via edge server forwarding
+                - listitem [ref=f5e116]:
+                  - generic [ref=f5e118]: "Standardized event taxonomy: PageView, ViewContent, Contact, Lead, Schedule"
+                - listitem [ref=f5e119]:
+                  - generic [ref=f5e121]: Direct validation against Meta Events Manager test reporting tool
+            - generic [ref=f5e122]:
+              - heading "Architecture & Technologies" [level=3] [ref=f5e123]
+              - generic [ref=f5e124]:
+                - generic [ref=f5e125]: Next.js
+                - generic [ref=f5e126]: Meta CAPI
+                - generic [ref=f5e127]: Google Analytics 4
+                - generic [ref=f5e128]: Cloudflare Edge
+                - generic [ref=f5e129]: Zod Validation
+        - generic [ref=f5e130]:
+          - generic [ref=f5e131]:
+            - generic [ref=f5e132]:
+              - generic [ref=f5e133]:
+                - generic [ref=f5e134]: "03"
+                - generic [ref=f5e135]: E-commerce & Digital Commerce
+                - generic [ref=f5e136]: Commerce Architecture
+              - heading "Resilient Multi-Gateway E-commerce Platform" [level=2] [ref=f5e137]
+            - link "Explore E-commerce Blueprint" [ref=f5e138] [cursor=pointer]:
+              - /url: /services/complete-ecommerce-website
+          - paragraph [ref=f5e141]: A high-availability online commerce system uniting Bangladesh mobile payments (bKash PGW, Nagad, SSLCommerz) with international card processing (Stripe) and automated courier dispatch.
+          - generic [ref=f5e142]:
+            - generic [ref=f5e143]:
+              - generic [ref=f5e144]: 2 Clicks
+              - generic [ref=f5e145]: Checkout Steps
+            - generic [ref=f5e146]:
+              - generic [ref=f5e147]: < 50ms
+              - generic [ref=f5e148]: Cart Latency
+            - generic [ref=f5e149]:
+              - generic [ref=f5e150]: 4 Integrated
+              - generic [ref=f5e151]: Gateways
+            - generic [ref=f5e152]:
+              - generic [ref=f5e153]: 0%
+              - generic [ref=f5e154]: Platform Fee
+          - generic [ref=f5e155]:
+            - generic [ref=f5e156]:
+              - heading "Key Technical Deliverables" [level=3] [ref=f5e157]
+              - list [ref=f5e158]:
+                - listitem [ref=f5e159]:
+                  - generic [ref=f5e161]: Optimistic cart state updates with immediate visual feedback
+                - listitem [ref=f5e162]:
+                  - generic [ref=f5e164]: Transactional SMS and email notifications upon order milestones
+                - listitem [ref=f5e165]:
+                  - generic [ref=f5e167]: Automated parcel booking API bridge for courier fulfillment
+            - generic [ref=f5e168]:
+              - heading "Architecture & Technologies" [level=3] [ref=f5e169]
+              - generic [ref=f5e170]:
+                - generic [ref=f5e171]: Next.js App Router
+                - generic [ref=f5e172]: bKash PGW
+                - generic [ref=f5e173]: SSLCommerz
+                - generic [ref=f5e174]: Stripe
+                - generic [ref=f5e175]: PostgreSQL/SQLite
+                - generic [ref=f5e176]: Tailwind CSS
+        - generic [ref=f5e177]:
+          - generic [ref=f5e178]:
+            - generic [ref=f5e179]:
+              - generic [ref=f5e180]:
+                - generic [ref=f5e181]: "04"
+                - generic [ref=f5e182]: Maintenance & Technical Support
+                - generic [ref=f5e183]: Infrastructure Care
+              - heading "Proactive Uptime & Disaster Recovery Retainer" [level=2] [ref=f5e184]
+            - link "Explore Retainer Plans" [ref=f5e185] [cursor=pointer]:
+              - /url: /services/website-maintenance
+          - paragraph [ref=f5e188]: Continuous automated monitoring and maintenance suite ensuring zero-downtime surprises through 5-minute health polls, automated backup drills, and monthly performance profiling.
+          - generic [ref=f5e189]:
+            - generic [ref=f5e190]:
+              - generic [ref=f5e191]: 99.9%
+              - generic [ref=f5e192]: Uptime Target
+            - generic [ref=f5e193]:
+              - generic [ref=f5e194]: 5 min
+              - generic [ref=f5e195]: Poll Frequency
+            - generic [ref=f5e196]:
+              - generic [ref=f5e197]: 1h–4h
+              - generic [ref=f5e198]: Emergency SLA
+            - generic [ref=f5e199]:
+              - generic [ref=f5e200]: Monthly
+              - generic [ref=f5e201]: Backup Drills
+          - generic [ref=f5e202]:
+            - generic [ref=f5e203]:
+              - heading "Key Technical Deliverables" [level=3] [ref=f5e204]
+              - list [ref=f5e205]:
+                - listitem [ref=f5e206]:
+                  - generic [ref=f5e208]: Automated SSL certificate renewal alerts and expiry safeguards
+                - listitem [ref=f5e209]:
+                  - generic [ref=f5e211]: Staged dependency security patches tested in preview environments before deployment
+                - listitem [ref=f5e212]:
+                  - generic [ref=f5e214]: Transparent monthly engineering and Core Web Vitals audit reports
+            - generic [ref=f5e215]:
+              - heading "Architecture & Technologies" [level=3] [ref=f5e216]
+              - generic [ref=f5e217]:
+                - generic [ref=f5e218]: Health Polling Daemon
+                - generic [ref=f5e219]: Cloudflare KV
+                - generic [ref=f5e220]: Automated R2 Snapshots
+                - generic [ref=f5e221]: Slack Webhooks
+      - generic [ref=f5e222]:
+        - heading "Need a Custom Architecture for Your Platform?" [level=2] [ref=f5e223]
+        - paragraph [ref=f5e224]: We architect and implement production systems with clean milestone contracts.
+        - generic [ref=f5e225]:
+          - link "Request Project Quotation" [ref=f5e226] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Schedule Technical Discussion" [ref=f5e229] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f5e230]:
+    - generic [ref=f5e231]:
+      - generic [ref=f5e232]:
+        - generic [ref=f5e233]:
+          - link "PL Projukti Labs" [ref=f5e234] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f5e235]: PL
+            - generic [ref=f5e236]: Projukti Labs
+          - paragraph [ref=f5e237]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f5e238]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f5e239] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f5e240]:
+          - heading "Launch Services" [level=4] [ref=f5e241]
+          - list [ref=f5e242]:
+            - listitem [ref=f5e243]:
+              - link "Web Development & Design" [ref=f5e244] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f5e245]:
+              - link "E-commerce & Digital Commerce" [ref=f5e246] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f5e247]:
+              - link "Maintenance & Support" [ref=f5e248] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f5e249]:
+              - link "Landing Page + Meta Pixel" [ref=f5e250] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f5e251]:
+              - link "Complete E-commerce Ready" [ref=f5e252] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f5e253]:
+          - heading "Studio" [level=4] [ref=f5e254]
+          - list [ref=f5e255]:
+            - listitem [ref=f5e256]:
+              - link "About Us" [ref=f5e257] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f5e258]:
+              - link "Founder Profile" [ref=f5e259] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f5e260]:
+              - link "Selected Projects" [ref=f5e261] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f5e262]:
+              - link "Frequently Asked Questions" [ref=f5e263] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f5e264]:
+              - link "Contact" [ref=f5e265] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f5e266]:
+          - heading "Client Inquiries" [level=4] [ref=f5e267]
+          - paragraph [ref=f5e268]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f5e270] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f5e271]:
+            - text: "Domain:"
+            - code [ref=f5e272]: projuktilabs.tech
+      - generic [ref=f5e273]:
+        - paragraph [ref=f5e274]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f5e275]:
+          - link "Design Tokens" [ref=f5e276] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f5e277] [cursor=pointer]:
+            - /url: /contact

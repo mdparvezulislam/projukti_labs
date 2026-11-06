@@ -1,0 +1,130 @@
+- generic [active] [ref=f8e1]:
+  - banner [ref=f8e2]:
+    - generic [ref=f8e3]:
+      - link "PL Projukti Labs" [ref=f8e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f8e5]: PL
+        - generic [ref=f8e7]: Projukti Labs
+      - navigation [ref=f8e8]:
+        - link "Home" [ref=f8e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f8e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f8e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f8e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f8e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f8e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f8e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f8e16]:
+        - button "Switch to light theme" [ref=f8e17] [cursor=pointer]
+        - link [ref=f8e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f8e25]
+  - main [ref=f8e30]:
+    - generic [ref=f8e31]:
+      - generic [ref=f8e32]:
+        - generic [ref=f8e33]: Transparent Answers
+        - heading "Frequently Asked Questions" [level=1] [ref=f8e34]
+        - paragraph [ref=f8e35]: Clear, honest answers about how we scope projects, charge for services, engineer code, and deliver ongoing support.
+      - generic [ref=f8e36]:
+        - heading "Project Engagement & Scoping" [level=2] [ref=f8e37]
+        - generic [ref=f8e41]:
+          - generic [ref=f8e42]:
+            - button "How do you determine the price and timeline for a project?" [expanded] [ref=f8e43] [cursor=pointer]
+            - paragraph [ref=f8e48]: For our productized packages (such as Landing Page with Meta Pixel, Complete E-commerce Website, and Maintenance Retainers), we offer fixed-scope, transparent pricing with clear milestone deliverables. For custom web applications, we evaluate your technical specifications and provide a structured Scope of Work (SOW) with fixed milestones before any contract is signed.
+          - button "Who will actually write the code for my project?" [ref=f8e50] [cursor=pointer]
+          - button "How does the communication and progress reporting work?" [ref=f8e55] [cursor=pointer]
+      - generic [ref=f8e59]:
+        - heading "Technical Architecture & Performance" [level=2] [ref=f8e60]
+        - generic [ref=f8e64]:
+          - button "Why do you build with Next.js and Cloudflare instead of WordPress?" [ref=f8e66] [cursor=pointer]
+          - button "What is the difference between client-side Meta Pixel and Conversions API (CAPI)?" [ref=f8e71] [cursor=pointer]
+          - button "What Core Web Vitals performance benchmarks do you guarantee?" [ref=f8e76] [cursor=pointer]
+      - generic [ref=f8e80]:
+        - heading "Payment Methods & Contracts" [level=2] [ref=f8e81]
+        - generic [ref=f8e85]:
+          - button "Which payment methods do you accept?" [ref=f8e87] [cursor=pointer]
+          - button "What is your payment milestone structure?" [ref=f8e92] [cursor=pointer]
+          - button "Do I own the source code upon project completion?" [ref=f8e97] [cursor=pointer]
+      - generic [ref=f8e101]:
+        - heading "Maintenance & Ongoing Support" [level=2] [ref=f8e102]
+        - generic [ref=f8e106]:
+          - button "What happens after my website or store is launched?" [ref=f8e108] [cursor=pointer]
+          - button "What if an emergency outage happens on my site?" [ref=f8e113] [cursor=pointer]
+      - generic [ref=f8e117]:
+        - heading "Have a Question Not Answered Here?" [level=2] [ref=f8e118]
+        - paragraph [ref=f8e119]: Contact our team directly. We are happy to clarify any technical requirement, custom integration, or SLA question.
+        - generic [ref=f8e120]:
+          - link "Send an Inquiry" [ref=f8e121] [cursor=pointer]:
+            - /url: /contact
+          - link "Request a Project Quote" [ref=f8e124] [cursor=pointer]:
+            - /url: /get-a-quote
+  - contentinfo [ref=f8e125]:
+    - generic [ref=f8e126]:
+      - generic [ref=f8e127]:
+        - generic [ref=f8e128]:
+          - link "PL Projukti Labs" [ref=f8e129] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f8e130]: PL
+            - generic [ref=f8e131]: Projukti Labs
+          - paragraph [ref=f8e132]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f8e133]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f8e134] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f8e135]:
+          - heading "Launch Services" [level=4] [ref=f8e136]
+          - list [ref=f8e137]:
+            - listitem [ref=f8e138]:
+              - link "Web Development & Design" [ref=f8e139] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f8e140]:
+              - link "E-commerce & Digital Commerce" [ref=f8e141] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f8e142]:
+              - link "Maintenance & Support" [ref=f8e143] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f8e144]:
+              - link "Landing Page + Meta Pixel" [ref=f8e145] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f8e146]:
+              - link "Complete E-commerce Ready" [ref=f8e147] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f8e148]:
+          - heading "Studio" [level=4] [ref=f8e149]
+          - list [ref=f8e150]:
+            - listitem [ref=f8e151]:
+              - link "About Us" [ref=f8e152] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f8e153]:
+              - link "Founder Profile" [ref=f8e154] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f8e155]:
+              - link "Selected Projects" [ref=f8e156] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f8e157]:
+              - link "Frequently Asked Questions" [ref=f8e158] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f8e159]:
+              - link "Contact" [ref=f8e160] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f8e161]:
+          - heading "Client Inquiries" [level=4] [ref=f8e162]
+          - paragraph [ref=f8e163]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f8e165] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f8e166]:
+            - text: "Domain:"
+            - code [ref=f8e167]: projuktilabs.tech
+      - generic [ref=f8e168]:
+        - paragraph [ref=f8e169]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f8e170]:
+          - link "Design Tokens" [ref=f8e171] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f8e172] [cursor=pointer]:
+            - /url: /contact

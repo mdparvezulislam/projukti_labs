@@ -1,0 +1,335 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - link "PL Projukti Labs" [ref=f2e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f2e5]: PL
+        - generic [ref=f2e7]: Projukti Labs
+      - navigation [ref=f2e8]:
+        - link "Home" [ref=f2e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f2e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f2e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f2e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f2e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f2e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f2e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f2e16]:
+        - button "Switch to light theme" [ref=f2e17] [cursor=pointer]
+        - link [ref=f2e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f2e25]
+  - main [ref=f2e30]:
+    - generic [ref=f2e31]:
+      - generic [ref=f2e32]:
+        - generic [ref=f2e33]:
+          - generic [ref=f2e34]: Flagship Vertical
+          - generic [ref=f2e35]: Web Development & Design
+          - generic [ref=f2e36]: Sub-1.2s Mobile LCP
+        - heading "High-Conversion Landing Page with Meta Pixel & Analytics" [level=1] [ref=f2e37]
+        - paragraph [ref=f2e38]: Engineered for conversion, built on edge cloud architecture, and instrumented with server-side Meta Conversions API (CAPI) deduplication so you never lose attributed ad revenue to iOS privacy or ad-blockers.
+        - generic [ref=f2e39]:
+          - link "Get Started with Conversion Pro" [ref=f2e40] [cursor=pointer]:
+            - /url: /get-a-quote?service=landing-page-meta-pixel&package=Conversion+Pro
+          - link "Compare Package Tiers" [ref=f2e43] [cursor=pointer]:
+            - /url: "#pricing-tiers"
+      - generic [ref=f2e44]:
+        - generic [ref=f2e45]:
+          - generic [ref=f2e46]: Telemetry Architecture
+          - heading "How Dual-Layer Meta Pixel + CAPI Tracking Works" [level=2] [ref=f2e47]
+          - paragraph [ref=f2e48]: Eliminates the 20%–40% tracking loss experienced by standard browser-only pixels.
+        - generic [ref=f2e49]:
+          - generic [ref=f2e50]:
+            - generic [ref=f2e51]: STEP 01
+            - heading "Ad Click & Traffic" [level=3] [ref=f2e55]
+            - paragraph [ref=f2e56]:
+              - text: Visitor clicks Facebook/Instagram Ad. Meta attaches unique
+              - code [ref=f2e57]: fbclid
+              - text: parameter.
+          - generic [ref=f2e58]:
+            - generic [ref=f2e59]: STEP 02
+            - heading "Sub-1.2s Edge Render" [level=3] [ref=f2e63]
+            - paragraph [ref=f2e64]: Cloudflare edge serves prerendered Next.js page in <1.2s. Prevents visitor bounce before pixel loads.
+          - generic [ref=f2e65]:
+            - generic [ref=f2e66]: STEP 03
+            - heading "Dual Event Trigger" [level=3] [ref=f2e70]
+            - paragraph [ref=f2e71]:
+              - text: User acts (e.g. Lead Form). App generates a unique
+              - code [ref=f2e72]: event_id
+              - text: for deduplication.
+          - generic [ref=f2e73]:
+            - generic [ref=f2e74]: STEP 04
+            - heading "Edge CAPI Forwarding" [level=3] [ref=f2e79]
+            - paragraph [ref=f2e80]: Browser sends client event while Cloudflare Worker sends direct server HTTP POST to Meta Graph API.
+          - generic [ref=f2e81]:
+            - generic [ref=f2e82]: STEP 05
+            - heading "100% Attribution Proof" [level=3] [ref=f2e87]
+            - paragraph [ref=f2e88]: Meta deduplicates events with 10/10 Event Match Quality. Validated in Meta Events Manager test tool.
+      - generic [ref=f2e89]:
+        - generic [ref=f2e90]:
+          - generic [ref=f2e91]:
+            - generic [ref=f2e92]: Telemetry Standard
+            - heading "Standardized Event Schema" [level=3] [ref=f2e93]
+            - paragraph [ref=f2e94]: Pre-configured and tested tracking events delivered with your landing page.
+          - table [ref=f2e96]:
+            - rowgroup [ref=f2e97]:
+              - row [ref=f2e98]:
+                - columnheader "Event Name" [ref=f2e99]
+                - columnheader "Trigger Action" [ref=f2e100]
+                - columnheader "Telemetry Payload" [ref=f2e101]
+                - columnheader "Delivery Channel" [ref=f2e102]
+            - rowgroup [ref=f2e103]:
+              - row [ref=f2e104]:
+                - cell "PageView" [ref=f2e105]
+                - cell "Landing on page" [ref=f2e106]
+                - cell "page_url, referrer" [ref=f2e107]
+                - cell "Browser + CAPI" [ref=f2e108]
+              - row [ref=f2e109]:
+                - cell "ViewContent" [ref=f2e110]
+                - cell "Viewing key section / offer" [ref=f2e111]
+                - cell "content_name, value, currency" [ref=f2e112]
+                - cell "Browser + CAPI" [ref=f2e113]
+              - row [ref=f2e114]:
+                - cell "Contact" [ref=f2e115]
+                - cell "Clicking WhatsApp / Call" [ref=f2e116]
+                - cell "contact_channel, event_id" [ref=f2e117]
+                - cell "Browser + CAPI" [ref=f2e118]
+              - row [ref=f2e119]:
+                - cell "Lead" [ref=f2e120]
+                - cell "Submitting form / inquiry" [ref=f2e121]
+                - cell "em_hash, ph_hash, lead_value" [ref=f2e122]
+                - cell "Browser + CAPI" [ref=f2e123]
+              - row [ref=f2e124]:
+                - cell "Schedule" [ref=f2e125]
+                - cell "Booking consultation call" [ref=f2e126]
+                - cell "slot_id, event_id" [ref=f2e127]
+                - cell "Browser + CAPI" [ref=f2e128]
+        - generic [ref=f2e129]:
+          - generic [ref=f2e130]:
+            - generic [ref=f2e131]: Performance Contract
+            - heading "Core Web Vitals SLA" [level=3] [ref=f2e132]
+            - paragraph [ref=f2e133]: Slow pages destroy ad conversion rates. We benchmark on mobile networks.
+          - generic [ref=f2e134]:
+            - generic [ref=f2e135]:
+              - generic [ref=f2e136]:
+                - generic [ref=f2e137]: Largest Contentful Paint (LCP)
+                - generic [ref=f2e138]: < 1.2s
+              - paragraph [ref=f2e139]: Hero visual and primary value proposition loads in less than 1.2 seconds on 4G mobile.
+            - generic [ref=f2e140]:
+              - generic [ref=f2e141]:
+                - generic [ref=f2e142]: Cumulative Layout Shift (CLS)
+                - generic [ref=f2e143]: < 0.02
+              - paragraph [ref=f2e144]: Zero annoying page jumps as images or fonts load, maintaining user reading focus.
+            - generic [ref=f2e145]:
+              - generic [ref=f2e146]:
+                - generic [ref=f2e147]: Interaction to Next Paint (INP)
+                - generic [ref=f2e148]: < 100ms
+              - paragraph [ref=f2e149]: Instant UI responsiveness upon button clicks, accordion toggles, and form inputs.
+      - generic [ref=f2e150]:
+        - generic [ref=f2e151]:
+          - generic [ref=f2e152]: Transparent Scope
+          - 'heading "Scope Clarity: What Is Included vs Excluded" [level=2] [ref=f2e153]'
+          - paragraph [ref=f2e154]: We operate with absolute transparency. Here is exactly what we deliver and what is outside project scope.
+        - generic [ref=f2e155]:
+          - generic [ref=f2e156]:
+            - heading "What We Deliver" [level=3] [ref=f2e157]
+            - list [ref=f2e161]:
+              - listitem [ref=f2e162]:
+                - generic [ref=f2e165]: Bespoke single-page conversion architecture and high-impact hero composition
+              - listitem [ref=f2e166]:
+                - generic [ref=f2e169]: Complete Meta Pixel integration with Test Events verification report
+              - listitem [ref=f2e170]:
+                - generic [ref=f2e173]: Google Analytics 4 enhanced event tracking integration
+              - listitem [ref=f2e174]:
+                - generic [ref=f2e177]: Mobile-first responsive engineering tested across 320px–1920px viewports
+              - listitem [ref=f2e178]:
+                - generic [ref=f2e181]: Interactive contact/lead capture form with spam protection & reference code
+              - listitem [ref=f2e182]:
+                - generic [ref=f2e185]: "Technical SEO foundation: Open Graph tags, JSON-LD Schema, sitemap, robots.txt"
+              - listitem [ref=f2e186]:
+                - generic [ref=f2e189]: 14-day post-launch event verification and tracking warranty
+          - generic [ref=f2e190]:
+            - heading "What Is Excluded" [level=3] [ref=f2e191]
+            - list [ref=f2e196]:
+              - listitem [ref=f2e197]:
+                - generic [ref=f2e198]: —
+                - generic [ref=f2e199]: Third-party advertising budget and media spend
+              - listitem [ref=f2e200]:
+                - generic [ref=f2e201]: —
+                - generic [ref=f2e202]: Client-specific photography and video production (stock assets curated)
+              - listitem [ref=f2e203]:
+                - generic [ref=f2e204]: —
+                - generic [ref=f2e205]: Ongoing weekly ad campaign management (development & tracking setup only)
+              - listitem [ref=f2e206]:
+                - generic [ref=f2e207]: —
+                - generic [ref=f2e208]: Custom multi-step backend portal (available under custom web applications)
+      - generic [ref=f2e209]:
+        - generic [ref=f2e210]:
+          - generic [ref=f2e211]: Package Investment
+          - heading "Fixed-Scope Package Options" [level=2] [ref=f2e212]
+          - paragraph [ref=f2e213]: Select the tier aligned with your campaign requirements and conversion goals.
+        - generic [ref=f2e214]:
+          - generic [ref=f2e215]:
+            - generic [ref=f2e216]:
+              - generic [ref=f2e217]: Launch Sprint
+              - generic [ref=f2e219]:
+                - generic [ref=f2e220]: ৳ 25,000
+                - generic [ref=f2e221]: or $250 USD · One-time investment
+              - paragraph [ref=f2e222]: Essential high-speed landing page with core tracking for rapid product or event validation.
+            - generic [ref=f2e223]:
+              - generic [ref=f2e224]:
+                - paragraph [ref=f2e225]: "Included Deliverables:"
+                - list [ref=f2e226]:
+                  - listitem [ref=f2e227]:
+                    - generic [ref=f2e231]: Up to 5 content sections (Hero, Features, Social Proof, FAQ, Lead Form)
+                  - listitem [ref=f2e232]:
+                    - generic [ref=f2e236]: Meta Pixel PageView & Lead event integration
+                  - listitem [ref=f2e237]:
+                    - generic [ref=f2e241]: Sub-1.5s mobile speed optimization
+                  - listitem [ref=f2e242]:
+                    - generic [ref=f2e246]: D1 / Webhook lead storage
+                  - listitem [ref=f2e247]:
+                    - generic [ref=f2e251]: 7-day delivery timeline
+              - link "Choose Launch Sprint" [ref=f2e253] [cursor=pointer]:
+                - /url: /get-a-quote?service=landing-page-meta-pixel&package=Launch%20Sprint
+          - generic [ref=f2e256]:
+            - generic [ref=f2e257]:
+              - generic [ref=f2e258]:
+                - generic [ref=f2e259]: Conversion Pro
+                - generic [ref=f2e260]: Most Popular
+              - generic [ref=f2e261]:
+                - generic [ref=f2e262]: ৳ 45,000
+                - generic [ref=f2e263]: or $450 USD · One-time investment
+              - paragraph [ref=f2e264]: Complete funnel architecture with comprehensive Meta Pixel + CAPI and GA4 measurement.
+            - generic [ref=f2e265]:
+              - generic [ref=f2e266]:
+                - paragraph [ref=f2e267]: "Included Deliverables:"
+                - list [ref=f2e268]:
+                  - listitem [ref=f2e269]:
+                    - generic [ref=f2e273]: Up to 8 tailored sections with interactive tabs, testimonials & FAQ accordion
+                  - listitem [ref=f2e274]:
+                    - generic [ref=f2e278]: Dual Meta Pixel + Conversions API event deduplication
+                  - listitem [ref=f2e279]:
+                    - generic [ref=f2e283]: GA4 Enhanced Measurement (scroll depth, outbound clicks, form abandonment)
+                  - listitem [ref=f2e284]:
+                    - generic [ref=f2e288]: Live Meta Events Manager verification with recorded proof
+                  - listitem [ref=f2e289]:
+                    - generic [ref=f2e293]: Lead capture with email notification & reference code
+                  - listitem [ref=f2e294]:
+                    - generic [ref=f2e298]: 10-day delivery timeline
+              - link "Choose Conversion Pro" [ref=f2e300] [cursor=pointer]:
+                - /url: /get-a-quote?service=landing-page-meta-pixel&package=Conversion%20Pro
+          - generic [ref=f2e303]:
+            - generic [ref=f2e304]:
+              - generic [ref=f2e305]: Growth Funnel Suite
+              - generic [ref=f2e307]:
+                - generic [ref=f2e308]: ৳ 75,000
+                - generic [ref=f2e309]: or $750 USD · One-time investment
+              - paragraph [ref=f2e310]: Advanced conversion system with A/B variant scaffolding, custom calculators, and CRM pipeline handoff.
+            - generic [ref=f2e311]:
+              - generic [ref=f2e312]:
+                - paragraph [ref=f2e313]: "Included Deliverables:"
+                - list [ref=f2e314]:
+                  - listitem [ref=f2e315]:
+                    - generic [ref=f2e319]: Comprehensive funnel layout with multi-step interactive lead quiz/calculator
+                  - listitem [ref=f2e320]:
+                    - generic [ref=f2e324]: Full Meta Pixel, CAPI, Google Ads Tag, and TikTok Pixel integration
+                  - listitem [ref=f2e325]:
+                    - generic [ref=f2e329]: Direct CRM pipeline integration with automatic Slack/WhatsApp/Email alerts
+                  - listitem [ref=f2e330]:
+                    - generic [ref=f2e334]: Advanced Core Web Vitals optimization score guarantee (>95 mobile)
+                  - listitem [ref=f2e335]:
+                    - generic [ref=f2e339]: 14-day delivery timeline with 30-day extended monitoring
+              - link "Choose Growth Funnel Suite" [ref=f2e341] [cursor=pointer]:
+                - /url: /get-a-quote?service=landing-page-meta-pixel&package=Growth%20Funnel%20Suite
+      - generic [ref=f2e344]:
+        - generic [ref=f2e345]:
+          - generic [ref=f2e346]: Specific Inquiries
+          - heading "Landing Page & Meta Pixel Questions" [level=2] [ref=f2e347]
+        - generic [ref=f2e348]:
+          - generic [ref=f2e349]:
+            - button "How do you verify that the Meta Pixel and CAPI are working correctly?" [expanded] [ref=f2e350] [cursor=pointer]
+            - paragraph [ref=f2e355]:
+              - text: Before project handover, we run comprehensive end-to-end tests using the official Meta Events Manager Test Events Tool. We trigger PageView, ViewContent, Contact, and Lead events, verify matching
+              - code [ref=f2e356]: event_id
+              - text: deduplication, and deliver a recorded proof screen confirming 10/10 event quality score.
+          - button "Can you integrate with my existing CRM, Google Sheet, or WhatsApp?" [ref=f2e358] [cursor=pointer]
+          - button "What happens if Meta updates their API after launch?" [ref=f2e363] [cursor=pointer]
+      - generic [ref=f2e367]:
+        - heading "Ready to Maximize Your Ad Conversion Rates?" [level=2] [ref=f2e368]
+        - paragraph [ref=f2e369]: Request a quotation for your campaign landing page or schedule a consultation call to discuss your conversion funnel.
+        - generic [ref=f2e370]:
+          - link "Request Landing Page Quotation" [ref=f2e371] [cursor=pointer]:
+            - /url: /get-a-quote?service=landing-page-meta-pixel
+          - link "Ask a Technical Question" [ref=f2e374] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f2e375]:
+    - generic [ref=f2e376]:
+      - generic [ref=f2e377]:
+        - generic [ref=f2e378]:
+          - link "PL Projukti Labs" [ref=f2e379] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f2e380]: PL
+            - generic [ref=f2e381]: Projukti Labs
+          - paragraph [ref=f2e382]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f2e383]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f2e384] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f2e385]:
+          - heading "Launch Services" [level=4] [ref=f2e386]
+          - list [ref=f2e387]:
+            - listitem [ref=f2e388]:
+              - link "Web Development & Design" [ref=f2e389] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f2e390]:
+              - link "E-commerce & Digital Commerce" [ref=f2e391] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f2e392]:
+              - link "Maintenance & Support" [ref=f2e393] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f2e394]:
+              - link "Landing Page + Meta Pixel" [ref=f2e395] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f2e396]:
+              - link "Complete E-commerce Ready" [ref=f2e397] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f2e398]:
+          - heading "Studio" [level=4] [ref=f2e399]
+          - list [ref=f2e400]:
+            - listitem [ref=f2e401]:
+              - link "About Us" [ref=f2e402] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f2e403]:
+              - link "Founder Profile" [ref=f2e404] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f2e405]:
+              - link "Selected Projects" [ref=f2e406] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f2e407]:
+              - link "Frequently Asked Questions" [ref=f2e408] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f2e409]:
+              - link "Contact" [ref=f2e410] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f2e411]:
+          - heading "Client Inquiries" [level=4] [ref=f2e412]
+          - paragraph [ref=f2e413]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f2e415] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f2e416]:
+            - text: "Domain:"
+            - code [ref=f2e417]: projuktilabs.tech
+      - generic [ref=f2e418]:
+        - paragraph [ref=f2e419]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f2e420]:
+          - link "Design Tokens" [ref=f2e421] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f2e422] [cursor=pointer]:
+            - /url: /contact

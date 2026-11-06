@@ -1,0 +1,375 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - link "PL Projukti Labs" [ref=f1e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f1e5]: PL
+        - generic [ref=f1e7]: Projukti Labs
+      - navigation [ref=f1e8]:
+        - link "Home" [ref=f1e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f1e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f1e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f1e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f1e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f1e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f1e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f1e16]:
+        - button "Switch to light theme" [ref=f1e17] [cursor=pointer]
+        - link [ref=f1e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f1e25]
+  - main [ref=f1e30]:
+    - generic [ref=f1e31]:
+      - generic [ref=f1e32]:
+        - generic [ref=f1e33]:
+          - generic [ref=f1e34]: Launch Service Catalog
+          - generic [ref=f1e35]: 3 Active Verticals
+        - heading "Productized Engineering Services & Transparent Solutions" [level=1] [ref=f1e36]
+        - paragraph [ref=f1e37]: We deliver fixed-scope, milestone-driven software services with zero hidden surprises. Every package includes clear deliverables, technical specifications, and post-launch support.
+      - generic [ref=f1e38]:
+        - generic [ref=f1e39]:
+          - generic [ref=f1e40]:
+            - generic [ref=f1e41]:
+              - generic [ref=f1e42]:
+                - generic [ref=f1e43]: VERTICAL 01
+                - generic [ref=f1e44]: Active at Launch
+              - heading "Web Development & Design" [level=2] [ref=f1e45]
+              - paragraph [ref=f1e46]: Modern web architecture engineered for speed, search visibility, and maximum conversion rates. Built on Next.js, TypeScript, and edge cloud infrastructure.
+            - link "Quote for this Vertical" [ref=f1e47] [cursor=pointer]:
+              - /url: /get-a-quote?service=landing-page-meta-pixel
+          - generic [ref=f1e50]:
+            - generic [ref=f1e51]:
+              - generic [ref=f1e52]:
+                - generic [ref=f1e53]:
+                  - generic [ref=f1e54]: ★ Flagship Special Solution
+                  - generic [ref=f1e55]: 3 Tier Options
+                - heading "Landing Page with Meta Pixel & Analytics" [level=3] [ref=f1e56]
+                - paragraph [ref=f1e57]: Engineered for Conversion. Measured with Absolute Precision.
+              - generic [ref=f1e58]:
+                - paragraph [ref=f1e59]: A high-speed, conversion-engineered landing page paired with server-grade Meta Pixel, Google Analytics 4, and automated event verification. Eliminates tracking drop-offs.
+                - generic [ref=f1e60]:
+                  - paragraph [ref=f1e61]: "Engineering Highlights:"
+                  - list [ref=f1e62]:
+                    - listitem [ref=f1e63]:
+                      - generic [ref=f1e67]: Sub-1.2s Largest Contentful Paint (LCP) on mobile 4G networks
+                    - listitem [ref=f1e68]:
+                      - generic [ref=f1e72]: Dual client-side & server-side Meta Conversions API (CAPI) deduplication
+                    - listitem [ref=f1e73]:
+                      - generic [ref=f1e77]: "Standardized event schema: PageView, ViewContent, Contact, Lead, Schedule"
+                - generic [ref=f1e78]:
+                  - generic [ref=f1e79]:
+                    - generic [ref=f1e80]: Available Tiers
+                    - generic [ref=f1e81]: Investment Starting From
+                  - generic [ref=f1e82]:
+                    - generic [ref=f1e83]:
+                      - generic [ref=f1e84]: Launch Sprint
+                      - generic [ref=f1e85]: ৳ 25,000
+                    - generic [ref=f1e86]:
+                      - generic [ref=f1e87]: Conversion Pro ★
+                      - generic [ref=f1e88]: ৳ 45,000
+                    - generic [ref=f1e89]:
+                      - generic [ref=f1e90]: Growth Funnel Suite
+                      - generic [ref=f1e91]: ৳ 75,000
+                - link "View Full Architecture & Packages" [ref=f1e93] [cursor=pointer]:
+                  - /url: /services/landing-page-meta-pixel
+            - generic [ref=f1e96]:
+              - generic [ref=f1e97]:
+                - generic [ref=f1e98]:
+                  - generic [ref=f1e99]: Standard Package
+                  - generic [ref=f1e100]: 2 Tier Options
+                - heading "Corporate & Studio Web Platform" [level=3] [ref=f1e101]
+                - paragraph [ref=f1e102]: Modern architecture, edge-rendered performance, and CMS content workflows.
+              - generic [ref=f1e103]:
+                - paragraph [ref=f1e104]: Multi-page corporate website for modern companies, technology studios, and consulting firms. Engineered with Next.js App Router and semantic design tokens.
+                - generic [ref=f1e105]:
+                  - paragraph [ref=f1e106]: "Engineering Highlights:"
+                  - list [ref=f1e107]:
+                    - listitem [ref=f1e108]:
+                      - generic [ref=f1e112]: Edge SSR / SSG hybrid caching for instant international page delivery
+                    - listitem [ref=f1e113]:
+                      - generic [ref=f1e117]: Automated blog and news publishing system
+                    - listitem [ref=f1e118]:
+                      - generic [ref=f1e122]: WCAG 2.1 AA accessible navigation, forms, and color contrast
+                - generic [ref=f1e123]:
+                  - generic [ref=f1e124]:
+                    - generic [ref=f1e125]: Available Tiers
+                    - generic [ref=f1e126]: Investment Starting From
+                  - generic [ref=f1e127]:
+                    - generic [ref=f1e128]:
+                      - generic [ref=f1e129]: Company Standard
+                      - generic [ref=f1e130]: ৳ 60,000
+                    - generic [ref=f1e131]:
+                      - generic [ref=f1e132]: Enterprise Studio
+                      - generic [ref=f1e133]: ৳ 120,000
+                - link "Get a Quote for this Service" [ref=f1e135] [cursor=pointer]:
+                  - /url: /get-a-quote?service=corporate-website
+        - generic [ref=f1e138]:
+          - generic [ref=f1e139]:
+            - generic [ref=f1e140]:
+              - generic [ref=f1e141]:
+                - generic [ref=f1e142]: VERTICAL 02
+                - generic [ref=f1e143]: Active at Launch
+              - heading "E-commerce & Digital Commerce" [level=2] [ref=f1e144]
+              - paragraph [ref=f1e145]: Production-grade storefronts, resilient cart-to-checkout flows, order management, and secure payment gateway integrations for Bangladesh and global markets.
+            - link "Quote for this Vertical" [ref=f1e146] [cursor=pointer]:
+              - /url: /get-a-quote?service=complete-ecommerce-website
+          - generic [ref=f1e149]:
+            - generic [ref=f1e150]:
+              - generic [ref=f1e151]:
+                - generic [ref=f1e152]:
+                  - generic [ref=f1e153]: ★ Flagship Special Solution
+                  - generic [ref=f1e154]: 3 Tier Options
+                - heading "Complete Production-Ready E-commerce Platform" [level=3] [ref=f1e155]
+                - paragraph [ref=f1e156]: Robust storefront, frictionless checkout, automated order engine, and secure payment gateways.
+              - generic [ref=f1e157]:
+                - paragraph [ref=f1e158]: An end-to-end e-commerce solution engineered for conversion. Features fast product browsing, customer cart, guest and authenticated checkout, local & global payments, and admin order control.
+                - generic [ref=f1e159]:
+                  - paragraph [ref=f1e160]: "Engineering Highlights:"
+                  - list [ref=f1e161]:
+                    - listitem [ref=f1e162]:
+                      - generic [ref=f1e166]: Sub-100ms client cart state updates with optimistic UI reconciliation
+                    - listitem [ref=f1e167]:
+                      - generic [ref=f1e171]: "Direct payment gateway integration: SSLCommerz, bKash, Nagad, and Stripe"
+                    - listitem [ref=f1e172]:
+                      - generic [ref=f1e176]: Real-time order validation, inventory reservation, and fraud check scaffolding
+                - generic [ref=f1e177]:
+                  - generic [ref=f1e178]:
+                    - generic [ref=f1e179]: Available Tiers
+                    - generic [ref=f1e180]: Investment Starting From
+                  - generic [ref=f1e181]:
+                    - generic [ref=f1e182]:
+                      - generic [ref=f1e183]: Commerce Starter
+                      - generic [ref=f1e184]: ৳ 65,000
+                    - generic [ref=f1e185]:
+                      - generic [ref=f1e186]: Growth Storefront ★
+                      - generic [ref=f1e187]: ৳ 110,000
+                    - generic [ref=f1e188]:
+                      - generic [ref=f1e189]: Custom Scale Commerce
+                      - generic [ref=f1e190]: ৳ 180,000
+                - link "View Full Architecture & Packages" [ref=f1e192] [cursor=pointer]:
+                  - /url: /services/complete-ecommerce-website
+            - generic [ref=f1e195]:
+              - generic [ref=f1e196]:
+                - generic [ref=f1e197]:
+                  - generic [ref=f1e198]: Standard Package
+                  - generic [ref=f1e199]: 1 Tier Options
+                - heading "Headless Storefront & Catalog Solution" [level=3] [ref=f1e200]
+                - paragraph [ref=f1e201]: Decoupled storefront with sub-second page transitions and external inventory APIs.
+              - generic [ref=f1e202]:
+                - paragraph [ref=f1e203]: Supercharge Shopify, Medusa, or custom commerce backends with a bespoke Next.js edge storefront for ultra-fast load times and unique brand aesthetics.
+                - generic [ref=f1e204]:
+                  - paragraph [ref=f1e205]: "Engineering Highlights:"
+                  - list [ref=f1e206]:
+                    - listitem [ref=f1e207]:
+                      - generic [ref=f1e211]: Zero-latency edge page rendering with incremental static revalidation
+                    - listitem [ref=f1e212]:
+                      - generic [ref=f1e216]: Direct GraphQL/REST integration to commerce backends
+                - generic [ref=f1e217]:
+                  - generic [ref=f1e218]:
+                    - generic [ref=f1e219]: Available Tiers
+                    - generic [ref=f1e220]: Investment Starting From
+                  - generic [ref=f1e222]:
+                    - generic [ref=f1e223]: Headless Bridge
+                    - generic [ref=f1e224]: ৳ 95,000
+                - link "Get a Quote for this Service" [ref=f1e226] [cursor=pointer]:
+                  - /url: /get-a-quote?service=headless-commerce
+        - generic [ref=f1e229]:
+          - generic [ref=f1e230]:
+            - generic [ref=f1e231]:
+              - generic [ref=f1e232]:
+                - generic [ref=f1e233]: VERTICAL 03
+                - generic [ref=f1e234]: Active at Launch
+              - heading "Maintenance & Technical Support" [level=2] [ref=f1e235]
+              - paragraph [ref=f1e236]: Eliminate downtime, security vulnerabilities, and technical debt. Ongoing retainer plans for production websites, web applications, and e-commerce platforms.
+            - link "Quote for this Vertical" [ref=f1e237] [cursor=pointer]:
+              - /url: /get-a-quote?service=website-maintenance
+          - generic [ref=f1e240]:
+            - generic [ref=f1e241]:
+              - generic [ref=f1e242]:
+                - generic [ref=f1e243]:
+                  - generic [ref=f1e244]: ★ Flagship Special Solution
+                  - generic [ref=f1e245]: 4 Tier Options
+                - heading "Proactive Website Maintenance & Technical Retainer" [level=3] [ref=f1e246]
+                - paragraph [ref=f1e247]: Zero downtime surprises. Proactive security, performance, and dedicated engineering hours.
+              - generic [ref=f1e248]:
+                - paragraph [ref=f1e249]: A structured monthly engineering retainer guaranteeing uptime, automated off-site backups, security dependency patches, and dedicated monthly development hours for continuous improvements.
+                - generic [ref=f1e250]:
+                  - paragraph [ref=f1e251]: "Engineering Highlights:"
+                  - list [ref=f1e252]:
+                    - listitem [ref=f1e253]:
+                      - generic [ref=f1e257]: Continuous 5-minute uptime and TLS certificate monitoring with automated incident alerts
+                    - listitem [ref=f1e258]:
+                      - generic [ref=f1e262]: Automated weekly database and asset snapshot verification
+                    - listitem [ref=f1e263]:
+                      - generic [ref=f1e267]: Staged security vulnerability patching before production deployment
+                - generic [ref=f1e268]:
+                  - generic [ref=f1e269]:
+                    - generic [ref=f1e270]: Available Tiers
+                    - generic [ref=f1e271]: Investment Starting From
+                  - generic [ref=f1e272]:
+                    - generic [ref=f1e273]:
+                      - generic [ref=f1e274]: Basic Care
+                      - generic [ref=f1e275]: ৳ 8,000 / mo
+                    - generic [ref=f1e276]:
+                      - generic [ref=f1e277]: Business Care ★
+                      - generic [ref=f1e278]: ৳ 18,000 / mo
+                    - generic [ref=f1e279]:
+                      - generic [ref=f1e280]: Priority Care
+                      - generic [ref=f1e281]: ৳ 38,000 / mo
+                    - generic [ref=f1e282]:
+                      - generic [ref=f1e283]: Custom Retainer
+                      - generic [ref=f1e284]: Custom Scope
+                - link "View Full Architecture & Packages" [ref=f1e286] [cursor=pointer]:
+                  - /url: /services/website-maintenance
+            - generic [ref=f1e289]:
+              - generic [ref=f1e290]:
+                - generic [ref=f1e291]:
+                  - generic [ref=f1e292]: Standard Package
+                  - generic [ref=f1e293]: 1 Tier Options
+                - heading "Performance & Security Hardening Audit" [level=3] [ref=f1e294]
+                - paragraph [ref=f1e295]: Comprehensive Core Web Vitals profiling, security headers, and edge caching optimization.
+              - generic [ref=f1e296]:
+                - paragraph [ref=f1e297]: A one-off deep-dive audit and remediation package to resolve slow page speeds, high TTFB, security misconfigurations, and broken tracking.
+                - generic [ref=f1e298]:
+                  - paragraph [ref=f1e299]: "Engineering Highlights:"
+                  - list [ref=f1e300]:
+                    - listitem [ref=f1e301]:
+                      - generic [ref=f1e305]: Chrome DevTools trace analysis and JavaScript bundle unbloating
+                    - listitem [ref=f1e306]:
+                      - generic [ref=f1e310]: Content Security Policy (CSP), HSTS, and CORS header hardening
+                - generic [ref=f1e311]:
+                  - generic [ref=f1e312]:
+                    - generic [ref=f1e313]: Available Tiers
+                    - generic [ref=f1e314]: Investment Starting From
+                  - generic [ref=f1e316]:
+                    - generic [ref=f1e317]: Deep Audit & Fix
+                    - generic [ref=f1e318]: ৳ 30,000
+                - link "Get a Quote for this Service" [ref=f1e320] [cursor=pointer]:
+                  - /url: /get-a-quote?service=speed-security-audit
+      - generic [ref=f1e323]:
+        - generic [ref=f1e324]:
+          - generic [ref=f1e325]: Strategic Roadmap
+          - heading "Future Capabilities & Expansion Pipeline" [level=2] [ref=f1e326]
+          - paragraph [ref=f1e327]: In adherence to our discipline of engineering excellence, the following disciplines are currently in strategic research and pipeline expansion. They are not active sales offerings for launch.
+        - generic [ref=f1e328]:
+          - generic [ref=f1e329]:
+            - generic [ref=f1e330]:
+              - generic [ref=f1e331]: In Pipeline
+              - generic [ref=f1e332]: Coming Soon
+            - heading "Custom Software & SaaS Development" [level=3] [ref=f1e333]
+            - paragraph [ref=f1e334]: Scalable cloud architectures, internal operations portals, and multi-tenant SaaS products.
+          - generic [ref=f1e335]:
+            - generic [ref=f1e336]:
+              - generic [ref=f1e337]: In Pipeline
+              - generic [ref=f1e338]: Coming Soon
+            - heading "AI Integrations & Automated Workflows" [level=3] [ref=f1e339]
+            - paragraph [ref=f1e340]: Intelligent agent pipelines, document extraction, and background workflow automation.
+          - generic [ref=f1e341]:
+            - generic [ref=f1e342]:
+              - generic [ref=f1e343]: In Pipeline
+              - generic [ref=f1e344]: Coming Soon
+            - heading "Cross-Platform Mobile Applications" [level=3] [ref=f1e345]
+            - paragraph [ref=f1e346]: Responsive, native-feeling mobile applications built for iOS and Android.
+          - generic [ref=f1e347]:
+            - generic [ref=f1e348]:
+              - generic [ref=f1e349]: In Pipeline
+              - generic [ref=f1e350]: Coming Soon
+            - heading "Product Discovery & UI/UX Design Systems" [level=3] [ref=f1e351]
+            - paragraph [ref=f1e352]: User-centered design architecture, wireframes, and scalable design tokens.
+          - generic [ref=f1e353]:
+            - generic [ref=f1e354]:
+              - generic [ref=f1e355]: In Pipeline
+              - generic [ref=f1e356]: Coming Soon
+            - heading "Cloud Infrastructure & Edge DevOps" [level=3] [ref=f1e357]
+            - paragraph [ref=f1e358]: Serverless deployments, container orchestration, and continuous integration pipelines.
+          - generic [ref=f1e359]:
+            - generic [ref=f1e360]:
+              - generic [ref=f1e361]: In Pipeline
+              - generic [ref=f1e362]: Coming Soon
+            - heading "API Architecture & Microservice Integration" [level=3] [ref=f1e363]
+            - paragraph [ref=f1e364]: Robust REST & GraphQL APIs, secure webhooks, and third-party platform bridges.
+          - generic [ref=f1e365]:
+            - generic [ref=f1e366]:
+              - generic [ref=f1e367]: In Pipeline
+              - generic [ref=f1e368]: Coming Soon
+            - heading "Advanced Technical SEO & Business Analytics" [level=3] [ref=f1e369]
+            - paragraph [ref=f1e370]: Data pipelines, structured search data, and end-to-end customer attribution modeling.
+      - generic [ref=f1e371]:
+        - heading "Need a Custom Tailored Engineering Scope?" [level=2] [ref=f1e372]
+        - paragraph [ref=f1e373]: If your project requirements span across multiple disciplines or require bespoke infrastructure, we are ready to review your specifications.
+        - generic [ref=f1e374]:
+          - link "Request Custom Quotation" [ref=f1e375] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Schedule Technical Call" [ref=f1e378] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f1e379]:
+    - generic [ref=f1e380]:
+      - generic [ref=f1e381]:
+        - generic [ref=f1e382]:
+          - link "PL Projukti Labs" [ref=f1e383] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f1e384]: PL
+            - generic [ref=f1e385]: Projukti Labs
+          - paragraph [ref=f1e386]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f1e387]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f1e388] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f1e389]:
+          - heading "Launch Services" [level=4] [ref=f1e390]
+          - list [ref=f1e391]:
+            - listitem [ref=f1e392]:
+              - link "Web Development & Design" [ref=f1e393] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f1e394]:
+              - link "E-commerce & Digital Commerce" [ref=f1e395] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f1e396]:
+              - link "Maintenance & Support" [ref=f1e397] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f1e398]:
+              - link "Landing Page + Meta Pixel" [ref=f1e399] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f1e400]:
+              - link "Complete E-commerce Ready" [ref=f1e401] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f1e402]:
+          - heading "Studio" [level=4] [ref=f1e403]
+          - list [ref=f1e404]:
+            - listitem [ref=f1e405]:
+              - link "About Us" [ref=f1e406] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f1e407]:
+              - link "Founder Profile" [ref=f1e408] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f1e409]:
+              - link "Selected Projects" [ref=f1e410] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f1e411]:
+              - link "Frequently Asked Questions" [ref=f1e412] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f1e413]:
+              - link "Contact" [ref=f1e414] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f1e415]:
+          - heading "Client Inquiries" [level=4] [ref=f1e416]
+          - paragraph [ref=f1e417]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f1e419] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f1e420]:
+            - text: "Domain:"
+            - code [ref=f1e421]: projuktilabs.tech
+      - generic [ref=f1e422]:
+        - paragraph [ref=f1e423]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f1e424]:
+          - link "Design Tokens" [ref=f1e425] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f1e426] [cursor=pointer]:
+            - /url: /contact

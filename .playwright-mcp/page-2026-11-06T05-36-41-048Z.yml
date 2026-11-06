@@ -1,0 +1,144 @@
+- generic [active] [ref=f9e1]:
+  - banner [ref=f9e2]:
+    - generic [ref=f9e3]:
+      - link "PL Projukti Labs" [ref=f9e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e5]: PL
+        - generic [ref=f9e7]: Projukti Labs
+      - navigation [ref=f9e8]:
+        - link "Home" [ref=f9e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f9e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f9e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f9e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f9e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f9e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f9e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f9e16]:
+        - button "Switch to light theme" [ref=f9e17] [cursor=pointer]
+        - link [ref=f9e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f9e25]
+  - main [ref=f9e30]:
+    - generic [ref=f9e31]:
+      - generic [ref=f9e32]:
+        - generic [ref=f9e33]: Direct Engineering Channel
+        - heading "Contact Our Engineering Team" [level=1] [ref=f9e34]
+        - paragraph [ref=f9e35]: Have a question about our services, technical architectures, or need guidance on an upcoming project? Reach out directly. We respond to all inquiries within 24 business hours.
+      - generic [ref=f9e36]:
+        - generic [ref=f9e40]:
+          - generic [ref=f9e41]:
+            - generic [ref=f9e42]:
+              - generic [ref=f9e43]: Full Name *
+              - textbox "Full Name *" [ref=f9e44]:
+                - /placeholder: e.g. Parvez Ahmed
+            - generic [ref=f9e45]:
+              - generic [ref=f9e46]: Official Email *
+              - textbox "Official Email *" [ref=f9e47]:
+                - /placeholder: parvez@example.com
+          - generic [ref=f9e48]:
+            - generic [ref=f9e49]:
+              - text: Phone / WhatsApp (Optional)
+              - textbox "Phone / WhatsApp (Optional)" [ref=f9e50]:
+                - /placeholder: +880 1700 000000
+            - generic [ref=f9e51]:
+              - text: Company / Organization (Optional)
+              - textbox "Company / Organization (Optional)" [ref=f9e52]:
+                - /placeholder: Acme Technologies
+          - generic [ref=f9e53]:
+            - generic [ref=f9e54]: Project Description or Inquiry *
+            - textbox "Project Description or Inquiry *" [ref=f9e55]:
+              - /placeholder: Tell us about your project requirements, technical challenges, or service inquiry...
+          - button "Submit Inquiry" [ref=f9e56] [cursor=pointer]
+        - generic [ref=f9e60]:
+          - generic [ref=f9e61]:
+            - heading "Studio Information" [level=3] [ref=f9e62]
+            - generic [ref=f9e63]:
+              - generic [ref=f9e68]:
+                - paragraph [ref=f9e69]: Official Inquiries
+                - link "contact@projuktilabs.tech" [ref=f9e70] [cursor=pointer]:
+                  - /url: mailto:contact@projuktilabs.tech
+              - generic [ref=f9e75]:
+                - paragraph [ref=f9e76]: Response SLA
+                - paragraph [ref=f9e77]: Guaranteed response within 24 business hours.
+              - generic [ref=f9e82]:
+                - paragraph [ref=f9e83]: Studio Location
+                - paragraph [ref=f9e84]: Dhaka, Bangladesh · Serving clients worldwide.
+              - generic [ref=f9e89]:
+                - paragraph [ref=f9e90]: Privacy & Confidentiality
+                - paragraph [ref=f9e91]: Your brief and contact details are strictly confidential. We never share your data.
+          - generic [ref=f9e92]:
+            - heading "Need a Detailed Quotation?" [level=4] [ref=f9e93]
+            - paragraph [ref=f9e94]: If you have specific budget, timeline, and feature requirements ready, our structured quotation form helps us provide an immediate, tailored proposal.
+            - link "Open Project Quotation Form" [ref=f9e95] [cursor=pointer]:
+              - /url: /get-a-quote
+  - contentinfo [ref=f9e98]:
+    - generic [ref=f9e99]:
+      - generic [ref=f9e100]:
+        - generic [ref=f9e101]:
+          - link "PL Projukti Labs" [ref=f9e102] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f9e103]: PL
+            - generic [ref=f9e104]: Projukti Labs
+          - paragraph [ref=f9e105]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f9e106]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f9e107] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f9e108]:
+          - heading "Launch Services" [level=4] [ref=f9e109]
+          - list [ref=f9e110]:
+            - listitem [ref=f9e111]:
+              - link "Web Development & Design" [ref=f9e112] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f9e113]:
+              - link "E-commerce & Digital Commerce" [ref=f9e114] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f9e115]:
+              - link "Maintenance & Support" [ref=f9e116] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f9e117]:
+              - link "Landing Page + Meta Pixel" [ref=f9e118] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f9e119]:
+              - link "Complete E-commerce Ready" [ref=f9e120] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f9e121]:
+          - heading "Studio" [level=4] [ref=f9e122]
+          - list [ref=f9e123]:
+            - listitem [ref=f9e124]:
+              - link "About Us" [ref=f9e125] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f9e126]:
+              - link "Founder Profile" [ref=f9e127] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f9e128]:
+              - link "Selected Projects" [ref=f9e129] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f9e130]:
+              - link "Frequently Asked Questions" [ref=f9e131] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f9e132]:
+              - link "Contact" [ref=f9e133] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f9e134]:
+          - heading "Client Inquiries" [level=4] [ref=f9e135]
+          - paragraph [ref=f9e136]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f9e138] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f9e139]:
+            - text: "Domain:"
+            - code [ref=f9e140]: projuktilabs.tech
+      - generic [ref=f9e141]:
+        - paragraph [ref=f9e142]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f9e143]:
+          - link "Design Tokens" [ref=f9e144] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f9e145] [cursor=pointer]:
+            - /url: /contact

@@ -1,0 +1,333 @@
+- generic [active] [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - link "PL Projukti Labs" [ref=f4e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f4e5]: PL
+        - generic [ref=f4e7]: Projukti Labs
+      - navigation [ref=f4e8]:
+        - link "Home" [ref=f4e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f4e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f4e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f4e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f4e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f4e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f4e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f4e16]:
+        - button "Switch to light theme" [ref=f4e17] [cursor=pointer]
+        - link [ref=f4e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f4e25]
+  - main [ref=f4e30]:
+    - generic [ref=f4e31]:
+      - generic [ref=f4e32]:
+        - generic [ref=f4e33]:
+          - generic [ref=f4e34]: Flagship Vertical
+          - generic [ref=f4e35]: Maintenance & Technical Support
+          - generic [ref=f4e36]: Guaranteed 1h–48h SLA
+        - heading "Proactive Website Maintenance & Technical Retainer" [level=1] [ref=f4e37]
+        - paragraph [ref=f4e38]: Zero downtime surprises. We protect your business with continuous 5-minute health monitoring, weekly automated backup restoration drills, security patch management, and dedicated developer hours every month.
+        - generic [ref=f4e39]:
+          - link "Enroll in Business Care" [ref=f4e40] [cursor=pointer]:
+            - /url: /get-a-quote?service=website-maintenance&package=Business+Care
+          - link "Compare All 4 Care Tiers" [ref=f4e43] [cursor=pointer]:
+            - /url: "#care-matrix"
+      - generic [ref=f4e44]:
+        - generic [ref=f4e45]:
+          - generic [ref=f4e46]: Proactive Engineering Routine
+          - heading "How We Protect Your Production Environment" [level=2] [ref=f4e47]
+          - paragraph [ref=f4e48]: Rather than waiting for something to break, we actively audit and tune your system daily.
+        - generic [ref=f4e49]:
+          - generic [ref=f4e50]:
+            - generic [ref=f4e51]: PILLAR 01
+            - heading "5-Min Uptime Telemetry" [level=3] [ref=f4e55]
+            - paragraph [ref=f4e56]: Automated global probes check your endpoint every 5 minutes. Outages trigger instant SMS/WhatsApp alerts to on-call engineers.
+          - generic [ref=f4e57]:
+            - generic [ref=f4e58]: PILLAR 02
+            - heading "Off-Site Backups & Drills" [level=3] [ref=f4e62]
+            - paragraph [ref=f4e63]: Automated database and asset snapshots stored in separate cloud regions, backed by monthly restoration drill verification.
+          - generic [ref=f4e64]:
+            - generic [ref=f4e65]: PILLAR 03
+            - heading "Staged Security Patches" [level=3] [ref=f4e70]
+            - paragraph [ref=f4e71]: Node.js, Next.js, and package CVE vulnerabilities are patched and tested in staging before ever touching production.
+          - generic [ref=f4e72]:
+            - generic [ref=f4e73]: PILLAR 04
+            - heading "Dedicated Dev Capacity" [level=3] [ref=f4e78]
+            - paragraph [ref=f4e79]: Included developer hours every month for UI tweaks, campaign banner updates, speed tuning, and form revisions.
+      - generic [ref=f4e80]:
+        - generic [ref=f4e81]:
+          - generic [ref=f4e82]: Monthly Retainers
+          - heading "The 4 Proactive Care Retainer Tiers" [level=2] [ref=f4e83]
+          - paragraph [ref=f4e84]: Select the SLA response and engineering capacity that matches your business criticality.
+        - generic [ref=f4e85]:
+          - generic [ref=f4e86]:
+            - generic [ref=f4e87]:
+              - generic [ref=f4e88]: Basic Care
+              - generic [ref=f4e90]:
+                - generic [ref=f4e91]: ৳ 8,000
+                - generic [ref=f4e92]: or $80 USD / month
+              - generic [ref=f4e93]: "SLA: 48h response"
+              - paragraph [ref=f4e98]: Essential insurance for business websites that need security, backups, and guaranteed uptime.
+            - generic [ref=f4e99]:
+              - generic [ref=f4e100]:
+                - paragraph [ref=f4e101]: "Included in Basic Care:"
+                - list [ref=f4e102]:
+                  - listitem [ref=f4e103]:
+                    - generic [ref=f4e107]: Weekly off-site backup verification
+                  - listitem [ref=f4e108]:
+                    - generic [ref=f4e112]: 15-minute uptime and SSL monitoring
+                  - listitem [ref=f4e113]:
+                    - generic [ref=f4e117]: Monthly core dependency security updates
+                  - listitem [ref=f4e118]:
+                    - generic [ref=f4e122]: Emergency incident triage (48-hour response SLA)
+                  - listitem [ref=f4e123]:
+                    - generic [ref=f4e127]: Monthly health status email summary
+              - link "Choose Basic Care" [ref=f4e129] [cursor=pointer]:
+                - /url: /get-a-quote?service=website-maintenance&package=Basic%20Care
+          - generic [ref=f4e132]:
+            - generic [ref=f4e133]:
+              - generic [ref=f4e134]:
+                - generic [ref=f4e135]: Business Care
+                - generic [ref=f4e136]: Recommended
+              - generic [ref=f4e137]:
+                - generic [ref=f4e138]: ৳ 18,000
+                - generic [ref=f4e139]: or $180 USD / month
+              - generic [ref=f4e140]: "SLA: 24h response"
+              - paragraph [ref=f4e145]: Proactive maintenance and development support for growing commercial websites and online stores.
+            - generic [ref=f4e146]:
+              - generic [ref=f4e147]:
+                - paragraph [ref=f4e148]: "Included in Business Care:"
+                - list [ref=f4e149]:
+                  - listitem [ref=f4e150]:
+                    - generic [ref=f4e154]: Daily database backup & weekly verification
+                  - listitem [ref=f4e155]:
+                    - generic [ref=f4e159]: 5-minute uptime monitoring with instant WhatsApp/email alert
+                  - listitem [ref=f4e160]:
+                    - generic [ref=f4e164]: 4 hours dedicated developer time every month for UI tweaks & content updates
+                  - listitem [ref=f4e165]:
+                    - generic [ref=f4e169]: Monthly performance audit & database query optimization
+                  - listitem [ref=f4e170]:
+                    - generic [ref=f4e174]: 24-hour response SLA for non-critical support tickets
+                  - listitem [ref=f4e175]:
+                    - generic [ref=f4e179]: Detailed monthly engineering report
+              - link "Choose Business Care" [ref=f4e181] [cursor=pointer]:
+                - /url: /get-a-quote?service=website-maintenance&package=Business%20Care
+          - generic [ref=f4e184]:
+            - generic [ref=f4e185]:
+              - generic [ref=f4e186]: Priority Care
+              - generic [ref=f4e188]:
+                - generic [ref=f4e189]: ৳ 38,000
+                - generic [ref=f4e190]: or $380 USD / month
+              - generic [ref=f4e191]: "SLA: 4h response"
+              - paragraph [ref=f4e196]: Mission-critical engineering retainer for high-traffic websites, portals, and e-commerce stores.
+            - generic [ref=f4e197]:
+              - generic [ref=f4e198]:
+                - paragraph [ref=f4e199]: "Included in Priority Care:"
+                - list [ref=f4e200]:
+                  - listitem [ref=f4e201]:
+                    - generic [ref=f4e205]: 10 hours dedicated developer time every month
+                  - listitem [ref=f4e206]:
+                    - generic [ref=f4e210]: 4-hour emergency SLA with direct phone/WhatsApp engineer access
+                  - listitem [ref=f4e211]:
+                    - generic [ref=f4e215]: Staging environment testing before all production updates
+                  - listitem [ref=f4e216]:
+                    - generic [ref=f4e220]: Continuous automated security audit & secret rotation assistance
+                  - listitem [ref=f4e221]:
+                    - generic [ref=f4e225]: Database indexing & CDN caching tuning
+                  - listitem [ref=f4e226]:
+                    - generic [ref=f4e230]: Bi-weekly engineering check-in
+              - link "Choose Priority Care" [ref=f4e232] [cursor=pointer]:
+                - /url: /get-a-quote?service=website-maintenance&package=Priority%20Care
+          - generic [ref=f4e235]:
+            - generic [ref=f4e236]:
+              - generic [ref=f4e237]: Custom Retainer
+              - generic [ref=f4e239]:
+                - generic [ref=f4e240]: Custom Scope
+                - generic [ref=f4e241]: Bespoke SLA / month
+              - generic [ref=f4e242]: "SLA: 1h response"
+              - paragraph [ref=f4e247]: Bespoke SLA and dedicated engineering capacity for enterprise platforms and high-stakes products.
+            - generic [ref=f4e248]:
+              - generic [ref=f4e249]:
+                - paragraph [ref=f4e250]: "Included in Custom Retainer:"
+                - list [ref=f4e251]:
+                  - listitem [ref=f4e252]:
+                    - generic [ref=f4e256]: Tailored monthly development hours (20+ hrs)
+                  - listitem [ref=f4e257]:
+                    - generic [ref=f4e261]: 1-hour critical response SLA with 24/7 on-call coverage
+                  - listitem [ref=f4e262]:
+                    - generic [ref=f4e266]: Dedicated Slack or WhatsApp team channel with the Principal Architect
+                  - listitem [ref=f4e267]:
+                    - generic [ref=f4e271]: Multi-region failover and disaster recovery drills
+                  - listitem [ref=f4e272]:
+                    - generic [ref=f4e276]: Custom infrastructure and CI/CD workflow management
+              - link "Choose Custom Retainer" [ref=f4e278] [cursor=pointer]:
+                - /url: /get-a-quote?service=website-maintenance&package=Custom%20Retainer
+      - generic [ref=f4e281]:
+        - heading "Detailed SLA & Capability Comparison" [level=3] [ref=f4e282]
+        - table [ref=f4e284]:
+          - rowgroup [ref=f4e285]:
+            - row [ref=f4e286]:
+              - columnheader "Feature / SLA" [ref=f4e287]
+              - columnheader "Basic Care" [ref=f4e288]
+              - columnheader "Business Care" [ref=f4e289]
+              - columnheader "Priority Care" [ref=f4e290]
+              - columnheader "Custom Enterprise" [ref=f4e291]
+          - rowgroup [ref=f4e292]:
+            - row [ref=f4e293]:
+              - cell "Monthly Fee" [ref=f4e294]
+              - cell "৳ 8,000 ($80)" [ref=f4e295]
+              - cell "৳ 18,000 ($180)" [ref=f4e296]
+              - cell "৳ 38,000 ($380)" [ref=f4e297]
+              - cell "Custom Scope" [ref=f4e298]
+            - row [ref=f4e299]:
+              - cell "Response SLA Guarantee" [ref=f4e300]
+              - cell "48 Hours" [ref=f4e301]
+              - cell "24 Hours" [ref=f4e302]
+              - cell "4 Hours" [ref=f4e303]
+              - cell "1 Hour Emergency" [ref=f4e304]
+            - row [ref=f4e305]:
+              - cell "Dedicated Dev Hours / Mo" [ref=f4e306]
+              - cell "0 Hours" [ref=f4e307]
+              - cell "4 Hours" [ref=f4e308]
+              - cell "10 Hours" [ref=f4e309]
+              - cell "20+ Hours" [ref=f4e310]
+            - row [ref=f4e311]:
+              - cell "Uptime Monitoring Interval" [ref=f4e312]
+              - cell "15 Minutes" [ref=f4e313]
+              - cell "5 Minutes" [ref=f4e314]
+              - cell "1 Minute" [ref=f4e315]
+              - cell "Continuous Real-Time" [ref=f4e316]
+            - row [ref=f4e317]:
+              - cell "Backup Frequency" [ref=f4e318]
+              - cell "Weekly" [ref=f4e319]
+              - cell "Daily" [ref=f4e320]
+              - cell "Daily + On-demand" [ref=f4e321]
+              - cell "Continuous Point-in-Time" [ref=f4e322]
+            - row [ref=f4e323]:
+              - cell "Support Channel" [ref=f4e324]
+              - cell "Email Portal" [ref=f4e325]
+              - cell "Email + WhatsApp" [ref=f4e326]
+              - cell "WhatsApp + Direct Phone" [ref=f4e327]
+              - cell "Dedicated Slack / Team" [ref=f4e328]
+      - generic [ref=f4e329]:
+        - generic [ref=f4e330]:
+          - generic [ref=f4e331]: Scope Boundaries
+          - heading "Retainer Tasks Covered vs Excluded" [level=2] [ref=f4e332]
+        - generic [ref=f4e333]:
+          - generic [ref=f4e334]:
+            - heading "What Is Covered Under Retainers" [level=3] [ref=f4e335]
+            - list [ref=f4e339]:
+              - listitem [ref=f4e340]:
+                - generic [ref=f4e343]: Fixing runtime bugs, layout breaks, and broken links
+              - listitem [ref=f4e344]:
+                - generic [ref=f4e347]: Security vulnerability updates and npm package dependency auditing
+              - listitem [ref=f4e348]:
+                - generic [ref=f4e351]: SSL certificate monitoring and renewal assistance
+              - listitem [ref=f4e352]:
+                - generic [ref=f4e355]: Banner updates, price changes, and new product layout formatting (using dev hours)
+              - listitem [ref=f4e356]:
+                - generic [ref=f4e359]: Quarterly Core Web Vitals speed check and cache optimization
+          - generic [ref=f4e360]:
+            - heading "What Is Excluded (Handled as Separate Sprints)" [level=3] [ref=f4e361]
+            - list [ref=f4e366]:
+              - listitem [ref=f4e367]:
+                - generic [ref=f4e368]: —
+                - generic [ref=f4e369]: Complete website redesigns or migrating to an entirely new tech stack
+              - listitem [ref=f4e370]:
+                - generic [ref=f4e371]: —
+                - generic [ref=f4e372]: Creating complex new multi-step custom software features beyond retainer hours
+              - listitem [ref=f4e373]:
+                - generic [ref=f4e374]: —
+                - generic [ref=f4e375]: Graphic design from scratch or specialized promotional video shooting
+              - listitem [ref=f4e376]:
+                - generic [ref=f4e377]: —
+                - generic [ref=f4e378]: Third-party hosting/SaaS subscription fees (invoiced directly to client)
+      - generic [ref=f4e379]:
+        - generic [ref=f4e380]:
+          - generic [ref=f4e381]: Maintenance Inquiries
+          - heading "Retainer Care FAQ" [level=2] [ref=f4e382]
+        - generic [ref=f4e383]:
+          - generic [ref=f4e384]:
+            - button "Do unused monthly development hours roll over?" [expanded] [ref=f4e385] [cursor=pointer]
+            - paragraph [ref=f4e390]: Unused hours from Business Care and Priority Care plans roll over for up to 60 days. This gives you flexibility to accumulate hours for seasonal product launches or quarterly feature updates.
+          - button "Can you maintain a website that wasn't built by Projukti Labs?" [ref=f4e392] [cursor=pointer]
+          - button "Is there any long-term contract lock-in?" [ref=f4e397] [cursor=pointer]
+      - generic [ref=f4e401]:
+        - heading "Protect Your Platform Today" [level=2] [ref=f4e402]
+        - paragraph [ref=f4e403]: Enroll your website or commerce platform in an SLA-guaranteed care retainer.
+        - generic [ref=f4e404]:
+          - link "Request Retainer Enrollment" [ref=f4e405] [cursor=pointer]:
+            - /url: /get-a-quote?service=website-maintenance
+          - link "Talk with Support Architect" [ref=f4e408] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f4e409]:
+    - generic [ref=f4e410]:
+      - generic [ref=f4e411]:
+        - generic [ref=f4e412]:
+          - link "PL Projukti Labs" [ref=f4e413] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f4e414]: PL
+            - generic [ref=f4e415]: Projukti Labs
+          - paragraph [ref=f4e416]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f4e417]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f4e418] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f4e419]:
+          - heading "Launch Services" [level=4] [ref=f4e420]
+          - list [ref=f4e421]:
+            - listitem [ref=f4e422]:
+              - link "Web Development & Design" [ref=f4e423] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f4e424]:
+              - link "E-commerce & Digital Commerce" [ref=f4e425] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f4e426]:
+              - link "Maintenance & Support" [ref=f4e427] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f4e428]:
+              - link "Landing Page + Meta Pixel" [ref=f4e429] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f4e430]:
+              - link "Complete E-commerce Ready" [ref=f4e431] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f4e432]:
+          - heading "Studio" [level=4] [ref=f4e433]
+          - list [ref=f4e434]:
+            - listitem [ref=f4e435]:
+              - link "About Us" [ref=f4e436] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f4e437]:
+              - link "Founder Profile" [ref=f4e438] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f4e439]:
+              - link "Selected Projects" [ref=f4e440] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f4e441]:
+              - link "Frequently Asked Questions" [ref=f4e442] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f4e443]:
+              - link "Contact" [ref=f4e444] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f4e445]:
+          - heading "Client Inquiries" [level=4] [ref=f4e446]
+          - paragraph [ref=f4e447]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f4e449] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f4e450]:
+            - text: "Domain:"
+            - code [ref=f4e451]: projuktilabs.tech
+      - generic [ref=f4e452]:
+        - paragraph [ref=f4e453]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f4e454]:
+          - link "Design Tokens" [ref=f4e455] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f4e456] [cursor=pointer]:
+            - /url: /contact

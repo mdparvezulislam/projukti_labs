@@ -16,7 +16,21 @@ export interface ApiResponse<T = unknown> {
   };
 }
 
-export function apiSuccess<T>(data: T, meta?: Record<string, unknown>, status = 200) {
+export function apiSuccess<T>(
+  data: T,
+  metaOrStatus?: Record<string, unknown> | number,
+  status = 200
+) {
+  let meta: Record<string, unknown> | undefined;
+  let finalStatus = status;
+
+  if (typeof metaOrStatus === "number") {
+    finalStatus = metaOrStatus;
+    meta = undefined;
+  } else if (typeof metaOrStatus === "object" && metaOrStatus !== null) {
+    meta = metaOrStatus;
+  }
+
   const requestId = crypto.randomUUID();
   const response: ApiResponse<T> = {
     success: true,
@@ -28,7 +42,7 @@ export function apiSuccess<T>(data: T, meta?: Record<string, unknown>, status = 
     },
   };
   return NextResponse.json(response, {
-    status,
+    status: finalStatus,
     headers: { "x-request-id": requestId },
   });
 }
@@ -61,10 +75,17 @@ export function apiError(
 export function handleZodError(err: ZodError) {
   const fieldErrors: Record<string, string[]> = {};
   for (const issue of err.issues) {
-    const key = issue.path.join(".") || "root";
-    if (!fieldErrors[key]) fieldErrors[key] = [];
-    fieldErrors[key].push(issue.message);
+    const field = issue.path.join(".") || "_root";
+    if (!fieldErrors[field]) {
+      fieldErrors[field] = [];
+    }
+    fieldErrors[field].push(issue.message);
   }
-  return apiError("VALIDATION_ERROR", "Validation failed for request payload.", 422, fieldErrors);
-}
 
+  return apiError(
+    "VALIDATION_ERROR",
+    err.issues[0]?.message || "Invalid payload",
+    400,
+    fieldErrors
+  );
+}

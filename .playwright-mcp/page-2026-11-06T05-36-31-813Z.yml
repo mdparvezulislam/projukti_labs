@@ -1,0 +1,164 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - generic [ref=f7e3]:
+      - link "PL Projukti Labs" [ref=f7e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f7e5]: PL
+        - generic [ref=f7e7]: Projukti Labs
+      - navigation [ref=f7e8]:
+        - link "Home" [ref=f7e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f7e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f7e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f7e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f7e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f7e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f7e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f7e16]:
+        - button "Switch to light theme" [ref=f7e17] [cursor=pointer]
+        - link [ref=f7e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f7e25]
+  - main [ref=f7e30]:
+    - generic [ref=f7e31]:
+      - generic [ref=f7e32]:
+        - generic [ref=f7e33]:
+          - generic [ref=f7e34]:
+            - generic [ref=f7e35]: Founder & Principal Software Architect
+            - generic [ref=f7e36]: projuktilabs.tech
+          - heading "Md Parvezul Islam" [level=1] [ref=f7e37]
+          - paragraph [ref=f7e38]: Software architect, systems engineer, and technologist dedicated to building ultra-reliable, high-throughput digital platforms, edge computing applications, and conversion systems.
+          - paragraph [ref=f7e39]: "“I founded Projukti Labs on a simple premise: software should be fast, truthful, resilient, and built to solve real commercial problems without layers of unnecessary agency overhead.”"
+          - generic [ref=f7e40]:
+            - link "Consult on a Project" [ref=f7e41] [cursor=pointer]:
+              - /url: /get-a-quote
+            - link "Direct Message" [ref=f7e44] [cursor=pointer]:
+              - /url: /contact
+        - generic [ref=f7e46]:
+          - generic [ref=f7e47]: PI
+          - generic [ref=f7e48]:
+            - heading "Md Parvezul Islam" [level=2] [ref=f7e49]
+            - paragraph [ref=f7e50]: Principal Software Architect
+            - paragraph [ref=f7e51]: Dhaka, Bangladesh · Serving Global Clients
+          - generic [ref=f7e52]:
+            - generic [ref=f7e53]:
+              - generic [ref=f7e54]: "Focus:"
+              - generic [ref=f7e55]: Edge Systems & Web
+            - generic [ref=f7e56]:
+              - generic [ref=f7e57]: "Role:"
+              - generic [ref=f7e58]: Hands-on Architecture
+            - generic [ref=f7e59]:
+              - generic [ref=f7e60]: "Status:"
+              - generic [ref=f7e61]: Active Client Work
+      - generic [ref=f7e62]:
+        - generic [ref=f7e63]:
+          - generic [ref=f7e64]: Architectural Manifesto
+          - heading "How I Approach Engineering Systems" [level=2] [ref=f7e65]
+        - generic [ref=f7e66]:
+          - generic [ref=f7e67]:
+            - heading "1. Single Responsibility & Clean Boundaries" [level=3] [ref=f7e71]
+            - paragraph [ref=f7e73]: Whether structuring a multi-tiered e-commerce checkout engine or a single conversion landing page, I enforce modular monolith discipline. Components have explicit boundaries, type contracts are guaranteed at compile time, and dependencies are kept lean.
+          - generic [ref=f7e74]:
+            - heading "2. Edge Computing Over Heavy Servers" [level=3] [ref=f7e79]
+            - paragraph [ref=f7e81]: By leveraging modern edge runtimes (Cloudflare Workers, V8 isolates), we run server logic within milliseconds of the end user anywhere in the world. Cold starts drop to zero, server management vanishes, and site reliability scales effortlessly.
+          - generic [ref=f7e82]:
+            - heading "3. Verified Telemetry & Measurable Impact" [level=3] [ref=f7e87]
+            - paragraph [ref=f7e89]: A landing page without verified tracking is like driving blindfolded. I personally verify that Meta Pixel events, CAPI server payloads, and GA4 enhanced metrics are firing cleanly with zero duplicate events before handing over a project.
+          - generic [ref=f7e90]:
+            - heading "4. Founder-to-Founder Craftsmanship" [level=3] [ref=f7e95]
+            - paragraph [ref=f7e97]: When you collaborate with Projukti Labs, you work with an engineering peer who cares about your business objectives, your ROI, and the long-term maintainability of your software investments.
+      - generic [ref=f7e98]:
+        - generic [ref=f7e99]:
+          - generic [ref=f7e100]: Core Competencies
+          - heading "Technical Stack & Engineering Specializations" [level=2] [ref=f7e101]
+        - generic [ref=f7e102]:
+          - generic [ref=f7e103]:
+            - heading "Frontend & Design" [level=3] [ref=f7e104]
+            - paragraph [ref=f7e106]: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, WCAG 2.1 AA Accessibility, Responsive Mobile Optimization.
+          - generic [ref=f7e107]:
+            - heading "Edge & Serverless" [level=3] [ref=f7e108]
+            - paragraph [ref=f7e110]: Cloudflare Workers (workerd), V8 Isolate security, Edge caching, KV, Durable Objects, Cloudflare R2 Object Storage.
+          - generic [ref=f7e111]:
+            - heading "Data & Storage" [level=3] [ref=f7e112]
+            - paragraph [ref=f7e114]: Cloudflare D1 (SQLite), Drizzle ORM, PostgreSQL, Redis/KV caching, SQL schema migrations, Type-safe queries.
+          - generic [ref=f7e115]:
+            - heading "Payments & Tracking" [level=3] [ref=f7e116]
+            - paragraph [ref=f7e118]: bKash PGW, Nagad, SSLCommerz, Stripe Elements, Meta Pixel + CAPI deduplication, GA4 Enhanced Measurement.
+      - generic [ref=f7e119]:
+        - heading "Need Architectural Guidance for Your Next Project?" [level=2] [ref=f7e120]
+        - paragraph [ref=f7e121]: Schedule a direct technical consultation or request a project quotation to discuss your architecture, timeline, and delivery requirements.
+        - generic [ref=f7e122]:
+          - link "Request Project Quote" [ref=f7e123] [cursor=pointer]:
+            - /url: /get-a-quote
+          - link "Send a Direct Message" [ref=f7e126] [cursor=pointer]:
+            - /url: /contact
+  - contentinfo [ref=f7e127]:
+    - generic [ref=f7e128]:
+      - generic [ref=f7e129]:
+        - generic [ref=f7e130]:
+          - link "PL Projukti Labs" [ref=f7e131] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f7e132]: PL
+            - generic [ref=f7e133]: Projukti Labs
+          - paragraph [ref=f7e134]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f7e135]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f7e136] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f7e137]:
+          - heading "Launch Services" [level=4] [ref=f7e138]
+          - list [ref=f7e139]:
+            - listitem [ref=f7e140]:
+              - link "Web Development & Design" [ref=f7e141] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f7e142]:
+              - link "E-commerce & Digital Commerce" [ref=f7e143] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f7e144]:
+              - link "Maintenance & Support" [ref=f7e145] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f7e146]:
+              - link "Landing Page + Meta Pixel" [ref=f7e147] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f7e148]:
+              - link "Complete E-commerce Ready" [ref=f7e149] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f7e150]:
+          - heading "Studio" [level=4] [ref=f7e151]
+          - list [ref=f7e152]:
+            - listitem [ref=f7e153]:
+              - link "About Us" [ref=f7e154] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f7e155]:
+              - link "Founder Profile" [ref=f7e156] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f7e157]:
+              - link "Selected Projects" [ref=f7e158] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f7e159]:
+              - link "Frequently Asked Questions" [ref=f7e160] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f7e161]:
+              - link "Contact" [ref=f7e162] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f7e163]:
+          - heading "Client Inquiries" [level=4] [ref=f7e164]
+          - paragraph [ref=f7e165]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f7e167] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f7e168]:
+            - text: "Domain:"
+            - code [ref=f7e169]: projuktilabs.tech
+      - generic [ref=f7e170]:
+        - paragraph [ref=f7e171]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f7e172]:
+          - link "Design Tokens" [ref=f7e173] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f7e174] [cursor=pointer]:
+            - /url: /contact

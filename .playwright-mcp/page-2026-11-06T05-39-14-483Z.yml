@@ -1,0 +1,119 @@
+- generic [active] [ref=f10e1]:
+  - banner [ref=f10e2]:
+    - generic [ref=f10e3]:
+      - link "PL Projukti Labs" [ref=f10e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f10e5]: PL
+        - generic [ref=f10e7]: Projukti Labs
+      - navigation [ref=f10e8]:
+        - link "Home" [ref=f10e9] [cursor=pointer]:
+          - /url: /
+        - link "Services" [ref=f10e10] [cursor=pointer]:
+          - /url: /services
+        - link "Work" [ref=f10e11] [cursor=pointer]:
+          - /url: /portfolio
+        - link "About" [ref=f10e12] [cursor=pointer]:
+          - /url: /about
+        - link "Founder" [ref=f10e13] [cursor=pointer]:
+          - /url: /founder
+        - link "FAQ" [ref=f10e14] [cursor=pointer]:
+          - /url: /faq
+        - link "Contact" [ref=f10e15] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=f10e16]:
+        - button "Switch to light theme" [ref=f10e17] [cursor=pointer]
+        - link [ref=f10e24] [cursor=pointer]:
+          - /url: /get-a-quote
+          - button "Get a Quote" [ref=f10e25]
+  - main [ref=f10e30]:
+    - generic [ref=f10e31]:
+      - generic [ref=f10e32]:
+        - generic [ref=f10e33]: Structured Engagement
+        - heading "Request a Project Quotation" [level=1] [ref=f10e34]
+        - paragraph [ref=f10e35]: Provide your project requirements, preferred launch timeline, and budget parameters. We will evaluate your specifications and return a formal Scope of Work within 24 business hours.
+      - generic [ref=f10e36]:
+        - generic [ref=f10e41]:
+          - generic [ref=f10e42]: 24-Hour Review SLA
+          - text: Direct engineering review
+        - generic [ref=f10e47]:
+          - generic [ref=f10e48]: Fixed Milestones
+          - text: No hidden scope creeps
+        - generic [ref=f10e53]:
+          - generic [ref=f10e54]: 100% Code Ownership
+          - text: Zero proprietary lock-in
+      - generic [ref=f10e55]:
+        - generic [ref=f10e206]:
+          - generic [ref=f10e207]: Quotation Brief Logged
+          - heading "Quotation Request Received" [level=3] [ref=f10e208]
+          - paragraph [ref=f10e209]: Thank you, Parvez Studio Lead. Our engineering leadership will analyze your specifications, prepare a formal scope of work with milestone deliverables, and return a structured quotation within 24 business hours.
+        - generic [ref=f10e210]:
+          - paragraph [ref=f10e211]: Quotation Reference Tracking Code
+          - generic [ref=f10e212]:
+            - generic [ref=f10e213]: PL-2026-LY2F
+            - button "Copy reference tracking code" [ref=f10e214]
+          - paragraph [ref=f10e218]: Quote inquiries are prioritized in our SLA dispatch queue.
+        - button "Submit Another Project Brief" [ref=f10e219] [cursor=pointer]
+  - contentinfo [ref=f10e105]:
+    - generic [ref=f10e106]:
+      - generic [ref=f10e107]:
+        - generic [ref=f10e108]:
+          - link "PL Projukti Labs" [ref=f10e109] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f10e110]: PL
+            - generic [ref=f10e111]: Projukti Labs
+          - paragraph [ref=f10e112]: Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+          - paragraph [ref=f10e113]:
+            - text: "Founder:"
+            - link "Md Parvezul Islam" [ref=f10e114] [cursor=pointer]:
+              - /url: /founder
+        - generic [ref=f10e115]:
+          - heading "Launch Services" [level=4] [ref=f10e116]
+          - list [ref=f10e117]:
+            - listitem [ref=f10e118]:
+              - link "Web Development & Design" [ref=f10e119] [cursor=pointer]:
+                - /url: /services/web-development
+            - listitem [ref=f10e120]:
+              - link "E-commerce & Digital Commerce" [ref=f10e121] [cursor=pointer]:
+                - /url: /services/ecommerce
+            - listitem [ref=f10e122]:
+              - link "Maintenance & Support" [ref=f10e123] [cursor=pointer]:
+                - /url: /services/maintenance-support
+            - listitem [ref=f10e124]:
+              - link "Landing Page + Meta Pixel" [ref=f10e125] [cursor=pointer]:
+                - /url: /services/landing-page-meta-pixel
+            - listitem [ref=f10e126]:
+              - link "Complete E-commerce Ready" [ref=f10e127] [cursor=pointer]:
+                - /url: /services/complete-ecommerce-website
+        - generic [ref=f10e128]:
+          - heading "Studio" [level=4] [ref=f10e129]
+          - list [ref=f10e130]:
+            - listitem [ref=f10e131]:
+              - link "About Us" [ref=f10e132] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f10e133]:
+              - link "Founder Profile" [ref=f10e134] [cursor=pointer]:
+                - /url: /founder
+            - listitem [ref=f10e135]:
+              - link "Selected Projects" [ref=f10e136] [cursor=pointer]:
+                - /url: /portfolio
+            - listitem [ref=f10e137]:
+              - link "Frequently Asked Questions" [ref=f10e138] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=f10e139]:
+              - link "Contact" [ref=f10e140] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f10e141]:
+          - heading "Client Inquiries" [level=4] [ref=f10e142]
+          - paragraph [ref=f10e143]: Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+          - link "Start a Project Brief →" [ref=f10e145] [cursor=pointer]:
+            - /url: /get-a-quote
+          - paragraph [ref=f10e146]:
+            - text: "Domain:"
+            - code [ref=f10e147]: projuktilabs.tech
+      - generic [ref=f10e148]:
+        - paragraph [ref=f10e149]: © 2026 Projukti Labs. All rights reserved.
+        - generic [ref=f10e150]:
+          - link "Design Tokens" [ref=f10e151] [cursor=pointer]:
+            - /url: /design-system
+          - link "Support" [ref=f10e152] [cursor=pointer]:
+            - /url: /contact
