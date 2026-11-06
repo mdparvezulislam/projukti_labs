@@ -23,16 +23,18 @@ export function SiteFooter() {
               <span>Projukti Labs</span>
             </Link>
             <p className="text-sm text-text-muted leading-relaxed">
-              Building Digital Solutions. Engineering the Future. বাংলাদেশের আধুনিক প্রযুক্তি স্টুডিও ও সফটওয়্যার ইঞ্জিনিয়ারিং কনসালটেন্সি।
+              Building Digital Solutions. Engineering the Future. A technology-focused digital solutions studio building modern websites, e-commerce platforms, and practical software solutions.
             </p>
             <p className="text-xs text-text-muted">
-              ফাউন্ডার: <Link href="/founder" className="text-text-secondary hover:text-accent underline-offset-2 hover:underline">Md Parvezul Islam</Link>
+              Founded by <Link href="/founder" className="text-text-primary hover:text-accent font-semibold transition-colors">Md Parvezul Islam</Link>
+              <br />
+              <span className="text-text-muted/80">Founder &amp; Principal Software Architect</span>
             </p>
           </div>
 
           {/* Active Services */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">লঞ্চ সেবাসমূহ</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/services/web-development" className="hover:text-accent transition-colors">
@@ -41,22 +43,27 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link href="/services/ecommerce" className="hover:text-accent transition-colors">
-                  E-commerce Solutions
+                  E-commerce &amp; Digital Commerce
                 </Link>
               </li>
               <li>
                 <Link href="/services/maintenance-support" className="hover:text-accent transition-colors">
-                  Maintenance &amp; Support Retainers
+                  Maintenance &amp; Technical Support
                 </Link>
               </li>
               <li>
                 <Link href="/services/landing-page-meta-pixel" className="text-accent hover:underline">
-                  Landing Page + Meta Pixel
+                  Landing Page with Meta Pixel
                 </Link>
               </li>
               <li>
                 <Link href="/services/complete-ecommerce-website" className="text-accent hover:underline">
-                  Complete E-commerce Platform
+                  Complete E-commerce Website
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/website-maintenance" className="text-accent hover:underline">
+                  Website Maintenance Retainer
                 </Link>
               </li>
             </ul>
@@ -64,55 +71,55 @@ export function SiteFooter() {
 
           {/* Public Pages */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">স্টুডিও</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">Studio</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-accent transition-colors">আমাদের সম্পর্কে</Link>
+                <Link href="/about" className="hover:text-accent transition-colors">About Us</Link>
               </li>
               <li>
-                <Link href="/founder" className="hover:text-accent transition-colors">ফাউন্ডার প্রোফাইল</Link>
+                <Link href="/founder" className="hover:text-accent transition-colors">Founder Profile</Link>
               </li>
               <li>
-                <Link href="/portfolio" className="hover:text-accent transition-colors">আর্কিটেকচারাল পোর্টফোলিও</Link>
+                <Link href="/portfolio" className="hover:text-accent transition-colors">Our Work (Portfolio)</Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-accent transition-colors">প্রযুক্তি ব্লগ</Link>
+                <Link href="/blog" className="hover:text-accent transition-colors">Blog &amp; Insights</Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-accent transition-colors">প্রশ্নোত্তর (FAQ)</Link>
+                <Link href="/faq" className="hover:text-accent transition-colors">Frequently Asked Questions</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-accent transition-colors">যোগাযোগ</Link>
+                <Link href="/contact" className="hover:text-accent transition-colors">Contact Us</Link>
               </li>
             </ul>
           </div>
 
           {/* Quick Inquiry */}
           <div className="space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">ক্লায়েন্ট ইনকোয়ারি</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">Start a Project</h4>
             <p className="text-sm text-text-muted leading-relaxed">
-              নতুন প্রজেক্ট বা ই-কমার্স ওয়েবসাইট তৈরির জন্য একটি প্রফেশনাল টেকনিক্যাল ব্রিফ তৈরি করুন।
+              Have an idea or need an e-commerce platform? Request a customized project proposal and quotation.
             </p>
             <div className="pt-1">
               <Link
                 href="/get-a-quote"
                 className="inline-flex items-center text-sm font-semibold text-accent hover:underline underline-offset-4"
               >
-                Project শুরু করুন &rarr;
+                Request a Quote &rarr;
               </Link>
             </div>
             <p className="text-xs text-text-muted pt-2 font-mono">
-              ডোমেইন: <code className="text-text-secondary">projuktilabs.tech</code>
+              Email: <a href="mailto:contact@projuktilabs.tech" className="text-text-secondary hover:text-accent transition-colors">contact@projuktilabs.tech</a>
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-border/60 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-text-muted gap-4">
-          <p>&copy; {currentYear} Projukti Labs. সর্বস্বত্ব সংরক্ষিত।</p>
+          <p>&copy; {currentYear} Projukti Labs. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/design-system" className="hover:text-text-secondary">Design Tokens</Link>
-            <Link href="/contact" className="hover:text-text-secondary">সাপোর্ট</Link>
+            <Link href="/contact" className="hover:text-text-secondary">Support</Link>
           </div>
         </div>
       </div>

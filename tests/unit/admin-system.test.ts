@@ -44,7 +44,7 @@ import {
   markNotificationAsRead,
 } from "@/lib/automation/processor";
 import { getDb } from "@/lib/db";
-import { adminUsers, automationRuns } from "@/db/schema";
+import { adminUsers, automationRuns, portfolioProjects } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 describe("Phase 08–12: Complete Admin Operating System & Business Engine", () => {
@@ -161,7 +161,7 @@ describe("Phase 08–12: Complete Admin Operating System & Business Engine", () 
 
       const flagshipService = await getCmsServiceBySlug("landing-page-meta-pixel");
       expect(flagshipService).not.toBeNull();
-      expect(flagshipService?.name).toContain("ল্যান্ডিং পেজ");
+      expect(flagshipService?.name).toMatch(/Landing Page|ল্যান্ডিং পেজ/);
       expect(flagshipService?.packages.length).toBeGreaterThan(0);
     });
 
@@ -226,6 +226,10 @@ describe("Phase 08–12: Complete Admin Operating System & Business Engine", () 
       const created = updatedProjects.find((p) => p.id === testProjectId);
       expect(created).toBeDefined();
       expect(created?.title).toBe("টেস্ট পোর্টফোলিও প্রজেক্ট");
+
+      // Clean up test entity to preserve production database purity
+      const db = getDb();
+      await db.delete(portfolioProjects).where(eq(portfolioProjects.id, testProjectId));
     });
   });
 

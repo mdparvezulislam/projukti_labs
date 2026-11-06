@@ -251,8 +251,8 @@ function mapPostToBlogPost(p: typeof blogPosts.$inferSelect): BlogPost & { isFea
     isFeatured: Boolean(p.isFeatured),
     coverImage: p.coverImage ?? undefined,
     author: {
-      name: "মো. পারভেজুল ইসলাম",
-      role: "প্রতিষ্ঠাতা ও সফটওয়্যার আর্কিটেক্ট, Projukti Labs",
+      name: "Md Parvezul Islam",
+      role: "Founder & Principal Software Architect, Projukti Labs",
       avatarUrl: "/founder-avatar.png",
     },
     seoTitle: p.seoTitle ?? p.title,
