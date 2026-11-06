@@ -85,16 +85,21 @@ projukti_labs/
 │   ├── auth/                            # WebCrypto PBKDF2 password & session utilities
 │   ├── cloudflare/                      # Cloudflare R2 presigned URL helpers
 │   ├── db/                              # Drizzle D1 database client factory
+│   ├── env.ts                           # Zod-validated environment schema & bindings resolver
+│   ├── logger.ts                        # Edge structured JSON logger with secret redaction
 │   ├── utils.ts                         # cn() and formatting helpers
 │   └── validation/                      # API response envelopes & Zod helpers
 ├── modules/
 │   ├── blog/                            # Blog data, Zod schemas, & query helper functions
 │   └── services/                        # Strongly-typed service catalog domain module
+├── public/
+│   └── _headers                         # Production HTTP security headers for Cloudflare
 ├── tests/
 │   ├── integration/                     # Cloudflare Workers integration tests
-│   └── unit/                            # Unit tests (crypto, validation, storage, services, blog)
+│   └── unit/                            # Unit tests (crypto, validation, storage, services, blog, api, production)
+├── .env.example                         # Environment variables and Cloudflare bindings template
 ├── DESIGN.md                            # Canonical design tokens & UX specifications
-├── wrangler.jsonc                       # Local simulation & Cloudflare bindings config
+├── wrangler.jsonc                       # Multi-environment Cloudflare Workers configuration
 └── cloudflare.config.ts                 # Typed worker & Vite deployment configuration
 ```
 
@@ -112,8 +117,11 @@ pnpm typecheck
 # Lint with ESLint
 pnpm lint
 
-# Run all unit tests (Vitest)
+# Run all unit tests (Vitest: 27 tests across 5 suites)
 pnpm test
+
+# Verify database schema & migration integrity
+pnpm db:check
 
 # Build for Cloudflare Workers (vinext edge bundle)
 pnpm run build:vinext

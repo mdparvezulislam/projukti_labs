@@ -5,7 +5,7 @@
 **Database:** Cloudflare D1 (SQLite) with Drizzle ORM `0.45.4`  
 **Object Storage:** Cloudflare R2 via S3-compatible `aws4fetch`  
 **Architecture Style:** Modular Monolith with Type-Safe Domain Boundaries  
-**Status:** Phase 01–06 Production Architecture Verified
+**Status:** Phase 01–07 Production Architecture & Security Hardening Verified
 
 ---
 
@@ -83,3 +83,87 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
 - **Interaction to Next Paint (INP):** < 100ms
 - **Worker Bundle Size:** ~301 KB uncompressed (~95 KB gzip)
 - **Cold Start Latency:** 0ms (Cloudflare V8 Isolates)
+
+---
+
+## 6. Security Architecture & HTTP Hardening
+
+1. **Security Headers Pipeline:**
+   - Evaluated at both application edge SSR (`next.config.ts` headers) and static asset delivery (`public/_headers`).
+   - `Content-Security-Policy`:
+     - `default-src 'self'`: Strict default boundary.
+     - `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com`: Supports React Server Components hydration and Cloudflare Turnstile anti-bot challenges.
+     - `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`: Supports Google Fonts stylesheet integration and Tailwind v4 CSS variables.
+     - `font-src 'self' https://fonts.gstatic.com data:`: Whitelists Hind Siliguri Bengali font glyph files.
+     - `connect-src 'self' https://challenges.cloudflare.com`: Secure API telemetry and verification.
+     - `img-src 'self' data: https:`: Allows safe data URLs and authenticated image CDNs.
+     - `frame-ancestors 'none'`: Mitigates clickjacking completely.
+   - `X-Content-Type-Options: nosniff`: Prevents MIME-sniffing exploits.
+   - `X-Frame-Options: DENY`: Blocks framing across all origins.
+   - `Referrer-Policy: strict-origin-when-cross-origin`: Shields referrer data on cross-origin requests.
+   - `Permissions-Policy: camera=(), microphone=(), geolocation=()`: Disables unwanted browser hardware features.
+   - `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`: Enforces TLS across all user visits.
+
+2. **API Route Defenses (`/api/v1/inquiries`):**
+   - **Content-Type Enforcement:** Requires `application/json`; returns `415 Unsupported Media Type` otherwise.
+   - **Payload Sizing:** Hard limit of 64 KB; returns `413 Payload Too Large`.
+   - **Honeypot Trap:** Hidden field `website_url`. If populated by automated bots, silently accepts with a dummy reference code without persisting to D1.
+   - **Rate Limiting & Duplicate Rejection:** In-memory tracking rejecting submissions with identical email addresses within 15 seconds (`429 Too Many Requests`).
+   - **Privacy Preserving Telemetry:** Client IP address is never stored in plaintext; hashed via standard WebCrypto SHA-256 before logging or audit checks.
+   - **Sanitized Failure Modes:** Raw D1/SQLite exceptions are caught, logged server-side via structured logger, and masked with user-friendly Bangla messages (`apiError("DATABASE_ERROR", ...)`).
+
+---
+
+## 7. Environment & Configuration Pipeline
+
+1. **Type-Safe Configuration (`lib/env.ts`):**
+   - Validated against a strict Zod schema enforcing `ENVIRONMENT` (`development` | `preview` | `production`), `APP_URL`, and Cloudflare service binding names (`DB`, `KV_CACHE`, `ASSETS_BUCKET`).
+   - Cloudflare Worker execution context bindings resolved safely via `getCloudflareBindings()` checking `process.env` and Worker execution context.
+2. **Secret Non-Leakage Standard:**
+   - Helper function `getSafeEnvironmentSummary()` provides sanitized metadata without exposing sensitive tokens or internal keys.
+   - `.env.example` committed to repository with all standard config keys, while `.dev.vars*` is strictly ignored in `.gitignore`.
+
+---
+
+## 8. Observability & Health Telemetry
+
+1. **Structured Server Logger (`lib/logger.ts`):**
+   - Emits structured JSON logs containing `timestamp`, `level` (`debug`, `info`, `warn`, `error`), `context`, and optional `requestId`.
+   - **Automatic Credential Redaction:** Scans object payloads recursively and redacts fields matching sensitive patterns (`token`, `password`, `secret`, `authorization`, `cookie`, `creditcard`, `cvv`, `apikey`, `turnstilesecretkey`, `r2secretaccesskey`).
+2. **Health Check Endpoint (`/api/v1/health`):**
+   - Returns system operational status (`ok`), active edge runtime (`workerd`), environment label, dependency pings (D1 Database, R2 Object Storage, KV Cache), and request correlation ID (`meta.requestId`).
+
+---
+
+## 9. Database Reliability & D1 Disaster Recovery
+
+1. **Single Authoritative Database:**
+   - Cloudflare D1 SQLite is the sole production database. No competing databases or outside connection layers.
+   - Schema defined exclusively via Drizzle ORM (`db/schema/index.ts`).
+   - Migration integrity verified via `drizzle-kit check` (`pnpm db:check`).
+2. **Disaster Recovery & Backup Procedures:**
+   - **Point-in-Time Recovery:** Cloudflare D1 provides automated daily snapshots and continuous transaction logging on paid Workers plans.
+   - **Pre-Migration Export:** Before running any schema migration on production, a manual snapshot is created:
+     ```bash
+     wrangler d1 export projukti_labs_db --remote --output="./db/backups/backup-$(date +%Y%m%d%H%M%S).sql"
+     ```
+   - **Emergency Restore:**
+     ```bash
+     wrangler d1 execute projukti_labs_db --remote --file="./db/backups/backup-TIMESTAMP.sql"
+     ```
+
+---
+
+## 10. Production Deployment & Domain Routing Specification
+
+1. **Domain & Route Configuration:**
+   - **Target Domain:** `projuktilabs.tech`
+   - **Cloudflare DNS:** Apex `@` mapped to Cloudflare Worker `projukti-labs-web` via Custom Domain route. `www.projuktilabs.tech` routed via CNAME or Worker Custom Domain.
+   - **SSL/TLS Configuration:** Full (Strict) mode, Always Use HTTPS enabled, Minimum TLS 1.2, HSTS enabled.
+2. **Deployment Execution Flow (When Authorized by Founder):**
+   - Gate 1: `pnpm typecheck && pnpm lint && pnpm test && pnpm db:check`
+   - Gate 2: Edge build verification via `pnpm run build:vinext`
+   - Gate 3: D1 remote migration apply: `npx wrangler d1 migrations apply projukti_labs_db --remote`
+   - Gate 4: Worker deployment: `pnpm run deploy:vinext`
+   - Gate 5: Production smoke test (Health check, Inquiry submission, Mobile verification)
+   - Rollback Procedure: Instant zero-downtime rollback using `wrangler rollback` to previous active deployment.

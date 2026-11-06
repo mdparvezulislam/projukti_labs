@@ -73,3 +73,13 @@ export async function generateSessionToken(): Promise<{
 
   return { rawToken, tokenHashHex };
 }
+
+export async function sha256(text: string): Promise<string> {
+  const enc = new TextEncoder();
+  const hashBuf = await crypto.subtle.digest("SHA-256", enc.encode(text));
+  const hashArr = new Uint8Array(hashBuf);
+  return Array.from(hashArr)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+

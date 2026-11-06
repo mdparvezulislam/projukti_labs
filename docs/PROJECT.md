@@ -4,7 +4,7 @@
 **Domain:** `projuktilabs.tech`  
 **Founder:** Md Parvezul Islam (Principal Software Architect)  
 **Tagline:** Building Digital Solutions. Engineering the Future.  
-**Baseline Version:** v1.1 Production Milestone (Phase 01–06 Complete)  
+**Baseline Version:** v1.2 Production Release Candidate (Phase 01–07 Complete — Ready after Founder Approval)  
 **Primary Target Market:** Bangladesh (`bn-BD`, `Asia/Dhaka`, default currency BDT ৳)  
 **Language Policy:** Bangla-First / Bangla-Primary with selective English technical terms  
 
@@ -84,7 +84,30 @@ Projukti Labs is an independent, premium technology studio and software engineer
 
 ---
 
-## 6. Implementation Status Matrix
+## 6. Phase 07 — Production Readiness, Security Hardening & Cloudflare Deployment Preparation
+
+1. **Environment & Configuration Hardening:**
+   - Strict runtime configuration schema via Zod (`lib/env.ts`) distinguishing `development`, `preview`, and `production`.
+   - `.env.example` committed to repository with all public configuration keys and deployment secrets template.
+   - `wrangler.jsonc` configured with distinct environments (`preview`, `production`) specifying bindings and custom domain routes (`projuktilabs.tech/*`).
+2. **Application Security & Hardening:**
+   - **Inquiry API Security (`/api/v1/inquiries`):** Strict JSON Content-Type validation (415), 64 KB maximum payload limit (413), silent honeypot bot trap (`website_url`), 15-second duplicate submission rejection (429), WebCrypto SHA-256 IP anonymization, and sanitized database error reporting.
+   - **Enterprise Security Headers:** Configured in `next.config.ts` and `public/_headers` (strict Content Security Policy, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`, `Strict-Transport-Security`).
+3. **Observability & Health Checks:**
+   - Structured JSON logging (`lib/logger.ts`) with automatic credential redaction (`token`, `password`, `secret`, `authorization`, `cookie`, `creditcard`).
+   - Hardened `/api/v1/health` endpoint returning system status, isolate runtime (`workerd`), dependency health (D1, R2, KV), and environment without credential leakage.
+4. **Cloudflare Deployment & Domain Onboarding Playbook:**
+   - Production Worker: `projukti-labs-web`.
+   - Authoritative Production Database: Cloudflare D1 `projukti_labs_db` via Drizzle ORM (`pnpm db:check` verified).
+   - Domain delegation for `projuktilabs.tech`: Cloudflare Zone, Full (Strict) SSL/TLS, Minimum TLS 1.2, HSTS, Apex `@` and `www` custom domain routing.
+   - Disaster recovery: Automated D1 point-in-time recovery, scheduled JSON exports, and zero-downtime rollback workflow (`wrangler rollback`).
+5. **Production Action Boundary Compliance:**
+   - All Phase 07 implementation and validation performed locally.
+   - Strictly NO remote Cloudflare deployments, NO remote DNS modifications, and NO cloud database mutations executed without explicit founder authorization.
+
+---
+
+## 7. Implementation Status Matrix
 
 | Phase | Milestone | Status | Verified Gates |
 |---|---|---|---|
@@ -94,3 +117,4 @@ Projukti Labs is an independent, premium technology studio and software engineer
 | **Phase 04** | Core Public Website Pages | **DONE** | Home, About, Founder, FAQ, Contact, Quote |
 | **Phase 05** | Productized Services & Inquiry Routing | **DONE** | 3 Flagships, D1 lead tracking |
 | **Phase 06** | Bangla-First Upgrade & Blog Engine | **DONE** | 5 articles, SSR edge bundle, Playwright QA |
+| **Phase 07** | Production Readiness & Security Hardening | **READY (Pending Approval)** | 27 tests passing, headers, D1 check, edge build |

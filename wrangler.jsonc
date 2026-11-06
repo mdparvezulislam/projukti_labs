@@ -26,6 +26,19 @@
   "vars": {
     "ENVIRONMENT": "development",
     "APP_URL": "http://localhost:3000"
+  },
+  "env": {
+    "preview": {
+      "vars": {
+        "ENVIRONMENT": "preview",
+        "APP_URL": "https://preview.projuktilabs.tech"
+      }
+    },
+    "production": {
+      "vars": {
+        "ENVIRONMENT": "production",
+        "APP_URL": "https://projuktilabs.tech"
+      }
+    }
   }
 }
-

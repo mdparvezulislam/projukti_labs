@@ -12,7 +12,8 @@
     "start:vinext": "vite preview",
     "deploy:vinext": "vinext-cloudflare deploy",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:check": "drizzle-kit check"
   },
   "dependencies": {
     "@vinext/cloudflare": "latest",
