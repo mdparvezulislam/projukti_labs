@@ -55,6 +55,17 @@ export async function verifyPasswordWebCrypto(
   return hashHex === storedHashHex;
 }
 
+export async function hashPassword(password: string): Promise<string> {
+  const { hashHex, saltHex } = await hashPasswordWebCrypto(password);
+  return `${saltHex}:${hashHex}`;
+}
+
+export async function verifyPassword(password: string, combinedHash: string): Promise<boolean> {
+  const [saltHex, hashHex] = combinedHash.split(":");
+  if (!saltHex || !hashHex) return false;
+  return verifyPasswordWebCrypto(password, hashHex, saltHex);
+}
+
 export async function generateSessionToken(): Promise<{
   rawToken: string;
   tokenHashHex: string;

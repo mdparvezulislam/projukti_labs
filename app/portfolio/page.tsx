@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Info } from "lucide-react";
+import { getCmsPortfolio } from "@/lib/cms";
 
 export const metadata = {
   title: "পোর্টফোলিও ও কারিগরি ব্লুপ্রিন্ট | Projukti Labs",
@@ -9,101 +10,119 @@ export const metadata = {
     "আমাদের প্রোডাকশন সিস্টেম, হাই-স্পিড এজ আর্কিটেকচার, মেটা CAPI কনভার্শন ফানেল এবং ই-কমার্স সলিউশনের টেকনিক্যাল ব্লুপ্রিন্ট ও কেস স্টাডি।",
 };
 
-export default function PortfolioPage() {
-  const caseStudies = [
-    {
-      id: "projukti-labs-engine",
-      title: "Projukti Labs Studio Engine v1.0",
-      category: "এজ সিস্টেম ও ওয়েব আর্কিটেকচার",
-      badge: "লাইভ প্রোডাকশন",
-      type: "লাইভ প্ল্যাটফর্ম",
-      overview:
-        "Projukti Labs-এর অফিসিয়াল ওয়েব প্ল্যাটফর্ম—যা Cloudflare Workers-এর এজ মডুলার মনোলিথ আর্কিটেকচারে তৈরি। এতে রয়েছে Next.js App Router, Vite RSC কম্পাইলেশন, Drizzle ORM এবং Cloudflare D1 ডাটাবেস।",
-      metrics: [
-        { label: "মোবাইল LCP স্পিড", value: "< ১.১s" },
-        { label: "এজ বান্ডেল সাইজ", value: "২৯৯ KB" },
-        { label: "টাইপ সেফটি", value: "১০০%" },
-        { label: "কোল্ড স্টার্ট ল্যাটেন্সি", value: "০ms" },
-      ],
-      stack: ["Next.js 16", "React 19", "Cloudflare Workers", "D1 SQLite", "Drizzle ORM", "Tailwind CSS"],
-      deliverables: [
-        "Vite + vinext এজ বিল্ড ইন্টিগ্রেশন যা Cloudflare Workers-এ আল্ট্রা-ফাস্ট SSR নিশ্চিত করে",
-        "WCAG 2.1 AA এক্সেসিবিলিটি স্ট্যান্ডার্ড সমর্থিত ডার্ক-ফার্স্ট রেসপন্সিভ ডিজাইন সিস্টেম",
-        "Cloudflare D1-এ হোস্টকৃত ইন্টিগ্রেটেড ইনকোয়ারি ও লিড ট্র্যাকিং ডাটাবেস লেয়ার",
-      ],
-      linkText: "লাইভ প্ল্যাটফর্ম দেখুন",
-      href: "/",
-    },
-    {
-      id: "meta-pixel-capi-funnel",
-      title: "কনভার্শন-ইঞ্জিনিয়ার্ড ফানেল সাথে মেটা CAPI",
-      category: "ওয়েব ডেভেলপমেন্ট ও অ্যানালিটিক্স",
-      badge: "আর্কিটেকচারাল ব্লুপ্রিন্ট",
-      type: "কনসেপ্ট ও ব্লুপ্রিন্ট",
-      overview:
-        "উচ্চ-গতির কনভার্শন ল্যান্ডিং পেজ সিস্টেম—যাতে রয়েছে ডুয়াল-লেয়ার টেলিমেট্রি: ব্রাউজার মেটা পিক্সেল এবং সার্ভার-সাইড Conversions API (CAPI) ইভেন্ট ডেডুপ্লিকেশন।",
-      metrics: [
-        { label: "ডাটা ট্র্যাকিং ড্রপ-অফ", value: "০%" },
-        { label: "মোবাইল স্পিড স্কোর", value: "৯৮/১০০" },
-        { label: "মোবাইল LCP বেঞ্চমার্ক", value: "১.২s" },
-        { label: "মেটা ইভেন্ট কোয়ালিটি", value: "> ৯.০" },
-      ],
-      stack: ["Next.js", "Meta CAPI", "Google Analytics 4", "Cloudflare Edge", "Zod Validation"],
-      deliverables: [
-        "এজ সার্ভার ফরওয়ার্ডিংয়ের মাধ্যমে iOS ও অ্যাড-ব্লকার সত্ত্বেও জিরো ডাটা লস ট্র্যাকিং",
-        "স্ট্যান্ডার্ড ইভেন্ট ট্যাক্সোনমি: PageView, ViewContent, Contact, Lead, Schedule",
-        "মেটা ইভেন্টস ম্যানেজার টেস্ট টুলে সরাসরি শতভাগ টেস্ট ভেরিফিকেশন প্রটোকল",
-      ],
-      linkText: "সার্ভিস ব্লুপ্রিন্ট দেখুন",
-      href: "/services/landing-page-meta-pixel",
-    },
-    {
-      id: "production-ecommerce-architecture",
-      title: "মাল্টি-গেটওয়ে ই-কমার্স প্ল্যাটফর্ম আর্কিটেকচার",
-      category: "ই-কমার্স ও ডিজিটাল কমার্স",
-      badge: "আর্কিটেকচারাল ব্লুপ্রিন্ট",
-      type: "কনসেপ্ট ও ব্লুপ্রিন্ট",
-      overview:
-        "হাই-অ্যাভেইলেবিলিটি অনলাইন কমার্স সিস্টেম—যা বাংলাদেশের মোবাইল পেমেন্ট (বিকাশ PGW, নগদ, SSLCommerz) এবং আন্তর্জাতিক কার্ড প্রসেসিংকে (Stripe) কুরিয়ার অটোমেশনের সাথে সংযুক্ত করে।",
-      metrics: [
-        { label: "চেকআউট ধাপ", value: "২ ক্লিক" },
-        { label: "কার্ট স্টেট ল্যাটেন্সি", value: "< ৫০ms" },
-        { label: "পেমেন্ট গেটওয়ে অপশন", value: "৪টি ইন্টিগ্রেটেড" },
-        { label: "প্ল্যাটফর্ম সেলস ফি", value: "০%" },
-      ],
-      stack: ["Next.js App Router", "bKash PGW", "SSLCommerz", "Stripe", "PostgreSQL/SQLite", "Tailwind CSS"],
-      deliverables: [
-        "তাৎক্ষণিক ভিজ্যুয়াল ফিডব্যাকসহ অপটিমিস্টিক শপিং কার্ট স্টেট আপডেট",
-        "অর্ডার কনফার্মেশন ও স্ট্যাটাস পরিবর্তনে ট্রানজ্যাকশনাল SMS ও ইমেল নোটিফিকেশন",
-        "কুরিয়ার পার্সেল বুকিংয়ের জন্য স্বয়ংক্রিয় পাঠাও ও স্টেডফাস্ট এপিআই ব্রিজ",
-      ],
-      linkText: "ই-কমার্স ব্লুপ্রিন্ট দেখুন",
-      href: "/services/complete-ecommerce-website",
-    },
-    {
-      id: "sla-care-infrastructure",
-      title: "প্রোঅ্যাক্টিভ আপটাইম ও ডিজাস্টার রিকভারি রিটেইনার",
-      category: "মেইনটেন্যান্স ও টেক সাপোর্ট",
-      badge: "ইনফ্রাস্ট্রাকচার কেয়ার",
-      type: "সার্ভিস ব্লুপ্রিন্ট",
-      overview:
-        "সার্বক্ষণিক স্বয়ংক্রিয় মনিটরিং ও রক্ষণাবেক্ষণ স্যুট—যা ৫ মিনিটের হেলথ চেক, অটোমেটেড ব্যাকআপ ড্রিল এবং মাসিক পারফরম্যান্স প্রোফাইলিংয়ের মাধ্যমে ডাউনটাইম প্রতিরোধ করে।",
-      metrics: [
-        { label: "টার্গেট আপটাইম", value: "৯৯.৯%" },
-        { label: "মনিটরিং ফ্রিকোয়েন্সি", value: "প্রতি ৫ মিনিট" },
-        { label: "জরুরি SLA অপশন", value: "১ঘ–৪ঘ" },
-        { label: "ব্যাকআপ রিস্টোর ড্রিল", value: "মাসিক" },
-      ],
-      stack: ["Health Polling Daemon", "Cloudflare KV", "Automated R2 Snapshots", "Slack / WhatsApp Webhooks"],
-      deliverables: [
-        "স্বয়ংক্রিয় SSL সার্টিফিকেট নবায়ন অ্যালার্ট ও এক্সপায়ারি সুরক্ষা",
-        "স্টেজিং প্রিভিউ পরিবেশে টেস্ট করার পর মূল প্রোডাকশন সাইটে ডিপেন্ডেন্সি সিকিউরিটি প্যাচ",
-        "মাসিক স্বচ্ছ ইঞ্জিনিয়ারিং হেলথ ও Core Web Vitals অডিট রিপোর্ট",
-      ],
-      linkText: "রিটেইনার প্ল্যান দেখুন",
-      href: "/services/website-maintenance",
-    },
-  ];
+const DEFAULT_CASE_STUDIES = [
+  {
+    id: "projukti-labs-engine",
+    title: "Projukti Labs Studio Engine v1.0",
+    category: "এজ সিস্টেম ও ওয়েব আর্কিটেকচার",
+    badge: "লাইভ প্রোডাকশন",
+    type: "লাইভ প্ল্যাটফর্ম",
+    overview:
+      "Projukti Labs-এর অফিসিয়াল ওয়েব প্ল্যাটফর্ম—যা Cloudflare Workers-এর এজ মডুলার মনোলিথ আর্কিটেকচারে তৈরি। এতে রয়েছে Next.js App Router, Vite RSC কম্পাইলেশন, Drizzle ORM এবং Cloudflare D1 ডাটাবেস।",
+    metrics: [
+      { label: "মোবাইল LCP স্পিড", value: "< ১.১s" },
+      { label: "এজ বান্ডেল সাইজ", value: "২৯৯ KB" },
+      { label: "টাইপ সেফটি", value: "১০০%" },
+      { label: "কোল্ড স্টার্ট ল্যাটেন্সি", value: "০ms" },
+    ],
+    stack: ["Next.js 16", "React 19", "Cloudflare Workers", "D1 SQLite", "Drizzle ORM", "Tailwind CSS"],
+    deliverables: [
+      "Vite + vinext এজ বিল্ড ইন্টিগ্রেশন যা Cloudflare Workers-এ আল্ট্রা-ফাস্ট SSR নিশ্চিত করে",
+      "WCAG 2.1 AA এক্সেসিবিলিটি স্ট্যান্ডার্ড সমর্থিত ডার্ক-ফার্স্ট রেসপন্সিভ ডিজাইন সিস্টেম",
+      "Cloudflare D1-এ হোস্টকৃত ইন্টিগ্রেটেড ইনকোয়ারি ও লিড ট্র্যাকিং ডাটাবেস লেয়ার",
+    ],
+    linkText: "লাইভ প্ল্যাটফর্ম দেখুন",
+    href: "/",
+  },
+  {
+    id: "meta-pixel-capi-funnel",
+    title: "কনভার্শন-ইঞ্জিনিয়ার্ড ফানেল সাথে মেটা CAPI",
+    category: "ওয়েব ডেভেলপমেন্ট ও অ্যানালিটিক্স",
+    badge: "আর্কিটেকচারাল ব্লুপ্রিন্ট",
+    type: "কনসেপ্ট ও ব্লুপ্রিন্ট",
+    overview:
+      "উচ্চ-গতির কনভার্শন ল্যান্ডিং পেজ সিস্টেম—যাতে রয়েছে ডুয়াল-লেয়ার টেলিমেট্রি: ব্রাউজার মেটা পিক্সেল এবং সার্ভার-সাইড Conversions API (CAPI) ইভেন্ট ডেডুপ্লিকেশন।",
+    metrics: [
+      { label: "ডাটা ট্র্যাকিং ড্রপ-অফ", value: "০%" },
+      { label: "মোবাইল স্পিড স্কোর", value: "৯৮/১০০" },
+      { label: "মোবাইল LCP বেঞ্চমার্ক", value: "১.২s" },
+      { label: "মেটা ইভেন্ট কোয়ালিটি", value: "> ৯.০" },
+    ],
+    stack: ["Next.js", "Meta CAPI", "Google Analytics 4", "Cloudflare Edge", "Zod Validation"],
+    deliverables: [
+      "এজ সার্ভার ফরওয়ার্ডিংয়ের মাধ্যমে iOS ও অ্যাড-ব্লকার সত্ত্বেও জিরো ডাটা লস ট্র্যাকিং",
+      "স্ট্যান্ডার্ড ইভেন্ট ট্যাক্সোনমি: PageView, ViewContent, Contact, Lead, Schedule",
+      "মেটা ইভেন্টস ম্যানেজার টেস্ট টুলে সরাসরি শতভাগ টেস্ট ভেরিফিকেশন প্রটোকল",
+    ],
+    linkText: "সার্ভিস ব্লুপ্রিন্ট দেখুন",
+    href: "/services/landing-page-meta-pixel",
+  },
+  {
+    id: "production-ecommerce-architecture",
+    title: "মাল্টি-গেটওয়ে ই-কমার্স প্ল্যাটফর্ম আর্কিটেকচার",
+    category: "ই-কমার্স ও ডিজিটাল কমার্স",
+    badge: "আর্কিটেকচারাল ব্লুপ্রিন্ট",
+    type: "কনসেপ্ট ও ব্লুপ্রিন্ট",
+    overview:
+      "হাই-অ্যাভেইলেবিলিটি অনলাইন কমার্স সিস্টেম—যা বাংলাদেশের মোবাইল পেমেন্ট (বিকাশ PGW, নগদ, SSLCommerz) এবং আন্তর্জাতিক কার্ড প্রসেসিংকে (Stripe) কুরিয়ার অটোমেশনের সাথে সংযুক্ত করে।",
+    metrics: [
+      { label: "চেকআউট ধাপ", value: "২ ক্লিক" },
+      { label: "কার্ট স্টেট ল্যাটেন্সি", value: "< ৫০ms" },
+      { label: "পেমেন্ট গেটওয়ে অপশন", value: "৪টি ইন্টিগ্রেটেড" },
+      { label: "প্ল্যাটফর্ম সেলস ফি", value: "০%" },
+    ],
+    stack: ["Next.js App Router", "bKash PGW", "SSLCommerz", "Stripe", "PostgreSQL/SQLite", "Tailwind CSS"],
+    deliverables: [
+      "তাৎক্ষণিক ভিজ্যুয়াল ফিডব্যাকসহ অপটিমিস্টিক শপিং কার্ট স্টেট আপডেট",
+      "অর্ডার কনফার্মেশন ও স্ট্যাটাস পরিবর্তনে ট্রানজ্যাকশনাল SMS ও ইমেল নোটিফিকেশন",
+      "কুরিয়ার পার্সেল বুকিংয়ের জন্য স্বয়ংক্রিয় পাঠাও ও স্টেডফাস্ট এপিআই ব্রিজ",
+    ],
+    linkText: "ই-কমার্স ব্লুপ্রিন্ট দেখুন",
+    href: "/services/complete-ecommerce-website",
+  },
+  {
+    id: "sla-care-infrastructure",
+    title: "প্রোঅ্যাক্টিভ আপটাইম ও ডিজাস্টার রিকভারি রিটেইনার",
+    category: "মেইনটেন্যান্স ও টেক সাপোর্ট",
+    badge: "ইনফ্রাস্ট্রাকচার কেয়ার",
+    type: "সার্ভিস ব্লুপ্রিন্ট",
+    overview:
+      "সার্বক্ষণিক স্বয়ংক্রিয় মনিটরিং ও রক্ষণাবেক্ষণ স্যুট—যা ৫ মিনিটের হেলথ চেক, অটোমেটেড ব্যাকআপ ড্রিল এবং মাসিক পারফরম্যান্স প্রোফাইলিংয়ের মাধ্যমে ডাউনটাইম প্রতিরোধ করে।",
+    metrics: [
+      { label: "টার্গেট আপটাইম", value: "৯৯.৯%" },
+      { label: "মনিটরিং ফ্রিকোয়েন্সি", value: "প্রতি ৫ মিনিট" },
+      { label: "জরুরি SLA অপশন", value: "১ঘ–৪ঘ" },
+      { label: "ব্যাকআপ রিস্টোর ড্রিল", value: "মাসিক" },
+    ],
+    stack: ["Health Polling Daemon", "Cloudflare KV", "Automated R2 Snapshots", "Slack / WhatsApp Webhooks"],
+    deliverables: [
+      "স্বয়ংক্রিয় SSL সার্টিফিকেট নবায়ন অ্যালার্ট ও এক্সপায়ারি সুরক্ষা",
+      "স্টেজিং প্রিভিউ পরিবেশে টেস্ট করার পর মূল প্রোডাকশন সাইটে ডিপেন্ডেন্সি সিকিউরিটি প্যাচ",
+      "মাসিক স্বচ্ছ ইঞ্জিনিয়ারিং হেলথ ও Core Web Vitals অডিট রিপোর্ট",
+    ],
+    linkText: "রিটেইনার প্ল্যান দেখুন",
+    href: "/services/website-maintenance",
+  },
+];
+
+export default async function PortfolioPage() {
+  const dbProjects = await getCmsPortfolio();
+
+  const caseStudies = dbProjects.length > 0
+    ? dbProjects.map((p) => ({
+        id: p.id,
+        title: p.title,
+        category: p.category,
+        badge: p.badge ?? "আর্কিটেকচারাল ব্লুপ্রিন্ট",
+        type: p.projectType ?? "ব্লুপ্রিন্ট",
+        overview: p.overview,
+        metrics: p.metrics ?? [],
+        stack: p.stack ?? [],
+        deliverables: p.deliverables ?? [],
+        linkText: p.linkText ?? "বিস্তারিত দেখুন",
+        href: p.linkUrl ?? "/services",
+      }))
+    : DEFAULT_CASE_STUDIES;
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">

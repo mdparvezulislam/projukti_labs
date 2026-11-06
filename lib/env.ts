@@ -57,13 +57,27 @@ export interface CloudflareBindings {
 }
 
 export function getCloudflareBindings(): CloudflareBindings {
-  const g = globalThis as unknown as CloudflareBindings;
-  const p = (typeof process !== "undefined" ? process.env : {}) as unknown as CloudflareBindings;
+  const g = globalThis as Record<string | symbol, unknown>;
+  const p = (typeof process !== "undefined" ? process.env : {}) as Record<string, unknown>;
+
+  // 1. Direct bindings on globalThis or process.env
+  let db = (g.DB || p.DB || (g.__env__ as Record<string, unknown>)?.DB || (g.env as Record<string, unknown>)?.DB) as D1Database | undefined;
+  const r2 = (g.R2_BUCKET || p.R2_BUCKET || (g.__env__ as Record<string, unknown>)?.R2_BUCKET) as R2Bucket | undefined;
+  const kv = (g.KV_CACHE || p.KV_CACHE || (g.__env__ as Record<string, unknown>)?.KV_CACHE) as KVNamespace | undefined;
+
+  // 2. Try globalThis[Symbol.for("cloudflare.env")] or globalThis.__CF_ENV__
+  if (!db) {
+    const sym = Symbol.for("cloudflare.env");
+    const cfEnv = (g[sym] || g.__CF_ENV__) as Record<string, unknown> | undefined;
+    if (cfEnv?.DB) {
+      db = cfEnv.DB as D1Database;
+    }
+  }
 
   return {
-    DB: g.DB || p.DB,
-    R2_BUCKET: g.R2_BUCKET || p.R2_BUCKET,
-    KV_CACHE: g.KV_CACHE || p.KV_CACHE,
+    DB: db,
+    R2_BUCKET: r2,
+    KV_CACHE: kv,
   };
 }
 

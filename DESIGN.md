@@ -4,7 +4,7 @@
 **Tagline:** *Building Digital Solutions. Engineering the Future.*  
 **Visual Archetype:** Premium Dark-First Technology Studio & Editorial Engineering Platform  
 **Language & Market Policy:** Bangladesh-First & Bangla-Primary (`bn-BD`, `Asia/Dhaka`, BDT ৳)  
-**Status:** Locked Baseline v1.1 (Phase 01–06 Complete)
+**Status:** Locked Baseline v1.2 (Phases 01–12 Complete)
 
 ---
 
@@ -108,3 +108,37 @@ Every interactive control (`<button>`, `<a>`, `<input>`, `<select>`, `<dialog>`)
 4. **Focus-Visible:** High-contrast `2px solid var(--accent-primary)` outline with `2px` offset (`outline-offset: 2px`). Never remove focus rings without replacement.
 5. **Loading:** Inline SVG spinner + `aria-busy="true"` preserving button width (no layout shift).
 6. **Disabled:** `opacity: 0.5`, `cursor: not-allowed`, `disabled` attribute.
+
+---
+
+## 6. Admin Operating System & Mobile App Design (Phases 08–12)
+
+1. **Mobile-First App-Like Ergonomics (<768px):**
+   - **Sticky 5-Tab Bottom Navigation (`admin-mobile-nav.tsx`):** Docked at `bottom-0` with `backdrop-blur-md` on dark surface (`bg-surface/95`). 5 primary tabs: Dashboard (`/admin/dashboard`), Inquiries (`/admin/inquiries`), Leads (`/admin/leads`), Content (`/admin/content`), More (`/admin/more`).
+   - **Touch Target Floor:** All mobile navigation buttons and interactive action icons maintain a minimum of `48×48px` clickable tap targets.
+   - **Safe Viewport Cushioning:** All mobile scroll views enforce `pb-20` (bottom padding) to ensure content never hides behind the sticky tab bar.
+   - **Zero Horizontal Scrollbar Rule:** Complex data tables are replaced with responsive vertical card stacks on mobile viewports (<768px).
+   - **Compact Header (`admin-header.tsx`):** Height constrained to `h-14` on mobile with studio branding, live unread notification badge, and quick theme toggle.
+
+2. **Information Density & Administrative Typography:**
+   - **Primary Font:** **Hind Siliguri** for all Bengali labels, form field hints, action buttons, and status descriptions.
+   - **Monospace Font (`Geist Mono`):** Standardized across all technical and financial metadata:
+     - Reference codes: `PL-2026-XXXX`
+     - Quotation numbers: `PL-Q-2026-XXXX`
+     - Customer IDs: `cst_...`
+     - BDT Currency: `৳45,000` with `font-variant-numeric: tabular-nums`
+     - Timestamps: ISO 8601 formatting or relative time (`Asia/Dhaka`).
+   - **Status Badge System:**
+     - `new` / `info`: Blue badge (`bg-blue-500/10 text-blue-400 border-blue-500/20`)
+     - `won` / `accepted` / `success`: Green badge (`bg-emerald-500/10 text-emerald-400 border-emerald-500/20`)
+     - `contacted` / `qualified` / `warning`: Amber/Yellow badge (`bg-amber-500/10 text-amber-400 border-amber-500/20`)
+     - `lost` / `rejected` / `critical`: Rose badge (`bg-rose-500/10 text-rose-400 border-rose-500/20`)
+     - `proposal_sent` / `pending`: Purple badge (`bg-purple-500/10 text-purple-400 border-purple-500/20`)
+
+3. **Desktop Architectural Layout (>=1024px):**
+   - Fixed `w-64` collapsible sidebar (`admin-sidebar.tsx`) structured into 4 clean functional categories:
+     - **Overview:** Dashboard, Live Activity Log
+     - **CRM & Sales:** Inquiries (with unread badge), Leads Pipeline, Quotations, Customer Profiles
+     - **Content Studio:** Site Pages, Services & Packages, Blog Articles, FAQs, Portfolio Blueprints
+     - **System & Automation:** Business Workflows, Notification Center, Studio Settings, Health & Observability
+   - User profile section anchored at sidebar bottom showing active role pill (`owner`, `admin`) and one-click secure sign-out.

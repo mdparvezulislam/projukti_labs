@@ -12,9 +12,9 @@ import {
   Tag,
 } from "lucide-react";
 import {
-  getPostBySlug,
   getPostsByCategory,
 } from "@/modules/blog/data";
+import { getCmsBlogPostBySlug } from "@/lib/cms";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 
 interface PageProps {
@@ -23,7 +23,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getCmsBlogPostBySlug(slug);
 
   if (!post) {
     return {
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BlogPostDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getCmsBlogPostBySlug(slug);
 
   if (!post) {
     notFound();

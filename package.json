@@ -13,7 +13,8 @@
     "deploy:vinext": "vinext-cloudflare deploy",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "db:check": "drizzle-kit check"
+    "db:check": "drizzle-kit check",
+    "admin:bootstrap": "tsx scripts/bootstrap-owner.ts"
   },
   "dependencies": {
     "@vinext/cloudflare": "latest",

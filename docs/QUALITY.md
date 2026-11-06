@@ -10,10 +10,10 @@ This document defines the mandatory acceptance gates, testing protocols, and ver
 | :--- | :--- | :--- | :--- |
 | **Type Checking** | `pnpm typecheck` (`tsc --noEmit`) | 0 TypeScript errors | **PASSED (0 errors)** |
 | **Linting** | `pnpm lint` (`eslint`) | 0 errors, 0 warnings | **PASSED (0 errors, 0 warnings)** |
-| **Unit Testing** | `pnpm test` (`vitest run`) | 100% test pass rate across 5 test suites | **PASSED (27/27 tests)** |
+| **Unit Testing** | `pnpm test` (`vitest run`) | 100% test pass rate across 6 test suites | **PASSED (43/43 tests)** |
 | **Database Schema Check** | `pnpm db:check` (`drizzle-kit check`) | Zero schema or migration drift | **PASSED (In Sync)** |
 | **Edge Bundle Build** | `pnpm run build:vinext` | Zero compilation failures, bundle < 1 MB | **PASSED (301.03 KB)** |
-| **D1 Migrations** | `wrangler d1 execute` | Structured Drizzle schema applied locally | **PASSED (`0001_silly_spiral`)** |
+| **D1 Migrations** | `wrangler d1 execute` | Structured Drizzle schema applied locally | **PASSED (`0002_slippery_firedrake`)** |
 
 ---
 
@@ -37,6 +37,14 @@ Closed-loop testing executed on real browser sessions across mobile and desktop 
 | **Desktop (1280×800)** | `/services/website-maintenance` | 4 care tiers, SLA comparison table, scope boundaries | **PASSED** |
 | **Desktop (1280×800)** | `/contact` | Form fill, submit to `/api/v1/inquiries`, reference code emission | **PASSED (`PL-2026-G4AK`)** |
 | **Desktop (1280×800)** | `/get-a-quote?service=...` | Pre-fill from searchParams, budget select, submit & tracking code | **PASSED (`PL-2026-LY2F`)** |
+| **Desktop / Mobile** | `/admin/login` | Invalid credential alert (401), valid login with HttpOnly session cookie redirect | **PASSED** |
+| **Desktop (1280×800)** | `/admin/dashboard` | Real-time D1 metrics (Inquiries, Leads, Pipeline value, Quotes, Recent list) | **PASSED** |
+| **Mobile (375×667)** | `/admin/dashboard` | 5-tab sticky bottom nav, 48px touch targets, compact header, card layout | **PASSED** |
+| **Desktop / Mobile** | `/admin/inquiries` | Data table on desktop, responsive card stack on mobile, zero overflow | **PASSED** |
+| **Desktop (1280×800)** | `/admin/content` | Content management hub (Pages, Services, Blog, FAQs, Portfolio) | **PASSED** |
+| **Desktop (1280×800)** | `/admin/automations` | Rule triggers list, live execution history, retry functionality | **PASSED** |
+| **Desktop (1280×800)** | `/admin/settings` | General studio settings, contact info, social links, theme default | **PASSED** |
+| **Desktop (1280×800)** | `/faq` | Public FAQ page dynamically pulling records from D1 with code fallback | **PASSED** |
 
 ---
 
@@ -80,18 +88,36 @@ Closed-loop testing executed on real browser sessions across mobile and desktop 
    - `POST /api/v1/inquiries` payload validation failure (returns 400 with field errors)
    - `POST /api/v1/inquiries` bot honeypot entrapment (returns 200 without DB write)
    - `POST /api/v1/inquiries` valid quote submission (returns 201 with `PL-2026-XXXX` reference code)
+6. **Complete Admin Operating System Tests (`tests/unit/admin-system.test.ts` - 16 tests):**
+   - Cryptographic password hashing and verification using WebCrypto PBKDF2
+   - Session lifecycle: generation, SHA-256 token hashing, expiration, and database lookup
+   - RBAC permission hierarchy validation across `owner`, `admin`, `editor`, and `viewer`
+   - Administrative audit log generation with action metadata and client details
+   - Dynamic CMS fetchers (`getCmsServices`, `getCmsBlogPosts`, `getCmsPortfolio`, `getCmsFaqs`)
+   - Fallback resilience: immediate graceful degradation to code definitions when D1 is unseeded
+   - Lead lifecycle updates and progression
+   - Quotation calculation: items, subtotal, tax, discount, and total computation
+   - Quotation numbering format enforcement (`PL-Q-2026-XXXX`)
+   - Customer profile creation (`upsertCustomer`) and lifetime aggregation
+   - Internal notes attachment to business entities
+   - CRM dashboard aggregation metrics
+   - Automation processor event emission and rule execution
+   - Automation run logging and retry execution
+   - In-app notification creation, unread count tracking, and status toggling
 
 ---
 
-## 5. Production Smoke Test Checklist (Pre-Flight Verification)
+## 6. Production Smoke Test Checklist (Pre-Flight Verification)
 
 Before pointing production traffic to `projuktilabs.tech`, execute this verification checklist:
 
 - [x] `pnpm typecheck` exits 0 with zero errors
 - [x] `pnpm lint` exits 0 with zero warnings/errors
-- [x] `pnpm test` executes all 27 unit tests with 100% pass rate
+- [x] `pnpm test` executes all 43 unit tests with 100% pass rate
 - [x] `pnpm db:check` reports schema and migration synchronization
 - [x] `pnpm run build:vinext` generates optimized edge bundle (~301 KB)
+- [x] Local D1 database migrated with `0002_slippery_firedrake.sql` (21 tables)
+- [x] Local owner bootstrap verified (`admin:bootstrap` / `parvez@projuktilabs.tech`)
 - [ ] Founder authorization obtained for Cloudflare deployment
 - [ ] Cloudflare D1 production database created: `wrangler d1 create projukti_labs_db`
 - [ ] D1 migrations applied to remote database: `wrangler d1 migrations apply projukti_labs_db --remote`
@@ -102,4 +128,5 @@ Before pointing production traffic to `projuktilabs.tech`, execute this verifica
 - [ ] Cloudflare SSL/TLS configured to Full (Strict), Minimum TLS 1.2, HSTS
 - [ ] Remote health check ping: `curl -I https://projuktilabs.tech/api/v1/health` (verify 200 OK & security headers)
 - [ ] Remote smoke inquiry test: verify reference code emission and D1 row insertion
+- [ ] Remote admin login test: authenticate as owner and verify dashboard metrics
 - [ ] Mobile responsive audit on live production domain via real device or Playwright

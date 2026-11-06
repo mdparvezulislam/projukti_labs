@@ -1,5 +1,9 @@
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
+// ==========================================
+// 1. Foundation & Legacy POC Entities
+// ==========================================
+
 export const pocRecords = sqliteTable("poc_records", {
   id: text("id").primaryKey(),
   title: text("title").notNull(),
@@ -22,6 +26,184 @@ export const systemHealthChecks = sqliteTable("system_health_checks", {
     .$defaultFn(() => new Date()),
 });
 
+// ==========================================
+// 2. Authentication, Users & Audit
+// ==========================================
+
+export const adminUsers = sqliteTable("admin_users", {
+  id: text("id").primaryKey(), // 'usr_...'
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  passwordSalt: text("password_salt").notNull(),
+  role: text("role").notNull().default("editor"), // 'owner' | 'admin' | 'editor' | 'support'
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  lastLoginAt: integer("last_login_at", { mode: "timestamp_ms" }),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const adminSessions = sqliteTable("admin_sessions", {
+  id: text("id").primaryKey(), // 'ses_...'
+  userId: text("user_id").notNull(),
+  tokenHash: text("token_hash").notNull().unique(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  expiresAt: integer("expires_at", { mode: "timestamp_ms" }).notNull(),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const adminAuditLogs = sqliteTable("admin_audit_logs", {
+  id: text("id").primaryKey(), // 'aud_...'
+  userId: text("user_id"),
+  userEmail: text("user_email"),
+  action: text("action").notNull(), // 'login' | 'logout' | 'create' | 'update' | 'delete' | 'publish'
+  resourceType: text("resource_type").notNull(), // 'page' | 'blog' | 'service' | 'inquiry' | 'quote' | 'settings' | 'user'
+  resourceId: text("resource_id"),
+  details: text("details", { mode: "json" }).$type<Record<string, unknown>>(),
+  ipHash: text("ip_hash"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// ==========================================
+// 3. CMS & Website Content
+// ==========================================
+
+export const siteSettings = sqliteTable("site_settings", {
+  id: text("id").primaryKey(), // 'primary' or key-based
+  key: text("key").notNull().unique(),
+  value: text("value", { mode: "json" }).notNull().$type<Record<string, unknown>>(),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const pageSections = sqliteTable("page_sections", {
+  id: text("id").primaryKey(), // 'sec_...'
+  pageSlug: text("page_slug").notNull(), // 'home' | 'about' | 'founder' | 'contact'
+  sectionKey: text("section_key").notNull(), // 'hero' | 'metrics' | 'features' | 'process' | 'cta'
+  title: text("title"),
+  subtitle: text("subtitle"),
+  content: text("content", { mode: "json" }).$type<Record<string, unknown>>(),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const services = sqliteTable("services", {
+  id: text("id").primaryKey(), // 'srv_...'
+  slug: text("slug").notNull().unique(),
+  categorySlug: text("category_slug").notNull(),
+  name: text("name").notNull(),
+  tagline: text("tagline"),
+  description: text("description").notNull(),
+  isFlagship: integer("is_flagship", { mode: "boolean" }).notNull().default(false),
+  status: text("status").notNull().default("active"), // 'active' | 'coming_soon' | 'draft'
+  sortOrder: integer("sort_order").notNull().default(0),
+  deliverables: text("deliverables", { mode: "json" }).$type<string[]>(),
+  exclusions: text("exclusions", { mode: "json" }).$type<string[]>(),
+  technicalHighlights: text("technical_highlights", { mode: "json" }).$type<string[]>(),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const servicePackages = sqliteTable("service_packages", {
+  id: text("id").primaryKey(), // 'pkg_...'
+  serviceId: text("service_id").notNull(),
+  slug: text("slug").notNull(),
+  name: text("name").notNull(),
+  priceBdt: integer("price_bdt"),
+  priceUsd: integer("price_usd"),
+  billingPeriod: text("billing_period").default("one-time"), // 'one-time' | 'monthly' | 'custom'
+  description: text("description").notNull(),
+  isPopular: integer("is_popular", { mode: "boolean" }).notNull().default(false),
+  slaHours: integer("sla_hours"),
+  deliverables: text("deliverables", { mode: "json" }).$type<string[]>(),
+  exclusions: text("exclusions", { mode: "json" }).$type<string[]>(),
+  sortOrder: integer("sort_order").notNull().default(0),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const blogPosts = sqliteTable("blog_posts", {
+  id: text("id").primaryKey(), // 'post_...'
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(), // Markdown format
+  category: text("category").notNull(),
+  tags: text("tags", { mode: "json" }).$type<string[]>(),
+  coverImage: text("cover_image"),
+  status: text("status").notNull().default("draft"), // 'draft' | 'published' | 'scheduled' | 'archived'
+  isFeatured: integer("is_featured", { mode: "boolean" }).notNull().default(false),
+  readTime: text("read_time"),
+  seoTitle: text("seo_title"),
+  seoDescription: text("seo_description"),
+  scheduledAt: integer("scheduled_at", { mode: "timestamp_ms" }),
+  publishedAt: integer("published_at", { mode: "timestamp_ms" }),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const portfolioProjects = sqliteTable("portfolio_projects", {
+  id: text("id").primaryKey(), // 'prj_...'
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  category: text("category").notNull(),
+  badge: text("badge").notNull(),
+  projectType: text("project_type").notNull(),
+  overview: text("overview").notNull(),
+  metrics: text("metrics", { mode: "json" }).$type<{ label: string; value: string }[]>(),
+  stack: text("stack", { mode: "json" }).$type<string[]>(),
+  deliverables: text("deliverables", { mode: "json" }).$type<string[]>(),
+  linkUrl: text("link_url"),
+  linkText: text("link_text"),
+  isFeatured: integer("is_featured", { mode: "boolean" }).notNull().default(false),
+  sortOrder: integer("sort_order").notNull().default(0),
+  isPublished: integer("is_published", { mode: "boolean" }).notNull().default(true),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const faqs = sqliteTable("faqs", {
+  id: text("id").primaryKey(), // 'faq_...'
+  category: text("category").notNull(),
+  question: text("question").notNull(),
+  answer: text("answer").notNull(),
+  sortOrder: integer("sort_order").notNull().default(0),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// ==========================================
+// 4. CRM & Business Entities
+// ==========================================
+
 export const inquiries = sqliteTable("inquiries", {
   id: text("id").primaryKey(),
   referenceCode: text("reference_code").notNull().unique(),
@@ -40,7 +222,13 @@ export const inquiries = sqliteTable("inquiries", {
   sourcePage: text("source_page"),
   utmJson: text("utm_json"),
   ipHash: text("ip_hash"),
+  status: text("status").notNull().default("new"), // 'new' | 'contacted' | 'discussing' | 'quoted' | 'won' | 'cancelled' | 'archived'
+  assignedTo: text("assigned_to"),
+  notes: text("notes"),
   createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -50,7 +238,7 @@ export const leads = sqliteTable("leads", {
   inquiryId: text("inquiry_id"),
   title: text("title").notNull(),
   stage: text("stage").notNull().default("new"), // 'new' | 'reviewing' | 'contacted' | 'qualified' | 'proposal' | 'negotiation' | 'won' | 'lost'
-  priority: text("priority").notNull().default("medium"),
+  priority: text("priority").notNull().default("medium"), // 'low' | 'medium' | 'high' | 'urgent'
   estimatedValueBdt: integer("estimated_value_bdt"),
   estimatedValueUsd: integer("estimated_value_usd"),
   createdAt: integer("created_at", { mode: "timestamp_ms" })
@@ -61,10 +249,186 @@ export const leads = sqliteTable("leads", {
     .$defaultFn(() => new Date()),
 });
 
+export const quotes = sqliteTable("quotes", {
+  id: text("id").primaryKey(), // 'qte_...'
+  quoteNumber: text("quote_number").notNull().unique(), // 'PL-Q-2026-XXXX'
+  leadId: text("lead_id"),
+  clientName: text("client_name").notNull(),
+  clientEmail: text("client_email").notNull(),
+  clientPhone: text("client_phone"),
+  clientCompany: text("client_company"),
+  serviceId: text("service_id"),
+  packageId: text("package_id"),
+  items: text("items", { mode: "json" })
+    .notNull()
+    .$type<{ description: string; amountBdt: number; amountUsd?: number }[]>(),
+  totalBdt: integer("total_bdt").notNull(),
+  totalUsd: integer("total_usd"),
+  status: text("status").notNull().default("draft"), // 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired'
+  validUntil: integer("valid_until", { mode: "timestamp_ms" }).notNull(),
+  notes: text("notes"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const customers = sqliteTable("customers", {
+  id: text("id").primaryKey(), // 'cst_...'
+  fullName: text("full_name").notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone"),
+  companyName: text("company_name"),
+  country: text("country").default("Bangladesh"),
+  status: text("status").notNull().default("lead"), // 'lead' | 'client' | 'inactive'
+  notes: text("notes"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const internalNotes = sqliteTable("internal_notes", {
+  id: text("id").primaryKey(), // 'not_...'
+  entityType: text("entity_type").notNull(), // 'inquiry' | 'lead' | 'quote' | 'customer'
+  entityId: text("entity_id").notNull(),
+  authorId: text("author_id"),
+  authorName: text("author_name").notNull(),
+  content: text("content").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// ==========================================
+// 5. Automation & Notifications
+// ==========================================
+
+export const automationRules = sqliteTable("automation_rules", {
+  id: text("id").primaryKey(), // 'rul_...'
+  name: text("name").notNull(),
+  eventType: text("event_type").notNull(), // 'inquiry.created' | 'lead.stage_changed' | 'quote.created' | 'blog.scheduled_publish' | 'system.health_check'
+  description: text("description").notNull(),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  config: text("config", { mode: "json" }).$type<Record<string, unknown>>(),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const automationRuns = sqliteTable("automation_runs", {
+  id: text("id").primaryKey(), // 'run_...'
+  ruleId: text("rule_id"),
+  eventType: text("event_type").notNull(),
+  status: text("status").notNull(), // 'success' | 'failed' | 'retrying'
+  payload: text("payload", { mode: "json" }).$type<Record<string, unknown>>(),
+  result: text("result", { mode: "json" }).$type<Record<string, unknown>>(),
+  errorMessage: text("error_message"),
+  executedAt: integer("executed_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const notifications = sqliteTable("notifications", {
+  id: text("id").primaryKey(), // 'ntf_...'
+  userId: text("user_id"), // null = broadcast to all admins
+  title: text("title").notNull(),
+  message: text("message").notNull(),
+  type: text("type").notNull().default("info"), // 'info' | 'success' | 'warning' | 'alert'
+  actionUrl: text("action_url"),
+  isRead: integer("is_read", { mode: "boolean" }).notNull().default(false),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// ==========================================
+// 6. Media & Assets
+// ==========================================
+
+export const mediaAssets = sqliteTable("media_assets", {
+  id: text("id").primaryKey(), // 'med_...'
+  fileName: text("file_name").notNull(),
+  fileSize: integer("file_size").notNull(),
+  mimeType: text("mime_type").notNull(),
+  url: text("url").notNull(),
+  altText: text("alt_text"),
+  category: text("category").default("general"),
+  uploadedBy: text("uploaded_by"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// ==========================================
+// Inferred TypeScript Types
+// ==========================================
+
 export type PocRecord = typeof pocRecords.$inferSelect;
 export type NewPocRecord = typeof pocRecords.$inferInsert;
 export type SystemHealthCheck = typeof systemHealthChecks.$inferSelect;
+
+export type AdminUser = typeof adminUsers.$inferSelect;
+export type NewAdminUser = typeof adminUsers.$inferInsert;
+export type AdminRole = "owner" | "admin" | "editor" | "support";
+
+export type AdminSession = typeof adminSessions.$inferSelect;
+export type NewAdminSession = typeof adminSessions.$inferInsert;
+
+export type AdminAuditLog = typeof adminAuditLogs.$inferSelect;
+export type NewAdminAuditLog = typeof adminAuditLogs.$inferInsert;
+
+export type SiteSetting = typeof siteSettings.$inferSelect;
+export type NewSiteSetting = typeof siteSettings.$inferInsert;
+
+export type PageSection = typeof pageSections.$inferSelect;
+export type NewPageSection = typeof pageSections.$inferInsert;
+
+export type ServiceEntity = typeof services.$inferSelect;
+export type NewServiceEntity = typeof services.$inferInsert;
+
+export type ServicePackageEntity = typeof servicePackages.$inferSelect;
+export type NewServicePackageEntity = typeof servicePackages.$inferInsert;
+
+export type BlogPostEntity = typeof blogPosts.$inferSelect;
+export type NewBlogPostEntity = typeof blogPosts.$inferInsert;
+
+export type PortfolioProjectEntity = typeof portfolioProjects.$inferSelect;
+export type NewPortfolioProjectEntity = typeof portfolioProjects.$inferInsert;
+
+export type FaqEntity = typeof faqs.$inferSelect;
+export type NewFaqEntity = typeof faqs.$inferInsert;
+
 export type Inquiry = typeof inquiries.$inferSelect;
 export type NewInquiry = typeof inquiries.$inferInsert;
+
 export type Lead = typeof leads.$inferSelect;
 export type NewLead = typeof leads.$inferInsert;
+
+export type Quote = typeof quotes.$inferSelect;
+export type NewQuote = typeof quotes.$inferInsert;
+
+export type Customer = typeof customers.$inferSelect;
+export type NewCustomer = typeof customers.$inferInsert;
+
+export type InternalNote = typeof internalNotes.$inferSelect;
+export type NewInternalNote = typeof internalNotes.$inferInsert;
+
+export type AutomationRule = typeof automationRules.$inferSelect;
+export type NewAutomationRule = typeof automationRules.$inferInsert;
+
+export type AutomationRun = typeof automationRuns.$inferSelect;
+export type NewAutomationRun = typeof automationRuns.$inferInsert;
+
+export type Notification = typeof notifications.$inferSelect;
+export type NewNotification = typeof notifications.$inferInsert;
+
+export type MediaAsset = typeof mediaAssets.$inferSelect;
+export type NewMediaAsset = typeof mediaAssets.$inferInsert;

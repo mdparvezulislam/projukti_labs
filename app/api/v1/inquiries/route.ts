@@ -2,10 +2,10 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 import { apiSuccess, apiError, handleZodError } from "@/lib/validation/api";
 import { inquiries, leads } from "@/db/schema";
-import { drizzle } from "drizzle-orm/d1";
-import { getCloudflareBindings } from "@/lib/env";
+import { getDb } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { sha256 } from "@/lib/auth/crypto";
+import { dispatchAutomationEvent } from "@/lib/automation/processor";
 
 const MAX_PAYLOAD_BYTES = 65536; // 64 KB limit
 
@@ -114,62 +114,67 @@ export async function POST(req: NextRequest) {
     const referenceCode = generateReferenceCode();
 
     // 5. Cloudflare D1 Database Persistence
-    const bindings = getCloudflareBindings();
-    if (bindings.DB) {
-      try {
-        const db = drizzle(bindings.DB);
-        await db.insert(inquiries).values({
-          id: inquiryId,
-          referenceCode,
-          inquiryType: data.inquiryType,
-          fullName: data.fullName,
-          email: data.email,
-          phoneWhatsapp: data.phoneWhatsapp ?? null,
-          companyName: data.companyName ?? null,
-          country: data.country ?? null,
-          serviceId: data.serviceId ?? null,
-          packageId: data.packageId ?? null,
-          budgetRange: data.budgetRange ?? null,
-          currency: data.currency,
-          timelinePreference: data.timelinePreference ?? null,
-          projectBrief: data.projectBrief,
-          sourcePage: data.sourcePage ?? null,
-          ipHash,
-          createdAt: new Date(),
-        });
+    try {
+      const db = getDb();
+      await db.insert(inquiries).values({
+        id: inquiryId,
+        referenceCode,
+        inquiryType: data.inquiryType,
+        fullName: data.fullName,
+        email: data.email,
+        phoneWhatsapp: data.phoneWhatsapp ?? null,
+        companyName: data.companyName ?? null,
+        country: data.country ?? null,
+        serviceId: data.serviceId ?? null,
+        packageId: data.packageId ?? null,
+        budgetRange: data.budgetRange ?? null,
+        currency: data.currency,
+        timelinePreference: data.timelinePreference ?? null,
+        projectBrief: data.projectBrief,
+        sourcePage: data.sourcePage ?? null,
+        ipHash,
+        status: "new",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
 
-        await db.insert(leads).values({
-          id: leadId,
-          inquiryId,
-          title: `${data.fullName} — ${data.serviceId || data.inquiryType.toUpperCase()}`,
-          stage: "new",
-          priority: data.inquiryType === "quote" ? "high" : "medium",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        });
+      await db.insert(leads).values({
+        id: leadId,
+        inquiryId,
+        title: `${data.fullName} — ${data.serviceId || data.inquiryType.toUpperCase()}`,
+        stage: "new",
+        priority: data.inquiryType === "quote" ? "high" : "medium",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
 
-        logger.info("Inquiry and Lead successfully persisted to D1", {
-          requestId,
-          context: "InquiryAPI",
-          data: { inquiryType: data.inquiryType, referenceCode },
-        });
-      } catch (dbErr) {
-        logger.error("D1 database insertion failure", {
-          requestId,
-          context: "InquiryAPI",
-          error: dbErr,
-        });
-        return apiError(
-          "DATABASE_ERROR",
-          "আপনার অনুরোধটি সংরক্ষণে সাময়িক ত্রুটি হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর পুনরায় চেষ্টা করুন।",
-          500
-        );
-      }
-    } else {
-      logger.warn("D1 database binding not present in current runtime context", {
+      logger.info("Inquiry and Lead successfully persisted to D1", {
         requestId,
         context: "InquiryAPI",
+        data: { inquiryType: data.inquiryType, referenceCode },
       });
+
+      // 6. Trigger Business Automation Event
+      await dispatchAutomationEvent("inquiry.created", {
+        inquiryId,
+        referenceCode,
+        fullName: data.fullName,
+        email: data.email,
+        serviceId: data.serviceId,
+        budgetRange: data.budgetRange,
+        projectBrief: data.projectBrief,
+      });
+    } catch (dbErr) {
+      logger.error("D1 database insertion failure", {
+        requestId,
+        context: "InquiryAPI",
+        error: dbErr,
+      });
+      return apiError(
+        "DATABASE_ERROR",
+        "আপনার অনুরোধটি সংরক্ষণে সাময়িক ত্রুটি হয়েছে। অনুগ্রহ করে কিছুক্ষণ পর পুনরায় চেষ্টা করুন।",
+        500
+      );
     }
 
     return apiSuccess(

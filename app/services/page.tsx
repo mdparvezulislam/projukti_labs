@@ -6,7 +6,8 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
-import { getActiveCategories, getFutureCategories } from "@/modules/services/data";
+import { getFutureCategories } from "@/modules/services/data";
+import { getCmsServices } from "@/lib/cms";
 
 export const metadata = {
   title: "সেবাসমূহ ও সলিউশন | Projukti Labs",
@@ -14,8 +15,9 @@ export const metadata = {
     "আমাদের সুনির্দিষ্ট ৩টি সক্রিয় সেবা: ওয়েব ডেভেলপমেন্ট ও ডিজাইন, ই-কমার্স ও ডিজিটাল কমার্স, এবং প্রোঅ্যাক্টিভ মেইনটেন্যান্স ও টেকনিক্যাল সাপোর্ট।",
 };
 
-export default function ServicesPage() {
-  const activeCategories = getActiveCategories();
+export default async function ServicesPage() {
+  const allCategories = await getCmsServices();
+  const activeCategories = allCategories.filter((c) => c.status === "active");
   const futureCategories = getFutureCategories();
 
   return (

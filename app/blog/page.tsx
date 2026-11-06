@@ -3,13 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
-import {
-  getAllPosts,
-  getFeaturedPost,
-  getAllCategories,
-  searchPosts,
-  getPostsByCategory,
-} from "@/modules/blog/data";
+import { getAllCategories } from "@/modules/blog/data";
+import { getCmsBlogPosts } from "@/lib/cms";
 
 export const metadata = {
   title: "প্রযুক্তি ব্লগ ও টেকনোলজি ইনসাইটস | Projukti Labs",
@@ -29,17 +24,24 @@ interface BlogPageProps {
 
 export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
   const params = await searchParams;
-  const query = params?.q || "";
+  const query = (params?.q || "").trim().toLowerCase();
   const selectedCategory = params?.category || "";
 
   const categories = getAllCategories();
-  const featuredPost = getFeaturedPost();
+  const allPosts = await getCmsBlogPosts("published");
+  const featuredPost = allPosts.find((p) => p.featured) || allPosts[0];
 
-  let posts = getAllPosts();
+  let posts = allPosts;
   if (selectedCategory) {
-    posts = getPostsByCategory(selectedCategory);
+    posts = allPosts.filter((p) => p.category === selectedCategory);
   } else if (query) {
-    posts = searchPosts(query);
+    posts = allPosts.filter(
+      (p) =>
+        p.title.toLowerCase().includes(query) ||
+        p.excerpt.toLowerCase().includes(query) ||
+        p.content.toLowerCase().includes(query) ||
+        p.tags.some((t) => t.toLowerCase().includes(query))
+    );
   }
 
   return (
@@ -68,7 +70,7 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
               : "border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-border-strong"
           }`}
         >
-          সব প্রবন্ধ ({getAllPosts().length})
+          সব প্রবন্ধ ({allPosts.length})
         </Link>
         {categories.map((cat) => (
           <Link

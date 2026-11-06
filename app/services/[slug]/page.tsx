@@ -6,8 +6,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { ArrowRight, CheckCircle2, ChevronRight, Check } from "lucide-react";
 import {
   getCategoryBySlug,
-  getServiceBySlug,
 } from "@/modules/services/data";
+import { getCmsServiceBySlug } from "@/lib/cms";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -16,7 +16,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const category = getCategoryBySlug(slug);
-  const service = getServiceBySlug(slug);
+  const service = await getCmsServiceBySlug(slug);
 
   if (category) {
     return {
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function GenericServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
   const category = getCategoryBySlug(slug);
-  const service = getServiceBySlug(slug);
+  const service = await getCmsServiceBySlug(slug);
 
   if (!category && !service) {
     notFound();

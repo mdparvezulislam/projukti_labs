@@ -28,6 +28,12 @@ Projukti Labs is an independent technology studio and founder portfolio led by *
 - Categories (`/blog/category/[slug]`), Tags (`/blog/tag/[slug]`), and Search (`searchPosts`).
 - XML Sitemap (`/sitemap.xml`) and `robots.txt` generation.
 
+### Complete Admin Operating System (Phases 08–12):
+- **Full-featured Admin Portal (`/admin`):** Secure dashboard managing CRM leads, structured quotes (`PL-Q-2026-XXXX`), customer records, dynamic CMS content, and automated business workflows.
+- **Authoritative Database & CMS Integration:** 21 entities managed via Cloudflare D1 and Drizzle ORM. Public website reads dynamic content with immediate fallback to code definitions.
+- **Mobile-App-Like Ergonomics (<768px):** 5-tab sticky bottom navigation (`admin-mobile-nav.tsx`), 48px touch targets, compact header with notification alerts, and zero horizontal scrollbar overflow.
+- **Event-Driven Automation Engine:** Trigger workflows on inquiry creation, lead progression, quote generation, and scheduled publishing, backed by execution logging and retry handling.
+
 ---
 
 ## 2. Technical Architecture & Stack
@@ -51,40 +57,40 @@ Projukti Labs is an independent technology studio and founder portfolio led by *
 ```text
 projukti_labs/
 ├── app/                                 # Next.js App Router Pages & API Endpoints
-│   ├── api/v1/
-│   │   ├── health/                      # Edge health check
-│   │   ├── inquiries/                   # Public inquiry & quote submission endpoint
-│   │   └── poc/                         # Verification POC endpoints
+│   ├── admin/                           # Complete Admin Panel (Dashboard, CRM, Content, System)
+│   ├── api/
+│   │   ├── admin/                       # 18 Admin REST Endpoints (Auth, CMS, CRM, Automations)
+│   │   └── v1/                          # Public APIs (health, inquiries, poc)
 │   ├── about/                           # Studio philosophy & origin story
 │   ├── blog/                            # Blog engine routes (listing, article, category, tag)
 │   ├── contact/                         # Interactive contact channel & form
 │   ├── design-system/                   # Live token & UI primitive preview
-│   ├── faq/                             # Categorized business & engineering FAQ
+│   ├── faq/                             # Categorized business & engineering FAQ (D1 dynamic)
 │   ├── founder/                         # Founder manifesto (Md Parvezul Islam)
 │   ├── get-a-quote/                     # Structured quotation form with pre-fill support
 │   ├── portfolio/                       # Engineering case studies & architectural blueprints
-│   ├── services/                        # Service catalog overview
-│   │   ├── [slug]/                      # Generic category & standard service detail
-│   │   ├── complete-ecommerce-website/  # Flagship E-commerce service page
-│   │   ├── landing-page-meta-pixel/     # Flagship Landing Page + Meta CAPI service page
-│   │   └── website-maintenance/         # Flagship Maintenance Retainers service page
+│   ├── services/                        # Service catalog overview & details
 │   ├── globals.css                      # Design tokens, Hind Siliguri, & dark/light theme
 │   ├── layout.tsx                       # Root layout (lang="bn-BD", Hind Siliguri font setup)
-│   ├── page.tsx                         # Studio homepage
+│   ├── page.tsx                         # Studio homepage (D1 dynamic hero)
 │   ├── robots.ts                        # Next.js Metadata Route for robots.txt
 │   └── sitemap.ts                       # Next.js Metadata Route for sitemap.xml
 ├── components/
+│   ├── admin/                           # Admin Shell, 5-tab Mobile Nav, Sidebar, Header
 │   ├── blog/                            # MarkdownRenderer & blog UI components
 │   ├── forms/                           # Accessible forms (ContactForm, QuoteForm)
 │   ├── layout/                          # SiteHeader, SiteFooter, ThemeToggle
 │   └── ui/                              # Button, Badge, Card, Input, Textarea, Modal, Accordion
 ├── db/
-│   ├── migrations/                      # Drizzle SQL migration files
-│   └── schema/                          # Drizzle schema (poc_records, inquiries, leads, etc.)
+│   ├── migrations/                      # Drizzle SQL migration files (0000, 0001, 0002)
+│   └── schema/                          # 21 authoritative entities (Auth, CMS, CRM, Automation)
 ├── lib/
-│   ├── auth/                            # WebCrypto PBKDF2 password & session utilities
+│   ├── auth/                            # WebCrypto PBKDF2 hashing, sessions, RBAC, bootstrap
+│   ├── automation/                      # Event bus, rule runner, execution history & notifications
 │   ├── cloudflare/                      # Cloudflare R2 presigned URL helpers
-│   ├── db/                              # Drizzle D1 database client factory
+│   ├── cms/                             # CMS data bridge, dynamic queries & seeders
+│   ├── crm/                             # CRM engine (leads, quotes, customers, notes, metrics)
+│   ├── db/                              # Universal D1 client + Node 22 sqlite fallback shim
 │   ├── env.ts                           # Zod-validated environment schema & bindings resolver
 │   ├── logger.ts                        # Edge structured JSON logger with secret redaction
 │   ├── utils.ts                         # cn() and formatting helpers
@@ -94,9 +100,11 @@ projukti_labs/
 │   └── services/                        # Strongly-typed service catalog domain module
 ├── public/
 │   └── _headers                         # Production HTTP security headers for Cloudflare
+├── scripts/
+│   └── bootstrap-owner.ts               # CLI owner initialization script
 ├── tests/
 │   ├── integration/                     # Cloudflare Workers integration tests
-│   └── unit/                            # Unit tests (crypto, validation, storage, services, blog, api, production)
+│   └── unit/                            # 43 unit tests across 6 test suites
 ├── .env.example                         # Environment variables and Cloudflare bindings template
 ├── DESIGN.md                            # Canonical design tokens & UX specifications
 ├── wrangler.jsonc                       # Multi-environment Cloudflare Workers configuration
@@ -117,11 +125,14 @@ pnpm typecheck
 # Lint with ESLint
 pnpm lint
 
-# Run all unit tests (Vitest: 27 tests across 5 suites)
+# Run all unit tests (Vitest: 43 tests across 6 suites)
 pnpm test
 
 # Verify database schema & migration integrity
 pnpm db:check
+
+# Bootstrap initial Admin Owner account (interactive / scripted)
+pnpm admin:bootstrap
 
 # Build for Cloudflare Workers (vinext edge bundle)
 pnpm run build:vinext

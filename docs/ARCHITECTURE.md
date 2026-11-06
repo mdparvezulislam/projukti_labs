@@ -167,3 +167,70 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
    - Gate 4: Worker deployment: `pnpm run deploy:vinext`
    - Gate 5: Production smoke test (Health check, Inquiry submission, Mobile verification)
    - Rollback Procedure: Instant zero-downtime rollback using `wrangler rollback` to previous active deployment.
+
+---
+
+## 11. Admin Operating System Architecture (Phases 08–12)
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        Admin Surface (/admin)                          │
+│     Mobile App Shell (<768px: 5-Tab Bar)  |  Desktop (Collapsible)     │
+└────────────────────────────────────┬───────────────────────────────────┘
+                                     │
+                                     ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                   Unified Admin Security Gateway                       │
+│    Cookie: pl_admin_session (HttpOnly, Secure, SameSite=Lax, 7-Day)   │
+│    RBAC Matrix: owner > admin > editor > viewer                       │
+│    Cryptographic Engine: WebCrypto PBKDF2 (100k iter) + SHA-256 tokens │
+│    Audit Logger: admin_audit_logs (user, action, entity, diff, ip)     │
+└────────────────────────────────────┬───────────────────────────────────┘
+                                     │
+           ┌─────────────────────────┼─────────────────────────┐
+           ▼                         ▼                         ▼
+┌─────────────────────┐   ┌─────────────────────┐   ┌─────────────────────┐
+│  Admin REST APIs    │   │  CMS & Dynamic Web  │   │  CRM & Automation   │
+│  (/api/admin/*)     │   │  (lib/cms/index.ts) │   │  (lib/crm, auto)    │
+│  - 18 Endpoints     │   │  - Pages & Sections │   │  - Inquiries & Leads│
+│  - Auth & Sessions  │   │  - Services & Pkgs  │   │  - Quotes & Clients │
+│  - Content CRUD     │   │  - Blog & Portfolio │   │  - Event Processor  │
+│  - CRM Operations   │   │  - Dynamic Fallback │   │  - Notifications    │
+└──────────┬──────────┘   └──────────┬──────────┘   └──────────┬──────────┘
+           │                         │                         │
+           └─────────────────────────┼─────────────────────────┘
+                                     │
+                                     ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                  Universal D1 Client & Storage Layer                   │
+│   Cloudflare Workers: bindings.DB (Native D1 isolate binding)          │
+│   Node.js 22 Runtime: node:sqlite DatabaseSync direct file shim        │
+│   Sole Authority: Cloudflare D1 (21 Entities via Drizzle ORM)          │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **Authentication, Session & RBAC Pipeline:**
+   - **Password Security:** WebCrypto PBKDF2 with 100,000 iterations, 16-byte random salt, and SHA-256 digest (`lib/auth/crypto.ts`).
+   - **Session Token Security:** 256-bit cryptographically secure random token generated client-side, stored hashed with SHA-256 in `admin_sessions`. Session cookie is `pl_admin_session`, flagged `HttpOnly`, `SameSite=Lax`, `Secure` in production, with a 7-day TTL.
+   - **RBAC Governance:** 4 roles (`owner`, `admin`, `editor`, `viewer`). Actions are guarded by `requireAdminAuth(req, permission)`.
+   - **Audit Trail:** Every mutating administrative action records an entry in `admin_audit_logs` capturing user ID, action name, target entity, timestamp, client IP, and user agent.
+
+2. **21 D1 Entities (Authoritative Database Schema):**
+   - **Authentication:** `adminUsers`, `adminSessions`, `adminAuditLogs`.
+   - **CMS Content:** `siteSettings`, `pageSections`, `services`, `servicePackages`, `blogPosts`, `portfolioProjects`, `faqs`, `mediaAssets`.
+   - **CRM & Sales:** `inquiries`, `leads`, `quotes`, `customers`, `internalNotes`.
+   - **Automation & Telemetry:** `automationRules`, `automationRuns`, `notifications`, `poc_records`, `system_health_checks`.
+
+3. **Universal D1 Execution Engine (`lib/db/index.ts`):**
+   - In Cloudflare Workers production, uses the native `bindings.DB`.
+   - In Node.js 22 (Next.js development, CLI bootstrap, Vitest test suite), uses a transparent D1 shim backed by built-in `node:sqlite` (`DatabaseSync`), directly reading and writing to the local Wrangler D1 SQLite file.
+
+4. **Event-Driven Business Automation Engine (`lib/automation/processor.ts`):**
+   - Business events triggered synchronously or asynchronously (`inquiry.created`, `lead.stage_changed`, `quote.created`, `blog.scheduled_publish`, `system.health_check`).
+   - Rule Runner checks configured triggers and conditions in `automation_rules` and executes actions (`send_notification`, `create_lead_from_inquiry`, `notify_owner_high_value`).
+   - Full execution history stored in `automation_runs` with error logging and retry support (`retryAutomationRun`).
+   - In-app notification center (`notifications`) provides instant visibility for admin users.
+
+5. **Dynamic CMS & Public Fallback Synchronization:**
+   - Public pages query dynamic content via `lib/cms/index.ts` (`getCmsServices`, `getCmsBlogPosts`, `getCmsPortfolio`, `getCmsFaqs`, `getCmsPageSection`).
+   - **Zero-Downtime Guarantee:** If database is cold, unseeded, or temporarily unreachable, helpers automatically return canonical code fallbacks without breaking the public website.

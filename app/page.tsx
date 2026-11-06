@@ -12,6 +12,7 @@ import {
   Code2,
   ChevronRight,
 } from "lucide-react";
+import { getPageSections } from "@/lib/cms";
 
 export const metadata = {
   title: "Projukti Labs | ডিজিটাল সলিউশন ও আধুনিক সফটওয়্যার ইঞ্জিনিয়ারিং স্টুডিও",
@@ -19,7 +20,18 @@ export const metadata = {
     "আল্ট্রা-ফাস্ট ওয়েব প্ল্যাটফর্ম, মেটা পিক্সেল ও CAPI সমন্বিত হাই-কনভার্টিং ল্যান্ডিং পেজ এবং নির্ভরযোগ্য ই-কমার্স ইঞ্জিনিয়ারিং স্টুডিও।",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const homeSections = await getPageSections("home");
+  const heroSection = homeSections.find((s) => s.sectionKey === "hero");
+  const heroContent = (heroSection?.content as Record<string, string>) || {};
+  const heroTitle = heroSection?.title;
+  const heroSubtitle = heroSection?.subtitle || "আমরা তৈরি করি অবিশ্বাস্য দ্রুতগতির ওয়েব প্ল্যাটফর্ম, ভেরিফাইড মেটা পিক্সেল ও ট্র্যাকিং যুক্ত কনভার্শন ল্যান্ডিং পেজ এবং নির্ভরযোগ্য ই-কমার্স ইঞ্জিন—বাংলাদেশ ও আন্তর্জাতিক ব্যবসার জন্য।";
+  const badgeText = heroContent.badge || "অফিসিয়াল স্টুডিও লঞ্চ | ৩টি প্রধান সার্ভিস ক্যাটাগরি";
+  const ctaPrimaryText = heroContent.ctaPrimaryText || "প্রজেক্টের বাজেট ও কোটেশন চান";
+  const ctaPrimaryLink = heroContent.ctaPrimaryLink || "/get-a-quote";
+  const ctaSecondaryText = heroContent.ctaSecondaryText || "আমাদের সেবাসমূহ দেখুন";
+  const ctaSecondaryLink = heroContent.ctaSecondaryLink || "/services";
+
   return (
     <div className="flex flex-col gap-24 sm:gap-32 pb-20">
       {/* 1. Hero Section */}
@@ -33,31 +45,35 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs sm:text-sm text-text-muted">
             <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
-            <span className="font-medium text-text-primary">অফিসিয়াল স্টুডিও লঞ্চ</span>
-            <span className="text-border">|</span>
-            <span>৩টি প্রধান সার্ভিস ক্যাটাগরি</span>
+            <span className="font-medium text-text-primary">{badgeText}</span>
           </div>
 
           <h1 className="mx-auto max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
-            ডিজিটাল সলিউশন নির্মাণ।{" "}
-            <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
-              ভবিষ্যতের প্রযুক্তি ইঞ্জিনিয়ারিং।
-            </span>
+            {heroTitle ? (
+              heroTitle
+            ) : (
+              <>
+                ডিজিটাল সলিউশন নির্মাণ।{" "}
+                <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
+                  ভবিষ্যতের প্রযুক্তি ইঞ্জিনিয়ারিং।
+                </span>
+              </>
+            )}
           </h1>
 
           <p className="mx-auto max-w-2xl text-lg sm:text-xl text-text-muted leading-relaxed">
-            আমরা তৈরি করি অবিশ্বাস্য দ্রুতগতির ওয়েব প্ল্যাটফর্ম, ভেরিফাইড মেটা পিক্সেল ও ট্র্যাকিং যুক্ত কনভার্শন ল্যান্ডিং পেজ এবং নির্ভরযোগ্য ই-কমার্স ইঞ্জিন—বাংলাদেশ ও আন্তর্জাতিক ব্যবসার জন্য।
+            {heroSubtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Button size="lg" variant="primary" asChild className="w-full sm:w-auto">
-              <Link href="/get-a-quote">
-                প্রজেক্টের বাজেট ও কোটেশন চান
+              <Link href={ctaPrimaryLink}>
+                {ctaPrimaryText}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <Link href="/services">আমাদের সেবাসমূহ দেখুন</Link>
+              <Link href={ctaSecondaryLink}>{ctaSecondaryText}</Link>
             </Button>
           </div>
 
