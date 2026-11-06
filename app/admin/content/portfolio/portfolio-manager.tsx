@@ -139,14 +139,14 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="প্রজেক্ট শিরোনাম বা ক্যাটাগরি দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
         >
           <Plus className="h-4 w-4" aria-hidden="true" />
           <span>নতুন কেস স্টাডি</span>
@@ -250,7 +250,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                       );
                     }
                   }}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -264,7 +264,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] font-mono"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] font-mono"
                   />
                 </div>
                 <div>
@@ -276,7 +276,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
               </div>
@@ -291,7 +291,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={badge}
                     onChange={(e) => setBadge(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
                 <div>
@@ -303,7 +303,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
               </div>
@@ -317,7 +317,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                   required
                   value={overview}
                   onChange={(e) => setOverview(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
                 />
               </div>
 
@@ -332,7 +332,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
                 >
                   {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>সংরক্ষণ করুন</span>

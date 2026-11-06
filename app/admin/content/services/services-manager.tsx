@@ -167,7 +167,7 @@ export function ServicesManager({ categories }: ServicesManagerProps) {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -179,7 +179,7 @@ export function ServicesManager({ categories }: ServicesManagerProps) {
                   type="text"
                   value={tagline}
                   onChange={(e) => setTagline(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -192,7 +192,7 @@ export function ServicesManager({ categories }: ServicesManagerProps) {
                   required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export function ServicesManager({ categories }: ServicesManagerProps) {
                   value={deliverablesText}
                   onChange={(e) => setDeliverablesText(e.target.value)}
                   placeholder="রেসপন্সিভ মোবাইল আর্কিটেকচার&#10;মেটা Conversions API ইন্টিগ্রেশন..."
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed font-mono"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed font-mono"
                 />
               </div>
 
@@ -213,7 +213,7 @@ export function ServicesManager({ categories }: ServicesManagerProps) {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
                 >
                   {saving ? (
                     <>

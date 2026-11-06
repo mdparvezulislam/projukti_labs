@@ -93,7 +93,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
             type="text"
             value={badge}
             onChange={(e) => setBadge(e.target.value)}
-            className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
@@ -106,7 +106,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
@@ -119,7 +119,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
             required
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
-            className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+            className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
           />
         </div>
 
@@ -132,7 +132,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
               type="text"
               value={ctaPrimaryText}
               onChange={(e) => setCtaPrimaryText(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+              className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
             />
           </div>
 
@@ -144,7 +144,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
               type="text"
               value={ctaPrimaryLink}
               onChange={(e) => setCtaPrimaryLink(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+              className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
               type="text"
               value={ctaSecondaryText}
               onChange={(e) => setCtaSecondaryText(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+              className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
             />
           </div>
 
@@ -170,7 +170,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
               type="text"
               value={ctaSecondaryLink}
               onChange={(e) => setCtaSecondaryLink(e.target.value)}
-              className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+              className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
             />
           </div>
         </div>
@@ -179,7 +179,7 @@ export function PageEditor({ initialSections }: PageEditorProps) {
           <button
             type="submit"
             disabled={saving}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
           >
             {saving ? (
               <>

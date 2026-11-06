@@ -25,7 +25,7 @@ export function AdminHeader({
           type="button"
           onClick={onToggleMobileMenu}
           aria-label="অ্যাডমিন মেনু খুলুন"
-          className="md:hidden p-1.5 -ml-1 text-text-muted hover:text-text-primary rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="md:hidden p-2 text-text-muted hover:text-text-primary rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <Menu className="h-5 w-5" aria-hidden="true" />
         </button>

@@ -139,7 +139,7 @@ export function AutomationsManager({ initialRules, initialRuns }: AutomationsMan
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-bold text-xs text-text-primary">{rule.name}</span>
-                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-bg-primary border border-border text-accent">
+                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-surface-elevated border border-border text-accent-text font-semibold">
                       {rule.eventType}
                     </span>
                   </div>
@@ -151,7 +151,7 @@ export function AutomationsManager({ initialRules, initialRuns }: AutomationsMan
                 <div className="flex items-center justify-between pt-2 border-t border-border">
                   <span className="text-[11px] text-text-muted">
                     স্ট্যাটাস:{" "}
-                    <strong className={rule.isActive ? "text-emerald-400" : "text-zinc-500"}>
+                    <strong className={rule.isActive ? "text-emerald-700 dark:text-emerald-300" : "text-zinc-500"}>
                       {rule.isActive ? "সক্রিয়" : "নিষ্ক্রিয়"}
                     </strong>
                   </span>
@@ -162,8 +162,8 @@ export function AutomationsManager({ initialRules, initialRuns }: AutomationsMan
                     onClick={() => handleToggleRule(rule.id, Boolean(rule.isActive))}
                     className={`px-3 py-1 text-xs font-semibold rounded-md border transition-colors min-h-[36px] ${
                       rule.isActive
-                        ? "bg-red-500/10 border-red-500/20 text-red-400 hover:bg-red-500/20"
-                        : "bg-emerald-500/10 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20"
+                        ? "bg-red-500/15 border-red-500/30 text-red-700 dark:text-red-300 hover:bg-red-500/25"
+                        : "bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/25"
                     }`}
                   >
                     {isToggling ? "হালনাগাদ হচ্ছে…" : rule.isActive ? "নিষ্ক্রিয় করুন" : "সক্রিয় করুন"}
@@ -191,7 +191,7 @@ export function AutomationsManager({ initialRules, initialRuns }: AutomationsMan
             {runs.map((run) => (
               <div
                 key={run.id}
-                className="flex items-center justify-between p-3 rounded-lg bg-bg-primary/50 border border-border/60 text-xs gap-3"
+                className="flex items-center justify-between p-3 rounded-lg bg-surface-elevated/70 border border-border/60 text-xs gap-3"
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 flex-wrap">
@@ -201,8 +201,8 @@ export function AutomationsManager({ initialRules, initialRuns }: AutomationsMan
                     <span
                       className={`text-[9px] font-bold px-1.5 py-0.5 rounded border uppercase ${
                         run.status === "success"
-                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                          : "bg-red-500/10 text-red-400 border-red-500/20"
+                          ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30"
+                          : "bg-red-500/15 text-red-700 dark:text-red-300 border-red-500/30"
                       }`}
                     >
                       {run.status}

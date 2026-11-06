@@ -112,11 +112,11 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
   });
 
   const quoteStatusColors: Record<string, string> = {
-    draft: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
-    sent: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    accepted: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    rejected: "bg-red-500/10 text-red-400 border-red-500/20",
-    expired: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    draft: "bg-zinc-500/15 text-zinc-700 dark:text-zinc-300 border-zinc-500/30",
+    sent: "bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30",
+    accepted: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
+    rejected: "bg-red-500/15 text-red-700 dark:text-red-300 border-red-500/30",
+    expired: "bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30",
   };
 
   const quoteStatusLabels: Record<string, string> = {
@@ -130,7 +130,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
   return (
     <div className="space-y-4">
       {/* Header Bar */}
-      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-xs">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" aria-hidden="true" />
           <input
@@ -138,7 +138,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="কোট নম্বর, ক্লায়েন্ট নাম বা ইমেল দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
@@ -146,7 +146,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           >
             <option value="all">সকল স্ট্যাটাস</option>
             <option value="draft">ড্রাফট (Draft)</option>
@@ -159,7 +159,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
             <span>নতুন কোটেশন</span>
@@ -260,7 +260,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
                     placeholder="উদা: আরিফুর রহমান"
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
 
@@ -274,7 +274,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     placeholder="client@company.com"
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
               </div>
@@ -289,7 +289,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                     value={clientCompany}
                     onChange={(e) => setClientCompany(e.target.value)}
                     placeholder="কোম্পানির নাম (ঐচ্ছিক)"
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
 
@@ -301,7 +301,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                     type="number"
                     value={validDays}
                     onChange={(e) => setValidDays(parseInt(e.target.value) || 14)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
                   />
                 </div>
               </div>
@@ -315,7 +315,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                   <button
                     type="button"
                     onClick={handleAddItem}
-                    className="text-xs text-accent hover:underline font-semibold"
+                    className="text-xs text-accent-text hover:underline font-semibold"
                   >
                     + আইটেম যোগ করুন
                   </button>
@@ -329,7 +329,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                       placeholder="কাজের বিবরণ..."
                       value={it.description}
                       onChange={(e) => handleItemChange(idx, "description", e.target.value)}
-                      className="flex-1 px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                      className="flex-1 px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                     />
                     <input
                       type="number"
@@ -337,7 +337,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                       placeholder="BDT"
                       value={it.amountBdt}
                       onChange={(e) => handleItemChange(idx, "amountBdt", e.target.value)}
-                      className="w-24 sm:w-28 px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
+                      className="w-24 sm:w-28 px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
                     />
                     {items.length > 1 && (
                       <button
@@ -352,7 +352,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                   </div>
                 ))}
 
-                <div className="flex items-center justify-between p-2.5 bg-bg-primary rounded-lg border border-border text-xs font-bold text-text-primary">
+                <div className="flex items-center justify-between p-2.5 bg-surface-elevated rounded-lg border border-border text-xs font-bold text-text-primary">
                   <span>সর্বমোট প্রাক্কলন (BDT):</span>
                   <span className="text-base text-accent tabular-nums">৳ {totalBdt.toLocaleString("bn-BD")}</span>
                 </div>
@@ -369,7 +369,7 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
                 <button
                   type="submit"
                   disabled={creating}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
                 >
                   {creating && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>কোটেশন তৈরি করুন</span>

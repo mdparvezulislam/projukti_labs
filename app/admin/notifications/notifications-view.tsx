@@ -43,10 +43,10 @@ export function NotificationsView({ initialNotifications }: NotificationsViewPro
   };
 
   const typeStyles: Record<string, string> = {
-    info: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-    success: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    warning: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    alert: "text-red-400 bg-red-500/10 border-red-500/20",
+    info: "text-blue-700 dark:text-blue-300 bg-blue-500/15 border-blue-500/30",
+    success: "text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 border-emerald-500/30",
+    warning: "text-amber-800 dark:text-amber-300 bg-amber-500/15 border-amber-500/30",
+    alert: "text-red-700 dark:text-red-300 bg-red-500/15 border-red-500/30",
   };
 
   return (
@@ -70,9 +70,14 @@ export function NotificationsView({ initialNotifications }: NotificationsViewPro
 
       <div className="space-y-2">
         {list.length === 0 ? (
-          <div className="bg-card border border-border rounded-xl p-8 text-center text-xs text-text-muted flex flex-col items-center gap-2">
-            <Bell className="h-8 w-8 text-text-muted/40" aria-hidden="true" />
-            <span>কোনো নোটিফিকেশন নেই।</span>
+          <div className="bg-card border border-border rounded-xl p-12 text-center text-xs text-text-muted flex flex-col items-center justify-center gap-3">
+            <div className="h-12 w-12 rounded-2xl bg-surface-elevated border border-border flex items-center justify-center text-accent shadow-xs">
+              <Bell className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <div>
+              <p className="font-semibold text-text-primary text-sm">কোনো নোটিফিকেশন নেই</p>
+              <p className="text-text-muted text-xs mt-0.5">সবগুলো সিস্টেম আপডেট দেখা সম্পন্ন হয়েছে।</p>
+            </div>
           </div>
         ) : (
           list.map((item) => (

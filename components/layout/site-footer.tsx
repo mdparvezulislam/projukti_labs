@@ -1,7 +1,16 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function SiteFooter() {
-  const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  const currentYear = 2026;
+
+  // Hide the public footer on all admin routes
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
 
   return (
     <footer className="border-t border-border bg-surface text-text-secondary mt-auto">

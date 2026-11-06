@@ -61,14 +61,14 @@ export function AdminMobileNav({ unreadCount = 0 }: MobileNavProps) {
             className={cn(
               "flex flex-col items-center justify-center w-full h-full min-h-[44px] min-w-[44px] relative text-[11px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
               item.active
-                ? "text-accent font-semibold"
+                ? "text-accent-text font-semibold"
                 : "text-text-muted hover:text-text-primary"
             )}
           >
             <div className="relative">
-              <Icon className={cn("h-5 w-5 mb-0.5", item.active ? "text-accent" : "text-text-muted")} aria-hidden="true" />
+              <Icon className={cn("h-5 w-5 mb-0.5", item.active ? "text-accent-text" : "text-text-muted")} aria-hidden="true" />
               {item.badge && (
-                <span className="absolute -top-1 -right-2 bg-accent text-bg-primary text-[9px] font-bold h-3.5 w-3.5 rounded-full flex items-center justify-center tabular-nums">
+                <span className="absolute -top-1 -right-2 bg-accent text-accent-foreground text-[9px] font-bold h-3.5 w-3.5 rounded-full flex items-center justify-center tabular-nums shadow-sm">
                   {item.badge > 9 ? "9+" : item.badge}
                 </span>
               )}

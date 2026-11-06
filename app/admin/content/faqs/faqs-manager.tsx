@@ -124,14 +124,14 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="প্রশ্ন বা উত্তর দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
         >
           <Plus className="h-4 w-4" aria-hidden="true" />
           <span>নতুন FAQ যোগ করুন</span>
@@ -226,7 +226,7 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   placeholder="উদা: প্রজেক্ট পরিকল্পনা ও বাজেট নির্ধারণ"
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -240,7 +240,7 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
                   placeholder="প্রশ্নটি লিখুন..."
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -254,7 +254,7 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                   placeholder="বিস্তারিত উত্তর লিখুন..."
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
                 />
               </div>
 
@@ -266,7 +266,7 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
                   type="number"
                   value={sortOrder}
                   onChange={(e) => setSortOrder(parseInt(e.target.value) || 1)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
                 />
               </div>
 
@@ -281,7 +281,7 @@ export function FaqsManager({ initialFaqs }: FaqsManagerProps) {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
                 >
                   {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>সংরক্ষণ করুন</span>

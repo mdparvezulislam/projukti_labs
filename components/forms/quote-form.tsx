@@ -100,14 +100,14 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
         <div className="mx-auto max-w-sm rounded-lg border border-border bg-background p-4 text-center">
           <p className="text-xs uppercase tracking-wider text-text-muted font-mono">আপনার কোটেশন রেফারেন্স কোড</p>
           <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="font-mono text-xl font-bold text-accent">{submittedRef}</span>
+            <span className="font-mono text-xl font-bold text-accent-text">{submittedRef}</span>
             <button
               type="button"
               onClick={copyReferenceCode}
-              className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
+              className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
               aria-label="রেফারেন্স ট্র্যাকিং কোড কপি করুন"
             >
-              {copied ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-accent-text" /> : <Copy className="h-4 w-4" />}
             </button>
           </div>
           <p className="mt-2 text-xs text-text-muted">
@@ -133,21 +133,21 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
       <CardContent className="p-6 sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <div className="rounded-md border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400" role="alert">
+            <div className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300" role="alert">
               {error}
             </div>
           )}
 
           {/* Section 1: Contact Information */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-accent flex items-center gap-2 font-mono">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent">১</span>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-accent-text flex items-center gap-2 font-mono">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent-text font-bold">১</span>
               ক্লায়েন্ট ও ব্যবসায়িক বিবরণ
             </h4>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="quote-fullName" className="text-sm font-medium text-text-primary">
-                  আপনার নাম <span className="text-accent">*</span>
+                  আপনার নাম <span className="text-accent-text">*</span>
                 </label>
                 <Input
                   id="quote-fullName"

@@ -34,7 +34,7 @@ export default async function AdminDashboardPage() {
       subtext: `${metrics.newInquiries}টি নতুন পর্যালোচনার অপেক্ষায়`,
       icon: Inbox,
       href: "/admin/inquiries",
-      color: "text-blue-400 bg-blue-500/10",
+      color: "text-blue-700 dark:text-blue-300 bg-blue-500/15 border border-blue-500/20",
     },
     {
       label: "সক্রিয় লিড পাইপলাইন",
@@ -42,7 +42,7 @@ export default async function AdminDashboardPage() {
       subtext: "চলমান আলোচনা ও প্রজেক্ট প্রস্তাব",
       icon: Users,
       href: "/admin/leads",
-      color: "text-accent bg-accent/10",
+      color: "text-accent-text bg-accent/15 border border-accent/20",
     },
     {
       label: "সম্ভাব্য পাইপলাইন ভ্যালু",
@@ -50,7 +50,7 @@ export default async function AdminDashboardPage() {
       subtext: "উন্মুক্ত লিডগুলোর মোট প্রজেক্ট ভ্যালু",
       icon: TrendingUp,
       href: "/admin/leads",
-      color: "text-emerald-400 bg-emerald-500/10",
+      color: "text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 border border-emerald-500/20",
     },
     {
       label: "অ্যাক্টিভ কোটেশন",
@@ -58,7 +58,7 @@ export default async function AdminDashboardPage() {
       subtext: `${metrics.pendingQuotes}টি ক্লায়েন্টের উত্তরের অপেক্ষায়`,
       icon: FileCheck,
       href: "/admin/quotes",
-      color: "text-purple-400 bg-purple-500/10",
+      color: "text-purple-700 dark:text-purple-300 bg-purple-500/15 border border-purple-500/20",
     },
   ];
 
@@ -89,7 +89,7 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <Link
             href="/admin/quotes"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
             <span>নতুন কোট তৈরি</span>
@@ -150,7 +150,7 @@ export default async function AdminDashboardPage() {
             </div>
             <Link
               href="/admin/inquiries"
-              className="text-xs text-accent hover:underline inline-flex items-center gap-1 font-semibold p-1"
+              className="text-xs text-accent-text hover:underline inline-flex items-center gap-1 font-semibold p-1"
             >
               <span>সবগুলো দেখুন</span>
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
@@ -166,14 +166,14 @@ export default async function AdminDashboardPage() {
               {metrics.recentInquiries.map((inq) => (
                 <div
                   key={inq.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-bg-primary/50 border border-border/60 hover:border-border transition-colors text-xs gap-3"
+                  className="flex items-center justify-between p-3 rounded-lg bg-surface-elevated/70 border border-border/60 hover:border-border transition-colors text-xs gap-3"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <span className="font-semibold text-text-primary truncate">
                         {inq.fullName}
                       </span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-card border border-border text-accent">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-accent-text font-semibold">
                         {inq.referenceCode}
                       </span>
                     </div>
@@ -183,7 +183,7 @@ export default async function AdminDashboardPage() {
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium uppercase bg-accent/10 text-accent">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium uppercase bg-accent/15 text-accent-text border border-accent/20">
                       {inq.status}
                     </span>
                     <div className="text-[10px] text-text-muted mt-0.5">

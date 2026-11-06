@@ -124,9 +124,9 @@ export default async function AdminSystemPage() {
             {tables.map((t) => (
               <div
                 key={t.name}
-                className="p-3 rounded-lg bg-bg-primary/60 border border-border/70 flex items-center justify-between text-xs"
+                className="p-3 rounded-lg bg-surface-elevated border border-border flex items-center justify-between text-xs"
               >
-                <span className="text-text-muted truncate font-medium">{t.name}</span>
+                <span className="text-text-secondary truncate font-medium">{t.name}</span>
                 <span className="text-sm font-black text-text-primary tabular-nums shrink-0 ml-2">
                   {t.count}
                 </span>
@@ -155,14 +155,14 @@ export default async function AdminSystemPage() {
             <div className="space-y-2">
               <div>
                 <span className="font-semibold text-text-primary">১. রিমোট D1 ব্যাকআপ এক্সপোর্ট কমান্ড:</span>
-                <pre className="mt-1 p-2.5 bg-bg-primary rounded-lg border border-border text-accent font-mono text-[11px] overflow-x-auto">
+                <pre className="mt-1 p-2.5 bg-surface-elevated rounded-lg border border-border text-accent-text font-mono text-[11px] overflow-x-auto">
                   npx wrangler d1 export projukti_labs_db --remote --output=&quot;./db/backups/backup-$(date +%Y%m%d%H%M%S).sql&quot;
                 </pre>
               </div>
 
               <div>
                 <span className="font-semibold text-text-primary">২. ইমার্জেন্সি রিস্টোর কমান্ড:</span>
-                <pre className="mt-1 p-2.5 bg-bg-primary rounded-lg border border-border text-accent font-mono text-[11px] overflow-x-auto">
+                <pre className="mt-1 p-2.5 bg-surface-elevated rounded-lg border border-border text-accent-text font-mono text-[11px] overflow-x-auto">
                   npx wrangler d1 execute projukti_labs_db --remote --file=&quot;./db/backups/TARGET_BACKUP.sql&quot;
                 </pre>
               </div>

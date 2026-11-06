@@ -87,16 +87,16 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
   });
 
   const priorityColors: Record<string, string> = {
-    urgent: "bg-red-500/10 text-red-400 border-red-500/20",
-    high: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    medium: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    low: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
+    urgent: "bg-red-500/15 text-red-700 dark:text-red-300 border-red-500/30",
+    high: "bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30",
+    medium: "bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30",
+    low: "bg-zinc-500/15 text-zinc-700 dark:text-zinc-300 border-zinc-500/30",
   };
 
   return (
     <div className="space-y-4">
       {/* Header Bar */}
-      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-xs">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" aria-hidden="true" />
           <input
@@ -104,7 +104,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="লিড শিরোনাম দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
@@ -112,7 +112,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
           <select
             value={selectedStage}
             onChange={(e) => setSelectedStage(e.target.value)}
-            className="px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           >
             <option value="all">সকল স্টেজ</option>
             {stages.map((st) => (
@@ -123,7 +123,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
           <button
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
             <span>নতুন লিড</span>
@@ -217,7 +217,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                   placeholder="উদা: আরমান ট্রেডার্স — ই-কমার্স স্টোর"
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -229,7 +229,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                   <select
                     value={newPriority}
                     onChange={(e) => setNewPriority(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -245,7 +245,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                   <select
                     value={newStage}
                     onChange={(e) => setNewStage(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   >
                     {stages.map((st) => (
                       <option key={st.key} value={st.key}>{st.label}</option>
@@ -263,7 +263,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                   value={newValueBdt}
                   onChange={(e) => setNewValueBdt(e.target.value)}
                   placeholder="100000"
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] tabular-nums"
                 />
               </div>
 
@@ -278,7 +278,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                 <button
                   type="submit"
                   disabled={creating}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
                 >
                   {creating && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>সংরক্ষণ করুন</span>

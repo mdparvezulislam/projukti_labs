@@ -97,16 +97,16 @@ export default async function AdminContentHubPage() {
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-lg bg-bg-primary border border-border text-accent">
+                  <div className="p-2 rounded-lg bg-surface-elevated border border-border text-accent-text">
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <span className="text-[11px] font-semibold text-accent/90 bg-accent/10 px-2 py-0.5 rounded">
+                  <span className="text-[11px] font-semibold text-accent-text bg-accent/15 border border-accent/20 px-2 py-0.5 rounded">
                     {sec.countLabel}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-text-primary group-hover:text-accent transition-colors">
+                  <h3 className="text-sm font-bold text-text-primary group-hover:text-accent-text transition-colors">
                     {sec.title}
                   </h3>
                   <p className="text-xs text-text-muted mt-1 leading-relaxed">

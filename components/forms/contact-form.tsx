@@ -80,14 +80,14 @@ export function ContactForm() {
         <div className="mx-auto max-w-xs rounded-lg border border-border bg-background p-4 text-center">
           <p className="text-xs uppercase tracking-wider text-text-muted font-mono">আপনার রেফারেন্স ট্র্যাকিং কোড</p>
           <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="font-mono text-xl font-bold text-accent">{submittedRef}</span>
+            <span className="font-mono text-xl font-bold text-accent-text">{submittedRef}</span>
             <button
               type="button"
               onClick={copyReferenceCode}
-              className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
+              className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
               aria-label="রেফারেন্স কোড কপি করুন"
             >
-              {copied ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-accent-text" /> : <Copy className="h-4 w-4" />}
             </button>
           </div>
         </div>
@@ -110,7 +110,7 @@ export function ContactForm() {
       <CardContent className="p-6 sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
-            <div className="rounded-md border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400" role="alert">
+            <div className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300" role="alert">
               {error}
             </div>
           )}
@@ -118,7 +118,7 @@ export function ContactForm() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="contact-fullName" className="text-sm font-medium text-text-primary">
-                আপনার নাম <span className="text-accent">*</span>
+                আপনার নাম <span className="text-accent-text">*</span>
               </label>
               <Input
                 id="contact-fullName"
@@ -132,7 +132,7 @@ export function ContactForm() {
 
             <div className="space-y-2">
               <label htmlFor="contact-email" className="text-sm font-medium text-text-primary">
-                অফিসিয়াল ইমেইল <span className="text-accent">*</span>
+                অফিসিয়াল ইমেইল <span className="text-accent-text">*</span>
               </label>
               <Input
                 id="contact-email"

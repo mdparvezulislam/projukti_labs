@@ -38,16 +38,21 @@ export default async function AdminActivityPage() {
               <p className="text-xs text-text-muted">প্রতিটি সংবেদনশীল অ্যাডমিন অপারেশনের সিকিউর লগ</p>
             </div>
           </div>
-          <span className="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded">
+          <span className="text-xs font-mono text-accent-text bg-accent/15 border border-accent/20 px-2.5 py-1 rounded font-semibold">
             {logs.length}টি রেকর্ড
           </span>
         </div>
 
         <div className="space-y-2">
           {logs.length === 0 ? (
-            <div className="bg-card border border-border rounded-xl p-8 text-center text-xs text-text-muted flex flex-col items-center gap-2">
-              <History className="h-8 w-8 text-text-muted/40" aria-hidden="true" />
-              <span>কোনো অডিট লগ রেকর্ড নেই।</span>
+            <div className="bg-card border border-border rounded-xl p-12 text-center text-xs text-text-muted flex flex-col items-center justify-center gap-3">
+              <div className="h-12 w-12 rounded-2xl bg-surface-elevated border border-border flex items-center justify-center text-accent shadow-xs">
+                <History className="h-6 w-6" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="font-semibold text-text-primary text-sm">কোনো অডিট লগ রেকর্ড নেই</p>
+                <p className="text-text-muted text-xs mt-0.5">প্রশাসনিক ক্রিয়াকলাপের ইতিহাস এখানে প্রদর্শিত হবে।</p>
+              </div>
             </div>
           ) : (
             logs.map((log) => (
@@ -60,7 +65,7 @@ export default async function AdminActivityPage() {
                     <span className="font-bold text-text-primary font-mono text-xs">
                       {log.action}
                     </span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-bg-primary border border-border text-accent uppercase font-medium">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-surface-elevated border border-border text-accent-text uppercase font-semibold">
                       {log.resourceType}
                     </span>
                     {log.resourceId && (

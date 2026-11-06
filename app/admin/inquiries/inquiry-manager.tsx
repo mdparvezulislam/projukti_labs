@@ -55,12 +55,12 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
   };
 
   const statusColors: Record<string, string> = {
-    new: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    contacted: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    discussing: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    quoted: "bg-accent/10 text-accent border-accent/20",
-    won: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    cancelled: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
+    new: "bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-500/30",
+    contacted: "bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/30",
+    discussing: "bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/30",
+    quoted: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/30",
+    won: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30",
+    cancelled: "bg-zinc-500/15 text-zinc-700 dark:text-zinc-300 border-zinc-500/30",
   };
 
   const statusLabels: Record<string, string> = {
@@ -75,7 +75,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
   return (
     <div className="space-y-4">
       {/* Search and Filters Bar */}
-      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-sm">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" aria-hidden="true" />
           <input
@@ -83,7 +83,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="নাম, ইমেল বা রেফারেন্স কোড দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
@@ -92,7 +92,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="w-full sm:w-auto px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full sm:w-auto px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           >
             <option value="all">সকল স্ট্যাটাস</option>
             <option value="new">নতুন (New)</option>
@@ -127,8 +127,8 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                 <div
                   key={inq.id}
                   onClick={() => setActiveInquiry(inq)}
-                  className={`bg-card border rounded-xl p-3.5 sm:p-4 cursor-pointer transition-all hover:border-border-hover ${
-                    isSelected ? "border-accent ring-1 ring-accent" : "border-border"
+                  className={`bg-card border rounded-xl p-3.5 sm:p-4 cursor-pointer transition-all hover:border-border-hover hover:bg-card-hover ${
+                    isSelected ? "border-accent ring-1 ring-accent bg-accent/5" : "border-border shadow-xs"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -137,12 +137,12 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                         <span className="font-bold text-sm text-text-primary truncate">
                           {inq.fullName}
                         </span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-bg-primary border border-border text-accent">
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-elevated border border-border text-accent-text font-semibold">
                           {inq.referenceCode}
                         </span>
                         <span
                           className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${
-                            statusColors[inq.status] || "bg-zinc-500/10 text-zinc-400 border-zinc-500/20"
+                            statusColors[inq.status] || "bg-zinc-500/15 text-zinc-700 dark:text-zinc-300 border-zinc-500/30"
                           }`}
                         >
                           {statusLabels[inq.status] || inq.status}
@@ -151,24 +151,24 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
 
                       <div className="text-xs text-text-muted mt-1 flex items-center gap-3 flex-wrap">
                         <span className="flex items-center gap-1">
-                          <Mail className="h-3 w-3" aria-hidden="true" />
+                          <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                           <span className="truncate">{inq.email}</span>
                         </span>
                         {inq.phoneWhatsapp && (
                           <span className="flex items-center gap-1">
-                            <Phone className="h-3 w-3" aria-hidden="true" />
+                            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
                             <span>{inq.phoneWhatsapp}</span>
                           </span>
                         )}
                         {inq.companyName && (
                           <span className="flex items-center gap-1">
-                            <Building className="h-3 w-3" aria-hidden="true" />
+                            <Building className="h-3.5 w-3.5" aria-hidden="true" />
                             <span className="truncate">{inq.companyName}</span>
                           </span>
                         )}
                       </div>
 
-                      <p className="text-xs text-text-muted mt-2 line-clamp-2 leading-relaxed bg-bg-primary/40 p-2 rounded border border-border/40">
+                      <p className="text-xs text-text-secondary mt-2 line-clamp-2 leading-relaxed bg-surface-elevated/70 p-2 rounded-lg border border-border/60">
                         {inq.projectBrief}
                       </p>
                     </div>
@@ -178,7 +178,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                         {new Date(inq.createdAt).toLocaleDateString("bn-BD")}
                       </div>
                       {inq.budgetRange && (
-                        <div className="text-xs font-bold text-accent mt-1 tabular-nums">
+                        <div className="text-xs font-bold text-accent-text mt-1 tabular-nums">
                           ৳ {inq.budgetRange}
                         </div>
                       )}
@@ -224,7 +224,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                   disabled={updating}
                   value={activeInquiry.status}
                   onChange={(e) => handleUpdateStatus(activeInquiry.id, e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 >
                   <option value="new">নতুন (New)</option>
                   <option value="contacted">যোগাযোগ করা হয়েছে</option>
@@ -269,7 +269,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
               {/* Project Scope & Brief */}
               <div className="space-y-2 text-xs pt-2 border-t border-border">
                 <div className="font-semibold text-text-primary">প্রজেক্ট ব্রিফ</div>
-                <div className="p-3 bg-bg-primary rounded-lg border border-border text-text-muted leading-relaxed whitespace-pre-wrap">
+                <div className="p-3 bg-surface-elevated rounded-lg border border-border text-text-secondary leading-relaxed whitespace-pre-wrap">
                   {activeInquiry.projectBrief}
                 </div>
               </div>
@@ -291,9 +291,16 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
               </div>
             </div>
           ) : (
-            <div className="py-12 text-center text-xs text-text-muted flex flex-col items-center gap-2">
-              <MessageSquare className="h-8 w-8 text-text-muted/40" aria-hidden="true" />
-              <span>বিস্তারিত দেখতে বাম পাশের যেকোনো ইনকোয়ারিতে ক্লিক করুন।</span>
+            <div className="py-16 text-center text-xs text-text-muted flex flex-col items-center justify-center gap-3">
+              <div className="h-14 w-14 rounded-2xl bg-surface-elevated border border-border flex items-center justify-center text-accent/80 shadow-xs">
+                <MessageSquare className="h-7 w-7 text-accent" aria-hidden="true" />
+              </div>
+              <div className="space-y-1">
+                <p className="font-bold text-text-primary text-sm">ইনকোয়ারি বিবরণ</p>
+                <p className="text-text-muted text-xs max-w-[200px] leading-relaxed">
+                  বিস্তারিত দেখতে বাম পাশের তালিকা থেকে যেকোনো ইনকোয়ারিতে ক্লিক করুন।
+                </p>
+              </div>
             </div>
           )}
         </div>

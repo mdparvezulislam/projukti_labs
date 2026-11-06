@@ -168,14 +168,14 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="ব্লগ শিরোনাম বা স্ল্যাগ দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
           />
         </div>
 
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
         >
           <Plus className="h-4 w-4" aria-hidden="true" />
           <span>নতুন পোস্ট লিখুন</span>
@@ -295,7 +295,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                       );
                     }
                   }}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                 />
               </div>
 
@@ -309,7 +309,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] font-mono"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] font-mono"
                   />
                 </div>
 
@@ -320,7 +320,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   >
                     {categories.map((c) => (
                       <option key={c.slug} value={c.slug}>
@@ -340,7 +340,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                   required
                   value={excerpt}
                   onChange={(e) => setExcerpt(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   placeholder="## বিষয়বস্তু...&#10;&#10;এখানে বিস্তারিত লিখুন..."
-                  className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed font-mono"
+                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed font-mono"
                 />
               </div>
 
@@ -368,7 +368,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                     value={tagsInput}
                     onChange={(e) => setTagsInput(e.target.value)}
                     placeholder="Web Development, Next.js, SEO"
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   />
                 </div>
 
@@ -381,7 +381,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                     onChange={(e) =>
                       setStatus(e.target.value as "draft" | "published" | "scheduled" | "archived")
                     }
-                    className="w-full px-3 py-2 text-xs bg-bg-primary border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
                   >
                     <option value="published">লাইভ / প্রকাশিত (Published)</option>
                     <option value="draft">ড্রাফট (Draft)</option>
@@ -402,7 +402,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-bg-primary text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
                 >
                   {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>সংরক্ষণ করুন</span>

@@ -28,7 +28,7 @@ export function AdminLayoutShell({
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-bg-primary text-text-primary overflow-hidden font-sans">
+    <div className="flex h-screen bg-background text-text-primary overflow-hidden font-sans">
       {/* Desktop Persistent Sidebar */}
       <div className="hidden md:flex h-full shrink-0">
         <AdminSidebar user={user} />

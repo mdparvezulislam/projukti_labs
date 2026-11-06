@@ -27,21 +27,26 @@ export default async function AdminCustomersPage() {
       subtitle="ভেরিফাইড ক্লায়েন্ট রেকর্ড ও যোগাযোগের বিবরণ"
     >
       <div className="space-y-4">
-        <div className="bg-card border border-border rounded-xl p-4 flex items-center justify-between">
+        <div className="bg-card border border-border rounded-xl p-4 flex items-center justify-between shadow-xs">
           <div>
             <h3 className="text-sm font-bold text-text-primary">মোট গ্রাহক ও ক্লায়েন্ট</h3>
             <p className="text-xs text-text-muted">ইনকোয়ারি ও সফল প্রজেক্ট থেকে সংগৃহীত ভেরিফাইড ডাটা</p>
           </div>
-          <span className="text-base font-black text-accent tabular-nums px-3 py-1 rounded bg-accent/10 border border-accent/20">
+          <span className="text-base font-black text-accent-text tabular-nums px-3 py-1 rounded bg-accent/15 border border-accent/20">
             {customersList.length} জন
           </span>
         </div>
 
         <div className="space-y-2.5">
           {customersList.length === 0 ? (
-            <div className="bg-card border border-border rounded-xl p-8 text-center text-xs text-text-muted flex flex-col items-center gap-2">
-              <UserCheck className="h-8 w-8 text-text-muted/40" aria-hidden="true" />
-              <span>এখনো কোনো ক্লায়েন্ট রেকর্ড নেই। ইনকোয়ারি জমা পড়লে স্বয়ংক্রিয়ভাবে ক্লায়েন্ট প্রোফাইল তৈরি হবে।</span>
+            <div className="bg-card border border-border rounded-xl p-12 text-center text-xs text-text-muted flex flex-col items-center justify-center gap-3">
+              <div className="h-12 w-12 rounded-2xl bg-surface-elevated border border-border flex items-center justify-center text-accent shadow-xs">
+                <UserCheck className="h-6 w-6" aria-hidden="true" />
+              </div>
+              <div className="space-y-1">
+                <p className="font-semibold text-text-primary text-sm">কোনো ক্লায়েন্ট রেকর্ড নেই</p>
+                <p className="text-text-muted text-xs max-w-sm">ইনকোয়ারি জমা পড়লে অথবা লিড কনভার্ট হলে স্বয়ংক্রিয়ভাবে ক্লায়েন্ট প্রোফাইল তৈরি হবে।</p>
+              </div>
             </div>
           ) : (
             customersList.map((customer) => (
@@ -54,7 +59,7 @@ export default async function AdminCustomersPage() {
                     <span className="font-bold text-sm text-text-primary truncate">
                       {customer.fullName}
                     </span>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded uppercase bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
                       {customer.status}
                     </span>
                   </div>

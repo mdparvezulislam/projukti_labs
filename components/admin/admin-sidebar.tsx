@@ -91,7 +91,7 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
           onClick={onCloseMobile}
           className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
-          <div className="h-7 w-7 rounded bg-accent text-bg-primary font-black flex items-center justify-center text-sm">
+          <div className="h-7 w-7 rounded bg-accent text-accent-foreground font-black flex items-center justify-center text-sm">
             PL
           </div>
           <div>
@@ -105,7 +105,7 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
           href="/"
           target="_blank"
           aria-label="পাবলিক ওয়েবসাইট দেখুন"
-          className="text-text-muted hover:text-text-primary p-1 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="text-text-muted hover:text-text-primary p-1.5 rounded-lg hover:bg-surface-elevated transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[36px] min-w-[36px] flex items-center justify-center"
         >
           <ExternalLink className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -129,13 +129,13 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
                     onClick={onCloseMobile}
                     aria-current={isActive ? "page" : undefined}
                     className={cn(
-                      "flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                      "flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[40px]",
                       isActive
-                        ? "bg-accent/10 text-accent font-semibold"
+                        ? "bg-accent/15 text-accent-text font-semibold shadow-xs"
                         : "text-text-muted hover:text-text-primary hover:bg-card-hover"
                     )}
                   >
-                    <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-accent" : "text-text-muted")} aria-hidden="true" />
+                    <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-accent-text" : "text-text-muted")} aria-hidden="true" />
                     <span className="truncate">{item.label}</span>
                   </Link>
                 );

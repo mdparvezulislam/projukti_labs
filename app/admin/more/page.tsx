@@ -72,7 +72,7 @@ export default async function AdminMoreMenuPage() {
           className="bg-card border border-border rounded-xl p-3.5 flex items-center justify-between hover:border-accent transition-colors"
         >
           <div className="flex items-center gap-2.5">
-            <ExternalLink className="h-4 w-4 text-accent" aria-hidden="true" />
+            <ExternalLink className="h-4 w-4 text-accent-text" aria-hidden="true" />
             <span className="text-xs font-bold text-text-primary">পাবলিক ওয়েবসাইট দেখুন</span>
           </div>
           <ChevronRight className="h-4 w-4 text-text-muted" aria-hidden="true" />
@@ -93,7 +93,7 @@ export default async function AdminMoreMenuPage() {
                     className="flex items-center justify-between p-3.5 hover:bg-card-hover transition-colors min-h-[44px]"
                   >
                     <div className="flex items-center gap-3">
-                      <Icon className="h-4 w-4 text-accent" aria-hidden="true" />
+                      <Icon className="h-4 w-4 text-accent-text" aria-hidden="true" />
                       <span className="text-xs font-semibold text-text-primary">
                         {item.label}
                       </span>

@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm space-y-6">
         {/* Brand & Title */}
         <div className="text-center space-y-2">
-          <div className="inline-flex h-12 w-12 rounded-xl bg-accent text-bg-primary font-black items-center justify-center text-xl shadow-lg shadow-accent/20">
+          <div className="inline-flex h-12 w-12 rounded-xl bg-accent text-accent-foreground font-black items-center justify-center text-xl shadow-lg shadow-accent/20">
             PL
           </div>
           <h1 className="text-xl sm:text-2xl font-extrabold text-text-primary tracking-tight">
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-bg-primary text-xs font-bold transition-all hover:bg-accent-hover active:scale-[0.99] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+              className="w-full mt-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover active:scale-[0.99] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
             >
               {loading ? (
                 <>
