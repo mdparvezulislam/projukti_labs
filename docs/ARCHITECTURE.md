@@ -62,3 +62,4 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
 - **Interaction to Next Paint (INP):** < 100ms
 - **Worker Bundle Size:** ~300 KB uncompressed (~95 KB gzip)
 - **Cold Start Latency:** 0ms (Cloudflare V8 Isolates)
+

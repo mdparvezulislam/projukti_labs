@@ -11,3 +11,4 @@ export function formatCurrency(amount: number, currency: "BDT" | "USD" = "BDT"):
   }
   return `$${amount.toLocaleString("en-US")}`;
 }
+

@@ -20,3 +20,4 @@ export function Badge({ className, variant = "default", ...props }: BadgeProps) 
 
   return <span className={cn(base, variants[variant], className)} {...props} />;
 }
+

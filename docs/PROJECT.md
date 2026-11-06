@@ -56,3 +56,4 @@ Projukti Labs is an independent, premium technology studio and engineering consu
 3. **Productized Service Purchase Journey:**
    - Dedicated service page with bespoke architecture diagrams, deliverables, exclusions, and pricing tiers.
    - 1-click CTA links to `/get-a-quote` with pre-filled metadata.
+
