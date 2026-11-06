@@ -5,9 +5,9 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ArrowRight, Shield, Zap, Compass, Users } from "lucide-react";
 
 export const metadata = {
-  title: "About Projukti Labs | Technology Studio & Engineering Philosophy",
+  title: "আমাদের সম্পর্কে | Projukti Labs — স্টুডিও পরিচিতি ও দর্শন",
   description:
-    "Learn about Projukti Labs, our engineering philosophy, architectural discipline, and dedication to building high-performance digital systems for Bangladesh and global clients.",
+    "Projukti Labs সম্পর্কে জানুন—আমাদের সফটওয়্যার ইঞ্জিনিয়ারিং দর্শন, আর্কিটেকচারাল ডিসিপ্লিন এবং বাংলাদেশ ও আন্তর্জাতিক ক্লায়েন্টদের জন্য হাই-পারফরম্যান্স ডিজিটাল সিস্টেম নির্মাণের প্রত্যয়।",
 };
 
 export default function AboutPage() {
@@ -15,27 +15,27 @@ export default function AboutPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-20">
       {/* Hero Section */}
       <div className="max-w-3xl space-y-6">
-        <Badge variant="accent">Studio Philosophy & Story</Badge>
+        <Badge variant="accent">স্টুডিও দর্শন ও লক্ষ্য</Badge>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
-          We Build Technology That Lasts. Engineered with Precision.
+          আমরা তৈরি করি দীর্ঘস্থায়ী প্রযুক্তি। সম্পূর্ণ নিখুঁত ইঞ্জিনিয়ারিং।
         </h1>
         <p className="text-lg sm:text-xl text-text-muted leading-relaxed">
-          Projukti Labs is an independent technology studio founded by <strong>Md Parvezul Islam</strong>. We reject the generic agency model of bloated templates and unaccountable subcontracting in favor of deep engineering rigor, sub-second speeds, and transparent client partnerships.
+          Projukti Labs একটি স্বাধীন প্রিমিয়াম প্রযুক্তি স্টুডিও—যার প্রতিষ্ঠাতা <strong>মো. পারভেজুল ইসলাম</strong> (Md Parvezul Islam)। গতানুগতিক এজেন্সির ভারী ও জটিল টেমপ্লেট এবং অস্বচ্ছ সাব-কন্ট্রাক্টিং মডেলের বিপরীতে আমরা বেছে নিয়েছি গভীর ইঞ্জিনিয়ারিং মানদণ্ড, সাব-সেকেন্ড পেজ স্পিড এবং ক্লায়েন্টের সাথে স্বচ্ছ দীর্ঘমেয়াদী অংশীদারিত্ব।
         </p>
       </div>
 
       {/* The Story & Mission */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-t border-border pt-12">
         <div className="lg:col-span-5 space-y-4">
-          <Badge variant="outline">Origin Story</Badge>
+          <Badge variant="outline">আমাদের প্রেক্ষাপট</Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            Bridging Local Potential with Global Engineering Standards
+            স্থানীয় ব্যবসার সম্ভাবনা ও গ্লোবাল ইঞ্জিনিয়ারিং মানের মেলবন্ধন
           </h2>
           <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-            In modern digital business, web applications and online storefronts are the direct drivers of revenue. Yet, too many businesses in Bangladesh and emerging markets suffer from fragile, slow-loading websites that crash during marketing campaigns and leak ad spend through unverified tracking pixels.
+            বর্তমান ডিজিটাল ব্যবসায় যেকোনো ওয়েবসাইট কিংবা অনলাইন স্টোর সরাসরি বিক্রয়ের মূল ভিত্তি। অথচ বাংলাদেশে ও উদীয়মান বাজারে বহু প্রতিষ্ঠান ভোগে দুর্বল, ধীরগতির সাইটে—যা কোনো মার্কেটিং ক্যাম্পেইন চালালেই অতিরিক্ত ট্রাফিকের চাপে ডাউন হয়ে যায় কিংবা আনভেরিফাইড পিক্সেলের কারণে বিজ্ঞাপনের বাজেট অপচয় করে।
           </p>
           <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-            Projukti Labs was created to deliver a higher standard: enterprise-grade software engineering tailored for commercial agility.
+            Projukti Labs প্রতিষ্ঠিত হয়েছে এই সমস্যার সমাধান করতে: এন্টারপ্রাইজ-গ্রেড সফটওয়্যার ইঞ্জিনিয়ারিং আর্কিটেকচারকে সহজ ও সাশ্রয়ীভাবে ক্লায়েন্টের হাতে তুলে দিতে।
           </p>
         </div>
 
@@ -43,11 +43,11 @@ export default function AboutPage() {
           <Card className="border-border bg-surface/40">
             <CardHeader className="space-y-2">
               <Zap className="h-6 w-6 text-accent" />
-              <CardTitle className="text-lg text-text-primary">Zero Bloat Architecture</CardTitle>
+              <CardTitle className="text-lg text-text-primary">জিরো-ব্লোট আর্কিটেকচার</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-text-muted leading-relaxed">
-                We build on modern edge runtimes (Next.js, Cloudflare Workers) and type-safe databases. No unnecessary plugins, no security patch nightmares, and no artificial slowdowns.
+                আমরা তৈরি করি আধুনিক এজ রানটাইম (Next.js, Cloudflare Workers) ও টাইপ-সেফ ডাটাবেসের উপর। কোনো অপ্রয়োজনীয় ৬০টি প্লাগইন নয়, কোনো ধীরগতি নয়।
               </p>
             </CardContent>
           </Card>
@@ -55,11 +55,11 @@ export default function AboutPage() {
           <Card className="border-border bg-surface/40">
             <CardHeader className="space-y-2">
               <Shield className="h-6 w-6 text-accent" />
-              <CardTitle className="text-lg text-text-primary">Verified Telemetry</CardTitle>
+              <CardTitle className="text-lg text-text-primary">ভেরিফাইড টেলিমেট্রি</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-text-muted leading-relaxed">
-                We believe in verified proof. From Meta Conversions API event deduplication to Core Web Vitals telemetry, our implementations are tested and verified before handover.
+                আমরা মুখে নয়, পরিমাপযোগ্য প্রমাণে বিশ্বাসী। Meta Conversions API (CAPI) ডেডুপ্লিকেশন থেকে শুরু করে Core Web Vitals—সবকিছু হস্তান্তরের পূর্বে টেস্ট করে প্রমাণ দেওয়া হয়।
               </p>
             </CardContent>
           </Card>
@@ -67,11 +67,11 @@ export default function AboutPage() {
           <Card className="border-border bg-surface/40">
             <CardHeader className="space-y-2">
               <Compass className="h-6 w-6 text-accent" />
-              <CardTitle className="text-lg text-text-primary">Dual Market Expertise</CardTitle>
+              <CardTitle className="text-lg text-text-primary">ডুয়াল মার্কেট দক্ষতা</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-text-muted leading-relaxed">
-                We understand Bangladesh&apos;s unique commerce ecosystem (bKash, Nagad, courier APIs) while seamlessly delivering international-standard payment and compliance systems (Stripe, GDPR, WCAG).
+                আমরা বাংলাদেশের কমার্স ইকোসিস্টেম (বিকাশ, নগদ, পাঠাও/স্টেডফাস্ট এপিআই) গভীরভাবে বুঝি, ঠিক তেমনি আন্তর্জাতিক পেমেন্ট ও গ্লোবাল স্ট্যান্ডার্ডেও দক্ষ (Stripe, WCAG, GDPR)।
               </p>
             </CardContent>
           </Card>
@@ -79,11 +79,11 @@ export default function AboutPage() {
           <Card className="border-border bg-surface/40">
             <CardHeader className="space-y-2">
               <Users className="h-6 w-6 text-accent" />
-              <CardTitle className="text-lg text-text-primary">Long-Term Retainer Care</CardTitle>
+              <CardTitle className="text-lg text-text-primary">দীর্ঘমেয়াদী রিটেইনার কেয়ার</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xs text-text-muted leading-relaxed">
-                We stand behind our code. Our SLA-backed monthly maintenance retainers provide continuous monitoring, automated backups, and dedicated monthly development capacity.
+                আমরা আমাদের কোডের দায়িত্ব নিই। আমাদের এসএলএ-সমর্থিত মাসিক মেইনটেন্যান্স রিটেইনার নিয়মিত আপটাইম মনিটরিং, ব্যাকআপ ও ডেভেলপার সময় সরবরাহ করে।
               </p>
             </CardContent>
           </Card>
@@ -93,34 +93,34 @@ export default function AboutPage() {
       {/* Core Engineering Principles */}
       <div className="space-y-8 border-t border-border pt-12">
         <div className="space-y-2 max-w-2xl">
-          <Badge variant="accent">Our Code of Conduct</Badge>
+          <Badge variant="accent">আমাদের আচরণবিধি ও নীতি</Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            Engineering Values We Refuse to Compromise On
+            যে ইঞ্জিনিয়ারিং মূল্যবোধে আমরা কখনো আপস করি না
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-lg border border-border bg-surface/30 p-6 space-y-3">
-            <span className="font-mono text-xs font-bold text-accent">01</span>
-            <h3 className="text-lg font-bold text-text-primary">Truthful Engineering</h3>
+            <span className="font-mono text-xs font-bold text-accent">০১</span>
+            <h3 className="text-lg font-bold text-text-primary">সত্যনিষ্ঠ ইঞ্জিনিয়ারিং</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              We never fabricate metrics, client testimonials, or fake discounts. If a technical approach has tradeoffs, we explain them clearly before you sign a contract.
+              আমরা কখনো বানানো মেট্রিক্স বা ফেক পোর্টফোলিও উপস্থাপন করি না। প্রতিটি কারিগরি সিদ্ধান্তের সুবিধা এবং সীমাবদ্ধতা আমরা চুক্তি স্বাক্ষরের আগেই স্পষ্ট ব্যাখ্যা করি।
             </p>
           </div>
 
           <div className="rounded-lg border border-border bg-surface/30 p-6 space-y-3">
-            <span className="font-mono text-xs font-bold text-accent">02</span>
-            <h3 className="text-lg font-bold text-text-primary">Direct Accountability</h3>
+            <span className="font-mono text-xs font-bold text-accent">০২</span>
+            <h3 className="text-lg font-bold text-text-primary">সরাসরি দায়বদ্ধতা</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              You communicate directly with software engineers who write the code and architect the database. No sales executives or confusing intermediate handoffs.
+              আপনি সরাসরি সফটওয়্যার ইঞ্জিনিয়ারদের সাথে কথা বলেন যারা কোড লিখছেন এবং ডাটাবেস আর্কিটেক্ট করছেন। কোনো সেলস এজেন্ট বা মধ্যবর্তী বিভ্রান্তিকর যোগাযোগ নেই।
             </p>
           </div>
 
           <div className="rounded-lg border border-border bg-surface/30 p-6 space-y-3">
-            <span className="font-mono text-xs font-bold text-accent">03</span>
-            <h3 className="text-lg font-bold text-text-primary">Total Code Ownership</h3>
+            <span className="font-mono text-xs font-bold text-accent">০৩</span>
+            <h3 className="text-lg font-bold text-text-primary">কোডের পূর্ণাঙ্গ মালিকানা</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              Upon project completion and milestone clearance, you own 100% of your source code, deployment scripts, database schemas, and documentation. Zero vendor lock-in.
+              প্রজেক্ট সম্পন্ন ও পরিশোধের পর আপনার সোর্স কোড, স্ক্রিপ্ট, ডাটাবেস স্কিমা ও ডকুমেন্টেশনের শতভাগ মালিকানা আপনার। কোনো কৃত্রিম ভেন্ডর লক-ইন নেই।
             </p>
           </div>
         </div>
@@ -129,20 +129,20 @@ export default function AboutPage() {
       {/* Conversion Banner */}
       <div className="rounded-2xl border border-border bg-surface/60 p-8 sm:p-12 text-center space-y-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-          Interested in Collaborating with Projukti Labs?
+          Projukti Labs-এর সাথে কাজ করতে আগ্রহী?
         </h2>
         <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
-          Explore our launch service packages or submit a structured project brief for an engineering consultation.
+          আমাদের লঞ্চ সার্ভিস প্যাকেজগুলো দেখুন অথবা আপনার প্রজেক্টের বিস্তারিত পাঠিয়ে টেকনিক্যাল কনসালটেশন নিন।
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Button variant="primary" asChild>
             <Link href="/get-a-quote">
-              Request a Project Quote
+              প্রজেক্ট কোটেশন চান
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/founder">Meet the Founder</Link>
+            <Link href="/founder">ফাউন্ডার পরিচিতি</Link>
           </Button>
         </div>
       </div>

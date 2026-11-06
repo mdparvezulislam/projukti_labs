@@ -14,16 +14,16 @@ export function SiteFooter() {
               <span>Projukti Labs</span>
             </Link>
             <p className="text-sm text-text-muted leading-relaxed">
-              Building Digital Solutions. Engineering the Future. Premium technology studio serving Bangladesh and global clients.
+              Building Digital Solutions. Engineering the Future. বাংলাদেশের আধুনিক প্রযুক্তি স্টুডিও ও সফটওয়্যার ইঞ্জিনিয়ারিং কনসালটেন্সি।
             </p>
             <p className="text-xs text-text-muted">
-              Founder: <Link href="/founder" className="text-text-secondary hover:text-accent underline-offset-2 hover:underline">Md Parvezul Islam</Link>
+              ফাউন্ডার: <Link href="/founder" className="text-text-secondary hover:text-accent underline-offset-2 hover:underline">Md Parvezul Islam</Link>
             </p>
           </div>
 
           {/* Active Services */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary">Launch Services</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">লঞ্চ সেবাসমূহ</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/services/web-development" className="hover:text-accent transition-colors">
@@ -32,12 +32,12 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link href="/services/ecommerce" className="hover:text-accent transition-colors">
-                  E-commerce &amp; Digital Commerce
+                  E-commerce Solutions
                 </Link>
               </li>
               <li>
                 <Link href="/services/maintenance-support" className="hover:text-accent transition-colors">
-                  Maintenance &amp; Support
+                  Maintenance &amp; Support Retainers
                 </Link>
               </li>
               <li>
@@ -47,7 +47,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link href="/services/complete-ecommerce-website" className="text-accent hover:underline">
-                  Complete E-commerce Ready
+                  Complete E-commerce Platform
                 </Link>
               </li>
             </ul>
@@ -55,56 +55,58 @@ export function SiteFooter() {
 
           {/* Public Pages */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary">Studio</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">স্টুডিও</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-accent transition-colors">About Us</Link>
+                <Link href="/about" className="hover:text-accent transition-colors">আমাদের সম্পর্কে</Link>
               </li>
               <li>
-                <Link href="/founder" className="hover:text-accent transition-colors">Founder Profile</Link>
+                <Link href="/founder" className="hover:text-accent transition-colors">ফাউন্ডার প্রোফাইল</Link>
               </li>
               <li>
-                <Link href="/portfolio" className="hover:text-accent transition-colors">Selected Projects</Link>
+                <Link href="/portfolio" className="hover:text-accent transition-colors">আর্কিটেকচারাল পোর্টফোলিও</Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-accent transition-colors">Frequently Asked Questions</Link>
+                <Link href="/blog" className="hover:text-accent transition-colors">প্রযুক্তি ব্লগ</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-accent transition-colors">Contact</Link>
+                <Link href="/faq" className="hover:text-accent transition-colors">প্রশ্নোত্তর (FAQ)</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-accent transition-colors">যোগাযোগ</Link>
               </li>
             </ul>
           </div>
 
           {/* Quick Inquiry */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary">Client Inquiries</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">ক্লায়েন্ট ইনকোয়ারি</h4>
             <p className="text-sm text-text-muted leading-relaxed">
-              Have an idea or need an e-commerce, custom web platform, or ongoing maintenance?
+              নতুন প্রজেক্ট বা ই-কমার্স ওয়েবসাইট তৈরির জন্য একটি প্রফেশনাল টেকনিক্যাল ব্রিফ তৈরি করুন।
             </p>
             <div className="pt-1">
               <Link
                 href="/get-a-quote"
                 className="inline-flex items-center text-sm font-semibold text-accent hover:underline underline-offset-4"
               >
-                Start a Project Brief &rarr;
+                Project শুরু করুন &rarr;
               </Link>
             </div>
-            <p className="text-xs text-text-muted pt-2">
-              Domain: <code className="text-text-secondary">projuktilabs.tech</code>
+            <p className="text-xs text-text-muted pt-2 font-mono">
+              ডোমেইন: <code className="text-text-secondary">projuktilabs.tech</code>
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-border/60 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-text-muted gap-4">
-          <p>&copy; {currentYear} Projukti Labs. All rights reserved.</p>
+          <p>&copy; {currentYear} Projukti Labs. সর্বস্বত্ব সংরক্ষিত।</p>
           <div className="flex gap-6">
             <Link href="/design-system" className="hover:text-text-secondary">Design Tokens</Link>
-            <Link href="/contact" className="hover:text-text-secondary">Support</Link>
+            <Link href="/contact" className="hover:text-text-secondary">সাপোর্ট</Link>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-

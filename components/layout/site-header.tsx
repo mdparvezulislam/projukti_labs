@@ -9,13 +9,14 @@ import { ThemeToggle } from "./theme-toggle";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/founder", label: "Founder" },
+  { href: "/", label: "হোম" },
+  { href: "/services", label: "সেবাসমূহ" },
+  { href: "/portfolio", label: "পোর্টফোলিও" },
+  { href: "/blog", label: "ব্লগ" },
+  { href: "/about", label: "সম্পর্কে" },
+  { href: "/founder", label: "ফাউন্ডার" },
   { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "যোগাযোগ" },
 ];
 
 export function SiteHeader() {
