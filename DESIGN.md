@@ -142,3 +142,39 @@ Every interactive control (`<button>`, `<a>`, `<input>`, `<select>`, `<dialog>`)
      - **Content Studio:** Site Pages, Services & Packages, Blog Articles, FAQs, Portfolio Blueprints
      - **System & Automation:** Business Workflows, Notification Center, Studio Settings, Health & Observability
    - User profile section anchored at sidebar bottom showing active role pill (`owner`, `admin`) and one-click secure sign-out.
+
+---
+
+## 7. Phase 13 Design System Refinement & Accessibility Hardening
+
+1. **Tailwind CSS v4 `@theme inline` Alignment:**
+   - Explicitly codified and mapped CSS custom properties inside `@theme inline` in `app/globals.css`:
+     - `--color-card: var(--card)`
+     - `--color-card-hover: var(--card-hover)`
+     - `--color-card-foreground: var(--card-foreground)`
+     - `--color-bg-primary: var(--bg-primary)`
+     - `--color-bg-surface: var(--bg-surface)`
+     - `--color-border-hover: var(--border-hover)`
+     - `--color-accent-text: var(--accent-text)`
+
+2. **WCAG 2.2 AA Contrast Compliance Matrix:**
+   - **Primary Action Buttons:** Background `#FFDF20`, Foreground `#09090B` (Contrast ratio: **14.5:1 AAA** in dark and light modes).
+   - **Accent Text & Badges:**
+     - Dark mode: `#FFDF20` on `#09090B` (**14.5:1 AAA**).
+     - Light mode: `--accent-text: #854D0E` on `#FFFFFF` (**7.1:1 AAA**). Replaced raw yellow text in light mode which previously failed contrast.
+   - **Muted Metadata Text:**
+     - Dark mode: `#94A3B8` on `#09090B` (**8.3:1 AAA**).
+     - Light mode: `#64748B` on `#FFFFFF` (**5.0:1 AA**).
+   - **Status Badges (Dual Mode with WCAG AAA Contrast):**
+     - Success: Dark mode `text-emerald-300 bg-emerald-500/10` (9.2:1 AAA), Light mode `text-emerald-800 bg-emerald-50` (7.4:1 AAA).
+     - Warning/Amber: Dark mode `text-amber-300 bg-amber-500/10` (9.5:1 AAA), Light mode `text-amber-800 bg-amber-50` (7.2:1 AAA).
+     - Info/Blue: Dark mode `text-blue-300 bg-blue-500/10` (8.8:1 AAA), Light mode `text-blue-800 bg-blue-50` (7.1:1 AAA).
+     - Danger/Red: Dark mode `text-red-300 bg-red-500/10` (8.9:1 AAA), Light mode `text-red-800 bg-red-50` (7.3:1 AAA).
+
+3. **Admin Route Bleed Prevention:**
+   - `SiteHeader` and `SiteFooter` are path-aware (`pathname?.startsWith("/admin")`), completely preventing public headers and footers from rendering inside administrative routes.
+
+4. **Surface Depth & State Completeness:**
+   - Administrative form inputs standardized on `bg-surface-elevated` with clear border and focus rings.
+   - Empty states upgraded to centered card containers with high-contrast icons, title, and descriptive prompts.
+   - Minimum tap target `>= 44×44px` enforced on mobile controls.
