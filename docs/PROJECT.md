@@ -4,34 +4,50 @@
 **Domain:** `projuktilabs.tech`  
 **Founder:** Md Parvezul Islam (Principal Software Architect)  
 **Tagline:** Building Digital Solutions. Engineering the Future.  
-**Baseline Version:** v1.0 Production Foundation  
+**Baseline Version:** v1.1 Production Milestone (Phase 01–06 Complete)  
+**Primary Target Market:** Bangladesh (`bn-BD`, `Asia/Dhaka`, default currency BDT ৳)  
+**Language Policy:** Bangla-First / Bangla-Primary with selective English technical terms  
 
 ---
 
 ## 1. Project Positioning & Vision
 
-Projukti Labs is an independent, premium technology studio and engineering consultancy. It combines:
-1. **Founder-Led Software Architecture:** Directed by Md Parvezul Islam with hands-on technical governance over code reviews, schema migrations, and performance profiling.
-2. **Productized Development Offerings:** Fixed-price, transparently scoped packages with clear deliverables, technical SLAs, and zero hidden platform revenue commissions.
-3. **Engineering Integrity:** Eliminating fragile agency templates (e.g. 60-plugin WordPress installations) in favor of high-availability, edge-rendered applications built on Next.js App Router and Cloudflare Workers.
-4. **Dual-Market Focus:** Serving high-growth enterprises and boutique direct-to-consumer businesses across Bangladesh (bKash PGW, Nagad, SSLCommerz, Pathao/Steadfast APIs) and international markets (Stripe, SWIFT, GDPR compliance, WCAG 2.1 AA).
+Projukti Labs is an independent, premium technology studio and software engineering consultancy. It combines:
+1. **Bangladesh-First Engineering Leadership:** Built ground-up for Bangladeshi enterprises, DTC brands, and startups, with secondary international client support. Communication, conversion funnels, and pricing are optimized for Bangladesh.
+2. **Founder-Led Software Architecture:** Directed by **Md Parvezul Islam**, Principal Software Architect, providing hands-on technical governance over code reviews, schema migrations, and performance profiling without intermediary account managers.
+3. **Productized Development Offerings:** Fixed-price, transparently scoped packages with clear deliverables, technical SLAs, and zero hidden platform royalties or per-sale commissions.
+4. **Engineering Integrity:** Eliminating fragile agency templates (e.g. 60-plugin WordPress installations) in favor of high-availability, edge-rendered applications built on Next.js App Router and Cloudflare Workers.
+5. **Dual-Market Infrastructure:** Deep native support for Bangladesh's commerce ecosystem (bKash PGW, Nagad, SSLCommerz, Pathao/Steadfast courier APIs) alongside international standards (Stripe, SWIFT, GDPR compliance, WCAG 2.1 AA).
 
 ---
 
-## 2. Launch Commercial Scope
+## 2. Mandatory Language & Typography Policy
 
-### Active Launch Verticals:
-- **01. Web Development & Design**
+1. **Bangla-Primary Rule:** All public customer-facing surfaces (Homepage, About, Services, Flagship Solutions, Portfolio, Blog, FAQ, Contact, and Quotation) are written in natural, modern, professional Bangla.
+2. **Selective English Terms:** English is preserved where natural for tech terms, industry abbreviations, and short bilingual badges (e.g., "Web Development", "E-commerce", "Meta Pixel & CAPI", "Next.js", "Get a Quote", "Cloudflare Workers").
+3. **Mandatory Typography Hierarchy:**
+   - **Primary Font (Bangla):** **Hind Siliguri** (`weights: 300, 400, 500, 600, 700`, subsets: `bengali, latin`). Configured via `next/font/google` with `display: swap`.
+   - **Latin Secondary:** `Geist Sans`.
+   - **Code & Metadata:** `Geist Mono`.
+   - **Decorative Accents:** `Caveat`.
+4. **Locale Settings:** `html lang="bn-BD"`, OpenGraph `locale: "bn_BD"`, timezone `Asia/Dhaka`, default currency `BDT` (৳).
+
+---
+
+## 3. Commercial Scope & Service Catalog
+
+### Active Launch Verticals (3 Verticals Only):
+- **01. Web Development & Design (ওয়েব ডেভেলপমেন্ট ও ডিজাইন)**
   - Flagship: *Landing Page with Meta Pixel & Analytics* (`/services/landing-page-meta-pixel`)
   - Standard: *Corporate & Studio Web Platform* (`/services/corporate-website`)
-- **02. E-commerce & Digital Commerce**
+- **02. E-commerce & Digital Commerce (ই-কমার্স ও ডিজিটাল কমার্স)**
   - Flagship: *Complete Production-Ready E-commerce Platform* (`/services/complete-ecommerce-website`)
   - Standard: *Headless Storefront & Catalog Solution* (`/services/headless-commerce`)
-- **03. Maintenance & Technical Support**
+- **03. Maintenance & Technical Support (ওয়েবসাইট মেইনটেন্যান্স ও টেক সাপোর্ট)**
   - Flagship: *Proactive Website Maintenance & Technical Retainer* (`/services/website-maintenance`)
   - Standard: *Performance & Security Hardening Audit* (`/services/speed-security-audit`)
 
-### Future Expansion Verticals (Strictly Pipeline / Coming Soon):
+### Strategic Future Pipeline (Strictly Research / Coming Soon):
 1. Custom Software & SaaS Development
 2. AI Integrations & Automated Workflows
 3. Cross-Platform Mobile Applications
@@ -42,18 +58,39 @@ Projukti Labs is an independent, premium technology studio and engineering consu
 
 ---
 
-## 3. Core Conversion Journeys
+## 4. Phase 06 — Blog Engine & Content Architecture
 
-1. **Inquiry Journey (`/contact`):**
-   - User submits contact brief.
-   - Validated against Zod schema (`/api/v1/inquiries`).
-   - Saved to D1 `inquiries` and mapped to `leads` table.
-   - Returns unique tracking code: `PL-2026-XXXX`.
-2. **Quotation Journey (`/get-a-quote`):**
-   - Pre-fills requested service and package from URL parameters (`?service=...&package=...`).
-   - Captures budget range (BDT/USD), timeline, and technical specifications.
-   - Emits quotation tracking code and enqueues into review SLA queue.
-3. **Productized Service Purchase Journey:**
-   - Dedicated service page with bespoke architecture diagrams, deliverables, exclusions, and pricing tiers.
-   - 1-click CTA links to `/get-a-quote` with pre-filled metadata.
+1. **Runtime Isolation & Edge Compatibility:** In Cloudflare Workers (`workerd`), Node.js `fs.readFileSync` is unavailable at request time. The blog system houses typed articles in `modules/blog/data.ts` and parses Markdown using safe React AST components (`components/blog/markdown-renderer.tsx`) without runtime Node `fs` or `dangerouslySetInnerHTML`.
+2. **Authentic Launch Articles (5 Articles):**
+   - `why-business-needs-professional-website` (Featured)
+   - `how-ecommerce-works-in-bangladesh`
+   - `website-speed-and-core-web-vitals-guide`
+   - `meta-pixel-and-conversion-tracking-explained`
+   - `why-website-maintenance-is-essential`
+3. **Taxonomy & Discovery:**
+   - 5 Categories: `web-development`, `ecommerce`, `digital-marketing`, `website-performance`, `business-tech`.
+   - Tag filtering (`/blog/tag/[slug]`) and Category filtering (`/blog/category/[slug]`).
+   - JSON-LD `Article` structured data and OpenGraph `article` metadata on all post pages.
+   - Integrated into XML sitemap (`/sitemap.xml`) and `robots.txt`.
 
+---
+
+## 5. Commercial Claim & Business Integrity Standard
+
+1. **Portfolio Anti-Hallucination Policy:** Portfolio entries are explicitly labeled as *"আর্কিটেকচারাল কনসেপ্ট ও কারিগরি ব্লুপ্রিন্ট" (Architectural Concepts & Blueprints)* or Projukti Labs' own live engine architecture, preventing fabricated client claims.
+2. **Performance Benchmarks:** `<1.2s LCP`, telemetry, and SLA response times are framed as engineering benchmark targets and care tier options rather than blanket unconditional guarantees.
+3. **Integration Reality:** Meta CAPI and payment gateway integrations are implemented directly on clients' verified Business Manager and merchant accounts.
+4. **Zero Studio Royalty:** The studio charges 0% ongoing sales commission on client e-commerce stores (third-party payment gateway fees are settled directly with providers).
+
+---
+
+## 6. Implementation Status Matrix
+
+| Phase | Milestone | Status | Verified Gates |
+|---|---|---|---|
+| **Phase 01** | Technical Planning & Architecture | **DONE** | Documentation complete |
+| **Phase 02** | Cloudflare Workers Runtime POC | **DONE** | D1, KV, RSC edge verification |
+| **Phase 03** | Dark-First Design System | **DONE** | Hind Siliguri, Tailwind v4, WCAG AA |
+| **Phase 04** | Core Public Website Pages | **DONE** | Home, About, Founder, FAQ, Contact, Quote |
+| **Phase 05** | Productized Services & Inquiry Routing | **DONE** | 3 Flagships, D1 lead tracking |
+| **Phase 06** | Bangla-First Upgrade & Blog Engine | **DONE** | 5 articles, SSR edge bundle, Playwright QA |

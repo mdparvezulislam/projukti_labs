@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: "Service Not Found | Projukti Labs",
+    title: "সার্ভিস পাওয়া যায়নি | Projukti Labs",
   };
 }
 
@@ -53,14 +53,14 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
         <div className="max-w-3xl space-y-4">
           <div className="flex items-center gap-2">
             <Link href="/services" className="text-xs text-text-muted hover:text-accent">
-              Services
+              সেবাসমূহ
             </Link>
             <ChevronRight className="h-3 w-3 text-border" />
             <span className="text-xs text-accent">{category.name}</span>
           </div>
 
           <Badge variant={category.status === "active" ? "accent" : "outline"}>
-            {category.status === "active" ? "Active Launch Service" : "Coming Soon"}
+            {category.status === "active" ? "সক্রিয় লঞ্চ সার্ভিস" : "শীঘ্রই আসছে"}
           </Badge>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
@@ -76,7 +76,7 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
             <Card key={srv.id} className="border-border bg-surface/40 flex flex-col justify-between">
               <CardHeader className="space-y-3">
                 <Badge variant={srv.isFlagship ? "accent" : "outline"}>
-                  {srv.isFlagship ? "Flagship Service" : "Standard Solution"}
+                  {srv.isFlagship ? "★ ফ্ল্যাগশিপ সলিউশন" : "স্ট্যান্ডার্ড প্যাকেজ"}
                 </Badge>
                 <CardTitle className="text-2xl text-text-primary">{srv.name}</CardTitle>
                 <CardDescription className="text-text-muted text-sm">{srv.tagline}</CardDescription>
@@ -87,7 +87,7 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
                 </p>
 
                 <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase text-text-primary">Highlights:</p>
+                  <p className="text-xs font-semibold uppercase text-text-primary">কারিগরি বৈশিষ্ট্য:</p>
                   <ul className="space-y-1.5 text-xs text-text-muted">
                     {srv.technicalHighlights.slice(0, 3).map((h, i) => (
                       <li key={i} className="flex items-start gap-2">
@@ -101,7 +101,7 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
                 <div className="pt-2">
                   <Button variant="primary" asChild className="w-full">
                     <Link href={`/services/${srv.slug}`}>
-                      View Details & Packages
+                      প্যাকেজ ও বিস্তারিত দেখুন
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -121,10 +121,10 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
         <div className="max-w-3xl space-y-4">
           <div className="flex items-center gap-2">
             <Link href="/services" className="text-xs text-text-muted hover:text-accent">
-              Services
+              সেবাসমূহ
             </Link>
             <ChevronRight className="h-3 w-3 text-border" />
-            <Link href={`/services/${service.categorySlug}`} className="text-xs text-text-muted hover:text-accent">
+            <Link href={`/services#${service.categorySlug}`} className="text-xs text-text-muted hover:text-accent">
               {service.categorySlug}
             </Link>
             <ChevronRight className="h-3 w-3 text-border" />
@@ -132,7 +132,7 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
           </div>
 
           <Badge variant={service.isFlagship ? "accent" : "outline"}>
-            {service.isFlagship ? "Flagship Solution" : "Standard Package"}
+            {service.isFlagship ? "★ ফ্ল্যাগশিপ সলিউশন" : "স্ট্যান্ডার্ড প্যাকেজ"}
           </Badge>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
@@ -144,18 +144,18 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
 
         {/* Packages Grid */}
         <div className="space-y-8">
-          <h2 className="text-2xl font-bold text-text-primary">Available Package Options</h2>
+          <h2 className="text-2xl font-bold text-text-primary">উপলব্ধ প্যাকেজ অপশন</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {service.packages.map((pkg) => (
               <Card key={pkg.id} className="border-border bg-surface/50 flex flex-col justify-between">
                 <CardHeader className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-lg text-text-primary">{pkg.name}</span>
-                    {pkg.popular && <Badge variant="accent">Popular</Badge>}
+                    {pkg.popular && <Badge variant="accent">জনপ্রিয়</Badge>}
                   </div>
                   <div className="font-mono text-2xl font-bold text-accent">
-                    {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "Custom Scope"}
-                    {pkg.billingPeriod === "monthly" ? " / mo" : ""}
+                    {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "কাস্টম স্কোপ"}
+                    {pkg.billingPeriod === "monthly" ? " / মাস" : ""}
                   </div>
                   <CardDescription className="text-xs text-text-muted">
                     {pkg.description}
@@ -172,8 +172,8 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
                   </ul>
 
                   <Button variant="primary" asChild className="w-full">
-                    <Link href={`/get-a-quote?service=${service.slug}&package=${encodeURIComponent(pkg.name)}`}>
-                      Choose {pkg.name}
+                    <Link href={`/get-a-quote?service=${service.slug}&package=${encodeURIComponent(pkg.slug)}`}>
+                      {pkg.name} বেছে নিন
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

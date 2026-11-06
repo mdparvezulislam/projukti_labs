@@ -5,6 +5,7 @@
 **Database:** Cloudflare D1 (SQLite) with Drizzle ORM `0.45.4`  
 **Object Storage:** Cloudflare R2 via S3-compatible `aws4fetch`  
 **Architecture Style:** Modular Monolith with Type-Safe Domain Boundaries  
+**Status:** Phase 01–06 Production Architecture Verified
 
 ---
 
@@ -19,7 +20,7 @@
   ┌──────────────┴───────────────────────────────┐
   │                                              │
   ▼                                              ▼
-Static Assets Cache (CSS/JS/Images)     Cloudflare Worker Entry
+Static Assets Cache (CSS/JS/Fonts)      Cloudflare Worker Entry
 (Zero compute overhead)                 (vinext/server/fetch-handler)
                                                  │
                                                  ▼
@@ -29,12 +30,20 @@ Static Assets Cache (CSS/JS/Images)     Cloudflare Worker Entry
                         ▼                        ▼                        ▼
                 Public Studio Pages       API Version 1         Inquiry & CRM Engine
                 (/, /about, /services)    (/api/v1/inquiries)   (D1 SQLite via Drizzle)
+                        │
+                        ▼
+                Phase 06 Blog Engine
+                (/blog, /blog/:slug)
 ```
 
 ---
 
 ## 2. Domain Module Boundaries
 
+- **`modules/blog/`**:
+  - `types.ts`: Strict Zod validation schemas (`BlogPost`, `BlogCategory`).
+  - `data.ts`: Type-safe repository of 5 authentic articles, categories, and query utilities (`getAllPosts`, `getPostBySlug`, `getPostsByCategory`, `getPostsByTag`, `searchPosts`).
+  - **Edge Runtime Constraint:** In Cloudflare Workers (`workerd`), Node.js `fs.readFileSync` is unavailable. By storing articles in structured typed data and parsing with React AST components (`components/blog/markdown-renderer.tsx`), the blog compiles cleanly into the SSR bundle with sub-millisecond edge response times.
 - **`modules/services/`**: Encapsulates all service catalog definitions, active launch categories, future expansion roadmaps, deliverables, exclusions, and pricing tiers.
 - **`lib/db/` & `db/schema/`**: Single source of truth for database entities:
   - `poc_records`, `system_health_checks`
@@ -46,7 +55,19 @@ Static Assets Cache (CSS/JS/Images)     Cloudflare Worker Entry
 
 ---
 
-## 3. Telemetry & Tracking Architecture
+## 3. Typography & Locale Pipeline
+
+1. **Font Pipeline:**
+   - `Hind_Siliguri` imported via `next/font/google` (`weights: 300, 400, 500, 600, 700`, subsets: `bengali, latin`) configured with CSS variable `--font-hind-siliguri`.
+   - Placed first in `--font-sans` to prioritize Bengali glyphs without layout shifts.
+   - Text rendering hints: `text-rendering: optimizeLegibility`, `-webkit-font-smoothing: antialiased`, `font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'`.
+2. **Metadata Routes:**
+   - `app/sitemap.ts`: Dynamic XML sitemap generator yielding all core pages, active service detail URLs, 5 blog post slugs, and 5 blog category routes.
+   - `app/robots.ts`: Standard crawler directive referencing `/sitemap.xml`.
+
+---
+
+## 4. Telemetry & Tracking Architecture
 
 For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landing-page-meta-pixel`):
 1. **Client Layer:** Meta Pixel snippet firing `PageView`, `ViewContent`, `Contact`, `Lead`, `Schedule`.
@@ -55,11 +76,10 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
 
 ---
 
-## 4. Performance & Core Web Vitals Targets
+## 5. Performance & Core Web Vitals Targets
 
 - **Largest Contentful Paint (LCP):** < 1.2s on mobile 4G networks
 - **Cumulative Layout Shift (CLS):** < 0.02
 - **Interaction to Next Paint (INP):** < 100ms
-- **Worker Bundle Size:** ~300 KB uncompressed (~95 KB gzip)
+- **Worker Bundle Size:** ~301 KB uncompressed (~95 KB gzip)
 - **Cold Start Latency:** 0ms (Cloudflare V8 Isolates)
-

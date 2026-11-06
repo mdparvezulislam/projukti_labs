@@ -112,3 +112,4 @@ export default async function BlogTagPage({ params }: PageProps) {
     </div>
   );
 }
+

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { ArrowRight, Clock, Calendar, BookOpen, Tag } from "lucide-react";
+import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
 import {
   getAllPosts,
   getFeaturedPost,

@@ -3,16 +3,18 @@
 **Brand:** Projukti Labs (`projuktilabs.tech`)  
 **Tagline:** *Building Digital Solutions. Engineering the Future.*  
 **Visual Archetype:** Premium Dark-First Technology Studio & Editorial Engineering Platform  
-**Status:** Locked Baseline v1.0 (Phase 01 Foundation)
+**Language & Market Policy:** Bangladesh-First & Bangla-Primary (`bn-BD`, `Asia/Dhaka`, BDT ৳)  
+**Status:** Locked Baseline v1.1 (Phase 01–06 Complete)
 
 ---
 
 ## 1. Design Philosophy & Anti-Generic Governance
 
 1. **Dark-First Precision:** Built on deep carbon/zinc surfaces (`#09090B` → `#111113` → `#18181B`) with `1px` architectural borders (`#27272A`) and high-contrast off-white typography (`#FAFAFA`).
-2. **Restrained Electric Yellow Accent (`#FFDF20`):** Yellow is used strictly as a high-intent focal signal (Primary CTAs with `#09090B` dark text, active navigation indicators, and verified highlights). Never dilute the accent by painting large backgrounds or body text yellow.
-3. **Anti-Template Page Composition:** Reusable UI primitives (`Button`, `Badge`, `Card`, `Dialog`) are shared across the platform, but **every page archetype and productized service (`web_conversion`, `ecommerce_showcase`, `pixel_funnel`, `maintenance_plans`) must use a bespoke section composition**.
-4. **App-Like Mobile Ergonomics (`320px+`):** Mobile viewports are designed as first-class touch interfaces featuring a `>= 44×44px` tap target floor, safe-area-aware bottom navigation (`Home`, `Services`, `Work`, `Blog`, `About`), and zero horizontal overflow.
+2. **Restrained Electric Yellow Accent (`#FFDF20`):** Yellow is used strictly as a high-intent focal signal (Primary CTAs with `#09090B` dark text, active navigation indicators, and verified telemetry badges). Never paint large backgrounds or body text yellow.
+3. **Bangladesh-First Editorial Craft:** All public communication is composed in natural, modern, professional Bangla. English is reserved for technical identifiers, programming paradigms, and short action labels.
+4. **Anti-Template Page Composition:** Reusable UI primitives (`Button`, `Badge`, `Card`, `AccordionItem`) are shared across the platform, but **every page archetype and productized service (`landing-page-meta-pixel`, `complete-ecommerce-website`, `website-maintenance`, `blog`) must use a bespoke section composition**.
+5. **App-Like Mobile Ergonomics (`320px+`):** Mobile viewports are designed as first-class touch interfaces featuring a `>= 44×44px` tap target floor, responsive navigation drawer with `/blog` link, and zero unintended horizontal scrollbars.
 
 ---
 
@@ -32,12 +34,12 @@
   --border-accent: rgba(255, 223, 32, 0.35);
 
   /* Typography Hierarchy (WCAG 2.1 AA/AAA Verified) */
-  --text-primary: #FAFAFA;     /* 19.3:1 on #09090B */
-  --text-secondary: #A1A1AA;   /* 8.1:1 on #09090B */
-  --text-muted: #82828C;       /* 5.2:1 on #09090B (safe for 12-14px metadata) */
+  --text-primary: #FAFAFA;     /* 19.3:1 contrast on #09090B */
+  --text-secondary: #A1A1AA;   /* 8.1:1 contrast on #09090B */
+  --text-muted: #82828C;       /* 5.2:1 contrast on #09090B (safe for 12-14px metadata) */
 
   /* Brand & Semantic Accents */
-  --accent-primary: #FFDF20;   /* Pair with #09090B foreground text (15.4:1) */
+  --accent-primary: #FFDF20;   /* Pair with #09090B foreground text (15.4:1 contrast) */
   --accent-hover: #FFD439;
   --accent-info: #818CF8;
   --status-success: #22C55E;
@@ -63,22 +65,46 @@
 
 ---
 
-## 3. Typography Tokens
+## 3. Typography Hierarchy & Bangla-First Rules
 
-- **`--font-sans` (`Geist`):** Primary English UI, display headings (`letter-spacing: -0.03em`), and body copy (`16px`, `line-height: 1.65`).
-- **`--font-mono` (`Geist Mono`):** Technical specifications, SLA metrics, pricing (`font-variant-numeric: tabular-nums`), and inquiry codes.
-- **`--font-bengali` (`Hind Siliguri`):** Bangla content and bilingual headings (`17px` body, `line-height: 1.78`, `letter-spacing: 0`).
-- **`--font-accent` (`Caveat`):** Reserved strictly for 1–2 word handwritten callout annotations.
+1. **Mandatory Font Tokens:**
+   - **`--font-bangla` (`Hind Siliguri`):** Primary font for all Bangla headings, paragraphs, form labels, and UI strings (`weights: 300, 400, 500, 600, 700`, subsets: `bengali, latin`). Configured via `next/font/google` with `display: swap`.
+   - **`--font-sans` (`Geist`):** Secondary Latin fallback and display typography.
+   - **`--font-mono` (`Geist Mono`):** Code blocks, JSON-LD schemas, technical specifications, SLA metrics, pricing (`font-variant-numeric: tabular-nums`), and inquiry tracking codes.
+   - **`--font-accent` (`Caveat`):** Reserved strictly for 1–2 word handwritten editorial callout annotations.
+
+2. **Bengali Line Height & Glyphs Protection:**
+   - Bengali script features vertical diacritics (কার ও ফলা: হ্রস্ব ই-কার, দীর্ঘ ই-কার, হ্রস্ব উ-কার, র-ফলা, য-ফলা) and complex conjuncts (যুক্তাক্ষর).
+   - Paragraphs in Bangla MUST maintain a line-height of `1.75` to `1.85` (e.g. `leading-relaxed` / `leading-loose`).
+   - Headings in Bangla MUST maintain a line-height of `1.25` to `1.35` to avoid clipping ascenders and descenders.
+   - Avoid letter-spacing below `0` on Bengali type (do NOT apply negative tracking like `tracking-tighter` to Bengali words).
+
+3. **Bilingual UI Conventions:**
+   - Headings lead with Bangla and may incorporate English technical nouns: e.g., `ওয়েব ডেভেলপমেন্ট ও ডিজাইন (Web Development & Design)`.
+   - Action buttons use concise, natural bilingual phrasing: `প্রজেক্ট শুরু করুন`, `কোটেশন চান`, `View All Services`.
+   - Metadata tags use clean pill badges with monospace numerical indicators.
 
 ---
 
-## 4. Component & Interactive State Rules
+## 4. Blog & Editorial Reading Experience (Phase 06)
+
+1. **Reading Column Width:** Long-form article text is constrained to `max-w-3xl` (`68ch` equivalent) with centered alignment for high reading endurance.
+2. **Editorial Typographic Scale:**
+   - Article Title (H1): `text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight`.
+   - Section Headings (H2): `text-2xl sm:text-3xl font-bold mt-10 mb-4 border-b border-border pb-2`.
+   - Subheadings (H3): `text-xl font-semibold mt-6 mb-3 text-accent`.
+   - Blockquotes: Indented with `border-l-4 border-accent pl-4 italic text-text-muted bg-surface/40 p-4 rounded-r-lg`.
+   - Code Blocks: Monospace syntax highlighting with copy reference in `Geist Mono` on dark surface (`bg-surface`).
+3. **Article Metadata Bar:** Reading time estimation (`X মিনিট পাঠ`), publication date in Bengali format, category pill, and author bio card with founder accreditation.
+
+---
+
+## 5. Component & Interactive State Rules
 
 Every interactive control (`<button>`, `<a>`, `<input>`, `<select>`, `<dialog>`) must implement all 6 states:
 1. **Default:** Crisp `1px` border (`--border-subtle`) or solid `--accent-primary` fill.
 2. **Hover:** Smooth `180ms` transition (`--accent-hover` for primary CTA; `--border-strong` + `--bg-elevated` for secondary surfaces).
-3. **Active / Pressed:** Subtle `scale(0.985)` feedback.
+3. **Active / Pressed:** Subtle `scale(0.985)` tactile feedback.
 4. **Focus-Visible:** High-contrast `2px solid var(--accent-primary)` outline with `2px` offset (`outline-offset: 2px`). Never remove focus rings without replacement.
 5. **Loading:** Inline SVG spinner + `aria-busy="true"` preserving button width (no layout shift).
 6. **Disabled:** `opacity: 0.5`, `cursor: not-allowed`, `disabled` attribute.
-

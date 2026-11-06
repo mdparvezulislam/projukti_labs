@@ -34,3 +34,4 @@ export const BlogPostSchema = z.object({
 });
 
 export type BlogPost = z.infer<typeof BlogPostSchema>;
+

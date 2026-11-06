@@ -7,15 +7,12 @@ import {
   ArrowRight,
   Clock,
   Calendar,
-  User,
   ChevronRight,
   BookOpen,
-  Share2,
   Tag,
 } from "lucide-react";
 import {
   getPostBySlug,
-  getAllPosts,
   getPostsByCategory,
 } from "@/modules/blog/data";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";

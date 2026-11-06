@@ -375,3 +375,4 @@ export function searchPosts(query: string): BlogPost[] {
       p.tags.some((t) => t.toLowerCase().includes(q))
   );
 }
+

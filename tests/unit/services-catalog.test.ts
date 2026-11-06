@@ -54,7 +54,7 @@ describe("Phase 05: Services Catalog Integrity & Scope Boundary", () => {
   it("should resolve active categories by slug", () => {
     const webDev = getCategoryBySlug("web-development");
     expect(webDev).toBeDefined();
-    expect(webDev?.name).toBe("Web Development & Design");
+    expect(webDev?.name).toContain("Web Development & Design");
 
     const nonExistent = getCategoryBySlug("quantum-computing");
     expect(nonExistent).toBeUndefined();

@@ -5,9 +5,9 @@ import { AccordionItem } from "@/components/ui/accordion";
 import { ArrowRight, HelpCircle } from "lucide-react";
 
 export const metadata = {
-  title: "Frequently Asked Questions (FAQ) | Projukti Labs",
+  title: "সাধারণ জিজ্ঞাসা (FAQ) | Projukti Labs",
   description:
-    "Comprehensive answers regarding our engineering services, scoping, payment methods, maintenance SLAs, and code ownership.",
+    "আমাদের ইঞ্জিনিয়ারিং সার্ভিস, বাজেট নির্ধারণ, পেমেন্ট পদ্ধতি, মেইনটেন্যান্স SLA এবং সোর্স কোড মালিকানা সম্পর্কিত সাধারণ প্রশ্নের খোলামেলা উত্তর।",
 };
 
 export default function FAQPage() {
@@ -15,12 +15,12 @@ export default function FAQPage() {
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
       {/* Header */}
       <div className="text-center space-y-4 max-w-2xl mx-auto">
-        <Badge variant="accent">Transparent Answers</Badge>
+        <Badge variant="accent">স্বচ্ছ ও খোলামেলা তথ্য</Badge>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
-          Frequently Asked Questions
+          সাধারণ জিজ্ঞাসা (FAQ)
         </h1>
         <p className="text-text-muted text-base sm:text-lg">
-          Clear, honest answers about how we scope projects, charge for services, engineer code, and deliver ongoing support.
+          আমরা কীভাবে প্রজেক্টের বাজেট নির্ধারণ করি, কোড আর্কিটেক্ট করি, পেমেন্ট গ্রহণ করি এবং নিয়মিত সাপোর্ট দিই—তার স্পষ্ট উত্তর।
         </p>
       </div>
 
@@ -28,27 +28,27 @@ export default function FAQPage() {
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">
           <HelpCircle className="h-5 w-5 text-accent" />
-          Project Engagement & Scoping
+          প্রজেক্ট পরিকল্পনা ও বাজেট নির্ধারণ
         </h2>
         <div className="space-y-3">
           <AccordionItem
-            title="How do you determine the price and timeline for a project?"
+            title="আপনারা কীভাবে প্রজেক্টের খরচ এবং ডেলিভারির সময়সীমা নির্ধারণ করেন?"
             defaultOpen={true}
           >
             <p className="text-sm text-text-muted leading-relaxed">
-              For our productized packages (such as Landing Page with Meta Pixel, Complete E-commerce Website, and Maintenance Retainers), we offer fixed-scope, transparent pricing with clear milestone deliverables. For custom web applications, we evaluate your technical specifications and provide a structured Scope of Work (SOW) with fixed milestones before any contract is signed.
+              আমাদের স্ট্যান্ডার্ড প্রোডাক্টাইজড প্যাকেজগুলোর (যেমন ল্যান্ডিং পেজ + মেটা পিক্সেল, কমপ্লিট ই-কমার্স প্ল্যাটফর্ম, এবং মেইনটেন্যান্স রিটেইনার) ক্ষেত্রে সুনির্দিষ্ট স্কোপ এবং ফিক্সড প্রাইসিং রয়েছে। আর কাস্টম ওয়েব অ্যাপ্লিকেশনের ক্ষেত্রে আমরা আপনার কারিগরি প্রয়োজনীয়তা গভীরভাবে বিশ্লেষণ করে চুক্তি স্বাক্ষরের আগেই একটি পূর্ণাঙ্গ স্কোপ অব ওয়ার্ক (SOW) ও মাইলফলক-ভিত্তিক বাজেট প্রস্তাব দিই।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="Who will actually write the code for my project?">
+          <AccordionItem title="আমার প্রজেক্টের কোড আসলে কারা লিখবে? কোনো থার্ড পার্টিকে সাবকন্ট্রাক্ট করা হবে?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Every project is directly architected and implemented by our core engineering team under the supervision of <strong>Md Parvezul Islam</strong> (Founder & Principal Software Architect). We do not subcontract your work to random third-party freelancers or junior interns.
+              না, কোনোভাবেই না। প্রতিটি প্রজেক্টের আর্কিটেকচার এবং কোড সরাসরি আমাদের কোর ইঞ্জিনিয়ারিং টিম তৈরি করে—যার সার্বিক তত্ত্বাবধান করেন প্রতিষ্ঠাতা ও প্রিন্সিপাল সফটওয়্যার আর্কিটেক্ট <strong>মো. পারভেজুল ইসলাম</strong>। আমরা কখনোই কাজ নিয়ে অন্য কোনো অপরিচিত ফ্রিল্যান্সার বা অনভিজ্ঞ ইন্টার্নদের দিয়ে করাই না।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="How does the communication and progress reporting work?">
+          <AccordionItem title="প্রজেক্ট চলাকালীন যোগাযোগ ও অগ্রগতি কীভাবে পর্যবেক্ষণ করব?">
             <p className="text-sm text-text-muted leading-relaxed">
-              We provide regular milestone updates via your preferred channel (WhatsApp, Slack, or email). You receive private staging preview links to test the actual application in your browser at each phase before production deployment.
+              আপনার পছন্দের মাধ্যমে (WhatsApp, Slack বা ইমেল) নিয়মিত মাইলফলক আপডেট দেওয়া হবে। প্রতিটি ধাপ সম্পন্ন হলে আপনি একটি প্রাইভেট স্টেজিং প্রিভিউ লিংক পাবেন—যার মাধ্যমে সরাসরি ব্রাউজারে লাইভ প্রজেক্টের অগ্রগতি পরীক্ষা করতে পারবেন।
             </p>
           </AccordionItem>
         </div>
@@ -58,24 +58,24 @@ export default function FAQPage() {
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">
           <HelpCircle className="h-5 w-5 text-accent" />
-          Technical Architecture & Performance
+          কারিগরি আর্কিটেকচার ও পারফরম্যান্স
         </h2>
         <div className="space-y-3">
-          <AccordionItem title="Why do you build with Next.js and Cloudflare instead of WordPress?">
+          <AccordionItem title="ওয়ার্ডপ্রেসের বদলে আপনারা Next.js ও Cloudflare দিয়ে কেন সাইট তৈরি করেন?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Traditional WordPress setups rely on heavy PHP servers and dozens of plugins, causing slow load times (3–6 seconds on mobile), frequent database crashes during traffic spikes, and constant security vulnerabilities. By building with Next.js App Router and Cloudflare edge workers, your application runs on an ultra-fast global CDN with sub-second response times, zero server maintenance, and hardened security.
+              সাধারণ ওয়ার্ডপ্রেস সাইটগুলো ভারী পিএইচপি সার্ভার ও ডজন ডজন প্লাগইনের ওপর নির্ভরশীল থাকে। ফলে মোবাইলে লোড হতে ৩ থেকে ৬ সেকেন্ড সময় নেয়, ট্রাফিক বাড়লে ক্র্যাশ করে এবং নিয়মিত সিকিউরিটি ঝুঁকিতে পড়ে। অন্যদিকে Next.js App Router এবং Cloudflare Edge ব্যবহার করায় আপনার ওয়েবসাইট বিশ্বব্যাপী উচ্চগতির এজ নেটওয়ার্কে সাব-সেকেন্ড স্পিডে লোড হয় এবং সিকিউরিটি থাকে অত্যন্ত নিরাপদ।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="What is the difference between client-side Meta Pixel and Conversions API (CAPI)?">
+          <AccordionItem title="ব্রাউজার মেটা পিক্সেল ও সার্ভার-সাইড Conversions API (CAPI)-এর মধ্যে পার্থক্য কী?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Browser-based Meta Pixels frequently lose 20% to 40% of conversion events due to iOS privacy restrictions, ad blockers, and slow network drop-offs. With our Meta Pixel + CAPI dual-tracking solution, events are fired from both the browser and the edge server with matching deduplication IDs. This ensures Meta Ads accurately tracks every purchase and lead, improving your ad optimization and lowering acquisition costs.
+              ব্রাউজার মেটা পিক্সেল অ্যাড-ব্লকার, স্লো মোবাইল নেটওয়ার্ক এবং iOS প্রাইভেসি রেস্ট্রিকশনের কারণে ২০% থেকে ৪০% কনভার্শন ডাটা মিস করে। আমাদের মেটা পিক্সেল + CAPI ডুয়াল সলিউশনে ব্রাউজার ও এজ সার্ভার উভয় দিক থেকেই ম্যাচিং ইউনিক আইডি দিয়ে ইভেন্ট পাঠানো হয়। ফলে মেটা অ্যাডস সঠিক ডাটা পায়, বিজ্ঞাপনের আরওআই (ROAS) বৃদ্ধি পায় এবং কাস্টমার একুইজিশন খরচ কমে আসে।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="What Core Web Vitals performance benchmarks do you guarantee?">
+          <AccordionItem title="আপনারা কি Core Web Vitals ও মোবাইল স্পিডের নিশ্চয়তা দেন?">
             <p className="text-sm text-text-muted leading-relaxed">
-              We target sub-1.2s Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS) under 0.05, and Interaction to Next Paint (INP) under 150ms on mobile 4G devices. Every production release is audited using Chrome DevTools performance traces.
+              আমরা মোবাইল ৪জি নেটওয়ার্কে সাব-১.২ সেকেন্ড LCP (Largest Contentful Paint), ০.০৫-এর নিচে CLS (Layout Shift) এবং ১৫০ms-এর নিচে INP অর্জনের স্পষ্ট ইঞ্জিনিয়ারিং স্ট্যান্ডার্ড বজায় রাখি। প্রতিটি সাইট ডেলিভারির পূর্বে Chrome DevTools দিয়ে পারফরম্যান্স অডিট ও ভেরিফাই করা হয়।
             </p>
           </AccordionItem>
         </div>
@@ -85,24 +85,24 @@ export default function FAQPage() {
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">
           <HelpCircle className="h-5 w-5 text-accent" />
-          Payment Methods & Contracts
+          পেমেন্ট মাধ্যম ও কোডের মালিকানা
         </h2>
         <div className="space-y-3">
-          <AccordionItem title="Which payment methods do you accept?">
+          <AccordionItem title="আপনারা কী কী মাধ্যমে পেমেন্ট গ্রহণ করেন?">
             <p className="text-sm text-text-muted leading-relaxed">
-              For Bangladesh clients, we accept bank transfers (EFT/NPSB), bKash, and Nagad Merchant payments. For international clients, we accept bank wires (SWIFT/ACH) and major debit/credit cards via Stripe in USD or GBP.
+              বাংলাদেশি ক্লায়েন্টদের জন্য আমরা সরাসরি ব্যাংক ট্রান্সফার (BEFTN/NPSB), বিকাশ এবং নগদ মার্চেন্ট পেমেন্ট গ্রহণ করি। আন্তর্জাতিক ক্লায়েন্টদের জন্য রয়েছে সরাসরি আন্তর্জাতিক ব্যাংক ওয়্যার (SWIFT/ACH) এবং Stripe-এর মাধ্যমে ডেবিট/ক্রেডিট কার্ড পেমেন্ট (USD / GBP)।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="What is your payment milestone structure?">
+          <AccordionItem title="পেমেন্টের কিস্তি বা মাইলফলক কীভাবে নির্ধারিত হয়?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Standard projects typically follow a 50% mobilization deposit upon contract signing, and 50% upon final staging approval prior to DNS migration and live production deployment. Larger multi-month projects follow phased milestone schedules.
+              সাধারণত চুক্তি স্বাক্ষরের সময় ৫০% মবিলাইজেশন ডিপোজিট এবং কাজ সম্পন্ন হয়ে ক্লায়েন্ট কর্তৃক স্টেজিং প্রিভিউতে চূড়ান্ত অনুমোদনের পর বাকি ৫০% পরিশোধ করতে হয়। বৃহৎ মাল্টি-মান্থ প্রজেক্টের ক্ষেত্রে কাজের অগ্রগতি অনুযায়ী ৩ থেকে ৪টি সুনির্দিষ্ট মাইলফলকে পেমেন্ট ভাগ করা হয়।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="Do I own the source code upon project completion?">
+          <AccordionItem title="প্রজেক্ট সম্পন্ন হওয়ার পর কোডের মালিকানা কার থাকবে?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Yes, 100%. Once final milestone payments are cleared, complete ownership of the Git repository, deployment configurations, database schemas, and media assets transfers to you without licensing restrictions or proprietary lock-in.
+              শতভাগ আপনার। চূড়ান্ত পেমেন্ট সম্পন্ন হওয়ার সাথে সাথেই সম্পূর্ণ Git রিপোজিটরি, ক্লাউড কনফিগারেশন স্ক্রিপ্ট, ডাটাবেস স্কিমা এবং ডকুমেন্টেশনের পূর্ণাঙ্গ মালিকানা ক্লায়েন্টকে হস্তান্তর করা হয়। কোনো প্রকার ভেন্ডর লক-ইন বা লাইসেন্স বিধিনিষেধ থাকে না।
             </p>
           </AccordionItem>
         </div>
@@ -112,18 +112,18 @@ export default function FAQPage() {
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">
           <HelpCircle className="h-5 w-5 text-accent" />
-          Maintenance & Ongoing Support
+          রক্ষণাবেক্ষণ ও টেকনিক্যাল সাপোর্ট
         </h2>
         <div className="space-y-3">
-          <AccordionItem title="What happens after my website or store is launched?">
+          <AccordionItem title="ওয়েবসাইট বা ই-কমার্স লঞ্চের পর কী ধরনের সাপোর্ট পাওয়া যাবে?">
             <p className="text-sm text-text-muted leading-relaxed">
-              All our web development and e-commerce projects include an initial 14 to 30-day post-launch warranty covering any bug fixes. After that, clients can enroll in one of our monthly Proactive Care Retainers (Basic, Business, Priority, or Custom) to ensure continuous uptime monitoring, weekly backup verification, security updates, and dedicated monthly development hours.
+              আমাদের প্রতিটি ওয়েব ও ই-কমার্স প্রজেক্টের সাথে লঞ্চ-পরবর্তী ১৪ থেকে ৩০ দিনের ফ্রি টেকনিক্যাল ওয়ারেন্টি অন্তর্ভুক্ত থাকে—যাতে যেকোনো প্রাথমিক বাগ সংশোধন করা হয়। এরপরে ক্লায়েন্টরা আমাদের মাসিক প্রোঅ্যাক্টিভ কেয়ার রিটেইনার প্ল্যানে (Basic, Business, Priority) যুক্ত হতে পারেন সার্বক্ষণিক আপটাইম মনিটরিং, ব্যাকআপ এবং নিয়মিত ডেভেলপমেন্ট সাপোর্টের জন্য।
             </p>
           </AccordionItem>
 
-          <AccordionItem title="What if an emergency outage happens on my site?">
+          <AccordionItem title="সাইটে হঠাৎ কোনো জরুরি সমস্যা দেখা দিলে আপনারা কত দ্রুত সমাধান করেন?">
             <p className="text-sm text-text-muted leading-relaxed">
-              Under our maintenance plans, uptime is monitored every 5 minutes. If an incident is detected, an automated escalation alerts our engineering on-call engineer immediately. Response SLAs range from 1 hour for custom retainers to 4 hours for Priority Care and 24 hours for Business Care.
+              আমাদের মেইনটেন্যান্স প্ল্যানে ৫ মিনিট পর পর স্বয়ংক্রিয় সাইট হেলথ চেক করা হয়। কোনো ত্রুটি দেখা দিলে আমাদের অন-কল ইঞ্জিনিয়ারের কাছে অ্যালার্ট পৌঁছে যায়। প্ল্যান অনুযায়ী জরুরি রেসপন্স টাইম ১ ঘণ্টা (Custom Retainer) থেকে ৪ ঘণ্টা (Priority Care) এবং ২৪ ঘণ্টার (Business Care) মধ্যে নিশ্চিত করা হয়।
             </p>
           </AccordionItem>
         </div>
@@ -132,24 +132,23 @@ export default function FAQPage() {
       {/* CTA Footer */}
       <div className="rounded-2xl border border-border bg-surface/60 p-8 sm:p-12 text-center space-y-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-          Have a Question Not Answered Here?
+          আপনার অন্য কোনো প্রশ্ন রয়েছে?
         </h2>
         <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
-          Contact our team directly. We are happy to clarify any technical requirement, custom integration, or SLA question.
+          সরাসরি আমাদের টিমের সাথে যোগাযোগ করুন। যেকোনো টেকনিক্যাল বিষয়, কাস্টম ইন্টিগ্রেশন বা প্রজেক্টের বিস্তারিত নিয়ে আলোচনা করতে আমরা প্রস্তুত।
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Button variant="primary" asChild>
             <Link href="/contact">
-              Send an Inquiry
+              মেসেজ পাঠান
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/get-a-quote">Request a Project Quote</Link>
+            <Link href="/get-a-quote">প্রজেক্ট কোটেশন চান</Link>
           </Button>
         </div>
       </div>
     </div>
   );
 }
-
