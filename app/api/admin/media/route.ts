@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
         httpMetadata: { contentType: file.type },
       });
 
-      const publicUrl = `https://assets.projuktilabs.tech/${fileKey}`;
+      const publicUrl = `/api/media/${fileKey}`;
       const db = getDb();
       const assetId = `med_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
 

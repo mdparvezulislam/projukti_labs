@@ -3,10 +3,16 @@ import { bindings, defineConfig, defineWorker } from "cf/config";
 export default defineConfig({
   worker: defineWorker({
     name: "projukti-labs-web",
-    entrypoint: "vinext/server/fetch-handler",
+    entrypoint: "./server/worker.ts",
     compatibilityDate: "2026-11-06",
     compatibilityFlags: ["nodejs_compat"],
     workersDev: true,
+    triggers: [
+      {
+        type: "scheduled",
+        schedule: "* * * * *",
+      },
+    ],
     assets: {
       htmlHandling: "none",
       notFoundHandling: "none",

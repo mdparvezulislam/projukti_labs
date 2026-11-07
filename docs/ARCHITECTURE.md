@@ -239,10 +239,15 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
 
 ## 6. Cloudflare Production Infrastructure
 
-- **Worker:** `projukti-labs-web` running on Cloudflare Workers edge runtime (`workerd`).
-- **Custom Domains:** `projuktilabs.tech` and `www.projuktilabs.tech` with TLS/SSL encryption and HSTS.
+- **Worker:** `projukti-labs-web` running on Cloudflare Workers edge runtime (`workerd`) via `@vinext/cloudflare` (Version: `69dadb7e-06de-41be-805b-2dfbe35c9ea6`).
+- **Worker Entrypoint (`server/worker.ts`):** Unifies HTTP request handling (`fetch`) with Cloudflare Cron Triggers (`scheduled`).
+- **Custom Domains:** `projuktilabs.tech` (Canonical Root Host) and `www.projuktilabs.tech` (HTTP 308 Permanent Canonical Redirect via `proxy.ts`).
 - **Direct Worker URL:** `https://projukti-labs-web.uniquestorebd23.workers.dev`.
-- **Cloudflare D1:** `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) bound as `env.DB`.
+- **Cloudflare D1:** `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) bound as `env.DB`, containing 25 tables with applied migrations `0000`, `0001`, `0002`, `0003`.
+- **Cloudflare R2 Storage:** `projukti-labs-assets` bound as `env.R2_BUCKET`. Public streaming via `/api/media/[...key]` with immutable caching headers.
+- **Cloudflare KV Cache:** `4c3a552b441e491c8d781f198bbb4316` bound as `env.KV_CACHE` and `env.VINEXT_KV_CACHE`.
+- **Cloudflare Cron Trigger:** `schedule: * * * * *` executing automated background blog publishing and scheduled tasks.
+- **Health Check Endpoint:** `/api/v1/health` providing live telemetry of database, storage, and cache dependencies.
 - **KV Cache Namespace:** `4c3a552b441e491c8d781f198bbb4316` bound as `VINEXT_KV_CACHE` and `KV_CACHE`.
 - **R2 Storage:** `projukti-labs-assets` bound as `env.R2_BUCKET`.
 - **Health Check:** `/api/v1/health` returning live database, storage, and cache connectivity states.

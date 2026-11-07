@@ -156,18 +156,29 @@ The Projukti Labs production environment is deployed and active on Cloudflare Wo
 
 | Resource | Value |
 | :--- | :--- |
-| **Production Domain** | [`https://projuktilabs.tech`](https://projuktilabs.tech) |
-| **Alternative Hostname** | [`https://www.projuktilabs.tech`](https://www.projuktilabs.tech) |
+| **Production Domain** | [`https://projuktilabs.tech`](https://projuktilabs.tech) (Canonical Root Host) |
+| **WWW Subdomain** | [`https://www.projuktilabs.tech`](https://www.projuktilabs.tech) (Permanent HTTP 308 Redirect via `proxy.ts`) |
 | **Worker Direct URL** | [`https://projukti-labs-web.uniquestorebd23.workers.dev`](https://projukti-labs-web.uniquestorebd23.workers.dev) |
-| **Cloudflare Worker** | `projukti-labs-web` (workerd edge runtime) |
+| **Cloudflare Worker** | `projukti-labs-web` (workerd edge runtime, version `69dadb7e-06de-41be-805b-2dfbe35c9ea6`) |
 | **Cloudflare Account ID** | `c4338616aa08d7d524b19d64519efd7f` |
 | **Zone ID** | `8f389288b4ebe4fb74da7f8ed7d9d55a` (`projuktilabs.tech`) |
 | **Nameservers** | `jade.ns.cloudflare.com`, `miles.ns.cloudflare.com` |
-| **Production Database** | Cloudflare D1: `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) |
+| **Production Database** | Cloudflare D1: `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) — 25 Tables |
 | **Database Binding** | `env.DB` |
 | **KV Cache Namespace** | `4c3a552b441e491c8d781f198bbb4316` (`VINEXT_KV_CACHE` & `KV_CACHE`) |
-| **R2 Storage Bucket** | `projukti-labs-assets` (`env.R2_BUCKET`) |
+| **R2 Storage Bucket** | `projukti-labs-assets` (`env.R2_BUCKET`), served via `/api/media/[...key]` |
+| **Cron Trigger** | `schedule: * * * * *` (Native Cloudflare Cron publishing engine) |
 | **Health Check Endpoint** | [`https://projuktilabs.tech/api/v1/health`](https://projuktilabs.tech/api/v1/health) |
+
+### Remote Database Backup Command:
+```bash
+pnpm exec wrangler d1 export projukti-labs-production --remote --output backups/d1-backup-$(date +%Y%m%d%H%M%S).sql
+```
+
+### Live Worker Real-Time Logs:
+```bash
+pnpm exec wrangler tail projukti-labs-web
+```
 
 ### Applying Remote D1 Migrations:
 ```bash

@@ -37,6 +37,9 @@
       "custom_domain": true
     }
   ],
+  "triggers": {
+    "crons": ["* * * * *"]
+  },
   "vars": {
     "ENVIRONMENT": "production",
     "APP_URL": "https://projuktilabs.tech"

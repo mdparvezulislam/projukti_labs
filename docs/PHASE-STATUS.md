@@ -230,6 +230,36 @@
     - `pnpm run build:vinext` passed (Edge build complete in 1.14s).
     - Playwright MCP browser testing verified: List view, Publishing Studio, Content Extraction Modal, HTML Source Mode, Article Publishing, Public Article detail, Desktop (1440px), and Mobile (375px) with 0 console errors.
 
+### Phase 18: Complete Cloudflare Production Deployment & Infrastructure Automation
+- **Status:** Complete & Live in Production
+- **Key Deliverables:**
+  - **Authoritative D1 Production Database (`projukti-labs-production` / `8b1097c3-c930-477f-b8bc-81a498ac0f41`):**
+    - Pre-migration remote export/backup generated safely at `backups/d1-backup-pre-phase18-20261107101624.sql` (89 KB SQL dump).
+    - Applied forward-only migration `0003_boring_namorita.sql` remotely to production.
+    - Verified 25 production database tables, indexes, and seeded records.
+  - **Persistent R2 Media Storage (`projukti-labs-assets` & Worker Streaming):**
+    - R2 bucket `projukti-labs-assets` bound to `R2_BUCKET`.
+    - Implemented high-performance Worker-based media streaming route `/api/media/[...key]` with path traversal prevention, `ETag`, `Content-Length`, and immutable caching headers (`public, max-age=31536000, immutable`).
+    - Updated `/api/admin/media` to issue same-origin `/api/media/${fileKey}` URLs. Verified live end-to-end read/write.
+  - **Cloudflare Cron Trigger & Scheduled Blog Publishing:**
+    - Configured native cron trigger `schedule: * * * * *` in `cloudflare.config.ts` and `wrangler.jsonc`.
+    - Created custom Worker entrypoint (`server/worker.ts`) implementing both `fetch` and `scheduled(event, env, ctx)` hooks.
+    - Created verified API route `/api/cron/scheduled-publish` with UTC & `Asia/Dhaka` timestamp formatting, atomic state transitions, and cache invalidation.
+    - Conducted controlled live smoke test with real scheduled post, verifying atomic publish and execution idempotency (`publishedCount: 1` then `publishedCount: 0`). Safely cleaned up test record.
+  - **Canonical Domain & Subdomain Redirection (`proxy.ts`):**
+    - Implemented Next.js 16 compliant `proxy.ts` performing permanent HTTP 308 redirects from `www.projuktilabs.tech` to `https://projuktilabs.tech` preserving full paths and query strings.
+    - Verified live: `curl -I https://www.projuktilabs.tech/about?ref=test` -> 308 Redirect -> 200 OK on canonical root.
+  - **Production Security & Owner Bootstrap Audit:**
+    - Verified production `admin_users` table: only `usr_owner_08d400a6` (`Md Parvezul Islam`) exists with role `owner`. Removed transient test accounts.
+    - Enforced strict production security headers: HSTS (`max-age=31536000`), CSP, X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Referrer-Policy.
+  - **Quality Gates & Closed-Loop Playwright QA:**
+    - `pnpm typecheck` passed (0 errors).
+    - `pnpm test` passed (57/57 unit tests across 7 suites).
+    - `pnpm run build:vinext` passed (Edge build complete in 1.07s).
+    - `pnpm run deploy:vinext` deployed Worker version `69dadb7e-06de-41be-805b-2dfbe35c9ea6`.
+    - Playwright MCP tested live deployment across desktop and mobile viewports with 0 errors and 0 warnings.
+    - Screenshots captured: `docs/screenshots/live-phase18-production-home.png` and `docs/screenshots/live-phase18-production-mobile.png`.
+
 ---
 
 ## Acceptance Verification Summary
@@ -239,4 +269,7 @@
 - **Database Schema Integrity:** 100% clean schema match (`pnpm db:check` exit 0).
 - **Vite Edge Build:** Cloudflare Workers bundle compiled (`pnpm run build:vinext` exit 0).
 - **Production Deployment:** Live on Cloudflare Workers (`pnpm run deploy:vinext` exit 0).
-- **Production URL:** `https://projuktilabs.tech/` (SSL active, D1 connected, healthy).
+- **Production URLs:**
+  - `https://projuktilabs.tech/` (Canonical Host, SSL active, D1 connected, healthy).
+  - `https://www.projuktilabs.tech/` (Permanent HTTP 308 Redirect to Canonical Host).
+  - `https://projukti-labs-web.uniquestorebd23.workers.dev/` (Worker Direct Edge Fallback).
