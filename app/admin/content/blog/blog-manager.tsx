@@ -122,6 +122,21 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
   // Autosave Debounce Ref
   const autosaveTimerRef = useRef<NodeJS.Timeout | null>(null);
   const isDirtyRef = useRef(false);
+  const isSlugManualRef = useRef(false);
+
+  const handleTitleChange = (newTitle: string) => {
+    setTitle(newTitle);
+    isDirtyRef.current = true;
+    setAutosaveStatus("unsaved");
+    if (!isSlugManualRef.current && newTitle.trim()) {
+      const existingSlugs = postsList.filter((p) => p.id !== id).map((p) => p.slug);
+      const generated = generateCleanSlug(newTitle, existingSlugs);
+      setSlug(generated);
+      if (!editingPost || !editingPost.canonicalUrl) {
+        setCanonicalUrl(`https://projuktilabs.tech/blog/${generated}`);
+      }
+    }
+  };
 
   const categories = [
     { slug: "web-development", name: "Web Development" },
@@ -143,6 +158,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
     setTitle("");
     setSubtitle("");
     setSlug("");
+    isSlugManualRef.current = false;
     setCategory("web-development");
     setExcerpt("");
     setContent("");
@@ -184,6 +200,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
     setTitle(post.title);
     setSubtitle(post.subtitle || "");
     setSlug(post.slug);
+    isSlugManualRef.current = true;
     setCategory(post.category);
     setExcerpt(post.excerpt);
     setContent(post.content);
@@ -790,11 +807,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                   <input
                     type="text"
                     value={title}
-                    onChange={(e) => {
-                      setTitle(e.target.value);
-                      isDirtyRef.current = true;
-                      setAutosaveStatus("unsaved");
-                    }}
+                    onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="আকর্ষণীয় ও তথ্যবহুল শিরোনাম লিখুন..."
                     className="w-full text-xl sm:text-2xl font-extrabold text-text-primary bg-transparent border-b border-border/80 pb-2 focus:border-accent focus:outline-hidden placeholder:text-text-muted/60"
                   />
@@ -815,6 +828,78 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                     placeholder="নিবন্ধের মূল বার্তা এক লাইনে তুলে ধরুন..."
                     className="w-full text-sm text-text-secondary bg-transparent border-b border-border/60 pb-1.5 focus:border-accent focus:outline-hidden placeholder:text-text-muted/60"
                   />
+                </div>
+
+                {/* URL Permalink / Slug Row */}
+                <div className="pt-2 border-t border-border/40">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-text-muted">
+                      ইউআরএল পারমালিঙ্ক (URL Permalink / Slug) *
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!title.trim()) return;
+                        const existingSlugs = postsList.filter((p) => p.id !== id).map((p) => p.slug);
+                        const fresh = generateCleanSlug(title, existingSlugs);
+                        setSlug(fresh);
+                        setCanonicalUrl(`https://projuktilabs.tech/blog/${fresh}`);
+                        isSlugManualRef.current = false;
+                        isDirtyRef.current = true;
+                        setAutosaveStatus("unsaved");
+                      }}
+                      className="text-[11px] font-medium text-accent hover:underline flex items-center gap-1 cursor-pointer transition-colors"
+                      title="শিরোনাম অনুযায়ী ৫-৭ শব্দের অনন্য এসইও স্লাগ তৈরি করুন"
+                    >
+                      <RefreshCw className="h-3 w-3" />
+                      শিরোনাম থেকে অটো-স্লাগ তৈরি করুন
+                    </button>
+                  </div>
+                  <div className="flex items-center rounded-xl border border-border bg-background/60 px-3 py-2 focus-within:border-accent focus-within:ring-1 focus-within:ring-accent/30 transition-all">
+                    <span className="text-text-muted text-xs select-none font-mono shrink-0">
+                      projuktilabs.tech/blog/
+                    </span>
+                    <input
+                      type="text"
+                      value={slug}
+                      onChange={(e) => {
+                        isSlugManualRef.current = true;
+                        setSlug(e.target.value);
+                        setCanonicalUrl(`https://projuktilabs.tech/blog/${e.target.value.trim()}`);
+                        isDirtyRef.current = true;
+                        setAutosaveStatus("unsaved");
+                      }}
+                      placeholder="custom-seo-slug"
+                      className="flex-1 bg-transparent text-xs font-mono text-text-primary focus:outline-hidden ml-1"
+                    />
+                  </div>
+                  <div className="mt-1.5 flex items-center justify-between text-[11px] text-text-muted">
+                    <span>
+                      {slug ? (
+                        <>
+                          বর্তমান লিংক:{" "}
+                          <span className="text-accent font-mono font-medium">/blog/{slug}</span>
+                          {slug.split("-").filter(Boolean).length > 0 && (
+                            <span className="ml-2 text-text-secondary">
+                              ({slug.split("-").filter(Boolean).length} শব্দ)
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        "শিরোনাম লিখলে স্বয়ংক্রিয়ভাবে ৫-৭ শব্দের এসইও-বান্ধব স্লাগ তৈরি হবে।"
+                      )}
+                    </span>
+                    {slug && (
+                      <Link
+                        href={`/blog/${slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-accent hover:underline shrink-0"
+                      >
+                        প্রিভিউ দেখুন <ExternalLink className="h-3 w-3" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
 

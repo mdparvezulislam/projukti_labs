@@ -88,7 +88,7 @@ const COMMON_TECH_TAGS = [
  * Normalizes text to a clean URL slug.
  * Handles English and phonetic/transliterated Bangla deterministically.
  */
-export function generateCleanSlug(text: string, existingSlugs: string[] = []): string {
+export function generateCleanSlug(text: string, existingSlugs: string[] = [], maxWords = 7): string {
   if (!text) return "article-" + Date.now();
 
   // Strip html or markdown
@@ -199,10 +199,10 @@ export function generateCleanSlug(text: string, existingSlugs: string[] = []): s
     slug = "article-" + Math.random().toString(36).substring(2, 8);
   }
 
-  // Enforce word limit: maximum 5 to 7 words (6 words optimal limit)
+  // Enforce word limit: maximum 5 to 7 words (7 words limit)
   const segments = slug.split("-").filter(Boolean);
-  if (segments.length > 6) {
-    slug = segments.slice(0, 6).join("-");
+  if (segments.length > maxWords) {
+    slug = segments.slice(0, maxWords).join("-");
   }
 
   // Ensure uniqueness if existingSlugs provided

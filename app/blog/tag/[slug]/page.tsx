@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ArrowRight, Clock, Calendar, Tag } from "lucide-react";
-import { getPostsByTag } from "@/modules/blog/data";
+import { getCmsBlogPosts } from "@/lib/cms";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -25,8 +25,16 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BlogTagPage({ params }: PageProps) {
   const { slug } = await params;
-  const decodedTag = decodeURIComponent(slug);
-  const posts = getPostsByTag(decodedTag);
+  let decodedTag = slug;
+  try {
+    decodedTag = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
+  const allPosts = await getCmsBlogPosts("published");
+  const posts = allPosts.filter((p) =>
+    p.tags?.some((t) => t.toLowerCase() === decodedTag.toLowerCase())
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-8 sm:space-y-12">

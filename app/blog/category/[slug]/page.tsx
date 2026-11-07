@@ -6,9 +6,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { ArrowLeft, ArrowRight, Clock, Calendar } from "lucide-react";
 import {
   getCategoryBySlug,
-  getPostsByCategory,
   getAllCategories,
 } from "@/modules/blog/data";
+import { getCmsBlogPosts } from "@/lib/cms";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -50,7 +50,8 @@ export default async function BlogCategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  const posts = getPostsByCategory(decodedSlug);
+  const allPosts = await getCmsBlogPosts("published");
+  const posts = allPosts.filter((p) => p.category === decodedSlug);
   const allCategories = getAllCategories();
 
   return (

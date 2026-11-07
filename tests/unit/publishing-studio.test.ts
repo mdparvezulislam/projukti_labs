@@ -26,7 +26,8 @@ describe("Phase 17: Smart Content Extraction Engine", () => {
     const meta = extractArticleMetadata(sampleHtml, "html");
 
     expect(meta.title).toBe("Building Next.js 16 Applications with Edge Workers");
-    expect(meta.slug).toBe("building-next-js-16-applications-with-edge-workers");
+    expect(meta.slug).toBe("building-next-js-16-applications-with-edge");
+    expect(meta.slug.split("-").length).toBeLessThanOrEqual(7);
     expect(meta.excerpt).toContain("Next.js 16 introduces remarkable streaming");
     expect(meta.readingTimeMinutes).toBeGreaterThanOrEqual(1);
     expect(meta.headingCount).toBe(3);
@@ -123,6 +124,21 @@ describe("Phase 17: HTML Sanitization & Security Policies", () => {
     expect(clean).toContain("<table");
     expect(clean).toContain("<th>Col A</th>");
     expect(clean).toContain('<code>console.log("OK");</code>');
+  });
+
+  it("should auto-embed YouTube, Vimeo, and Loom video URLs into responsive iframes", () => {
+    const rawWithYt = "<p>https://www.youtube.com/watch?v=dQw4w9WgXcQ</p>";
+    const embeddedYt = sanitizeHtml(rawWithYt);
+    expect(embeddedYt).toContain("youtube-nocookie.com/embed/dQw4w9WgXcQ");
+    expect(embeddedYt).toContain("aspect-video");
+
+    const rawWithVimeo = "<p>https://vimeo.com/123456789</p>";
+    const embeddedVimeo = sanitizeHtml(rawWithVimeo);
+    expect(embeddedVimeo).toContain("player.vimeo.com/video/123456789");
+
+    const rawWithLoom = "<p>https://www.loom.com/share/abc123xyz</p>";
+    const embeddedLoom = sanitizeHtml(rawWithLoom);
+    expect(embeddedLoom).toContain("loom.com/embed/abc123xyz");
   });
 });
 

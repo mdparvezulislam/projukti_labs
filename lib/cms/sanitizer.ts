@@ -116,5 +116,42 @@ export function sanitizeHtml(html: string): string {
     return `<${tagName}${attrText}${isSelfClosing ? " />" : ">"}`;
   });
 
-  return clean.trim();
+  return autoEmbedUrlsInHtml(clean.trim());
+}
+
+/**
+ * Automatically transforms standalone video links (YouTube, Vimeo, Loom) inside paragraphs
+ * into responsive 16:9 embedded players.
+ */
+export function autoEmbedUrlsInHtml(html: string): string {
+  if (!html) return "";
+
+  // 1. YouTube embeds
+  let result = html.replace(
+    /<p>(?:\s*<a[^>]*href=["'](?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^"']*["'][^>]*>.*?<\/a>\s*|\s*(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?\s*)<\/p>/gi,
+    (match, id1, id2) => {
+      const videoId = id1 || id2;
+      return `<div class="aspect-video my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" class="h-full w-full border-0"></iframe></div>`;
+    }
+  );
+
+  // 2. Vimeo embeds
+  result = result.replace(
+    /<p>(?:\s*<a[^>]*href=["'](?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)[^"']*["'][^>]*>.*?<\/a>\s*|\s*(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)(?:\S+)?\s*)<\/p>/gi,
+    (match, id1, id2) => {
+      const vimeoId = id1 || id2;
+      return `<div class="aspect-video my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md"><iframe src="https://player.vimeo.com/video/${vimeoId}" title="Vimeo video player" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy" class="h-full w-full border-0"></iframe></div>`;
+    }
+  );
+
+  // 3. Loom embeds
+  result = result.replace(
+    /<p>(?:\s*<a[^>]*href=["'](?:https?:\/\/)?(?:www\.)?loom\.com\/share\/([a-zA-Z0-9]+)[^"']*["'][^>]*>.*?<\/a>\s*|\s*(?:https?:\/\/)?(?:www\.)?loom\.com\/share\/([a-zA-Z0-9]+)(?:\S+)?\s*)<\/p>/gi,
+    (match, id1, id2) => {
+      const loomId = id1 || id2;
+      return `<div class="aspect-video my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md"><iframe src="https://www.loom.com/embed/${loomId}" title="Loom video player" allowfullscreen loading="lazy" class="h-full w-full border-0"></iframe></div>`;
+    }
+  );
+
+  return result;
 }

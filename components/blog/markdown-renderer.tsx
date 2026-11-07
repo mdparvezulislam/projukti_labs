@@ -232,9 +232,14 @@ export function MarkdownRenderer({
       continue;
     }
 
-    // Auto-Embed standalone URLs (YouTube, Vimeo, Loom)
-    const trimmedLine = line.trim();
-    const ytMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?$/i);
+    // Auto-Embed standalone URLs or markdown links (YouTube, Vimeo, Loom)
+    let candidateUrl = line.trim();
+    const mdLinkMatch = candidateUrl.match(/^\[.*?\]\((https?:\/\/[^\s)]+)\)$/i);
+    if (mdLinkMatch) {
+      candidateUrl = mdLinkMatch[1];
+    }
+
+    const ytMatch = candidateUrl.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?$/i);
     if (ytMatch) {
       const videoId = ytMatch[1];
       elements.push(
@@ -253,7 +258,7 @@ export function MarkdownRenderer({
       continue;
     }
 
-    const vimeoMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)(?:\S+)?$/i);
+    const vimeoMatch = candidateUrl.match(/^(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)(?:\S+)?$/i);
     if (vimeoMatch) {
       const vimeoId = vimeoMatch[1];
       elements.push(
@@ -272,7 +277,7 @@ export function MarkdownRenderer({
       continue;
     }
 
-    const loomMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?loom\.com\/share\/([a-zA-Z0-9]+)(?:\S+)?$/i);
+    const loomMatch = candidateUrl.match(/^(?:https?:\/\/)?(?:www\.)?loom\.com\/share\/([a-zA-Z0-9]+)(?:\S+)?$/i);
     if (loomMatch) {
       const loomId = loomMatch[1];
       elements.push(
