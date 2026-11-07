@@ -3,6 +3,9 @@ import {
   services,
   servicePackages,
   blogPosts,
+  blogCategories,
+  blogTags,
+  blogPostRevisions,
   portfolioProjects,
   faqs,
   siteSettings,
@@ -13,6 +16,7 @@ import {
   NewPortfolioProjectEntity,
   NewFaqEntity,
   NewPageSection,
+  NewBlogPostRevisionEntity,
 } from "@/db/schema";
 import { eq, desc, asc } from "drizzle-orm";
 import { SERVICE_CATEGORIES, ServiceCategory, ServiceItem } from "@/modules/services/data";
@@ -230,33 +234,62 @@ export async function upsertCmsServicePackage(data: NewServicePackageEntity) {
 }
 
 // ==========================================
-// Blog Posts
+// Blog Posts & Publishing Studio
 // ==========================================
 
 function mapPostToBlogPost(p: typeof blogPosts.$inferSelect): BlogPost & { isFeatured?: boolean } {
   const cat = BLOG_CATEGORIES.find((c) => c.slug === p.category);
-  const minutes = parseInt(p.readTime ?? "5", 10) || 5;
+  const minutes = p.readingTimeMinutes ?? (parseInt(p.readTime ?? "5", 10) || 5);
   return {
     id: p.id,
     slug: p.slug,
     title: p.title,
+    subtitle: p.subtitle,
     excerpt: p.excerpt,
     content: p.content,
+    contentFormat: (p.contentFormat as "html" | "markdown") || "markdown",
+    contentPlainText: p.contentPlainText,
     category: p.category as BlogPost["category"],
     categoryName: cat?.name ?? p.category,
+    categoryId: p.categoryId,
     tags: p.tags ?? [],
-    publishedAt: p.publishedAt ? new Date(p.publishedAt).toISOString().split("T")[0] : new Date().toISOString().split("T")[0],
+    publishedAt: p.publishedAt
+      ? new Date(p.publishedAt).toISOString().split("T")[0]
+      : new Date().toISOString().split("T")[0],
+    updatedAt: p.updatedAt ? new Date(p.updatedAt).toISOString() : undefined,
+    scheduledAt: p.scheduledAt ? new Date(p.scheduledAt).toISOString() : null,
     readingTimeMinutes: minutes,
     featured: Boolean(p.isFeatured),
     isFeatured: Boolean(p.isFeatured),
+    isPinned: Boolean(p.isPinned),
+    wordCount: p.wordCount ?? 0,
+    headingCount: p.headingCount ?? 0,
+    tableOfContents: p.tableOfContents,
     coverImage: p.coverImage ?? undefined,
+    imageAlt: p.imageAlt ?? undefined,
+    imageTitle: p.imageTitle ?? undefined,
+    imageCaption: p.imageCaption ?? undefined,
+    imageCredit: p.imageCredit ?? undefined,
+    status: (p.status as "draft" | "published" | "scheduled" | "archived") ?? "published",
     author: {
-      name: "Md Parvezul Islam",
-      role: "Founder & Principal Software Architect, Projukti Labs",
+      name: p.authorName ?? "Md Parvezul Islam",
+      role: p.authorRole ?? "Principal Software Architect & Founder, Projukti Labs",
       avatarUrl: "/founder-avatar.png",
     },
     seoTitle: p.seoTitle ?? p.title,
     seoDescription: p.seoDescription ?? p.excerpt,
+    canonicalUrl: p.canonicalUrl ?? `https://projuktilabs.tech/blog/${p.slug}`,
+    focusKeyword: p.focusKeyword,
+    secondaryKeywords: p.secondaryKeywords,
+    robotsIndex: p.robotsIndex ?? true,
+    robotsFollow: p.robotsFollow ?? true,
+    ogTitle: p.ogTitle ?? p.seoTitle ?? p.title,
+    ogDescription: p.ogDescription ?? p.seoDescription ?? p.excerpt,
+    ogImage: p.ogImage ?? p.coverImage,
+    twitterTitle: p.twitterTitle ?? p.seoTitle ?? p.title,
+    twitterDescription: p.twitterDescription ?? p.seoDescription ?? p.excerpt,
+    twitterImage: p.twitterImage ?? p.coverImage,
+    structuredDataType: p.structuredDataType ?? "Article",
   };
 }
 
@@ -305,6 +338,53 @@ export async function upsertCmsBlogPost(data: NewBlogPostEntity) {
 export async function deleteCmsBlogPost(id: string) {
   const db = getDb();
   await db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+export async function getCmsCategories() {
+  try {
+    const db = getDb();
+    const rows = await db.select().from(blogCategories).orderBy(asc(blogCategories.sortOrder));
+    if (rows.length > 0) return rows;
+  } catch {
+    // fallback to static
+  }
+  return BLOG_CATEGORIES.map((c, idx) => ({
+    id: c.id,
+    slug: c.slug,
+    name: c.name,
+    description: c.description,
+    seoTitle: `${c.name} | Projukti Labs Blog`,
+    seoDescription: c.description,
+    sortOrder: idx + 1,
+    createdAt: new Date(),
+  }));
+}
+
+export async function getCmsTags() {
+  try {
+    const db = getDb();
+    return await db.select().from(blogTags).orderBy(asc(blogTags.name));
+  } catch {
+    return [];
+  }
+}
+
+export async function saveCmsPostRevision(data: NewBlogPostRevisionEntity) {
+  try {
+    const db = getDb();
+    await db.insert(blogPostRevisions).values(data);
+  } catch (err) {
+    console.warn("Failed to save post revision:", err);
+  }
+}
+
+export async function getCmsPostRevisions(postId: string) {
+  try {
+    const db = getDb();
+    return await db.select().from(blogPostRevisions).where(eq(blogPostRevisions.postId, postId)).orderBy(desc(blogPostRevisions.createdAt)).limit(10);
+  } catch {
+    return [];
+  }
 }
 
 // ==========================================

@@ -201,3 +201,26 @@ Every interactive control (`<button>`, `<a>`, `<input>`, `<select>`, `<dialog>`)
    - Administrative form inputs standardized on `bg-surface-elevated` with clear border and focus rings.
    - Empty states upgraded to centered card containers with high-contrast icons, title, and descriptive prompts.
    - Minimum tap target `>= 44×44px` enforced on mobile controls.
+
+---
+
+## 8. Phase 17 Publishing Studio Design Language & Component System
+
+1. **Workspace Hierarchy & Two-Column Layout:**
+   - **Top Navigation Bar:** Sticky header containing back breadcrumb, real-time autosave state (`Saving...`, `Saved`, `Unsaved changes`, `Retry`), private live preview button, draft save, and primary publish button.
+   - **Left Column (Writing Canvas - 8 cols on desktop):**
+     - Display title input with H1 scale (`text-2xl sm:text-3xl font-extrabold`) and subtitle input with clean bottom borders.
+     - Mode switcher tabs (`ভিজুয়াল এডিটর`, `HTML Source`, `Markdown`).
+     - Formatting toolbar with grouped controls (Format select, inline styles, alignments, lists/blocks, media/links, history/clear).
+     - Full-bleed editable content canvas (`min-height: 540px`).
+   - **Right Column (Publishing Sidebar - 4 cols on desktop):**
+     - Collapsible modular panels: Publishing Status, Category & Tags, Featured Image, Advanced SEO, Content Metrics & TOC, Revision History.
+     - On mobile (`< 1024px`), stacks fluidly into a single column with accessible touch targets and collapsible accordion sections.
+
+2. **Dual Theme Harmony (ChaiCode Light vs Carbon Dark):**
+   - **Light Theme:** Warm `#FAF5ED` background, `#FFFFFF` writing canvas, warm `#EADBC8` borders, pillowy card shadows, dark readable `#1E293B` text, and amber accents.
+   - **Dark Theme:** `#09090B` background, `#18181B` elevated canvas, `#27272A` borders, `#F4F4F5` high-contrast typography, and electric yellow `#FFDF20` accents.
+
+3. **Live Search & Social Simulation Previews:**
+   - Google Search desktop/mobile simulation with domain icon, breadcrumb, truncated blue link, and snippet.
+   - Facebook/OpenGraph and Twitter/X large summary card previews with live image, title, and domain attribution.

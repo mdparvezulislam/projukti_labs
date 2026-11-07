@@ -1,11 +1,34 @@
 import React from "react";
+import { sanitizeHtml } from "@/lib/cms/sanitizer";
+import { detectContentFormat } from "@/lib/cms/content-converter";
 
 interface MarkdownRendererProps {
   content: string;
+  format?: "html" | "markdown";
+  className?: string;
 }
 
-export function MarkdownRenderer({ content }: MarkdownRendererProps) {
-  // Split into lines
+export function MarkdownRenderer({
+  content,
+  format,
+  className = "",
+}: MarkdownRendererProps) {
+  if (!content) return null;
+
+  // Determine whether to render as HTML or Markdown
+  const isHtml = format === "html" || detectContentFormat(content) === "html";
+
+  if (isHtml) {
+    const cleanHtml = sanitizeHtml(content);
+    return (
+      <div
+        className={`prose prose-invert max-w-none text-text-secondary leading-relaxed space-y-4 ${className}`}
+        dangerouslySetInnerHTML={{ __html: cleanHtml }}
+      />
+    );
+  }
+
+  // Split Markdown into lines
   const lines = content.trim().split("\n");
   const elements: React.ReactNode[] = [];
   let index = 0;
@@ -21,10 +44,13 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       if (inCodeBlock) {
         // End code block
         elements.push(
-          <div key={`code-${index}`} className="my-6 rounded-lg border border-border bg-surface-elevated overflow-x-auto p-4">
-            <div className="flex justify-between items-center pb-2 mb-2 border-b border-border/50 text-[11px] font-mono text-text-muted uppercase">
-              <span>{codeBlockLang || "Code"}</span>
-              <span>Snippet</span>
+          <div
+            key={`code-${index}`}
+            className="my-6 rounded-xl border border-border bg-surface-elevated overflow-x-auto p-4 shadow-xs"
+          >
+            <div className="flex justify-between items-center pb-2 mb-2 border-b border-border/50 text-[11px] font-mono text-text-muted uppercase tracking-wider">
+              <span>{codeBlockLang || "Snippet"}</span>
+              <span className="text-accent font-semibold">Code</span>
             </div>
             <pre className="font-mono text-xs text-text-primary leading-relaxed">
               <code>{codeBlockContent.join("\n")}</code>
@@ -54,12 +80,31 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       continue;
     }
 
+    // Horizontal Rule
+    if (line.trim() === "---" || line.trim() === "***") {
+      elements.push(<hr key={`hr-${index}`} className="my-8 border-border" />);
+      index++;
+      continue;
+    }
+
     // Headers
+    if (line.startsWith("#### ")) {
+      const headingText = line.replace("#### ", "").trim();
+      const id = headingText.toLowerCase().replace(/[^a-z0-9\u0980-\u09FF]+/g, "-");
+      elements.push(
+        <h4 key={`h4-${index}`} id={id} className="mt-6 mb-2 text-lg font-bold text-text-primary scroll-mt-24">
+          {renderFormattedInline(headingText)}
+        </h4>
+      );
+      index++;
+      continue;
+    }
+
     if (line.startsWith("### ")) {
       const headingText = line.replace("### ", "").trim();
       const id = headingText.toLowerCase().replace(/[^a-z0-9\u0980-\u09FF]+/g, "-");
       elements.push(
-        <h3 key={`h3-${index}`} id={id} className="mt-8 mb-3 text-xl font-bold text-text-primary scroll-mt-24">
+        <h3 key={`h3-${index}`} id={id} className="mt-8 mb-3 text-xl sm:text-2xl font-bold text-text-primary scroll-mt-24">
           {renderFormattedInline(headingText)}
         </h3>
       );
@@ -71,7 +116,11 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       const headingText = line.replace("## ", "").trim();
       const id = headingText.toLowerCase().replace(/[^a-z0-9\u0980-\u09FF]+/g, "-");
       elements.push(
-        <h2 key={`h2-${index}`} id={id} className="mt-12 mb-4 text-2xl sm:text-3xl font-extrabold text-text-primary border-b border-border/60 pb-3 scroll-mt-24">
+        <h2
+          key={`h2-${index}`}
+          id={id}
+          className="mt-12 mb-4 text-2xl sm:text-3xl font-extrabold text-text-primary border-b border-border/60 pb-3 scroll-mt-24"
+        >
           {renderFormattedInline(headingText)}
         </h2>
       );
@@ -79,11 +128,26 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       continue;
     }
 
+    if (line.startsWith("# ")) {
+      const headingText = line.replace("# ", "").trim();
+      const id = headingText.toLowerCase().replace(/[^a-z0-9\u0980-\u09FF]+/g, "-");
+      elements.push(
+        <h1 key={`h1-${index}`} id={id} className="mt-12 mb-6 text-3xl sm:text-4xl font-extrabold text-text-primary scroll-mt-24">
+          {renderFormattedInline(headingText)}
+        </h1>
+      );
+      index++;
+      continue;
+    }
+
     // Blockquote
     if (line.startsWith("> ")) {
-      const quoteText = line.replace("> ", "").trim();
+      const quoteText = line.replace(/^>\s*/, "").trim();
       elements.push(
-        <blockquote key={`quote-${index}`} className="my-6 border-l-4 border-accent bg-surface/50 pl-4 py-2 italic text-text-primary rounded-r">
+        <blockquote
+          key={`quote-${index}`}
+          className="my-6 border-l-4 border-accent bg-surface-elevated/40 pl-4 py-3 italic text-text-primary rounded-r-lg"
+        >
           {renderFormattedInline(quoteText)}
         </blockquote>
       );
@@ -91,10 +155,46 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
       continue;
     }
 
-    // Horizontal Rule
-    if (line.trim() === "---") {
-      elements.push(<hr key={`hr-${index}`} className="my-8 border-border" />);
-      index++;
+    // Markdown Table
+    if (line.trim().startsWith("|") && line.trim().endsWith("|")) {
+      const tableRows: string[][] = [];
+      while (index < lines.length && lines[index].trim().startsWith("|") && lines[index].trim().endsWith("|")) {
+        const rowCells = lines[index]
+          .trim()
+          .slice(1, -1)
+          .split("|")
+          .map((c) => c.trim());
+        if (!rowCells.every((c) => /^:?-+:?$/.test(c))) {
+          tableRows.push(rowCells);
+        }
+        index++;
+      }
+      elements.push(
+        <div key={`table-${index}`} className="my-6 overflow-x-auto rounded-xl border border-border bg-surface shadow-xs">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-surface-elevated border-b border-border">
+                {tableRows[0]?.map((th, i) => (
+                  <th key={i} className="p-3 text-xs font-bold text-text-primary uppercase tracking-wider">
+                    {renderFormattedInline(th)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {tableRows.slice(1).map((row, rIdx) => (
+                <tr key={rIdx} className="hover:bg-surface-elevated/30 transition-colors">
+                  {row.map((cell, cIdx) => (
+                    <td key={cIdx} className="p-3 text-xs text-text-secondary">
+                      {renderFormattedInline(cell)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
       continue;
     }
 
@@ -141,16 +241,34 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
     index++;
   }
 
-  return <div className="space-y-2 text-text-secondary">{elements}</div>;
+  return <div className={`space-y-2 text-text-secondary ${className}`}>{elements}</div>;
 }
 
+export const ArticleRenderer = MarkdownRenderer;
+
 function renderFormattedInline(text: string): React.ReactNode {
-  // Regex to match inline code, bold, links
   const parts: React.ReactNode[] = [];
   let remaining = text;
   let keyIdx = 0;
 
   while (remaining.length > 0) {
+    // Check for inline images ![alt](url)
+    const imgMatch = remaining.match(/^!\[([^\]]*)\]\(([^)]+)\)/);
+    if (imgMatch) {
+      parts.push(
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={keyIdx++}
+          src={imgMatch[2]}
+          alt={imgMatch[1]}
+          loading="lazy"
+          className="rounded-xl border border-border my-4 max-h-[480px] w-full object-cover shadow-sm"
+        />
+      );
+      remaining = remaining.slice(imgMatch[0].length);
+      continue;
+    }
+
     // Check for inline code `...`
     const codeMatch = remaining.match(/^`([^`]+)`/);
     if (codeMatch) {
@@ -175,6 +293,18 @@ function renderFormattedInline(text: string): React.ReactNode {
       continue;
     }
 
+    // Check for italic *...*
+    const italicMatch = remaining.match(/^\*([^*]+)\*/);
+    if (italicMatch) {
+      parts.push(
+        <em key={keyIdx++} className="italic text-text-primary">
+          {italicMatch[1]}
+        </em>
+      );
+      remaining = remaining.slice(italicMatch[0].length);
+      continue;
+    }
+
     // Check for link [text](url)
     const linkMatch = remaining.match(/^\[([^\]]+)\]\(([^)]+)\)/);
     if (linkMatch) {
@@ -194,12 +324,11 @@ function renderFormattedInline(text: string): React.ReactNode {
     }
 
     // Otherwise grab text up to next special delimiter
-    const nextSpecial = remaining.search(/[`*[]/);
+    const nextSpecial = remaining.search(/[`*![]/);
     if (nextSpecial === -1) {
       parts.push(remaining);
       break;
     } else if (nextSpecial === 0) {
-      // Single character delimiter that didn't match pattern
       parts.push(remaining[0]);
       remaining = remaining.slice(1);
     } else {
@@ -210,4 +339,3 @@ function renderFormattedInline(text: string): React.ReactNode {
 
   return <>{parts}</>;
 }
-

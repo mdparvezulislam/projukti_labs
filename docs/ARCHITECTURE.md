@@ -5,7 +5,7 @@
 **Database:** Cloudflare D1 (SQLite) with Drizzle ORM `0.45.4`  
 **Object Storage:** Cloudflare R2 via S3-compatible `aws4fetch`  
 **Architecture Style:** Modular Monolith with Type-Safe Domain Boundaries  
-**Status:** Phase 01–07 Production Architecture & Security Hardening Verified
+**Status:** Phase 01–17 Production Architecture, Live Cloudflare Workers & D1 Deployment Verified
 
 ---
 
@@ -234,3 +234,47 @@ For the flagship **Landing Page with Meta Pixel & Analytics** (`/services/landin
 5. **Dynamic CMS & Public Fallback Synchronization:**
    - Public pages query dynamic content via `lib/cms/index.ts` (`getCmsServices`, `getCmsBlogPosts`, `getCmsPortfolio`, `getCmsFaqs`, `getCmsPageSection`).
    - **Zero-Downtime Guarantee:** If database is cold, unseeded, or temporarily unreachable, helpers automatically return canonical code fallbacks without breaking the public website.
+
+---
+
+## 6. Cloudflare Production Infrastructure
+
+- **Worker:** `projukti-labs-web` running on Cloudflare Workers edge runtime (`workerd`).
+- **Custom Domains:** `projuktilabs.tech` and `www.projuktilabs.tech` with TLS/SSL encryption and HSTS.
+- **Direct Worker URL:** `https://projukti-labs-web.uniquestorebd23.workers.dev`.
+- **Cloudflare D1:** `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) bound as `env.DB`.
+- **KV Cache Namespace:** `4c3a552b441e491c8d781f198bbb4316` bound as `VINEXT_KV_CACHE` and `KV_CACHE`.
+- **R2 Storage:** `projukti-labs-assets` bound as `env.R2_BUCKET`.
+- **Health Check:** `/api/v1/health` returning live database, storage, and cache connectivity states.
+
+---
+
+## 7. Blog Publishing Studio & Content Architecture (Phase 17)
+
+1. **Editorial Data Model & Schema Expansion:**
+   - **`blog_posts`:** Expanded from 17 to 56 columns supporting rich editorial content, subtitle, `content_format` ('html' | 'markdown'), plain text extract, author attribution, cover image metadata, SEO meta tags, social cards (OG & Twitter), word count, reading time, heading count, paragraph count, and JSON-encoded Table of Contents.
+   - **`blog_categories`:** Normalized categories with unique slugs, names, descriptions, and sort order.
+   - **`blog_tags`:** Normalized tags with slug and usage timestamps.
+   - **`blog_post_revisions`:** Append-only revision history storing article snapshots, author ID, and revision notes on every significant save.
+
+2. **Deterministic Smart Content Extraction Engine (`lib/cms/blog-extractor.ts`):**
+   - Pure, zero-dependency parser working synchronously across Cloudflare Workers and Node runtimes.
+   - Extracts H1 / first-line title candidates and warns on multiple H1 elements.
+   - Generates clean, URL-safe slugs with deterministic Bengali transliteration and collision resolution.
+   - Computes reading time using a calibrated 180 words/min rate.
+   - Derives H2–H4 hierarchy with stable anchor slugs for public Table of Contents navigation.
+   - Scans and scores vocabulary to suggest relevant categories and tags with confidence ratings.
+
+3. **HTML Sanitization & Security Policy (`lib/cms/sanitizer.ts`):**
+   - Defense-in-depth HTML sanitizer built to execute safely in edge workers without heavy browser DOM libraries.
+   - Strips `<script>`, `<style>`, `<iframe>`, `<object>`, `<embed>`, `<form>`, and comment blocks.
+   - Purges all inline event handlers (`onclick`, `onload`, `onerror`, etc.).
+   - Enforces safe URL protocols (`https:`, `http:`, `/`, `#`, `mailto:`) and blocks `javascript:`.
+   - Automatically injects `target="_blank" rel="noopener noreferrer"` on external hyperlinks.
+
+4. **Dual-Format Public Rendering Pipeline:**
+   - `MarkdownRenderer` / `ArticleRenderer` dynamically detects whether stored content is HTML or Markdown.
+   - For HTML: Applies strict sanitization and renders in Tailwind prose container with customized typography and responsive tables.
+   - For Markdown: Parses AST lines into semantic React elements with code snippets and blockquotes.
+   - Preserves 100% backward compatibility with pre-existing Markdown articles while seamlessly supporting modern rich text posts.
+

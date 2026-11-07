@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
-import { getAllPosts, getAllCategories } from "@/modules/blog";
+import { getAllCategories } from "@/modules/blog";
+import { getCmsBlogPosts } from "@/lib/cms";
 import { SERVICE_CATEGORIES } from "@/modules/services/data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://projuktilabs.tech";
   const now = new Date();
 
@@ -82,13 +83,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Blog articles
-  const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
+  // Blog articles from CMS (published only)
+  const publishedPosts = await getCmsBlogPosts("published");
+  const blogRoutes: MetadataRoute.Sitemap = publishedPosts
+    .filter((post) => post.robotsIndex !== false)
+    .map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.publishedAt),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    }));
 
   // Blog categories
   const blogCategoryRoutes: MetadataRoute.Sitemap = getAllCategories().map((cat) => ({

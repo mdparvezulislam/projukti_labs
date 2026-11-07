@@ -10,10 +10,10 @@ import {
   ChevronRight,
   BookOpen,
   Tag,
+  Share2,
+  ListTree,
 } from "lucide-react";
-import {
-  getPostsByCategory,
-} from "@/modules/blog/data";
+import { getPostsByCategory } from "@/modules/blog/data";
 import { getCmsBlogPostBySlug } from "@/lib/cms";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 
@@ -27,33 +27,51 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const post = await getCmsBlogPostBySlug(slug);
 
-  if (!post) {
+  if (!post || post.status === "draft" || post.status === "archived") {
     return {
       title: "প্রবন্ধটি পাওয়া যায়নি | Projukti Labs",
+      robots: { index: false, follow: false },
     };
   }
 
+  const canonical = post.canonicalUrl || `https://projuktilabs.tech/blog/${post.slug}`;
+  const ogImg = post.ogImage || post.coverImage || "https://projuktilabs.tech/og-image.jpg";
+
   return {
-    title: `${post.title} | Projukti Labs Blog`,
-    description: post.excerpt,
+    title: post.seoTitle || `${post.title} | Projukti Labs Blog`,
+    description: post.seoDescription || post.excerpt,
     alternates: {
-      canonical: `https://projuktilabs.tech/blog/${post.slug}`,
+      canonical,
+    },
+    robots: {
+      index: post.robotsIndex ?? true,
+      follow: post.robotsFollow ?? true,
     },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `https://projuktilabs.tech/blog/${post.slug}`,
+      title: post.ogTitle || post.seoTitle || post.title,
+      description: post.ogDescription || post.seoDescription || post.excerpt,
+      url: canonical,
       siteName: "Projukti Labs",
       locale: "bn_BD",
       type: "article",
       publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
       authors: [post.author.name],
       tags: post.tags,
+      images: [
+        {
+          url: ogImg,
+          width: 1200,
+          height: 630,
+          alt: post.imageAlt || post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
+      title: post.twitterTitle || post.seoTitle || post.title,
+      description: post.twitterDescription || post.seoDescription || post.excerpt,
+      images: [ogImg],
     },
   };
 }
@@ -77,11 +95,15 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     day: "numeric",
   });
 
+  const canonicalUrl = post.canonicalUrl || `https://projuktilabs.tech/blog/${post.slug}`;
+  const coverImg = post.coverImage || "https://projuktilabs.tech/og-image.jpg";
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": post.structuredDataType || "Article",
     headline: post.title,
     description: post.excerpt,
+    image: coverImg,
     author: {
       "@type": "Person",
       name: post.author.name,
@@ -91,12 +113,17 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       "@type": "Organization",
       name: "Projukti Labs",
       url: "https://projuktilabs.tech",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://projuktilabs.tech/favicon.ico",
+      },
     },
     datePublished: post.publishedAt,
+    dateModified: post.updatedAt || post.publishedAt,
     inLanguage: "bn-BD",
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://projuktilabs.tech/blog/${post.slug}`,
+      "@id": canonicalUrl,
     },
   };
 
@@ -146,6 +173,12 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
           {post.title}
         </h1>
 
+        {post.subtitle && (
+          <p className="text-lg sm:text-xl font-medium text-text-secondary leading-relaxed">
+            {post.subtitle}
+          </p>
+        )}
+
         <p className="text-base sm:text-lg text-text-muted leading-relaxed">
           {post.excerpt}
         </p>
@@ -157,40 +190,102 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               PI
             </div>
             <div>
-              <p className="text-sm font-bold text-text-primary">{post.author.name}</p>
-              <p className="text-xs text-text-muted">{post.author.role}</p>
+              <p className="text-xs font-bold text-text-primary">{post.author.name}</p>
+              <p className="text-[11px] text-text-muted">{post.author.role}</p>
             </div>
           </div>
 
+          {/* Social Share links */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-text-muted font-mono">ভাষা: বাংলা (bn-BD)</span>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg border border-border bg-surface hover:bg-surface-elevated text-text-secondary hover:text-accent transition-colors"
+              title="Share on Facebook"
+            >
+              <Share2 className="h-4 w-4" />
+            </a>
+            <a
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(canonicalUrl)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg border border-border bg-surface hover:bg-surface-elevated text-text-secondary hover:text-accent transition-colors font-bold text-xs"
+              title="Share on X"
+            >
+              X
+            </a>
           </div>
         </div>
       </header>
 
-      {/* 3. Article Content */}
+      {/* Featured Cover Image */}
+      {post.coverImage && (
+        <figure className="space-y-2">
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface-elevated shadow-sm">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={post.coverImage}
+              alt={post.imageAlt || post.title}
+              className="w-full max-h-[500px] object-cover"
+            />
+          </div>
+          {(post.imageCaption || post.imageCredit) && (
+            <figcaption className="text-center text-xs text-text-muted">
+              {post.imageCaption}
+              {post.imageCredit && <span className="opacity-75"> (ছবি: {post.imageCredit})</span>}
+            </figcaption>
+          )}
+        </figure>
+      )}
+
+      {/* Table of Contents (if present) */}
+      {post.tableOfContents && post.tableOfContents.length > 0 && (
+        <div className="rounded-2xl border border-border/80 bg-surface/60 p-6 space-y-3">
+          <h2 className="text-sm font-bold text-text-primary flex items-center gap-2">
+            <ListTree className="h-4 w-4 text-accent" />
+            সূচিপত্র (Table of Contents)
+          </h2>
+          <nav aria-label="Table of contents" className="space-y-1.5 text-xs">
+            {post.tableOfContents.map((toc) => (
+              <a
+                key={toc.id}
+                href={`#${toc.id}`}
+                style={{ paddingLeft: `${(toc.level - 2) * 16}px` }}
+                className="block text-text-muted hover:text-accent transition-colors truncate"
+              >
+                {toc.text}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      {/* 3. Article Content (HTML & Markdown dual support) */}
       <main className="prose prose-invert max-w-none">
-        <MarkdownRenderer content={post.content} />
+        <MarkdownRenderer content={post.content} format={post.contentFormat} />
       </main>
 
       {/* 4. Tags Footer */}
-      <div className="border-t border-border/80 pt-6 space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold text-text-primary flex items-center gap-1">
-            <Tag className="h-3.5 w-3.5 text-accent" />
-            ট্যাগসমূহ:
-          </span>
-          {post.tags.map((tag) => (
-            <Link
-              key={tag}
-              href={`/blog/tag/${tag.toLowerCase()}`}
-              className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-text-muted hover:border-accent hover:text-accent transition-colors font-mono"
-            >
-              #{tag}
-            </Link>
-          ))}
+      {post.tags && post.tags.length > 0 && (
+        <div className="border-t border-border/80 pt-6 space-y-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold text-text-primary flex items-center gap-1">
+              <Tag className="h-3.5 w-3.5 text-accent" />
+              ট্যাগসমূহ:
+            </span>
+            {post.tags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/blog/tag/${tag.toLowerCase()}`}
+                className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-text-muted hover:border-accent hover:text-accent transition-colors font-mono"
+              >
+                #{tag}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* 5. Author Profile Spotlight */}
       <div className="rounded-xl border border-border bg-surface/50 p-6 sm:p-8 space-y-4">

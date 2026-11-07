@@ -22,11 +22,14 @@ Projukti Labs is an independent technology studio and founder portfolio led by *
 3. **Maintenance & Technical Support (ওয়েবসাইট মেইনটেন্যান্স ও টেক সাপোর্ট)** — Proactive monthly engineering care and disaster recovery retainers.
    - *Flagship:* **Proactive Care Retainers** (`/services/website-maintenance`) — 4 care tiers (Basic, Business, Priority, Custom) backed by 5-minute health monitoring, weekly automated off-site backups, and guaranteed 1h–48h emergency SLAs.
 
-### Blog Engine & Knowledge Platform (Phase 06):
-- Dedicated build-time blog system compatible with Cloudflare Workers runtime (zero runtime Node `fs` dependencies).
-- 5 authentic launch articles on web development, e-commerce, digital marketing, website speed, and software maintenance.
-- Categories (`/blog/category/[slug]`), Tags (`/blog/tag/[slug]`), and Search (`searchPosts`).
-- XML Sitemap (`/sitemap.xml`) and `robots.txt` generation.
+### Blog Engine & Professional Publishing Studio (Phases 06 & 17):
+- **Professional Editorial Studio (`/admin/content/blog`):** Modern two-column writing studio inspired by WordPress/Ghost/Shopify editorial workspaces.
+- **Advanced Rich Text Editor:** Visual editing, HTML Source code mode, Markdown mode, bidirectional sync, paste interceptor, tables, code blocks, blockquotes, checklists, and keyboard shortcuts.
+- **Deterministic Smart Content Extraction:** "Analyze Content" engine extracts title candidates, clean URL slugs, excerpts, H2–H4 Table of Contents, word counts, reading times, category suggestions, and suggested tags.
+- **Advanced SEO Control Center:** Live Google Search snippet simulation, OpenGraph / Facebook card and Twitter / X social previews, canonical URLs, robots index/follow toggles, and rule-based SEO quality audit.
+- **Featured Image & Media Management:** Dual input (Image URL + File upload with MIME/size validation), truthful R2 storage binding check, alt text, and media library picker.
+- **Autosave & Revisions:** 3-second debounced autosave preventing D1 write spam, version-aware post revisions (`blog_post_revisions`), and draft/publish workflows.
+- **Public Blog Rendering (`/blog`, `/blog/[slug]`):** Dual-format renderer supporting both Markdown and sanitized HTML, responsive tables, styled code snippets, breadcrumbs, TOC, and schema.org JSON-LD structured data.
 
 ### Complete Admin Operating System & Real CMS Workflows (Phases 08–16):
 - **Full-featured Admin Portal (`/admin`):** Secure dashboard managing CRM leads, structured quotes (`PL-Q-2026-XXXX`), customer records, dynamic CMS content, internal team notes, and automated business workflows.
@@ -140,11 +143,50 @@ pnpm run build:vinext
 
 # Preview Cloudflare edge worker bundle locally
 pnpm run start:vinext --port 4173
+
+# Deploy directly to Cloudflare Workers production
+pnpm run deploy:vinext
 ```
 
 ---
 
-## 5. Security & Commercial Discipline
+## 5. Cloudflare Production Infrastructure
+
+The Projukti Labs production environment is deployed and active on Cloudflare Workers:
+
+| Resource | Value |
+| :--- | :--- |
+| **Production Domain** | [`https://projuktilabs.tech`](https://projuktilabs.tech) |
+| **Alternative Hostname** | [`https://www.projuktilabs.tech`](https://www.projuktilabs.tech) |
+| **Worker Direct URL** | [`https://projukti-labs-web.uniquestorebd23.workers.dev`](https://projukti-labs-web.uniquestorebd23.workers.dev) |
+| **Cloudflare Worker** | `projukti-labs-web` (workerd edge runtime) |
+| **Cloudflare Account ID** | `c4338616aa08d7d524b19d64519efd7f` |
+| **Zone ID** | `8f389288b4ebe4fb74da7f8ed7d9d55a` (`projuktilabs.tech`) |
+| **Nameservers** | `jade.ns.cloudflare.com`, `miles.ns.cloudflare.com` |
+| **Production Database** | Cloudflare D1: `projukti-labs-production` (`8b1097c3-c930-477f-b8bc-81a498ac0f41`) |
+| **Database Binding** | `env.DB` |
+| **KV Cache Namespace** | `4c3a552b441e491c8d781f198bbb4316` (`VINEXT_KV_CACHE` & `KV_CACHE`) |
+| **R2 Storage Bucket** | `projukti-labs-assets` (`env.R2_BUCKET`) |
+| **Health Check Endpoint** | [`https://projuktilabs.tech/api/v1/health`](https://projuktilabs.tech/api/v1/health) |
+
+### Applying Remote D1 Migrations:
+```bash
+pnpm exec wrangler d1 migrations apply projukti-labs-production --remote
+```
+
+### Seeding or Syncing CMS Data to Remote Production D1:
+```bash
+pnpm exec wrangler d1 execute projukti-labs-production --remote --file=db/seed-production-cms.sql
+```
+
+### Production Deployment Command:
+```bash
+pnpm run deploy:vinext
+```
+
+---
+
+## 6. Security & Commercial Discipline
 
 - **No Fabricated Information:** Zero fake reviews, fake client logos, or fake price countdowns. Portfolio projects are explicitly labeled as architectural concepts and blueprints.
 - **Data Privacy:** Client inquiries and quotes are logged directly into Cloudflare D1 with unique reference codes (`PL-2026-XXXX`).

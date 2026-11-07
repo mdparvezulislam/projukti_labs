@@ -140,26 +140,103 @@ export const servicePackages = sqliteTable("service_packages", {
     .$defaultFn(() => new Date()),
 });
 
+export const blogCategories = sqliteTable("blog_categories", {
+  id: text("id").primaryKey(), // 'cat_...'
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description"),
+  seoTitle: text("seo_title"),
+  seoDescription: text("seo_description"),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const blogTags = sqliteTable("blog_tags", {
+  id: text("id").primaryKey(), // 'tag_...'
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
 export const blogPosts = sqliteTable("blog_posts", {
   id: text("id").primaryKey(), // 'post_...'
   slug: text("slug").notNull().unique(),
   title: text("title").notNull(),
+  subtitle: text("subtitle"),
   excerpt: text("excerpt").notNull(),
-  content: text("content").notNull(), // Markdown format
+  content: text("content").notNull(), // Markdown or HTML format
+  contentFormat: text("content_format").notNull().default("markdown"), // 'markdown' | 'html'
+  contentPlainText: text("content_plain_text"),
   category: text("category").notNull(),
+  categoryId: text("category_id"),
   tags: text("tags", { mode: "json" }).$type<string[]>(),
+  authorId: text("author_id"),
+  authorName: text("author_name").default("Md Parvezul Islam"),
+  authorRole: text("author_role").default("Principal Software Architect & Founder"),
   coverImage: text("cover_image"),
+  imageAlt: text("image_alt"),
+  imageTitle: text("image_title"),
+  imageCaption: text("image_caption"),
+  imageCredit: text("image_credit"),
+  imageWidth: integer("image_width"),
+  imageHeight: integer("image_height"),
+  imageMimeType: text("image_mime_type"),
   status: text("status").notNull().default("draft"), // 'draft' | 'published' | 'scheduled' | 'archived'
   isFeatured: integer("is_featured", { mode: "boolean" }).notNull().default(false),
+  isPinned: integer("is_pinned", { mode: "boolean" }).notNull().default(false),
+  allowComments: integer("allow_comments", { mode: "boolean" }).notNull().default(false),
+  editorialNotes: text("editorial_notes"),
+  language: text("language").notNull().default("bn"),
+  version: integer("version").notNull().default(1),
   readTime: text("read_time"),
+  readingTimeMinutes: integer("reading_time_minutes").default(5),
+  wordCount: integer("word_count").default(0),
+  characterCount: integer("character_count").default(0),
+  headingCount: integer("heading_count").default(0),
+  paragraphCount: integer("paragraph_count").default(0),
+  tableOfContents: text("table_of_contents", { mode: "json" }).$type<{ id: string; text: string; level: number }[]>(),
+  lastContentAnalysisAt: integer("last_content_analysis_at", { mode: "timestamp_ms" }),
+  lastSavedAt: integer("last_saved_at", { mode: "timestamp_ms" }),
   seoTitle: text("seo_title"),
   seoDescription: text("seo_description"),
+  canonicalUrl: text("canonical_url"),
+  focusKeyword: text("focus_keyword"),
+  secondaryKeywords: text("secondary_keywords", { mode: "json" }).$type<string[]>(),
+  robotsIndex: integer("robots_index", { mode: "boolean" }).notNull().default(true),
+  robotsFollow: integer("robots_follow", { mode: "boolean" }).notNull().default(true),
+  ogTitle: text("og_title"),
+  ogDescription: text("og_description"),
+  ogImage: text("og_image"),
+  twitterTitle: text("twitter_title"),
+  twitterDescription: text("twitter_description"),
+  twitterImage: text("twitter_image"),
+  structuredDataType: text("structured_data_type").default("Article"),
   scheduledAt: integer("scheduled_at", { mode: "timestamp_ms" }),
   publishedAt: integer("published_at", { mode: "timestamp_ms" }),
   createdAt: integer("created_at", { mode: "timestamp_ms" })
     .notNull()
     .$defaultFn(() => new Date()),
   updatedAt: integer("updated_at", { mode: "timestamp_ms" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const blogPostRevisions = sqliteTable("blog_post_revisions", {
+  id: text("id").primaryKey(), // 'rev_...'
+  postId: text("post_id").notNull(),
+  title: text("title").notNull(),
+  subtitle: text("subtitle"),
+  excerpt: text("excerpt"),
+  content: text("content").notNull(),
+  contentFormat: text("content_format").notNull().default("markdown"),
+  authorId: text("author_id"),
+  revisionNote: text("revision_note"),
+  createdAt: integer("created_at", { mode: "timestamp_ms" })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -397,8 +474,17 @@ export type NewServiceEntity = typeof services.$inferInsert;
 export type ServicePackageEntity = typeof servicePackages.$inferSelect;
 export type NewServicePackageEntity = typeof servicePackages.$inferInsert;
 
+export type BlogCategoryEntity = typeof blogCategories.$inferSelect;
+export type NewBlogCategoryEntity = typeof blogCategories.$inferInsert;
+
+export type BlogTagEntity = typeof blogTags.$inferSelect;
+export type NewBlogTagEntity = typeof blogTags.$inferInsert;
+
 export type BlogPostEntity = typeof blogPosts.$inferSelect;
 export type NewBlogPostEntity = typeof blogPosts.$inferInsert;
+
+export type BlogPostRevisionEntity = typeof blogPostRevisions.$inferSelect;
+export type NewBlogPostRevisionEntity = typeof blogPostRevisions.$inferInsert;
 
 export type PortfolioProjectEntity = typeof portfolioProjects.$inferSelect;
 export type NewPortfolioProjectEntity = typeof portfolioProjects.$inferInsert;

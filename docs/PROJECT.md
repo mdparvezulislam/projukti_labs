@@ -4,7 +4,7 @@
 **Domain:** `projuktilabs.tech`  
 **Founder:** Md Parvezul Islam (Principal Software Architect)  
 **Tagline:** Building Digital Solutions. Engineering the Future.  
-**Baseline Version:** v1.6 Production Release Candidate (Phase 01–16 Complete — Admin Operating System, Real CMS Workflows, Business Operations & Production Readiness Verified)  
+**Baseline Version:** v1.7 Production Release (Phases 01–17 Complete — Live Cloudflare Production Deployment Verified on https://projuktilabs.tech/)  
 **Primary Target Market:** Bangladesh (`bn-BD`, `Asia/Dhaka`, default currency BDT ৳)  
 **Language Policy:** Bangla-First / Bangla-Primary with selective English technical terms  
 
@@ -143,3 +143,8 @@ Projukti Labs is an independent, premium technology studio and software engineer
 | **Phase 10** | CRM & Customer Operations Engine | **DONE** | Inquiries, leads, quotes (PL-Q-2026-XXXX), customers |
 | **Phase 11** | Business Automation & Notifications | **DONE** | Event bus, rules runner, execution retry |
 | **Phase 12** | Admin UI/UX & Mobile Operating System | **DONE** | 18 APIs, 12 views, 5-tab mobile nav, 43 tests |
+| **Phase 13** | Design System Refinement & Accessibility | **DONE** | WCAG 2.2 AA contrast matrix, token alignment |
+| **Phase 14** | Website Content & Localization Alignment | **DONE** | Authentic Bangla copy, pricing, zero placeholder |
+| **Phase 15** | ChaiCode Light Theme Transformation | **DONE** | Warm ambient light palette, dual theme sync |
+| **Phase 16** | CMS Operations, Section Editor & Pricing | **DONE** | Section CMS, package manager, team notes |
+| **Phase 17** | Professional Blog CMS & Publishing Studio | **DONE** | Rich Text Editor, Smart Extraction, SEO, Media, 57 tests |
