@@ -11,16 +11,25 @@ const ALLOWED_TAGS = new Set([
   "table", "thead", "tbody", "tfoot", "tr", "th", "td",
   "a", "img", "hr", "br",
   "strong", "b", "em", "i", "u", "s", "strike", "del", "mark", "sub", "sup",
-  "span", "div", "figure", "figcaption", "kbd", "cite"
+  "span", "div", "figure", "figcaption", "kbd", "cite",
+  "iframe", "video", "audio", "source"
 ]);
 
 const ALLOWED_ATTRS = new Set([
   "href", "src", "alt", "title", "target", "rel",
   "class", "id", "width", "height", "loading",
-  "colspan", "rowspan", "scope", "align"
+  "colspan", "rowspan", "scope", "align",
+  "allow", "allowfullscreen", "frameborder", "controls", "type"
 ]);
 
 const SAFE_URL_PROTOCOLS = /^(https?:|\/|#|mailto:)/i;
+
+const TRUSTED_IFRAME_DOMAINS = [
+  /^https:\/\/(www\.)?youtube\.com\/embed\//i,
+  /^https:\/\/(www\.)?youtube-nocookie\.com\/embed\//i,
+  /^https:\/\/player\.vimeo\.com\/video\//i,
+  /^https:\/\/(www\.)?loom\.com\/embed\//i,
+];
 
 /**
  * Sanitizes an HTML string by removing scripts, inline event handlers,
@@ -29,14 +38,22 @@ const SAFE_URL_PROTOCOLS = /^(https?:|\/|#|mailto:)/i;
 export function sanitizeHtml(html: string): string {
   if (!html || typeof html !== "string") return "";
 
-  // 1. Remove script, style, iframe, object, embed tags entirely with their contents
+  // 1. Remove script, style, object, embed tags entirely with their contents
   let clean = html
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
     .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "")
-    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
     .replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, "")
     .replace(/<embed\b[^<]*(?:(?!<\/embed>)<[^<]*)*<\/embed>/gi, "")
     .replace(/<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi, "");
+
+  // Sanitize iframes: only preserve trusted video embeds (YouTube, Vimeo, Loom)
+  clean = clean.replace(/<iframe\b([^>]*)>([\s\S]*?)<\/iframe>/gi, (match, attrs) => {
+    const srcMatch = attrs.match(/\bsrc\s*=\s*(?:"([^"]*)"|'([^']*)'|([^>\s]+))/i);
+    const src = srcMatch ? (srcMatch[1] ?? srcMatch[2] ?? srcMatch[3] ?? "") : "";
+    const isTrusted = TRUSTED_IFRAME_DOMAINS.some((regex) => regex.test(src.trim()));
+    if (!isTrusted) return "";
+    return `<div class="aspect-video my-6 overflow-hidden rounded-2xl border border-border shadow-sm"><iframe ${attrs} loading="lazy" class="w-full h-full border-0"></iframe></div>`;
+  });
 
   // 2. Remove comments
   clean = clean.replace(/<!--[\s\S]*?-->/g, "");

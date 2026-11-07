@@ -18,7 +18,7 @@ import {
   NewPageSection,
   NewBlogPostRevisionEntity,
 } from "@/db/schema";
-import { eq, desc, asc } from "drizzle-orm";
+import { eq, desc, asc, or } from "drizzle-orm";
 import { SERVICE_CATEGORIES, ServiceCategory, ServiceItem } from "@/modules/services/data";
 import { BLOG_POSTS, BLOG_CATEGORIES } from "@/modules/blog/data";
 import { BlogPost } from "@/modules/blog/types";
@@ -312,16 +312,44 @@ export async function getCmsBlogPosts(status?: string): Promise<BlogPost[]> {
 }
 
 export async function getCmsBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (!slug) return null;
+  const rawSlug = slug.trim();
+  let decodedSlug = rawSlug;
+  try {
+    decodedSlug = decodeURIComponent(rawSlug).trim();
+  } catch {
+    // ignore
+  }
+
+  let encodedSlug = rawSlug;
+  try {
+    encodedSlug = encodeURIComponent(decodedSlug);
+  } catch {
+    // ignore
+  }
+
   try {
     const db = getDb();
-    const rows = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+    const rows = await db
+      .select()
+      .from(blogPosts)
+      .where(
+        or(
+          eq(blogPosts.slug, rawSlug),
+          eq(blogPosts.slug, decodedSlug),
+          eq(blogPosts.slug, encodedSlug)
+        )
+      )
+      .limit(1);
     if (rows[0]) {
       return mapPostToBlogPost(rows[0]);
     }
   } catch {
     // fallback to static
   }
-  const staticPost = BLOG_POSTS.find((p) => p.slug === slug);
+  const staticPost = BLOG_POSTS.find(
+    (p) => p.slug === rawSlug || p.slug === decodedSlug || p.slug === encodedSlug
+  );
   return staticPost ?? null;
 }
 

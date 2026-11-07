@@ -100,7 +100,7 @@ export function generateCleanSlug(text: string, existingSlugs: string[] = []): s
     clean = clean.replaceAll(bnDigits[i], String(i));
   }
 
-  // Transliterate common Bengali tech terms to Latin slug equivalents
+  // Transliterate common Bengali tech & commerce terms to Latin slug equivalents
   const bnToEnMap: Record<string, string> = {
     "ওয়েবসাইট": "website",
     "ওয়েবসাইট": "website",
@@ -126,7 +126,60 @@ export function generateCleanSlug(text: string, existingSlugs: string[] = []): s
     "প্রয়োজন": "essential",
     "প্রয়োজন": "essential",
     "ডিজিটাল": "digital",
-    "সল্যুশন": "solution"
+    "সল্যুশন": "solution",
+    "ফেসবুক": "facebook",
+    "ইনবক্স": "inbox",
+    "সেলস": "sales",
+    "সেল": "sales",
+    "মাস্টারক্লাস": "masterclass",
+    "মেসেজ": "message",
+    "অর্ডার": "order",
+    "অর্ডারগুলো": "orders",
+    "কাস্টমার": "customer",
+    "গ্রাহক": "customer",
+    "পাবেন": "get",
+    "বেশি": "more",
+    "কম": "less",
+    "সাধারণ": "simple",
+    "ক্যাম্পেইন": "campaign",
+    "বিজ্ঞাপন": "ads",
+    "কনভার্সন": "conversion",
+    "বিক্রি": "sales",
+    "পেজ": "page",
+    "গ্রোথ": "growth",
+    "স্ট্র্যাটেজি": "strategy",
+    "টিপস": "tips",
+    "ট্রিকস": "tricks",
+    "কনভার্ট": "convert",
+    "লিড": "lead",
+    "লিডস": "leads",
+    "ল্যান্ডিং": "landing",
+    "স্টোর": "store",
+    "দোকান": "shop",
+    "পেমেন্ট": "payment",
+    "গেটওয়ে": "gateway",
+    "বিকাশ": "bkash",
+    "নগদ": "nagad",
+    "রকেট": "rocket",
+    "কুরিয়ার": "courier",
+    "ডেলিভারি": "delivery",
+    "প্যাকেজ": "package",
+    "মূল্য": "price",
+    "খরচ": "cost",
+    "বাজেট": "budget",
+    "আইটি": "it",
+    "সফটওয়্যার": "software",
+    "এজেন্সি": "agency",
+    "স্টুডিও": "studio",
+    "ক্লাউড": "cloud",
+    "সার্ভার": "server",
+    "ডাটাবেস": "database",
+    "এপিআই": "api",
+    "থেকে": "from",
+    "কী": "what",
+    "কি": "what",
+    "করবেন": "do",
+    "উপায়": "ways"
   };
 
   for (const [bnWord, enWord] of Object.entries(bnToEnMap)) {
@@ -136,6 +189,7 @@ export function generateCleanSlug(text: string, existingSlugs: string[] = []): s
   // Convert non-alphanumeric chars (excluding Bangla unicode if needed) to hyphens
   let slug = clean
     .replace(/[^a-z0-9\u0980-\u09FF]+/gi, "-")
+    .replace(/-+/g, "-")
     .replace(/^-+|-+$/g, "")
     .toLowerCase();
 
@@ -143,6 +197,12 @@ export function generateCleanSlug(text: string, existingSlugs: string[] = []): s
   // sanitize it safely into clean unicode hyphenated slug or fallback
   if (!slug || slug === "-") {
     slug = "article-" + Math.random().toString(36).substring(2, 8);
+  }
+
+  // Enforce word limit: maximum 5 to 7 words (6 words optimal limit)
+  const segments = slug.split("-").filter(Boolean);
+  if (segments.length > 6) {
+    slug = segments.slice(0, 6).join("-");
   }
 
   // Ensure uniqueness if existingSlugs provided

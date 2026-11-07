@@ -25,7 +25,13 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const post = await getCmsBlogPostBySlug(slug);
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
+  const post = await getCmsBlogPostBySlug(decodedSlug);
 
   if (!post || post.status === "draft" || post.status === "archived") {
     return {
@@ -78,7 +84,13 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BlogPostDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = await getCmsBlogPostBySlug(slug);
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
+  const post = await getCmsBlogPostBySlug(decodedSlug);
 
   if (!post) {
     notFound();

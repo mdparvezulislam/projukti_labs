@@ -232,6 +232,64 @@ export function MarkdownRenderer({
       continue;
     }
 
+    // Auto-Embed standalone URLs (YouTube, Vimeo, Loom)
+    const trimmedLine = line.trim();
+    const ytMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?$/i);
+    if (ytMatch) {
+      const videoId = ytMatch[1];
+      elements.push(
+        <div key={`yt-${index}`} className="my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md aspect-video">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="h-full w-full border-0"
+            loading="lazy"
+          />
+        </div>
+      );
+      index++;
+      continue;
+    }
+
+    const vimeoMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?vimeo\.com\/(\d+)(?:\S+)?$/i);
+    if (vimeoMatch) {
+      const vimeoId = vimeoMatch[1];
+      elements.push(
+        <div key={`vimeo-${index}`} className="my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md aspect-video">
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}`}
+            title="Vimeo video player"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="h-full w-full border-0"
+            loading="lazy"
+          />
+        </div>
+      );
+      index++;
+      continue;
+    }
+
+    const loomMatch = trimmedLine.match(/^(?:https?:\/\/)?(?:www\.)?loom\.com\/share\/([a-zA-Z0-9]+)(?:\S+)?$/i);
+    if (loomMatch) {
+      const loomId = loomMatch[1];
+      elements.push(
+        <div key={`loom-${index}`} className="my-6 overflow-hidden rounded-2xl border border-border bg-black shadow-md aspect-video">
+          <iframe
+            src={`https://www.loom.com/embed/${loomId}`}
+            title="Loom video player"
+            allowFullScreen
+            className="h-full w-full border-0"
+            loading="lazy"
+          />
+        </div>
+      );
+      index++;
+      continue;
+    }
+
     // Regular paragraph
     elements.push(
       <p key={`p-${index}`} className="my-4 text-sm sm:text-base text-text-secondary leading-[1.8] sm:leading-[1.85]">

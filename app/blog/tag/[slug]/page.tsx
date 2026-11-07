@@ -11,9 +11,15 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
+  let decodedTag = slug;
+  try {
+    decodedTag = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
   return {
-    title: `#${slug} বিষয়ক প্রবন্ধসমূহ | Projukti Labs Blog`,
-    description: `#${slug} ট্যাগ সম্পর্কিত সকল কারিগরি ও প্রযুক্তি প্রবন্ধ।`,
+    title: `#${decodedTag} বিষয়ক প্রবন্ধসমূহ | Projukti Labs Blog`,
+    description: `#${decodedTag} ট্যাগ সম্পর্কিত সকল কারিগরি ও প্রযুক্তি প্রবন্ধ।`,
   };
 }
 

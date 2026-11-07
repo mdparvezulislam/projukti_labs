@@ -16,7 +16,13 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
+  const category = getCategoryBySlug(decodedSlug);
 
   if (!category) {
     return {
@@ -32,13 +38,19 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BlogCategoryPage({ params }: PageProps) {
   const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    // ignore
+  }
+  const category = getCategoryBySlug(decodedSlug);
 
   if (!category) {
     notFound();
   }
 
-  const posts = getPostsByCategory(slug);
+  const posts = getPostsByCategory(decodedSlug);
   const allCategories = getAllCategories();
 
   return (
