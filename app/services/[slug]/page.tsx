@@ -49,8 +49,8 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
   // If viewing a category detail
   if (category) {
     return (
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
-        <div className="max-w-3xl space-y-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-12">
+        <div className="max-w-3xl space-y-3.5">
           <div className="flex items-center gap-2">
             <Link href="/services" className="text-xs text-text-muted hover:text-accent">
               Services
@@ -117,8 +117,8 @@ export default async function GenericServiceDetailPage({ params }: PageProps) {
   // If viewing a standard service detail
   if (service) {
     return (
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
-        <div className="max-w-3xl space-y-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-12">
+        <div className="max-w-3xl space-y-3.5">
           <div className="flex items-center gap-2">
             <Link href="/services" className="text-xs text-text-muted hover:text-accent">
               Services

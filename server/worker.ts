@@ -1,7 +1,7 @@
 import vinextWorker from "vinext/server/fetch-handler";
 import { processScheduledBlogPosts } from "@/lib/automation/processor";
 
-export default {
+const worker = {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     return vinextWorker.fetch(request, env, ctx);
   },
@@ -24,3 +24,5 @@ export default {
     );
   },
 };
+
+export default worker;

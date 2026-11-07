@@ -31,7 +31,9 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
   const [inquiriesList, setInquiriesList] = useState<Inquiry[]>(initialInquiries);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
-  const [activeInquiry, setActiveInquiry] = useState<Inquiry | null>(null);
+  const [activeInquiry, setActiveInquiry] = useState<Inquiry | null>(
+    initialInquiries.length > 0 ? initialInquiries[0] : null
+  );
   const [updating, setUpdating] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
@@ -50,7 +52,9 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
     const fetchNotes = async () => {
       setLoadingNotes(true);
       try {
-        const res = await fetch(`/api/admin/notes?entityType=inquiry&entityId=${activeId}`);
+        const res = await fetch(`/api/admin/notes?entityType=inquiry&entityId=${activeId}`, {
+          credentials: "same-origin",
+        });
         const data = (await res.json()) as { data?: { notes?: InternalNoteItem[] } };
         if (isMounted) {
           setNotes(data.data?.notes || []);
@@ -115,6 +119,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
     try {
       const res = await fetch("/api/admin/notes", {
         method: "POST",
+        credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           entityType: "inquiry",

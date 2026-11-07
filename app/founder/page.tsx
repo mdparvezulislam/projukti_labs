@@ -12,60 +12,60 @@ export const metadata = {
 
 export default function FounderPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-20">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-12 sm:space-y-16">
       {/* 1. Hero Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-8 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="lg:col-span-8 space-y-4 sm:space-y-5">
           <div className="inline-flex items-center gap-2">
             <Badge variant="accent">FOUNDER &amp; PRINCIPAL ARCHITECT</Badge>
             <Badge variant="outline">projuktilabs.tech</Badge>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
             Md Parvezul Islam
           </h1>
 
-          <p className="text-lg sm:text-xl text-text-muted leading-relaxed">
+          <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
             Md Parvezul Islam is the founder of Projukti Labs and a software-focused technology builder interested in
             designing and developing practical digital products. His work spans modern web development, e-commerce
             systems, business applications, backend architecture, automation, and high-performance search engines.
           </p>
 
-          <p className="text-sm sm:text-base text-text-muted leading-relaxed italic border-l-2 border-accent pl-4">
+          <p className="text-xs sm:text-sm text-text-muted leading-relaxed italic border-l-2 border-brand-orange-strong dark:border-accent pl-3 sm:pl-4">
             &ldquo;I founded Projukti Labs based on a straightforward principle: software must be fast, honest, and
             genuinely useful for business operations—engineered cleanly without unnecessary layers or artificial
             claims.&rdquo;
           </p>
 
-          <div className="flex flex-wrap gap-4 pt-2">
-            <Button variant="primary" asChild>
+          <div className="flex flex-wrap gap-3 pt-1">
+            <Button variant="primary" asChild className="min-h-[44px]">
               <Link href="/get-a-quote">
                 Request a Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="bg-card min-h-[44px]">
               <Link href="/contact">Send a Direct Message</Link>
             </Button>
           </div>
         </div>
 
         <div className="lg:col-span-4 flex justify-center">
-          <div className="w-full max-w-sm rounded-2xl border border-border bg-surface p-8 text-center space-y-6 shadow-2xl">
-            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent/40 bg-accent/10 font-mono text-4xl font-extrabold text-accent">
+          <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center space-y-4 shadow-md">
+            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-brand-orange/40 dark:border-accent/40 bg-brand-orange-soft dark:bg-accent/10 font-mono text-3xl font-extrabold text-brand-orange-strong dark:text-accent">
               PI
             </div>
-            <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-text-primary">Md Parvezul Islam</h2>
-              <p className="text-xs uppercase tracking-wider font-semibold text-accent">
+            <div className="space-y-0.5">
+              <h2 className="text-xl font-bold text-text-primary">Md Parvezul Islam</h2>
+              <p className="text-[11px] uppercase tracking-wider font-semibold text-brand-orange-strong dark:text-accent">
                 Founder &amp; Principal Software Architect
               </p>
-              <p className="text-xs text-text-muted">
+              <p className="text-xs text-text-secondary">
                 Bangladesh · Serving Domestic &amp; International Clients
               </p>
             </div>
 
-            <div className="pt-4 border-t border-border/80 space-y-2 text-left text-xs text-text-muted font-mono">
+            <div className="pt-3 border-t border-border/80 space-y-1.5 text-left text-xs text-text-muted font-mono">
               <div className="flex justify-between">
                 <span>Role:</span>
                 <span className="text-text-primary font-medium">Principal Architect</span>
@@ -76,7 +76,7 @@ export default function FounderPage() {
               </div>
               <div className="flex justify-between">
                 <span>Direct Access:</span>
-                <span className="text-accent font-semibold">Active Client Work</span>
+                <span className="text-brand-orange-strong dark:text-accent font-semibold">Active Client Work</span>
               </div>
             </div>
           </div>
@@ -84,18 +84,18 @@ export default function FounderPage() {
       </div>
 
       {/* 2. Architectural Manifesto */}
-      <div className="border-t border-border pt-12 space-y-8">
-        <div className="max-w-2xl space-y-2">
+      <div className="border-t border-border pt-8 sm:pt-10 space-y-6">
+        <div className="max-w-2xl space-y-1.5">
           <Badge variant="accent">ARCHITECTURAL MANIFESTO</Badge>
-          <h2 className="text-3xl font-extrabold text-text-primary">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
             How I Architect Digital Products
           </h2>
-          <p className="text-text-muted text-sm sm:text-base">
+          <p className="text-text-secondary text-xs sm:text-sm">
             Core principles that guide every system, database schema, and deployment pipeline I build.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <Card className="border-border bg-surface/40">
             <CardHeader className="space-y-2">
               <Terminal className="h-6 w-6 text-accent" />

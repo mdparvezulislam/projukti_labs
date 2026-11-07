@@ -40,7 +40,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
             return (
@@ -61,7 +61,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Right CTA & Controls */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <ThemeToggle />
           <Link href="/get-a-quote">
             <Button size="sm" variant="primary" className="gap-1.5">
@@ -72,12 +72,12 @@ export function SiteHeader() {
         </div>
 
         {/* Mobile menu trigger */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated cursor-pointer"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated cursor-pointer"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileOpen}
           >
@@ -88,7 +88,7 @@ export function SiteHeader() {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="border-b border-border bg-card/95 backdrop-blur-md md:hidden shadow-lg animate-in slide-in-from-top-2">
+        <div className="border-b border-border bg-card/95 backdrop-blur-md lg:hidden shadow-lg animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4 sm:px-6">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;

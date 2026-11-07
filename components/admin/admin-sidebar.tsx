@@ -147,20 +147,25 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
 
       {/* User Profile & Logout */}
       <div className="p-3 border-t border-border bg-card/60">
-        <div className="flex items-center justify-between gap-2">
-          <div className="min-w-0 flex-1">
-            <div className="text-xs font-semibold text-text-primary truncate">
-              {user?.name || "Md Parvezul Islam"}
+        <div className="flex items-center justify-between gap-2.5">
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <div className="h-8 w-8 rounded-full bg-brand-orange-strong text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-2xs">
+              {(user?.name || "P").charAt(0).toUpperCase()}
             </div>
-            <div className="text-[10px] text-accent uppercase font-medium tracking-wider">
-              {user?.role || "Owner"}
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold text-text-primary truncate">
+                {user?.name || "Md Parvezul Islam"}
+              </div>
+              <div className="text-[10px] text-brand-orange-strong dark:text-accent uppercase font-semibold tracking-wider">
+                {user?.role || "Owner"}
+              </div>
             </div>
           </div>
           <button
             type="button"
             onClick={handleLogout}
             aria-label="লগআউট করুন"
-            className="p-1.5 text-text-muted hover:text-red-400 hover:bg-red-500/10 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="p-1.5 text-text-muted hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <LogOut className="h-4 w-4" aria-hidden="true" />
           </button>

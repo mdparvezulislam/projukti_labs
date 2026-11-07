@@ -2,53 +2,28 @@
 
 **Brand:** Projukti Labs (`projuktilabs.tech`)  
 **Tagline:** *Building Digital Solutions. Engineering the Future.*  
-**Visual Archetype:** Premium Dark-First Technology Studio & Editorial Engineering Platform  
+**Visual Archetype:** Warm ChaiCode Ambient Light Theme (Default) + Carbon Dark System (Switchable)  
 **Language & Market Policy:** Bangladesh-First & Bangla-Primary (`bn-BD`, `Asia/Dhaka`, BDT ৳)  
-**Status:** Locked Baseline v1.2 (Phases 01–12 Complete)
+**Status:** Locked Baseline v2.0 (Phase 19 Complete UI/UX Optimization)
 
 ---
 
 ## 1. Design Philosophy & Anti-Generic Governance
 
-1. **Dark-First Precision:** Built on deep carbon/zinc surfaces (`#09090B` → `#111113` → `#18181B`) with `1px` architectural borders (`#27272A`) and high-contrast off-white typography (`#FAFAFA`).
-2. **Restrained Electric Yellow Accent (`#FFDF20`):** Yellow is used strictly as a high-intent focal signal (Primary CTAs with `#09090B` dark text, active navigation indicators, and verified telemetry badges). Never paint large backgrounds or body text yellow.
-3. **Bangladesh-First Editorial Craft:** All public communication is composed in natural, modern, professional Bangla. English is reserved for technical identifiers, programming paradigms, and short action labels.
-4. **Anti-Template Page Composition:** Reusable UI primitives (`Button`, `Badge`, `Card`, `AccordionItem`) are shared across the platform, but **every page archetype and productized service (`landing-page-meta-pixel`, `complete-ecommerce-website`, `website-maintenance`, `blog`) must use a bespoke section composition**.
-5. **App-Like Mobile Ergonomics (`320px+`):** Mobile viewports are designed as first-class touch interfaces featuring a `>= 44×44px` tap target floor, responsive navigation drawer with `/blog` link, and zero unintended horizontal scrollbars.
+1. **Default Warm Ambient Light Theme:** Built on warm chai/cream surfaces (`#FAF5ED` → `#FFFFFF` → `#F4EDE3`) with warm hairline architectural borders (`#E8DFD5` / `#D6CABA`) and high-contrast typography (`#141413` AAA, `#555048` AAA).
+2. **Switchable Carbon Dark Precision:** Deep carbon/zinc surfaces (`#09090B` → `#111113` → `#18181B`) with `1px` architectural borders (`#27272A`) and off-white typography (`#FAFAFA`) activated smoothly when `data-theme="dark"`.
+3. **Restrained Electric Yellow & Warm Amber Accents:** High-intent focal signal for Primary CTAs, active navigation indicators, and verified telemetry badges.
+4. **Bangladesh-First Editorial Craft:** All public communication is composed in natural, modern, professional Bangla. English is reserved for technical identifiers, programming paradigms, and short action labels.
+5. **Phase 19 Spacing & Density Governance:** Replaced sprawling dead padding with tightened, content-dense layouts (`py-8 sm:py-14` section containers, `p-4 sm:p-6` cards). Maximum utility, zero fluff.
+6. **App-Like Mobile Ergonomics (`320px+`):** Mobile viewports are designed as first-class touch interfaces featuring a `>= 44×44px` tap target floor, responsive navigation drawer with `lg:` breakpoint switch, fixed mobile bottom navigation in admin, and zero unintended horizontal scrollbars.
 
 ---
 
 ## 2. Color Tokens
 
 ```css
-:root {
-  /* Primary Dark Mode Surface Hierarchy */
-  --bg-canvas: #09090B;
-  --bg-surface: #111113;
-  --bg-elevated: #18181B;
-  --bg-glass: rgba(17, 17, 19, 0.82);
-
-  /* Architectural Borders */
-  --border-subtle: #27272A;
-  --border-strong: #3F3F46;
-  --border-accent: rgba(255, 223, 32, 0.35);
-
-  /* Typography Hierarchy (WCAG 2.1 AA/AAA Verified) */
-  --text-primary: #FAFAFA;     /* 19.3:1 contrast on #09090B */
-  --text-secondary: #A1A1AA;   /* 8.1:1 contrast on #09090B */
-  --text-muted: #82828C;       /* 5.2:1 contrast on #09090B (safe for 12-14px metadata) */
-
-  /* Brand & Semantic Accents */
-  --accent-primary: #FFDF20;   /* Pair with #09090B foreground text (15.4:1 contrast) */
-  --accent-hover: #FFD439;
-  --accent-info: #818CF8;
-  --status-success: #22C55E;
-  --status-warning: #F59E0B;
-  --status-danger: #EF4444;
-}
-
-[data-theme="light"] {
-  /* Phase 15: Exact ChaiCode Warm Ambient Cream System */
+:root, [data-theme="light"] {
+  /* Phase 19: Default ChaiCode Warm Ambient Cream System */
   color-scheme: light;
   --bg-canvas: #FAF5ED;            /* Sampled ChaiCode warm chai base */
   --bg-surface: #FFFFFF;           /* Crisp card surface */
@@ -67,6 +42,46 @@
   --text-primary: #141413;         /* 18.2:1 AAA on #FAF5ED */
   --text-secondary: #555048;       /* 7.4:1 AAA on #FAF5ED */
   --text-muted: #7E776C;           /* 4.8:1 AA on #FAF5ED */
+
+  /* Brand Accents */
+  --accent-primary: #FF7D0C;       /* ChaiCode vibrant orange */
+  --accent-hover: #E56A00;
+  --accent-soft: rgba(255, 125, 12, 0.12);
+  --accent-text: #FF7D0C;
+  --status-success: #15803D;
+  --status-warning: #B45309;
+  --status-danger: #DC2626;
+}
+
+[data-theme="dark"] {
+  /* Carbon Dark Mode Surface Hierarchy */
+  color-scheme: dark;
+  --bg-canvas: #09090B;
+  --bg-surface: #111113;
+  --bg-elevated: #18181B;
+  --bg-muted: #141416;
+  --bg-glass: rgba(17, 17, 19, 0.82);
+
+  /* Architectural Borders */
+  --border-subtle: #27272A;
+  --border-default: #27272A;
+  --border-strong: #3F3F46;
+  --border-accent: rgba(255, 223, 32, 0.35);
+
+  /* Typography Hierarchy (WCAG 2.1 AA/AAA Verified) */
+  --text-primary: #FAFAFA;     /* 19.3:1 contrast on #09090B */
+  --text-secondary: #A1A1AA;   /* 8.1:1 contrast on #09090B */
+  --text-muted: #82828C;       /* 5.2:1 contrast on #09090B */
+
+  /* Brand & Semantic Accents */
+  --accent-primary: #FFDF20;   /* Pair with #09090B foreground text (15.4:1 contrast) */
+  --accent-hover: #FFD439;
+  --accent-soft: rgba(255, 223, 32, 0.15);
+  --accent-text: #FFDF20;
+  --status-success: #22C55E;
+  --status-warning: #F59E0B;
+  --status-danger: #EF4444;
+}
 
   /* ChaiCode Sleek Black Button & Warm Amber Quote Highlight */
   --accent-primary: #141413;       /* Near-black button with white text */

@@ -20,7 +20,7 @@ function subscribe(callback: () => void) {
 }
 
 function getSnapshot(): "dark" | "light" {
-  if (typeof document === "undefined") return "dark";
+  if (typeof document === "undefined") return "light";
   const active = document.documentElement.getAttribute("data-theme") as "dark" | "light" | null;
   if (active) return active;
   try {
@@ -29,11 +29,11 @@ function getSnapshot(): "dark" | "light" {
   } catch {
     // restricted storage fallback
   }
-  return "dark";
+  return "light";
 }
 
 function getServerSnapshot(): "dark" | "light" {
-  return "dark";
+  return "light";
 }
 
 export function ThemeToggle() {

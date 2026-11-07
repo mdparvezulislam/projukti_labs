@@ -43,21 +43,21 @@ export default async function FAQPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-12">
       {/* 1. Header */}
-      <div className="text-center space-y-4 max-w-2xl mx-auto">
+      <div className="text-center space-y-3 max-w-2xl mx-auto">
         <Badge variant="accent">TRANSPARENT ANSWERS</Badge>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
           Frequently Asked Questions
         </h1>
-        <p className="text-text-muted text-base sm:text-lg">
+        <p className="text-text-secondary text-sm sm:text-base">
           Clear answers about how we estimate projects, architect software, accept payments, and provide long-term
           technical support.
         </p>
       </div>
 
       {/* 2. FAQ Categories & Items */}
-      <div className="space-y-12">
+      <div className="space-y-8 sm:space-y-10">
         {categories.map((cat, catIdx) => (
           <div key={cat.category} className="space-y-6">
             <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">

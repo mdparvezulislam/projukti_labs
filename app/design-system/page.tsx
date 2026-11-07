@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function DesignSystemPreviewPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-16">
+    <div className="mx-auto max-w-7xl px-4 py-8 sm:py-14 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
       {/* Header */}
       <div className="space-y-4">
         <Badge variant="accent">Projukti Labs UI v1.0</Badge>

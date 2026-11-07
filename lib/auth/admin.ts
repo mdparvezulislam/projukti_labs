@@ -100,12 +100,19 @@ export async function getAdminSession(req?: Request): Promise<AuthenticatedAdmin
     let rawToken: string | undefined;
 
     if (req) {
-      const cookieHeader = req.headers.get("cookie");
-      if (cookieHeader) {
-        const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${ADMIN_COOKIE_NAME}=([^;]+)`));
-        if (match) rawToken = match[1];
+      if ("cookies" in req && typeof (req as { cookies?: { get?: (k: string) => { value?: string } } }).cookies?.get === "function") {
+        rawToken = (req as { cookies: { get: (k: string) => { value?: string } } }).cookies.get(ADMIN_COOKIE_NAME)?.value;
       }
-    } else {
+      if (!rawToken) {
+        const cookieHeader = req.headers.get("cookie");
+        if (cookieHeader) {
+          const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${ADMIN_COOKIE_NAME}=([^;]+)`));
+          if (match) rawToken = match[1];
+        }
+      }
+    }
+
+    if (!rawToken) {
       try {
         const cookieStore = await cookies();
         rawToken = cookieStore.get(ADMIN_COOKIE_NAME)?.value;

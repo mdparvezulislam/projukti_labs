@@ -128,7 +128,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   };
 
   return (
-    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-12">
+    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-8 sm:space-y-10">
       {/* Structured Data Script */}
       <script
         type="application/ld+json"
@@ -156,7 +156,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       </nav>
 
       {/* 2. Article Header */}
-      <header className="space-y-6 border-b border-border/80 pb-8">
+      <header className="space-y-4 border-b border-border/80 pb-6">
         <div className="flex flex-wrap items-center gap-3">
           <Badge variant="accent">{post.categoryName}</Badge>
           <span className="flex items-center gap-1.5 text-xs text-text-muted font-mono">

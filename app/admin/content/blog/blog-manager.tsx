@@ -555,15 +555,15 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
           {/* Posts Table / Cards */}
           <div className="rounded-2xl border border-border bg-surface overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left border-collapse table-auto">
                 <thead>
                   <tr className="border-b border-border bg-surface-elevated/60 text-[11px] font-mono uppercase tracking-wider text-text-muted">
-                    <th className="py-3.5 px-4">প্রবন্ধ</th>
-                    <th className="py-3.5 px-4">ক্যাটাগরি</th>
-                    <th className="py-3.5 px-4">স্ট্যাটাস</th>
-                    <th className="py-3.5 px-4">শব্দসংখ্যা / সময়</th>
-                    <th className="py-3.5 px-4">সর্বশেষ আপডেট</th>
-                    <th className="py-3.5 px-4 text-right">অ্যাকশন</th>
+                    <th className="py-3 px-3 w-4/12 min-w-[170px]">প্রবন্ধ</th>
+                    <th className="py-3 px-3 whitespace-nowrap">ক্যাটাগরি</th>
+                    <th className="py-3 px-3 whitespace-nowrap">স্ট্যাটাস</th>
+                    <th className="py-3 px-3 whitespace-nowrap">শব্দ / সময়</th>
+                    <th className="py-3 px-3 whitespace-nowrap">সর্বশেষ আপডেট</th>
+                    <th className="py-3 px-3 text-right whitespace-nowrap">অ্যাকশন</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/60 text-xs">
@@ -576,34 +576,34 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                   ) : (
                     filteredPosts.map((post) => (
                       <tr key={post.id} className="hover:bg-surface-elevated/30 transition-colors">
-                        <td className="py-3.5 px-4 max-w-sm">
-                          <div className="flex items-start gap-3">
+                        <td className="py-3 px-3 max-w-[190px] xl:max-w-[230px]">
+                          <div className="flex items-start gap-2.5 min-w-0">
                             {post.coverImage ? (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img
                                 src={post.coverImage}
                                 alt=""
-                                className="h-10 w-14 rounded object-cover border border-border shrink-0 mt-0.5"
+                                className="h-9 w-12 rounded object-cover border border-border shrink-0 mt-0.5"
                               />
                             ) : (
-                              <div className="h-10 w-14 rounded bg-surface-elevated border border-border shrink-0 flex items-center justify-center text-text-muted">
+                              <div className="h-9 w-12 rounded bg-surface-elevated border border-border shrink-0 flex items-center justify-center text-text-muted">
                                 <FileText className="h-4 w-4" />
                               </div>
                             )}
-                            <div>
-                              <p className="font-bold text-text-primary line-clamp-1">{post.title}</p>
+                            <div className="min-w-0 flex-1">
+                              <p className="font-bold text-text-primary truncate">{post.title}</p>
                               <p className="font-mono text-[11px] text-text-muted truncate mt-0.5">
                                 /blog/{post.slug}
                               </p>
                             </div>
                           </div>
                         </td>
-                        <td className="py-3.5 px-4">
-                          <span className="rounded-md border border-border bg-surface-elevated px-2 py-0.5 text-[11px] font-mono text-text-secondary">
+                        <td className="py-3 px-3 whitespace-nowrap">
+                          <span className="rounded-md border border-border bg-surface-elevated px-2 py-0.5 text-[11px] font-mono text-text-secondary inline-block">
                             {categories.find((c) => c.slug === post.category)?.name || post.category}
                           </span>
                         </td>
-                        <td className="py-3.5 px-4">
+                        <td className="py-3 px-3 whitespace-nowrap">
                           <span
                             className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider ${
                               post.status === "published"
@@ -619,14 +619,14 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                             {post.status || "published"}
                           </span>
                         </td>
-                        <td className="py-3.5 px-4 font-mono text-text-muted">
+                        <td className="py-3 px-3 font-mono text-text-muted whitespace-nowrap">
                           {post.wordCount ? `${post.wordCount} words` : "—"}
                           <span className="block text-[10px] opacity-80">{post.readTime || "5 min"}</span>
                         </td>
-                        <td className="py-3.5 px-4 text-text-muted font-mono text-[11px]">
+                        <td className="py-3 px-3 text-text-muted font-mono text-[11px] whitespace-nowrap">
                           {post.updatedAt ? new Date(post.updatedAt).toLocaleDateString("bn-BD") : "—"}
                         </td>
-                        <td className="py-3.5 px-4 text-right">
+                        <td className="py-3 px-3 text-right whitespace-nowrap">
                           <div className="flex items-center justify-end gap-1.5">
                             <button
                               onClick={() => handleOpenEdit(post)}

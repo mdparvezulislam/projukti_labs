@@ -26,9 +26,9 @@ export default function WebsiteMaintenancePage() {
   const packages = service?.packages || [];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-24">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-12 sm:space-y-16">
       {/* 1. Hero Section */}
-      <div className="max-w-4xl space-y-6">
+      <div className="max-w-4xl space-y-4 sm:space-y-5">
         <div className="inline-flex items-center gap-2">
           <Badge variant="accent">FLAGSHIP SOLUTION</Badge>
           <Badge variant="outline">Maintenance &amp; Technical Support</Badge>

@@ -33,23 +33,23 @@ export default async function PortfolioPage() {
       : VERIFIED_PORTFOLIO_PROJECTS;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-14">
       {/* 1. Header */}
-      <div className="max-w-3xl space-y-4">
+      <div className="max-w-3xl space-y-3.5">
         <div className="inline-flex items-center gap-2">
           <Badge variant="accent">PORTFOLIO &amp; SYSTEMS</Badge>
           <Badge variant="outline">{projects.length} Verified Projects</Badge>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
           Our Work &amp; Engineering Systems
         </h1>
-        <p className="text-lg text-text-secondary leading-relaxed">
+        <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
           We believe in transparent, verifiable engineering. Below is an inventory of active platforms, internal
           developer utilities, and software prototypes designed and built by Projukti Labs.
         </p>
 
         {/* Ethical Transparency Notice */}
-        <div className="mt-4 flex items-start gap-3 rounded-2xl border border-border bg-surface-muted/70 p-5 text-xs text-text-secondary leading-relaxed shadow-2xs">
+        <div className="mt-3 flex items-start gap-2.5 rounded-2xl border border-border bg-surface-muted/70 p-4 text-xs text-text-secondary leading-relaxed shadow-2xs">
           <Info className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-text-primary">Portfolio Transparency Note: </span>
@@ -61,7 +61,7 @@ export default async function PortfolioPage() {
       </div>
 
       {/* 2. Projects Grid */}
-      <div className="space-y-12">
+      <div className="space-y-8 sm:space-y-10">
         {projects.map((project) => {
           const badgeText = project.badge || "Live Platform";
           const badgeVariant = badgeText.toLowerCase().includes("live")
@@ -76,10 +76,10 @@ export default async function PortfolioPage() {
               id={project.id}
               className="border-border bg-card shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200 overflow-hidden"
             >
-              <div className="p-6 sm:p-10 space-y-8">
+              <div className="p-4 sm:p-7 space-y-6">
                 {/* Title & Metadata Row */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
-                  <div className="space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border pb-4 sm:pb-5">
+                  <div className="space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
                       <Badge variant={badgeVariant}>{badgeText}</Badge>
                       <Badge variant="outline">{project.category}</Badge>
@@ -87,13 +87,13 @@ export default async function PortfolioPage() {
                         Classification: {project.projectType}
                       </span>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
+                    <h2 className="text-xl sm:text-2xl font-extrabold text-text-primary">
                       {project.title}
                     </h2>
                   </div>
 
                   {project.linkUrl && (
-                    <Button variant="outline" size="sm" asChild className="self-start sm:self-center bg-card">
+                    <Button variant="outline" size="sm" asChild className="self-start sm:self-center bg-card min-h-[40px]">
                       <a
                         href={project.linkUrl}
                         target={project.linkUrl.startsWith("http") ? "_blank" : undefined}

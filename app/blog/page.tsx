@@ -47,9 +47,9 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-12">
       {/* 1. Editorial Hero */}
-      <div className="max-w-3xl space-y-4">
+      <div className="max-w-3xl space-y-3.5">
         <div className="inline-flex items-center gap-2">
           <Badge variant="accent">TECHNOLOGY &amp; ARCHITECTURE INSIGHTS</Badge>
           <span className="font-mono text-xs text-text-muted">Projukti Labs Editorial</span>
@@ -57,17 +57,17 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
           Engineering, Commerce &amp; Architecture Insights
         </h1>
-        <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
+        <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
           Technical deep-dives, e-commerce architectures, conversion tracking breakdowns, and web performance guides
           from the engineers at Projukti Labs.
         </p>
       </div>
 
       {/* 2. Category Filter Pills */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-border pb-6">
+      <div className="flex flex-wrap items-center gap-2 border-b border-border pb-5">
         <Link
           href="/blog"
-          className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+          className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
             !selectedCategory
               ? "bg-accent text-accent-foreground font-semibold shadow-xs"
               : "border border-border bg-card text-text-secondary hover:text-text-primary hover:border-border-hover shadow-2xs"
@@ -79,7 +79,7 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
           <Link
             key={cat.id}
             href={`/blog/category/${cat.slug}`}
-            className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+            className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
               selectedCategory === cat.slug
                 ? "bg-accent text-accent-foreground font-semibold shadow-xs"
                 : "border border-border bg-card text-text-secondary hover:text-text-primary hover:border-border-hover shadow-2xs"
@@ -92,9 +92,9 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
 
       {/* 3. Featured Article (When viewing all posts without search) */}
       {!selectedCategory && !query && featuredPost && (
-        <div className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md transition-all">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
+        <div className="rounded-2xl sm:rounded-3xl border border-border bg-card p-5 sm:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md transition-all">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div className="lg:col-span-8 space-y-3.5">
               <div className="flex items-center gap-3">
                 <Badge variant="accent">বিশেষ ফিচার্ড প্রবন্ধ</Badge>
                 <Badge variant="outline">{featuredPost.categoryName}</Badge>

@@ -12,17 +12,17 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-20">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-12 sm:space-y-16">
       {/* 1. Hero Header */}
-      <div className="max-w-3xl space-y-6">
+      <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-2">
           <Badge variant="accent">STUDIO MISSION &amp; PHILOSOPHY</Badge>
           <Badge variant="outline">projuktilabs.tech</Badge>
         </div>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
           Building Digital Solutions. Engineering the Future.
         </h1>
-        <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
+        <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
           Projukti Labs is a technology-driven software and digital solutions studio founded by{" "}
           <strong className="text-text-primary font-semibold">Md Parvezul Islam</strong>. We combine
           thoughtful design, reliable engineering, and practical technology to help businesses establish their
@@ -31,7 +31,7 @@ export default function AboutPage() {
       </div>
 
       {/* 2. Company Background & Story */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-t border-border pt-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start border-t border-border pt-8 sm:pt-10">
         <div className="lg:col-span-5 space-y-4">
           <Badge variant="outline">OUR BACKGROUND</Badge>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">

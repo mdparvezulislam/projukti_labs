@@ -12,29 +12,29 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-10 sm:space-y-12">
       {/* 1. Header */}
-      <div className="max-w-3xl space-y-4">
+      <div className="max-w-3xl space-y-3">
         <Badge variant="accent">DIRECT ENGINEERING CHANNEL</Badge>
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
           Get in Touch with Our Engineering Team
         </h1>
-        <p className="text-lg text-text-muted leading-relaxed">
+        <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
           Have a question about our services, software architecture, or an upcoming project? Send us a direct message.
           We typically respond within 24 business hours.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Contact Form */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-5">
           <ContactForm />
         </div>
 
         {/* Right Column: Direct Info & Trust Points */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-xl border border-border bg-surface/50 p-6 sm:p-8 space-y-6">
-            <h3 className="text-lg font-bold text-text-primary border-b border-border pb-3">
+        <div className="lg:col-span-5 space-y-5">
+          <div className="rounded-2xl border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
+            <h3 className="text-base font-bold text-text-primary border-b border-border pb-3">
               Studio Information &amp; Direct Channels
             </h3>
 

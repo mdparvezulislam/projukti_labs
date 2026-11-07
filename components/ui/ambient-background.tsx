@@ -3,11 +3,12 @@ import * as React from "react";
 export function AmbientBackground() {
   return (
     <div
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden select-none w-full h-full max-w-full"
+      style={{ contain: "strict", overflow: "clip" }}
       aria-hidden="true"
     >
       {/* 1. Light Theme: ChaiCode Exact Warm Ambient Cream & Honeycomb System */}
-      <div className="absolute inset-0 opacity-100 dark:opacity-0 transition-opacity duration-500">
+      <div className="absolute inset-0 overflow-hidden w-full h-full opacity-100 dark:opacity-0 transition-opacity duration-500">
         {/* Warm Chai Base Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#FAF5ED] via-[#FBF4EB] to-[#FAF3E5]" />
 
@@ -112,7 +113,7 @@ export function AmbientBackground() {
 
         {/* Large Decorative Precision Architectural Lines */}
         <svg
-          className="absolute inset-0 h-full w-full stroke-neutral-900/[0.035] [mask-image:radial-gradient(100%_100%_at_top_center,white,transparent_88%)]"
+          className="absolute inset-0 h-full w-full overflow-hidden stroke-neutral-900/[0.035] [mask-image:radial-gradient(100%_100%_at_top_center,white,transparent_88%)]"
           aria-hidden="true"
         >
           <defs>
@@ -150,7 +151,7 @@ export function AmbientBackground() {
       </div>
 
       {/* 2. Dark Theme Ambient Grid (Preserves Dark Identity) */}
-      <div className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300">
+      <div className="absolute inset-0 overflow-hidden w-full h-full opacity-0 dark:opacity-100 transition-opacity duration-300">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] sm:w-[1100px] h-[480px] rounded-full bg-gradient-to-b from-yellow-500/10 via-amber-500/5 to-transparent blur-3xl" />
         <svg
           className="absolute inset-0 h-full w-full stroke-zinc-800/[0.3] [mask-image:radial-gradient(100%_100%_at_top_center,white,transparent_80%)]"

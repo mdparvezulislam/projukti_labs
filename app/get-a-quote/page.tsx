@@ -26,14 +26,14 @@ async function QuoteFormContainer({
 
 export default function GetAQuotePage({ searchParams }: PageProps) {
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-12">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-8 sm:space-y-10">
       {/* 1. Header */}
-      <div className="text-center space-y-4 max-w-3xl mx-auto">
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
         <Badge variant="accent">STRUCTURED CONSULTATION</Badge>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
           Request a Project Quotation
         </h1>
-        <p className="text-base sm:text-lg text-text-muted leading-relaxed">
+        <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
           Submit your project requirements, target timeline, and budget. Our lead software architect will review your
           specifications and provide a formal Scope of Work (SOW) within 24 business hours.
         </p>

@@ -134,9 +134,9 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
   }
 
   return (
-    <Card className="border-border/80 bg-surface/50">
-      <CardContent className="p-6 sm:p-8">
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <Card className="border-border/80 bg-card">
+      <CardContent className="p-4 sm:p-7">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
             <div
               className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300"
