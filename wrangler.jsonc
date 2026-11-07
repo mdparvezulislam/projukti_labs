@@ -6,8 +6,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "projukti_labs_db",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_name": "projukti-labs-production",
+      "database_id": "8b1097c3-c930-477f-b8bc-81a498ac0f41",
       "migrations_dir": "db/migrations"
     }
   ],
@@ -19,13 +19,27 @@
   ],
   "kv_namespaces": [
     {
+      "binding": "VINEXT_KV_CACHE",
+      "id": "4c3a552b441e491c8d781f198bbb4316"
+    },
+    {
       "binding": "KV_CACHE",
-      "id": "00000000000000000000000000000000"
+      "id": "4c3a552b441e491c8d781f198bbb4316"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "projuktilabs.tech",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.projuktilabs.tech",
+      "custom_domain": true
     }
   ],
   "vars": {
-    "ENVIRONMENT": "development",
-    "APP_URL": "http://localhost:3000"
+    "ENVIRONMENT": "production",
+    "APP_URL": "https://projuktilabs.tech"
   },
   "env": {
     "preview": {

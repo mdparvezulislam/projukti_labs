@@ -28,8 +28,9 @@ Projukti Labs is an independent technology studio and founder portfolio led by *
 - Categories (`/blog/category/[slug]`), Tags (`/blog/tag/[slug]`), and Search (`searchPosts`).
 - XML Sitemap (`/sitemap.xml`) and `robots.txt` generation.
 
-### Complete Admin Operating System (Phases 08–12):
-- **Full-featured Admin Portal (`/admin`):** Secure dashboard managing CRM leads, structured quotes (`PL-Q-2026-XXXX`), customer records, dynamic CMS content, and automated business workflows.
+### Complete Admin Operating System & Real CMS Workflows (Phases 08–16):
+- **Full-featured Admin Portal (`/admin`):** Secure dashboard managing CRM leads, structured quotes (`PL-Q-2026-XXXX`), customer records, dynamic CMS content, internal team notes, and automated business workflows.
+- **Dynamic Multi-Section CMS & Package Pricing:** All 5 core homepage sections and service package pricing tiers (BDT/USD) can be edited in real time, persisting to Cloudflare D1 and immediately updating public website pages.
 - **Authoritative Database & CMS Integration:** 21 entities managed via Cloudflare D1 and Drizzle ORM. Public website reads dynamic content with immediate fallback to code definitions.
 - **Mobile-App-Like Ergonomics (<768px):** 5-tab sticky bottom navigation (`admin-mobile-nav.tsx`), 48px touch targets, compact header with notification alerts, and zero horizontal scrollbar overflow.
 - **Event-Driven Automation Engine:** Trigger workflows on inquiry creation, lead progression, quote generation, and scheduled publishing, backed by execution logging and retry handling.

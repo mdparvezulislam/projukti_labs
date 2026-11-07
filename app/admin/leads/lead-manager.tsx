@@ -160,7 +160,7 @@ export function LeadManager({ initialLeads }: LeadManagerProps) {
                       priorityColors[lead.priority] || "bg-zinc-500/10 text-zinc-400"
                     }`}
                   >
-                    {lead.priority.toUpperCase()}
+                    {(lead.priority || "medium").toUpperCase()}
                   </span>
                 </div>
 

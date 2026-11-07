@@ -216,7 +216,7 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                         : "bg-zinc-500/10 text-zinc-400 border-zinc-500/20"
                     }`}
                   >
-                    {post.status.toUpperCase()}
+                    {(post.status || "published").toUpperCase()}
                   </span>
                 </div>
 

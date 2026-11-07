@@ -56,14 +56,26 @@ export interface CloudflareBindings {
   KV_CACHE?: KVNamespace;
 }
 
+let cfWorkersEnv: Record<string, unknown> | undefined;
+
+try {
+  // In Cloudflare Workers (workerd), "cloudflare:workers" is a native runtime module.
+  // In Node.js (dev/testing), this import throws and is caught safely.
+  const cfw = await import("cloudflare:workers");
+  cfWorkersEnv = (cfw as unknown as { env?: Record<string, unknown> })?.env;
+} catch {
+  // Not running inside workerd runtime (Node.js dev or testing)
+}
+
 export function getCloudflareBindings(): CloudflareBindings {
   const g = globalThis as Record<string | symbol, unknown>;
   const p = (typeof process !== "undefined" ? process.env : {}) as Record<string, unknown>;
+  const c = cfWorkersEnv || {};
 
-  // 1. Direct bindings on globalThis or process.env
-  let db = (g.DB || p.DB || (g.__env__ as Record<string, unknown>)?.DB || (g.env as Record<string, unknown>)?.DB) as D1Database | undefined;
-  const r2 = (g.R2_BUCKET || p.R2_BUCKET || (g.__env__ as Record<string, unknown>)?.R2_BUCKET) as R2Bucket | undefined;
-  const kv = (g.KV_CACHE || p.KV_CACHE || (g.__env__ as Record<string, unknown>)?.KV_CACHE) as KVNamespace | undefined;
+  // 1. Direct bindings from cloudflare:workers, globalThis, or process.env
+  let db = (c.DB || g.DB || p.DB || (g.__env__ as Record<string, unknown>)?.DB || (g.env as Record<string, unknown>)?.DB) as D1Database | undefined;
+  const r2 = (c.R2_BUCKET || g.R2_BUCKET || p.R2_BUCKET || (g.__env__ as Record<string, unknown>)?.R2_BUCKET) as R2Bucket | undefined;
+  const kv = (c.KV_CACHE || c.VINEXT_KV_CACHE || g.KV_CACHE || p.KV_CACHE || (g.__env__ as Record<string, unknown>)?.KV_CACHE) as KVNamespace | undefined;
 
   // 2. Try globalThis[Symbol.for("cloudflare.env")] or globalThis.__CF_ENV__
   if (!db) {
