@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Sun, Moon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 function subscribe(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -36,7 +37,7 @@ function getServerSnapshot(): "dark" | "light" {
   return "light";
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const theme = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const isMounted = React.useSyncExternalStore(
     () => () => {},
@@ -58,7 +59,10 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-warm-sm transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className={cn(
+        "inline-flex h-9.5 w-9.5 items-center justify-center rounded-full border border-border/80 bg-surface/90 text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-2xs transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+        className
+      )}
       aria-label={`Switch to ${isMounted && theme === "dark" ? "light" : "dark"} theme`}
     >
       {isMounted && theme === "light" ? (

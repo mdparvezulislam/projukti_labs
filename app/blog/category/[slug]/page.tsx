@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { ArrowRight, Clock, Calendar, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Calendar } from "lucide-react";
 import {
   getCategoryBySlug,
   getPostsByCategory,
@@ -42,18 +42,18 @@ export default async function BlogCategoryPage({ params }: PageProps) {
   const allCategories = getAllCategories();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-8 sm:space-y-12">
       {/* 1. Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-text-muted">
-        <Link href="/" className="hover:text-accent transition-colors">
-          হোম
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-text-muted overflow-x-auto no-scrollbar whitespace-nowrap py-0.5">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 font-semibold text-text-secondary hover:text-brand-orange-strong dark:hover:text-accent transition-colors shrink-0"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          <span>ব্লগ</span>
         </Link>
-        <ChevronRight className="h-3 w-3 text-border" />
-        <Link href="/blog" className="hover:text-accent transition-colors">
-          ব্লগ
-        </Link>
-        <ChevronRight className="h-3 w-3 text-border" />
-        <span className="text-text-primary">{category.name}</span>
+        <span className="text-border/80 shrink-0">/</span>
+        <span className="text-text-primary font-medium shrink-0">{category.name}</span>
       </nav>
 
       {/* 2. Header */}

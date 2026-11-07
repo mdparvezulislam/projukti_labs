@@ -25,9 +25,9 @@ export function AdminHeader({
           type="button"
           onClick={onToggleMobileMenu}
           aria-label="অ্যাডমিন মেনু খুলুন"
-          className="md:hidden p-2 text-text-muted hover:text-text-primary rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] min-w-[44px] flex items-center justify-center"
+          className="md:hidden inline-flex h-9.5 w-9.5 items-center justify-center rounded-full border border-border/80 bg-surface/90 text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-2xs transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <Menu className="h-5 w-5" aria-hidden="true" />
+          <Menu className="h-4 w-4" aria-hidden="true" />
         </button>
 
         <div className="min-w-0">
@@ -47,11 +47,11 @@ export function AdminHeader({
         <Link
           href="/admin/notifications"
           aria-label="নোটিফিকেশন সেন্টার"
-          className="relative p-2 text-text-muted hover:text-text-primary rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] min-w-[44px] flex items-center justify-center"
+          className="relative inline-flex h-9.5 w-9.5 items-center justify-center rounded-full border border-border/80 bg-surface/90 text-text-secondary hover:text-text-primary hover:bg-surface-muted shadow-2xs transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <Bell className="h-4 w-4" aria-hidden="true" />
           {unreadNotifications > 0 && (
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-accent ring-2 ring-card" />
+            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-brand-orange-strong ring-2 ring-card" />
           )}
         </Link>
 

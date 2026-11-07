@@ -4,10 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
+  ArrowLeft,
   ArrowRight,
   Clock,
   Calendar,
-  ChevronRight,
   BookOpen,
   Tag,
   Share2,
@@ -128,7 +128,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   };
 
   return (
-    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-8 sm:space-y-10">
+    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-4 pb-12 sm:pt-8 sm:pb-16 space-y-6 sm:space-y-8">
       {/* Structured Data Script */}
       <script
         type="application/ld+json"
@@ -136,84 +136,94 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       />
 
       {/* 1. Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-text-muted">
-        <Link href="/" className="hover:text-accent transition-colors">
-          হোম
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-text-muted overflow-x-auto no-scrollbar whitespace-nowrap py-0.5">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 font-semibold text-text-secondary hover:text-brand-orange-strong dark:hover:text-accent transition-colors shrink-0"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          <span>ব্লগ</span>
         </Link>
-        <ChevronRight className="h-3 w-3 text-border" />
-        <Link href="/blog" className="hover:text-accent transition-colors">
-          ব্লগ
-        </Link>
-        <ChevronRight className="h-3 w-3 text-border" />
+        <span className="text-border/80 shrink-0">/</span>
         <Link
           href={`/blog/category/${post.category}`}
-          className="hover:text-accent transition-colors"
+          className="hover:text-brand-orange-strong dark:hover:text-accent transition-colors shrink-0 font-medium"
         >
           {post.categoryName}
         </Link>
-        <ChevronRight className="h-3 w-3 text-border" />
-        <span className="text-text-primary truncate max-w-[200px]">{post.title}</span>
+        <span className="text-border/80 shrink-0 hidden sm:inline">/</span>
+        <span className="text-text-secondary truncate max-w-[280px] hidden sm:inline font-normal">
+          {post.title}
+        </span>
       </nav>
 
       {/* 2. Article Header */}
-      <header className="space-y-4 border-b border-border/80 pb-6">
-        <div className="flex flex-wrap items-center gap-3">
-          <Badge variant="accent">{post.categoryName}</Badge>
-          <span className="flex items-center gap-1.5 text-xs text-text-muted font-mono">
-            <Clock className="h-3.5 w-3.5 text-accent" />
-            {post.readingTimeMinutes} মিনিট পড়ার সময়
+      <header className="space-y-4 border-b border-border/70 pb-5">
+        <div className="flex flex-wrap items-center gap-2 text-xs text-text-muted">
+          <span className="inline-flex items-center rounded-full bg-brand-orange/10 px-2.5 py-0.5 text-[11px] font-bold text-brand-orange-strong dark:text-accent border border-brand-orange/20">
+            {post.categoryName}
           </span>
-          <span className="flex items-center gap-1.5 text-xs text-text-muted font-mono">
-            <Calendar className="h-3.5 w-3.5 text-accent" />
+          <span className="text-border/60 shrink-0">•</span>
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-text-muted shrink-0">
+            <Clock className="h-3 w-3 text-brand-orange-strong dark:text-accent" />
+            {post.readingTimeMinutes} মিনিট
+          </span>
+          <span className="text-border/60 shrink-0">•</span>
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono text-text-muted shrink-0">
+            <Calendar className="h-3 w-3 text-brand-orange-strong dark:text-accent" />
             {formattedDate}
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary leading-tight sm:leading-tight">
           {post.title}
         </h1>
 
         {post.subtitle && (
-          <p className="text-lg sm:text-xl font-medium text-text-secondary leading-relaxed">
+          <p className="text-base sm:text-xl font-medium text-text-secondary leading-relaxed">
             {post.subtitle}
           </p>
         )}
 
-        <p className="text-base sm:text-lg text-text-muted leading-relaxed">
+        <p className="text-sm sm:text-base text-text-muted leading-relaxed">
           {post.excerpt}
         </p>
 
-        {/* Author Byline */}
-        <div className="flex items-center justify-between pt-2">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/40 bg-accent/10 font-mono text-sm font-bold text-accent">
+        {/* Author Byline & Social Share */}
+        <div className="flex items-center justify-between gap-3 pt-3 border-t border-border/40">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-orange/30 bg-brand-orange/10 font-bold text-xs text-brand-orange-strong dark:text-accent shrink-0 shadow-2xs">
               PI
             </div>
-            <div>
-              <p className="text-xs font-bold text-text-primary">{post.author.name}</p>
-              <p className="text-[11px] text-text-muted">{post.author.role}</p>
+            <div className="min-w-0">
+              <p className="text-xs font-bold text-text-primary truncate">{post.author.name}</p>
+              <p className="text-[11px] text-text-muted truncate">{post.author.role}</p>
             </div>
           </div>
 
           {/* Social Share links */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 shrink-0">
             <a
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-border bg-surface hover:bg-surface-elevated text-text-secondary hover:text-accent transition-colors"
+              aria-label="Share on Facebook"
+              className="h-8.5 w-8.5 rounded-full border border-border/80 bg-surface hover:bg-surface-elevated text-text-secondary hover:text-text-primary shadow-2xs inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               title="Share on Facebook"
             >
-              <Share2 className="h-4 w-4" />
+              <Share2 className="h-3.5 w-3.5" />
             </a>
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(canonicalUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-border bg-surface hover:bg-surface-elevated text-text-secondary hover:text-accent transition-colors font-bold text-xs"
+              aria-label="Share on X"
+              className="h-8.5 w-8.5 rounded-full border border-border/80 bg-surface hover:bg-surface-elevated text-text-secondary hover:text-text-primary shadow-2xs inline-flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               title="Share on X"
             >
-              X
+              <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
             </a>
           </div>
         </div>
