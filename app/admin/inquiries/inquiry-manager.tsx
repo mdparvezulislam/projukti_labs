@@ -1,11 +1,30 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Filter, Phone, Mail, Building, Calendar, CheckCircle2, MessageSquare, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  Search,
+  Filter,
+  Phone,
+  Mail,
+  Calendar,
+  CheckCircle2,
+  MessageSquare,
+  Loader2,
+  Send,
+  FileText,
+  User,
+} from "lucide-react";
 import { Inquiry } from "@/db/schema";
 
 interface InquiryManagerProps {
   initialInquiries: Inquiry[];
+}
+
+interface InternalNoteItem {
+  id: string;
+  authorName: string;
+  content: string;
+  createdAt: string;
 }
 
 export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
@@ -15,6 +34,40 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
   const [activeInquiry, setActiveInquiry] = useState<Inquiry | null>(null);
   const [updating, setUpdating] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  // Notes state
+  const [notes, setNotes] = useState<InternalNoteItem[]>([]);
+  const [loadingNotes, setLoadingNotes] = useState(false);
+  const [newNoteContent, setNewNoteContent] = useState("");
+  const [addingNote, setAddingNote] = useState(false);
+
+  const activeId = activeInquiry?.id;
+
+  useEffect(() => {
+    if (!activeId) return;
+
+    let isMounted = true;
+    const fetchNotes = async () => {
+      setLoadingNotes(true);
+      try {
+        const res = await fetch(`/api/admin/notes?entityType=inquiry&entityId=${activeId}`);
+        const data = (await res.json()) as { data?: { notes?: InternalNoteItem[] } };
+        if (isMounted) {
+          setNotes(data.data?.notes || []);
+        }
+      } catch {
+        if (isMounted) setNotes([]);
+      } finally {
+        if (isMounted) setLoadingNotes(false);
+      }
+    };
+
+    fetchNotes();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [activeId]);
 
   const filtered = inquiriesList.filter((inq) => {
     const matchesStatus = selectedStatus === "all" || inq.status === selectedStatus;
@@ -51,6 +104,34 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
       setStatusMessage("আপডেট করতে ব্যর্থ হয়েছে।");
     } finally {
       setUpdating(false);
+    }
+  };
+
+  const handleAddNote = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!activeInquiry || !newNoteContent.trim()) return;
+
+    setAddingNote(true);
+    try {
+      const res = await fetch("/api/admin/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          entityType: "inquiry",
+          entityId: activeInquiry.id,
+          content: newNoteContent.trim(),
+        }),
+      });
+
+      const data = (await res.json()) as { data?: { note?: InternalNoteItem } };
+      if (res.ok && data.data?.note) {
+        setNotes([data.data.note, ...notes]);
+        setNewNoteContent("");
+      }
+    } catch {
+      // Ignored
+    } finally {
+      setAddingNote(false);
     }
   };
 
@@ -99,25 +180,25 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
             <option value="contacted">যোগাযোগ করা হয়েছে</option>
             <option value="discussing">আলোচনায়</option>
             <option value="quoted">কোটেশন পাঠানো হয়েছে</option>
-            <option value="won">সফল (Won)</option>
+            <option value="won">সফল (কনভার্টেড)</option>
             <option value="cancelled">বাতিল</option>
           </select>
         </div>
       </div>
 
       {statusMessage && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs rounded-lg flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-xs rounded-xl flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
           <span>{statusMessage}</span>
         </div>
       )}
 
-      {/* Inquiries List & Detail Split View */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* List Column (2 Cols) */}
-        <div className="lg:col-span-2 space-y-2.5">
+      {/* Main Two-Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* Left Column: Inquiries List (7 cols) */}
+        <div className="lg:col-span-7 space-y-2.5">
           {filtered.length === 0 ? (
-            <div className="bg-card border border-border rounded-xl p-8 text-center text-xs text-text-muted">
+            <div className="bg-card border border-border rounded-2xl p-12 text-center text-xs text-text-muted shadow-warm-sm">
               কোনো ইনকোয়ারি পাওয়া যায়নি।
             </div>
           ) : (
@@ -127,76 +208,60 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                 <div
                   key={inq.id}
                   onClick={() => setActiveInquiry(inq)}
-                  className={`bg-card border rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-300 shadow-warm-sm hover:shadow-warm-md hover:border-border-hover ${
-                    isSelected ? "border-brand-orange ring-1 ring-brand-orange bg-brand-orange-soft/25" : "border-border"
+                  className={`p-4 rounded-2xl border transition-all duration-200 cursor-pointer space-y-2.5 shadow-warm-sm ${
+                    isSelected
+                      ? "bg-accent/10 border-accent shadow-warm-md"
+                      : "bg-card border-border hover:border-border-hover"
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-bold text-sm text-text-primary truncate">
-                          {inq.fullName}
-                        </span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-elevated border border-border text-accent-text font-semibold">
-                          {inq.referenceCode}
-                        </span>
-                        <span
-                          className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${
-                            statusColors[inq.status] || "bg-zinc-500/15 text-zinc-700 dark:text-zinc-300 border-zinc-500/30"
-                          }`}
-                        >
-                          {statusLabels[inq.status] || inq.status}
-                        </span>
-                      </div>
-
-                      <div className="text-xs text-text-muted mt-1 flex items-center gap-3 flex-wrap">
-                        <span className="flex items-center gap-1">
-                          <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                          <span className="truncate">{inq.email}</span>
-                        </span>
-                        {inq.phoneWhatsapp && (
-                          <span className="flex items-center gap-1">
-                            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
-                            <span>{inq.phoneWhatsapp}</span>
-                          </span>
-                        )}
-                        {inq.companyName && (
-                          <span className="flex items-center gap-1">
-                            <Building className="h-3.5 w-3.5" aria-hidden="true" />
-                            <span className="truncate">{inq.companyName}</span>
-                          </span>
-                        )}
-                      </div>
-
-                      <p className="text-xs text-text-secondary mt-2 line-clamp-2 leading-relaxed bg-surface-elevated/70 p-2 rounded-lg border border-border/60">
-                        {inq.projectBrief}
-                      </p>
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-sm text-text-primary">
+                        {inq.fullName}
+                      </span>
+                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-surface-muted text-text-muted border border-border">
+                        {inq.referenceCode}
+                      </span>
+                      <span
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${
+                          statusColors[inq.status] || "bg-zinc-500/10 text-zinc-400"
+                        }`}
+                      >
+                        {statusLabels[inq.status] || inq.status}
+                      </span>
                     </div>
 
-                    <div className="text-right shrink-0">
-                      <div className="text-[10px] text-text-muted font-medium">
-                        {new Date(inq.createdAt).toLocaleDateString("bn-BD")}
-                      </div>
-                      {inq.budgetRange && (
-                        <div className="text-xs font-bold text-accent-text mt-1 tabular-nums">
-                          ৳ {inq.budgetRange}
-                        </div>
-                      )}
+                    <div className="text-[11px] text-text-muted shrink-0">
+                      {new Date(inq.createdAt).toLocaleDateString("bn-BD")}
                     </div>
                   </div>
+
+                  <div className="text-xs text-text-muted flex items-center gap-3 flex-wrap">
+                    <span className="truncate max-w-[200px]">{inq.email}</span>
+                    {inq.phoneWhatsapp && <span>• {inq.phoneWhatsapp}</span>}
+                    {inq.budgetRange && (
+                      <span className="text-brand-orange-strong dark:text-accent font-semibold ml-auto tabular-nums">
+                        ৳ {inq.budgetRange}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed bg-surface-muted/40 p-2.5 rounded-xl border border-border/60">
+                    {inq.projectBrief}
+                  </p>
                 </div>
               );
             })
           )}
         </div>
 
-        {/* Detail Panel Column (1 Col) */}
-        <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 h-fit sticky top-20 shadow-warm-sm">
+        {/* Right Column: Inquiry Details & Team Notes (5 cols) */}
+        <div className="lg:col-span-5 bg-card border border-border rounded-2xl p-5 space-y-4 shadow-warm-sm self-start">
           {activeInquiry ? (
             <div className="space-y-4">
               <div className="border-b border-border pb-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-accent">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-xs font-bold text-brand-orange-strong dark:text-accent">
                     {activeInquiry.referenceCode}
                   </span>
                   <span
@@ -224,7 +289,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                   disabled={updating}
                   value={activeInquiry.status}
                   onChange={(e) => handleUpdateStatus(activeInquiry.id, e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
                 >
                   <option value="new">নতুন (New)</option>
                   <option value="contacted">যোগাযোগ করা হয়েছে</option>
@@ -269,7 +334,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
               {/* Project Scope & Brief */}
               <div className="space-y-2 text-xs pt-2 border-t border-border">
                 <div className="font-semibold text-text-primary">প্রজেক্ট ব্রিফ</div>
-                <div className="p-3 bg-surface-elevated rounded-lg border border-border text-text-secondary leading-relaxed whitespace-pre-wrap">
+                <div className="p-3 bg-surface-muted/60 rounded-xl border border-border text-text-secondary leading-relaxed whitespace-pre-wrap">
                   {activeInquiry.projectBrief}
                 </div>
               </div>
@@ -289,16 +354,79 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                   </div>
                 </div>
               </div>
+
+              {/* Internal Team Notes */}
+              <div className="space-y-3 pt-3 border-t border-border">
+                <div className="flex items-center justify-between">
+                  <div className="font-semibold text-xs text-text-primary flex items-center gap-1.5">
+                    <FileText className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent" aria-hidden="true" />
+                    <span>ইন্টারনাল টিম নোট ({notes.length})</span>
+                  </div>
+                  {loadingNotes && <Loader2 className="h-3 w-3 animate-spin text-text-muted" />}
+                </div>
+
+                {/* Add Note Form */}
+                <form onSubmit={handleAddNote} className="space-y-2">
+                  <textarea
+                    rows={2}
+                    value={newNoteContent}
+                    onChange={(e) => setNewNoteContent(e.target.value)}
+                    placeholder="টিমের জন্য অভ্যন্তরীণ নোট লিখুন..."
+                    className="w-full px-3 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
+                  />
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={addingNote || !newNoteContent.trim()}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover disabled:opacity-50 min-h-[36px]"
+                    >
+                      {addingNote ? (
+                        <Loader2 className="h-3 w-3 animate-spin" aria-hidden="true" />
+                      ) : (
+                        <Send className="h-3 w-3" aria-hidden="true" />
+                      )}
+                      <span>নোট যোগ করুন</span>
+                    </button>
+                  </div>
+                </form>
+
+                {/* Notes List */}
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {notes.length === 0 && !loadingNotes ? (
+                    <div className="text-[11px] text-text-muted text-center py-2">
+                      এখনো কোনো ইন্টারনাল নোট যুক্ত করা হয়নি।
+                    </div>
+                  ) : (
+                    notes.map((note) => (
+                      <div
+                        key={note.id}
+                        className="p-2.5 rounded-xl bg-surface-muted/50 border border-border text-xs space-y-1"
+                      >
+                        <div className="flex items-center justify-between text-[10px] text-text-muted">
+                          <span className="font-semibold text-text-primary flex items-center gap-1">
+                            <User className="h-2.5 w-2.5" />
+                            {note.authorName}
+                          </span>
+                          <span>{new Date(note.createdAt).toLocaleDateString("bn-BD")}</span>
+                        </div>
+                        <p className="text-text-secondary leading-relaxed whitespace-pre-wrap text-[11px]">
+                          {note.content}
+                        </p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="py-16 text-center text-xs text-text-muted flex flex-col items-center justify-center gap-3">
-              <div className="h-14 w-14 rounded-2xl bg-surface-elevated border border-border flex items-center justify-center text-accent/80 shadow-xs">
-                <MessageSquare className="h-7 w-7 text-accent" aria-hidden="true" />
+              <div className="h-14 w-14 rounded-2xl bg-surface-muted border border-border flex items-center justify-center text-accent/80 shadow-warm-sm">
+                <MessageSquare className="h-7 w-7 text-brand-orange-strong dark:text-accent" aria-hidden="true" />
               </div>
               <div className="space-y-1">
                 <p className="font-bold text-text-primary text-sm">ইনকোয়ারি বিবরণ</p>
                 <p className="text-text-muted text-xs max-w-[200px] leading-relaxed">
-                  বিস্তারিত দেখতে বাম পাশের তালিকা থেকে যেকোনো ইনকোয়ারিতে ক্লিক করুন।
+                  বিস্তারিত ও ইন্টারনাল নোট দেখতে বাম পাশের তালিকা থেকে যেকোনো ইনকোয়ারিতে ক্লিক করুন।
                 </p>
               </div>
             </div>

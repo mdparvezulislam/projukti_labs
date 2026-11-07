@@ -4,7 +4,7 @@ import { getCmsFaqs } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { FaqsManager } from "./faqs-manager";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "সাধারণ জিজ্ঞাসা (FAQ) সিএমএস | Projukti Labs Admin",

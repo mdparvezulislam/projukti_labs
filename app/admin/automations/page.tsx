@@ -6,7 +6,7 @@ import { desc } from "drizzle-orm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { AutomationsManager } from "./automations-manager";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "বিজনেস অটোমেশন ইঞ্জিন | Projukti Labs Admin",

@@ -5,7 +5,7 @@ import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { BlogManager } from "./blog-manager";
 import { BlogPostEntity } from "@/db/schema";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "ব্লগ ইঞ্জিন সিএমএস | Projukti Labs Admin",

@@ -391,6 +391,12 @@ export function BlogManager({ initialPosts }: BlogManagerProps) {
                 </div>
               </div>
 
+              {status === "scheduled" && (
+                <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 text-[11px] leading-relaxed">
+                  ℹ️ শিডিউলড পোস্ট: ক্লাউডফ্লেয়ার Workers Cron ট্রিগার নির্ধারিত সময়ে স্বয়ংক্রিয়ভাবে লাইভ করবে।
+                </div>
+              )}
+
               <div className="flex items-center justify-end gap-2 pt-3 border-t border-border">
                 <button
                   type="button"

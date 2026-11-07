@@ -41,6 +41,39 @@ export default async function HomePage() {
   const ctaSecondaryText = heroContent.ctaSecondaryText || "Explore Our Work";
   const ctaSecondaryLink = heroContent.ctaSecondaryLink || "/portfolio";
 
+  // Section 2: Intro
+  const introSection = homeSections.find((s) => s.sectionKey === "intro");
+  const introTitle = introSection?.title || "Technology Built Around Your Business";
+  const introSubtitle =
+    introSection?.subtitle ||
+    "We combine thoughtful design, reliable engineering and practical technology to build digital solutions that are useful, maintainable and built around real business needs.";
+
+  // Section 5: Why Us
+  const whyUsSection = homeSections.find((s) => s.sectionKey === "why_us");
+  const whyTitle = whyUsSection?.title || "Engineering Discipline Over Agency Clichés";
+  const whySubtitle =
+    whyUsSection?.subtitle ||
+    "We avoid bloated templates, hidden subcontracting, and artificial marketing claims. We build reliable software systems that work.";
+
+  // Section 6: Process
+  const processSection = homeSections.find((s) => s.sectionKey === "process");
+  const processTitle = processSection?.title || "A Clear, Disciplined Development Process";
+  const processSubtitle =
+    processSection?.subtitle ||
+    "From initial consultation to deployment and maintenance, every milestone is structured for clarity, speed, and reliability.";
+
+  // Section 8: Final CTA
+  const ctaSection = homeSections.find((s) => s.sectionKey === "cta");
+  const ctaContent = (ctaSection?.content as Record<string, string>) || {};
+  const ctaTitle = ctaSection?.title || "Have a Project in Mind?";
+  const ctaSubtitle =
+    ctaSection?.subtitle ||
+    "Let's discuss your requirements and build a digital solution that works for your business. We typically reply within 24 business hours.";
+  const ctaButtonText = ctaContent.buttonText || "Discuss Your Project";
+  const ctaButtonLink = ctaContent.buttonLink || "/get-a-quote";
+  const ctaSecText = ctaContent.secondaryText || "Contact Us";
+  const ctaSecLink = ctaContent.secondaryLink || "/contact";
+
   // Fetch verified portfolio projects from CMS / fallback
   const cmsProjects = await getCmsPortfolio();
   const displayProjects = cmsProjects.length > 0 ? cmsProjects.slice(0, 4) : VERIFIED_PORTFOLIO_PROJECTS.slice(0, 4);
@@ -201,10 +234,10 @@ export default async function HomePage() {
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <Badge variant="accent">ABOUT PROJUKTI LABS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-            Technology Built Around Your Business
+            {introTitle}
           </h2>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
-            We combine thoughtful design, reliable engineering and practical technology to build digital solutions that are useful, maintainable and built around real business needs.
+            {introSubtitle}
           </p>
         </div>
 
@@ -505,10 +538,10 @@ export default async function HomePage() {
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <Badge variant="accent">WHY PROJUKTI LABS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-            Engineering Discipline Over Agency Clichés
+            {whyTitle}
           </h2>
           <p className="text-text-secondary text-base sm:text-lg">
-            We avoid bloated templates, hidden subcontracting, and artificial marketing claims. We build reliable software systems that work.
+            {whySubtitle}
           </p>
         </div>
 
@@ -580,10 +613,10 @@ export default async function HomePage() {
         <div className="space-y-4 max-w-2xl">
           <Badge variant="accent">OUR PROCESS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-            A Clear, Disciplined Development Process
+            {processTitle}
           </h2>
           <p className="text-text-secondary text-base">
-            From initial consultation to deployment and maintenance, every milestone is structured for clarity, speed, and reliability.
+            {processSubtitle}
           </p>
         </div>
 
@@ -690,22 +723,22 @@ export default async function HomePage() {
         <div className="relative overflow-hidden rounded-3xl border border-brand-orange/30 dark:border-accent/40 bg-card/95 dark:bg-surface/90 p-8 sm:p-14 text-center space-y-6 shadow-lg backdrop-blur-xs">
           <div className="mx-auto max-w-2xl space-y-3">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-text-primary">
-              Have a Project in Mind?
+              {ctaTitle}
             </h2>
             <p className="text-text-secondary text-base sm:text-lg">
-              Let&apos;s discuss your requirements and build a digital solution that works for your business. We typically reply within 24 business hours.
+              {ctaSubtitle}
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Button size="lg" variant="primary" asChild className="w-full sm:w-auto shadow-sm">
-              <Link href="/get-a-quote">
-                Discuss Your Project
+              <Link href={ctaButtonLink}>
+                {ctaButtonText}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="w-full sm:w-auto bg-card">
-              <Link href="/contact">Contact Us</Link>
+              <Link href={ctaSecLink}>{ctaSecText}</Link>
             </Button>
           </div>
         </div>

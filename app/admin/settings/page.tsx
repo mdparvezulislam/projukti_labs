@@ -4,7 +4,7 @@ import { getSiteSettings } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { SettingsEditor } from "./settings-editor";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "বিজনেস সেটিংস | Projukti Labs Admin",

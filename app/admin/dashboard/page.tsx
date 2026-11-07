@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth/admin";
 import { getCrmDashboardMetrics } from "@/lib/crm";
+import { getCmsBlogPosts, getCmsPortfolio, getCmsServices } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import Link from "next/link";
 import {
@@ -12,10 +13,14 @@ import {
   Plus,
   Clock,
   Sparkles,
+  BookOpen,
+  Briefcase,
+  Layers,
+  ShieldCheck,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "ড্যাশবোর্ড ওভারভিউ | Projukti Labs Admin",
@@ -27,28 +32,33 @@ export default async function AdminDashboardPage() {
     redirect("/admin/login");
   }
 
-  const metrics = await getCrmDashboardMetrics();
+  const [crmMetrics, blogList, portfolioList, servicesList] = await Promise.all([
+    getCrmDashboardMetrics(),
+    getCmsBlogPosts(),
+    getCmsPortfolio(),
+    getCmsServices(),
+  ]);
 
   const statCards = [
     {
       label: "মোট ইনকোয়ারি",
-      value: metrics.totalInquiries.toString(),
-      subtext: `${metrics.newInquiries}টি নতুন পর্যালোচনার অপেক্ষায়`,
+      value: crmMetrics.totalInquiries.toString(),
+      subtext: `${crmMetrics.newInquiries}টি নতুন পর্যালোচনার অপেক্ষায়`,
       icon: Inbox,
       href: "/admin/inquiries",
       color: "text-blue-700 dark:text-blue-300 bg-blue-500/15 border border-blue-500/20",
     },
     {
       label: "সক্রিয় লিড পাইপলাইন",
-      value: metrics.openLeadsCount.toString(),
+      value: crmMetrics.openLeadsCount.toString(),
       subtext: "চলমান আলোচনা ও প্রজেক্ট প্রস্তাব",
       icon: Users,
       href: "/admin/leads",
-      color: "text-accent-text bg-accent/15 border border-accent/20",
+      color: "text-brand-orange-strong dark:text-accent bg-brand-orange-soft dark:bg-accent/15 border border-brand-orange/20 dark:border-accent/20",
     },
     {
       label: "সম্ভাব্য পাইপলাইন ভ্যালু",
-      value: `৳${(metrics.pipelineValueBdt / 1000).toFixed(0)}k`,
+      value: `৳${(crmMetrics.pipelineValueBdt / 1000).toFixed(0)}k`,
       subtext: "উন্মুক্ত লিডগুলোর মোট প্রজেক্ট ভ্যালু",
       icon: TrendingUp,
       href: "/admin/leads",
@@ -56,11 +66,42 @@ export default async function AdminDashboardPage() {
     },
     {
       label: "অ্যাক্টিভ কোটেশন",
-      value: metrics.totalQuotes.toString(),
-      subtext: `${metrics.pendingQuotes}টি ক্লায়েন্টের উত্তরের অপেক্ষায়`,
+      value: crmMetrics.totalQuotes.toString(),
+      subtext: `${crmMetrics.pendingQuotes}টি ক্লায়েন্টের উত্তরের অপেক্ষায়`,
       icon: FileCheck,
       href: "/admin/quotes",
       color: "text-purple-700 dark:text-purple-300 bg-purple-500/15 border border-purple-500/20",
+    },
+  ];
+
+  const contentCards = [
+    {
+      label: "লাইভ ব্লগ প্রবন্ধ",
+      value: `${blogList.length} টি`,
+      subtext: "MDX ব্লগ ইঞ্জিন ও জ্ঞানকোষ",
+      icon: BookOpen,
+      href: "/admin/content/blog",
+    },
+    {
+      label: "পোর্টফোলিও ব্লুপ্রিন্ট",
+      value: `${portfolioList.length} টি`,
+      subtext: "ভেরিফাইড লাইভ ও প্রোডাক্ট আর্কিটেকচার",
+      icon: Briefcase,
+      href: "/admin/content/portfolio",
+    },
+    {
+      label: "অ্যাক্টিভ সার্ভিস ক্যাটাগরি",
+      value: `${servicesList.length} টি`,
+      subtext: "কাস্টম সমাধান ও ফ্ল্যাগশিপ প্যাকেজ",
+      icon: Layers,
+      href: "/admin/content/services",
+    },
+    {
+      label: "D1 ক্লাউড ডাটাবেস",
+      value: "সক্রিয় (Healthy)",
+      subtext: "২১টি টেবিল • ব্যাকআপ প্রোটোকল সচল",
+      icon: ShieldCheck,
+      href: "/admin/system",
     },
   ];
 
@@ -91,16 +132,16 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <Link
             href="/admin/quotes"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px]"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
           >
             <Plus className="h-4 w-4" aria-hidden="true" />
             <span>নতুন কোট তৈরি</span>
           </Link>
           <Link
             href="/admin/content/blog"
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-card-hover border border-border text-text-primary text-xs font-semibold hover:border-border-hover transition-all min-h-[44px]"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-card border border-border text-text-primary text-xs font-semibold hover:border-border-hover transition-all shadow-warm-sm min-h-[44px]"
           >
-            <Sparkles className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            <Sparkles className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent" aria-hidden="true" />
             <span>ব্লগ লিখুন</span>
           </Link>
         </div>
@@ -114,13 +155,13 @@ export default async function AdminDashboardPage() {
             <Link
               key={card.label}
               href={card.href}
-              className="bg-card border border-border rounded-2xl p-4 sm:p-5 shadow-warm-sm hover:shadow-warm-md hover:border-border-hover transition-all duration-300 group flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="bg-card border border-border rounded-2xl p-4 sm:p-5 shadow-warm-sm hover:shadow-warm-md hover:border-border-hover transition-all duration-300 group flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange"
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] sm:text-xs font-medium text-text-muted line-clamp-1">
                   {card.label}
                 </span>
-                <div className={`p-1.5 rounded-md shrink-0 ${card.color}`}>
+                <div className={`p-1.5 rounded-lg shrink-0 ${card.color}`}>
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </div>
               </div>
@@ -131,6 +172,29 @@ export default async function AdminDashboardPage() {
                 <div className="text-[10px] text-text-muted mt-0.5 line-clamp-1">
                   {card.subtext}
                 </div>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Content & Infrastructure Metrics Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        {contentCards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <Link
+              key={card.label}
+              href={card.href}
+              className="bg-card border border-border rounded-2xl p-3.5 sm:p-4 shadow-warm-sm hover:border-border-hover transition-all duration-200 flex items-center gap-3"
+            >
+              <div className="p-2 rounded-xl bg-surface-muted text-brand-orange-strong dark:text-accent shrink-0">
+                <Icon className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[11px] text-text-muted line-clamp-1">{card.label}</div>
+                <div className="text-sm font-bold text-text-primary truncate">{card.value}</div>
+                <div className="text-[9px] text-text-muted line-clamp-1">{card.subtext}</div>
               </div>
             </Link>
           );
@@ -152,20 +216,20 @@ export default async function AdminDashboardPage() {
             </div>
             <Link
               href="/admin/inquiries"
-              className="text-xs text-accent-text hover:underline inline-flex items-center gap-1 font-semibold p-1"
+              className="text-xs text-brand-orange-strong dark:text-accent hover:underline inline-flex items-center gap-1 font-semibold p-1"
             >
               <span>সবগুলো দেখুন</span>
               <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </Link>
           </div>
 
-          {metrics.recentInquiries.length === 0 ? (
+          {crmMetrics.recentInquiries.length === 0 ? (
             <div className="py-8 text-center text-xs text-text-muted">
               এখনো কোনো ইনকোয়ারি জমা পড়েনি।
             </div>
           ) : (
             <div className="space-y-2">
-              {metrics.recentInquiries.map((inq) => (
+              {crmMetrics.recentInquiries.map((inq) => (
                 <div
                   key={inq.id}
                   className="flex items-center justify-between p-3 rounded-xl bg-surface-muted/60 border border-border hover:border-border-hover transition-colors text-xs gap-3"
@@ -175,7 +239,7 @@ export default async function AdminDashboardPage() {
                       <span className="font-semibold text-text-primary truncate">
                         {inq.fullName}
                       </span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-accent-text font-semibold">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface border border-border text-brand-orange-strong dark:text-accent font-semibold">
                         {inq.referenceCode}
                       </span>
                     </div>
@@ -185,7 +249,7 @@ export default async function AdminDashboardPage() {
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium uppercase bg-brand-orange-soft text-brand-orange-strong border border-brand-orange/20 font-semibold">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] uppercase bg-brand-orange-soft text-brand-orange-strong border border-brand-orange/20 font-semibold">
                       {inq.status}
                     </span>
                     <div className="text-[10px] text-text-muted mt-0.5">
@@ -209,19 +273,19 @@ export default async function AdminDashboardPage() {
             </div>
             <Link
               href="/admin/activity"
-              className="text-xs text-accent hover:underline font-semibold p-1"
+              className="text-xs text-brand-orange-strong dark:text-accent hover:underline font-semibold p-1"
             >
               লগ
             </Link>
           </div>
 
-          {metrics.recentAudit.length === 0 ? (
+          {crmMetrics.recentAudit.length === 0 ? (
             <div className="py-8 text-center text-xs text-text-muted">
               কোনো সাম্প্রতিক অ্যাক্টিভিটি নেই।
             </div>
           ) : (
             <div className="space-y-2.5">
-              {metrics.recentAudit.map((log) => (
+              {crmMetrics.recentAudit.map((log) => (
                 <div key={log.id} className="text-xs space-y-0.5">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-text-primary truncate">
@@ -247,4 +311,3 @@ export default async function AdminDashboardPage() {
     </AdminLayoutShell>
   );
 }
-

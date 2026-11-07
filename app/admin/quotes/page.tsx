@@ -4,7 +4,7 @@ import { getQuotes } from "@/lib/crm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { QuoteManager } from "./quote-manager";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "কোটেশন ম্যানেজমেন্ট | Projukti Labs Admin",

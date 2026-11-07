@@ -4,7 +4,7 @@ import { getPageSections } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { PageEditor } from "./page-editor";
 
-export const dynamic = "force-dynamic";
+export const instant = false;
 
 export const metadata = {
   title: "পেজ ও সেকশন এডিটর | Projukti Labs Admin",

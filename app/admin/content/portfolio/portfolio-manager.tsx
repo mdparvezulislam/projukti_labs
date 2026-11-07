@@ -17,12 +17,13 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
 
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
-  const [category, setCategory] = useState("এজ সিস্টেম ও ওয়েব আর্কিটেকচার");
-  const [badge, setBadge] = useState("আর্কিটেকচারাল ব্লুপ্রিন্ট");
-  const [projectType, setProjectType] = useState("কনসেপ্ট ও ব্লুপ্রিন্ট");
+  const [category, setCategory] = useState("E-commerce Platform");
+  const [badge, setBadge] = useState("Live Platform");
+  const [projectType, setProjectType] = useState("Founder-owned Product");
   const [overview, setOverview] = useState("");
+  const [stackInput, setStackInput] = useState("");
   const [linkUrl, setLinkUrl] = useState("/");
-  const [linkText, setLinkText] = useState("ব্লুপ্রিন্ট দেখুন");
+  const [linkText, setLinkText] = useState("View Project");
   const [saving, setSaving] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
@@ -30,12 +31,13 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
     setEditingProject(null);
     setTitle("");
     setSlug("");
-    setCategory("এজ সিস্টেম ও ওয়েব আর্কিটেকচার");
-    setBadge("আর্কিটেকচারাল ব্লুপ্রিন্ট");
-    setProjectType("কনসেপ্ট ও ব্লুপ্রিন্ট");
+    setCategory("E-commerce Platform");
+    setBadge("Live Platform");
+    setProjectType("Founder-owned Product");
     setOverview("");
+    setStackInput("Next.js 16, React 19, TypeScript, Drizzle ORM, Cloudflare D1");
     setLinkUrl("/");
-    setLinkText("ব্লুপ্রিন্ট দেখুন");
+    setLinkText("View Project");
     setIsModalOpen(true);
     setStatusMessage(null);
   };
@@ -48,8 +50,9 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
     setBadge(p.badge);
     setProjectType(p.projectType);
     setOverview(p.overview);
+    setStackInput((p.stack || []).join(", "));
     setLinkUrl(p.linkUrl || "/");
-    setLinkText(p.linkText || "ব্লুপ্রিন্ট দেখুন");
+    setLinkText(p.linkText || "View Project");
     setIsModalOpen(true);
     setStatusMessage(null);
   };
@@ -60,6 +63,10 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
     setStatusMessage(null);
 
     const projectId = editingProject ? editingProject.id : `prj_${crypto.randomUUID().slice(0, 8)}`;
+    const stack = stackInput
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
 
     try {
       const res = await fetch("/api/admin/content/portfolio", {
@@ -73,6 +80,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
           badge,
           projectType,
           overview,
+          stack,
           linkUrl,
           linkText,
           isFeatured: true,
@@ -95,7 +103,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
           projectType,
           overview,
           metrics: editingProject?.metrics ?? [],
-          stack: editingProject?.stack ?? [],
+          stack,
           deliverables: editingProject?.deliverables ?? [],
           linkUrl,
           linkText,
@@ -130,103 +138,130 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
 
   return (
     <div className="space-y-4">
-      {/* Header Bar */}
-      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+      {statusMessage && (
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-xs rounded-xl flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <span>{statusMessage}</span>
+        </div>
+      )}
+
+      {/* Top Action Bar */}
+      <div className="bg-card border border-border rounded-2xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-warm-sm">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" aria-hidden="true" />
           <input
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="প্রজেক্ট শিরোনাম বা ক্যাটাগরি দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            placeholder="প্রজেক্টের নাম বা ক্যাটাগরি দিয়ে খুঁজুন…"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
           />
         </div>
 
         <button
           type="button"
           onClick={handleOpenCreate}
-          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover min-h-[44px] shrink-0"
+          className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm shrink-0 min-h-[44px]"
         >
           <Plus className="h-4 w-4" aria-hidden="true" />
-          <span>নতুন কেস স্টাডি</span>
+          <span>নতুন প্রজেক্ট যোগ করুন</span>
         </button>
       </div>
 
-      {statusMessage && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs rounded-lg flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>{statusMessage}</span>
-        </div>
-      )}
-
-      {/* Projects List */}
-      <div className="space-y-2.5">
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.length === 0 ? (
-          <div className="bg-card border border-border rounded-xl p-8 text-center text-xs text-text-muted">
+          <div className="md:col-span-2 bg-card border border-border rounded-2xl p-12 text-center text-xs text-text-muted">
             কোনো পোর্টফোলিও রেকর্ড পাওয়া যায়নি।
           </div>
         ) : (
-          filtered.map((proj) => (
+          filtered.map((project) => (
             <div
-              key={proj.id}
-              className="bg-card border border-border rounded-xl p-3.5 sm:p-4 hover:border-border-hover transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+              key={project.id}
+              className="bg-card border border-border rounded-2xl p-5 hover:border-border-hover transition-all duration-200 flex flex-col justify-between space-y-4 shadow-warm-sm"
             >
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="font-bold text-sm text-text-primary truncate">
-                    {proj.title}
-                  </h3>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">
-                    {proj.badge}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase font-mono bg-accent/15 text-accent-text border border-accent/20">
+                    {project.badge}
                   </span>
-                  <span className="text-[10px] font-mono text-text-muted">
-                    {proj.category}
+                  <span className="text-[11px] text-text-muted font-medium">
+                    {project.projectType}
                   </span>
                 </div>
-                <p className="text-xs text-text-muted mt-1 leading-relaxed line-clamp-2">
-                  {proj.overview}
+
+                <h3 className="font-bold text-base text-text-primary">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed">
+                  {project.overview}
                 </p>
+
+                {project.stack && project.stack.length > 0 && (
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {project.stack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] px-2 py-0.5 rounded bg-surface-muted border border-border text-text-muted font-mono"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.stack.length > 4 && (
+                      <span className="text-[10px] px-1.5 py-0.5 text-text-muted">
+                        +{project.stack.length - 4}
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <Link
-                  href="/portfolio"
-                  target="_blank"
-                  className="p-2 text-text-muted hover:text-text-primary rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                  title="পাবলিক পেজে দেখুন"
-                >
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => handleOpenEdit(proj)}
-                  className="p-2 text-text-muted hover:text-accent rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                  title="সম্পাদনা করুন"
-                >
-                  <Edit3 className="h-4 w-4" aria-hidden="true" />
-                </button>
+              <div className="pt-3 border-t border-border flex items-center justify-between">
+                <span className="text-[11px] text-text-muted font-mono">
+                  /portfolio#{project.slug}
+                </span>
+
+                <div className="flex items-center gap-1">
+                  {project.linkUrl && (
+                    <Link
+                      href={project.linkUrl}
+                      target="_blank"
+                      className="p-2 text-text-muted hover:text-text-primary rounded-lg"
+                      title="লাইভ সাইট দেখুন"
+                    >
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleOpenEdit(project)}
+                    className="p-2 text-text-muted hover:text-accent-text rounded-lg"
+                    title="সম্পাদনা করুন"
+                  >
+                    <Edit3 className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
             </div>
           ))
         )}
       </div>
 
-      {/* Add / Edit Project Modal */}
+      {/* Project Editor Modal */}
       {isModalOpen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="পোর্টফোলিও এডিটর"
+          aria-label="পোর্টফোলিও প্রজেক্ট এডিটর"
           className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-sm overflow-y-auto"
         >
-          <div className="bg-card border border-border rounded-xl p-5 sm:p-6 max-w-lg w-full space-y-4 shadow-2xl my-8">
+          <div className="bg-card border border-border rounded-2xl p-5 sm:p-6 max-w-xl w-full space-y-4 shadow-2xl my-8">
             <div className="border-b border-border pb-3">
               <h3 className="text-base font-bold text-text-primary">
-                {editingProject ? "কেস স্টাডি সম্পাদনা করুন" : "নতুন কেস স্টাডি যোগ করুন"}
+                {editingProject ? "প্রজেক্ট ব্লুপ্রিন্ট সম্পাদনা" : "নতুন পোর্টফোলিও প্রজেক্ট"}
               </h3>
               <p className="text-xs text-text-muted mt-0.5">
-                আর্কিটেকচারাল ব্লুপ্রিন্ট ও টেকনিক্যাল স্পেসিফিকেশন
+                ভেরিফাইড সফটওয়্যার ব্লুপ্রিন্ট ও টেকনোলজি স্ট্যাক D1 ডাটাবেসে সেভ করুন।
               </p>
             </div>
 
@@ -250,7 +285,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                       );
                     }
                   }}
-                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                  className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
                 />
               </div>
 
@@ -264,7 +299,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px] font-mono"
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px] font-mono"
                   />
                 </div>
                 <div>
@@ -276,7 +311,7 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
                   />
                 </div>
               </div>
@@ -291,21 +326,40 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                     required
                     value={badge}
                     onChange={(e) => setBadge(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+                    placeholder="Live Platform, In Development"
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-text-primary mb-1">
-                    প্রজেক্টের ধরন
+                    প্রজেক্টের ধরন (Ownership)
                   </label>
-                  <input
-                    type="text"
-                    required
+                  <select
                     value={projectType}
                     onChange={(e) => setProjectType(e.target.value)}
-                    className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
-                  />
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+                  >
+                    <option value="Founder-owned Product">Founder-owned Product</option>
+                    <option value="Client Project">Client Project</option>
+                    <option value="Software Tool / Search Engine">Software Tool / Search Engine</option>
+                    <option value="Founder-owned Platform">Founder-owned Platform</option>
+                    <option value="Internal Tool">Internal Tool</option>
+                    <option value="Prototype">Prototype</option>
+                  </select>
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-text-primary mb-1">
+                  টেকনোলজি স্ট্যাক (কমা দিয়ে আলাদা করুন)
+                </label>
+                <input
+                  type="text"
+                  value={stackInput}
+                  onChange={(e) => setStackInput(e.target.value)}
+                  placeholder="Next.js 16, TypeScript, Drizzle ORM, Cloudflare D1"
+                  className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px] font-mono"
+                />
               </div>
 
               <div>
@@ -313,26 +367,53 @@ export function PortfolioManager({ initialProjects }: PortfolioManagerProps) {
                   ওভারভিউ ও সারাংশ
                 </label>
                 <textarea
-                  rows={4}
+                  rows={3}
                   required
                   value={overview}
                   onChange={(e) => setOverview(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent leading-relaxed"
+                  className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
                 />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-semibold text-text-primary mb-1">
+                    প্রজেক্ট লিংক URL
+                  </label>
+                  <input
+                    type="text"
+                    value={linkUrl}
+                    onChange={(e) => setLinkUrl(e.target.value)}
+                    placeholder="https://... অথবা /portfolio"
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-text-primary mb-1">
+                    লিংক বাটন টেক্সট
+                  </label>
+                  <input
+                    type="text"
+                    value={linkText}
+                    onChange={(e) => setLinkText(e.target.value)}
+                    placeholder="View Project"
+                    className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-end gap-2 pt-3 border-t border-border">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-3 py-2 rounded-lg bg-card-hover border border-border text-xs text-text-muted hover:text-text-primary min-h-[44px]"
+                  className="px-4 py-2 rounded-xl bg-card border border-border text-xs text-text-muted hover:text-text-primary min-h-[44px]"
                 >
                   বাতিল
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
                 >
                   {saving && <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />}
                   <span>সংরক্ষণ করুন</span>
