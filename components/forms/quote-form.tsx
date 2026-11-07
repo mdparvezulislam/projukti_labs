@@ -20,12 +20,12 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
   const [email, setEmail] = useState("");
   const [phoneWhatsapp, setPhoneWhatsapp] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [country, setCountry] = useState("বাংলাদেশ (Bangladesh)");
+  const [country, setCountry] = useState("Bangladesh");
   const [serviceId, setServiceId] = useState(initialService || "landing-page-meta-pixel");
   const [packageId, setPackageId] = useState(initialPackage || "");
   const [currency, setCurrency] = useState<"BDT" | "USD">("BDT");
-  const [budgetRange, setBudgetRange] = useState("৳ ২৫,০০০ – ৳ ৫০,০০০");
-  const [timelinePreference, setTimelinePreference] = useState("২ থেকে ৩ সপ্তাহের মধ্যে");
+  const [budgetRange, setBudgetRange] = useState("৳ 25,000 – ৳ 50,000");
+  const [timelinePreference, setTimelinePreference] = useState("2 to 3 weeks (Standard)");
   const [projectBrief, setProjectBrief] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -64,12 +64,16 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
         error?: { message?: string };
       };
       if (!res.ok || !json.success || !json.data) {
-        throw new Error(json.error?.message || "কোটেশন রিকোয়েস্ট সাবমিট করা সম্ভব হয়নি। অনুগ্রহ করে তথ্য যাচাই করুন।");
+        throw new Error(
+          json.error?.message || "Failed to submit quote request. Please verify your input and try again."
+        );
       }
 
       setSubmittedRef(json.data.referenceCode);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। অনুগ্রহ করে পুনরায় চেষ্টা করুন।");
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -90,28 +94,29 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
           <CheckCircle2 className="h-10 w-10 text-accent" />
         </div>
         <div className="space-y-2">
-          <Badge variant="accent">কোটেশন ব্রিফ সংরক্ষিত হয়েছে</Badge>
-          <h3 className="text-2xl font-bold text-text-primary">ধন্যবাদ, {fullName}!</h3>
+          <Badge variant="accent">Quotation Brief Received</Badge>
+          <h3 className="text-2xl font-bold text-text-primary">Thank you, {fullName}!</h3>
           <p className="text-text-muted text-sm max-w-lg mx-auto leading-relaxed">
-            আপনার প্রজেক্টের কারিগরি রিকোয়ারমেন্টস আমাদের সফটওয়্যার আর্কিটেক্টদের কাছে পৌঁছেছে। আমরা আপনার চাহিদা পর্যালোচনা করে একটি সুনির্দিষ্ট স্কোপ অফ ওয়ার্ক ও কোটেশনসহ দ্রুত যোগাযোগ করব।
+            Your technical project brief has reached our software architect. We will review your requirements and follow
+            up with a formal Scope of Work (SOW) and milestone estimate within 24 business hours.
           </p>
         </div>
 
         <div className="mx-auto max-w-sm rounded-lg border border-border bg-background p-4 text-center">
-          <p className="text-xs uppercase tracking-wider text-text-muted font-mono">আপনার কোটেশন রেফারেন্স কোড</p>
+          <p className="text-xs uppercase tracking-wider text-text-muted font-mono">Quotation Reference Code</p>
           <div className="mt-2 flex items-center justify-center gap-2">
             <span className="font-mono text-xl font-bold text-accent-text">{submittedRef}</span>
             <button
               type="button"
               onClick={copyReferenceCode}
               className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
-              aria-label="রেফারেন্স ট্র্যাকিং কোড কপি করুন"
+              aria-label="Copy reference tracking code"
             >
               {copied ? <Check className="h-4 w-4 text-accent-text" /> : <Copy className="h-4 w-4" />}
             </button>
           </div>
           <p className="mt-2 text-xs text-text-muted">
-            কোটেশন ইনকোয়ারি সরাসরি আমাদের প্রিন্সিপাল আর্কিটেক্ট রিভিউ করেন।
+            Directly reviewed by Md Parvezul Islam, Principal Software Architect.
           </p>
         </div>
 
@@ -122,7 +127,7 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
             setProjectBrief("");
           }}
         >
-          আরেকটি প্রজেক্ট ব্রিফ সাবমিট করুন
+          Submit Another Project Brief
         </Button>
       </Card>
     );
@@ -133,21 +138,26 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
       <CardContent className="p-6 sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && (
-            <div className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300" role="alert">
+            <div
+              className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300"
+              role="alert"
+            >
               {error}
             </div>
           )}
 
           {/* Section 1: Contact Information */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-accent-text flex items-center gap-2 font-mono">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent-text font-bold">১</span>
-              ক্লায়েন্ট ও ব্যবসায়িক বিবরণ
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-accent flex items-center gap-2 font-mono">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent font-bold">
+                1
+              </span>
+              Client &amp; Contact Details
             </h4>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="quote-fullName" className="text-sm font-medium text-text-primary">
-                  আপনার নাম <span className="text-accent-text">*</span>
+                  Full Name <span className="text-accent-text">*</span>
                 </label>
                 <Input
                   id="quote-fullName"
@@ -155,13 +165,13 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="যেমন: মোঃ পারভেজুল ইসলাম"
+                  placeholder="e.g., Alex Rahman"
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="quote-email" className="text-sm font-medium text-text-primary">
-                  অফিসিয়াল ইমেইল <span className="text-accent">*</span>
+                  Business Email <span className="text-accent">*</span>
                 </label>
                 <Input
                   id="quote-email"
@@ -178,7 +188,7 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
               <div className="space-y-2">
                 <label htmlFor="quote-phone" className="text-sm font-medium text-text-primary">
-                  ফোন / হোয়াটসঅ্যাপ নম্বর
+                  Phone / WhatsApp
                 </label>
                 <Input
                   id="quote-phone"
@@ -191,27 +201,27 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
 
               <div className="space-y-2">
                 <label htmlFor="quote-company" className="text-sm font-medium text-text-primary">
-                  কোম্পানি বা ব্র্যান্ডের নাম
+                  Company / Organization
                 </label>
                 <Input
                   id="quote-company"
                   name="companyName"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="আপনার ব্র্যান্ড / প্রতিষ্ঠান"
+                  placeholder="Your Company or Brand"
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="quote-country" className="text-sm font-medium text-text-primary">
-                  অবস্থান / দেশ
+                  Country / Location
                 </label>
                 <Input
                   id="quote-country"
                   name="country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  placeholder="বাংলাদেশ, যুক্তরাজ্য, যুক্তরাষ্ট্র ইত্যাদি"
+                  placeholder="Bangladesh, UK, USA, etc."
                 />
               </div>
             </div>
@@ -220,14 +230,16 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
           {/* Section 2: Project Scope & Service Selection */}
           <div className="space-y-4 pt-4 border-t border-border/50">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-accent flex items-center gap-2 font-mono">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent">২</span>
-              সেবার ধরন ও প্যাকেজ
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent font-bold">
+                2
+              </span>
+              Service &amp; Package Selection
             </h4>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="quote-service" className="text-sm font-medium text-text-primary">
-                  প্রয়োজনীয় সার্ভিস নির্বাচন করুন <span className="text-accent">*</span>
+                  Select Required Service <span className="text-accent">*</span>
                 </label>
                 <select
                   id="quote-service"
@@ -239,24 +251,24 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                     <optgroup key={cat.id} label={cat.name}>
                       {cat.services.map((srv) => (
                         <option key={srv.slug} value={srv.slug}>
-                          {srv.name} {srv.isFlagship ? "★ ফ্ল্যাগশিপ" : ""}
+                          {srv.name} {srv.isFlagship ? "★ Flagship" : ""}
                         </option>
                       ))}
                     </optgroup>
                   ))}
-                  <option value="custom-solution">অন্যান্য কাস্টম সফটওয়্যার সল্যুশন</option>
+                  <option value="custom-solution">Custom Software Architecture / Other</option>
                 </select>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="quote-package" className="text-sm font-medium text-text-primary">
-                  পছন্দসই টিয়ার বা প্যাকেজ (ঐচ্ছিক)
+                  Preferred Package Tier (Optional)
                 </label>
                 <Input
                   id="quote-package"
                   value={packageId}
                   onChange={(e) => setPackageId(e.target.value)}
-                  placeholder="যেমন: Conversion Pro, Business Care, অথবা কাস্টম"
+                  placeholder="e.g., Conversion Pro, Growth Storefront, or Custom"
                 />
               </div>
             </div>
@@ -265,14 +277,16 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
           {/* Section 3: Budget & Timeline */}
           <div className="space-y-4 pt-4 border-t border-border/50">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-accent flex items-center gap-2 font-mono">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent">৩</span>
-              বাজেট ও সম্ভাব্য সময়সীমা
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent font-bold">
+                3
+              </span>
+              Budget &amp; Target Timeline
             </h4>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
               <div className="space-y-2">
                 <label htmlFor="quote-currency" className="text-sm font-medium text-text-primary">
-                  বিলিং কারেন্সি
+                  Billing Currency
                 </label>
                 <select
                   id="quote-currency"
@@ -280,18 +294,18 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                   onChange={(e) => {
                     const c = e.target.value as "BDT" | "USD";
                     setCurrency(c);
-                    setBudgetRange(c === "BDT" ? "৳ ২৫,০০০ – ৳ ৫০,০০০" : "$300 - $750");
+                    setBudgetRange(c === "BDT" ? "৳ 25,000 – ৳ 50,000" : "$300 - $750");
                   }}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-text-primary shadow-xs focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 >
-                  <option value="BDT">BDT (৳ — বাংলাদেশ লোকাল)</option>
-                  <option value="USD">USD ($ — আন্তর্জাতিক)</option>
+                  <option value="BDT">BDT (৳ — Bangladesh Local)</option>
+                  <option value="USD">USD ($ — International)</option>
                 </select>
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="quote-budget" className="text-sm font-medium text-text-primary">
-                  আনুমানিক বাজেট সীমা
+                  Estimated Budget Range
                 </label>
                 <select
                   id="quote-budget"
@@ -301,10 +315,10 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                 >
                   {currency === "BDT" ? (
                     <>
-                      <option value="৳ ২৫,০০০ – ৳ ৫০,০০০">৳ ২৫,০০০ – ৳ ৫০,০০০</option>
-                      <option value="৳ ৫০,০০০ – ৳ ১,০০,০০০">৳ ৫০,০০০ – ৳ ১,০০,০০০</option>
-                      <option value="৳ ১,০০,০০০ – ৳ ২,০০,০০০">৳ ১,০০,০০০ – ৳ ২,০০,০০০</option>
-                      <option value="৳ ২,০০,০০০+ (এন্টারপ্রাইজ)">৳ ২,০০,০০০+ (এন্টারপ্রাইজ)</option>
+                      <option value="৳ 25,000 – ৳ 50,000">৳ 25,000 – ৳ 50,000</option>
+                      <option value="৳ 50,000 – ৳ 1,00,000">৳ 50,000 – ৳ 1,00,000</option>
+                      <option value="৳ 1,00,000 – ৳ 2,00,000">৳ 1,00,000 – ৳ 2,00,000</option>
+                      <option value="৳ 2,00,000+ (Enterprise)">৳ 2,00,000+ (Enterprise)</option>
                     </>
                   ) : (
                     <>
@@ -319,7 +333,7 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
 
               <div className="space-y-2">
                 <label htmlFor="quote-timeline" className="text-sm font-medium text-text-primary">
-                  টার্গেট লঞ্চ টাইমলাইন
+                  Target Launch Timeline
                 </label>
                 <select
                   id="quote-timeline"
@@ -327,10 +341,10 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                   onChange={(e) => setTimelinePreference(e.target.value)}
                   className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-text-primary shadow-xs focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                 >
-                  <option value="১ থেকে ২ সপ্তাহের মধ্যে (স্প্রিন্ট)">১ থেকে ২ সপ্তাহের মধ্যে (স্প্রিন্ট)</option>
-                  <option value="২ থেকে ৩ সপ্তাহের মধ্যে (স্ট্যান্ডার্ড)">২ থেকে ৩ সপ্তাহের মধ্যে (স্ট্যান্ডার্ড)</option>
-                  <option value="১ থেকে ২ মাসের মধ্যে (কমপ্লিট)">১ থেকে ২ মাসের মধ্যে (কমপ্লিট)</option>
-                  <option value="ফ্লেক্সিবল / দীর্ঘমেয়াদী পরিকল্পনা">ফ্লেক্সিবল / দীর্ঘমেয়াদী পরিকল্পনা</option>
+                  <option value="1 to 2 weeks (Sprint)">1 to 2 weeks (Sprint)</option>
+                  <option value="2 to 3 weeks (Standard)">2 to 3 weeks (Standard)</option>
+                  <option value="1 to 2 months (Complete)">1 to 2 months (Complete)</option>
+                  <option value="Flexible / Long-term Planning">Flexible / Long-term Planning</option>
                 </select>
               </div>
             </div>
@@ -339,12 +353,15 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
           {/* Section 4: Project Specifications */}
           <div className="space-y-4 pt-4 border-t border-border/50">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-accent flex items-center gap-2 font-mono">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent">৪</span>
-              প্রজেক্টের বিবরণ ও কারিগরি রিকোয়ারমেন্টস
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent/20 text-xs text-accent font-bold">
+                4
+              </span>
+              Project Requirements &amp; Technical Specifications
             </h4>
             <div className="space-y-2">
               <label htmlFor="quote-brief" className="text-sm font-medium text-text-primary">
-                আপনার ব্যবসার লক্ষ্য, সেবার বিবরণ বা পছন্দের রেফারেন্স লিঙ্ক লিখুন <span className="text-accent">*</span>
+                Describe your project goals, required integrations, or reference websites{" "}
+                <span className="text-accent">*</span>
               </label>
               <Textarea
                 id="quote-brief"
@@ -353,7 +370,7 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
                 rows={5}
                 value={projectBrief}
                 onChange={(e) => setProjectBrief(e.target.value)}
-                placeholder="আপনার ব্যবসার ধরন, প্রয়োজনীয় ফিচার (পেমেন্ট গেটওয়ে, মেটা পিক্সেল, কুরিয়ার এপিআই), রেফারেন্স ওয়েবসাইট এবং লক্ষ্যসমূহ বিস্তারিত শেয়ার করুন..."
+                placeholder="Share your business objectives, required features (e.g. bKash payment gateway, Meta Pixel + CAPI, courier APIs), reference links, and target users..."
               />
             </div>
           </div>
@@ -361,10 +378,10 @@ export function QuoteForm({ initialService = "", initialPackage = "" }: QuoteFor
           <div className="pt-2">
             <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full sm:w-auto">
               <Calculator className="mr-2 h-4 w-4" />
-              অফিসিয়াল কোটেশন রিকোয়েস্ট করুন
+              Request Official Project Quote
             </Button>
             <p className="mt-2 text-xs text-text-muted">
-              সাবমিট করার পর আপনার ব্রিফটি সরাসরি আমাদের প্রিন্সিপাল সফটওয়্যার আর্কিটেক্টের কাছে পৌঁছাবে।
+              Your submission will be directly reviewed by our Principal Software Architect.
             </p>
           </div>
         </form>

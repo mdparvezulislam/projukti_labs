@@ -5,22 +5,23 @@ import { Mail, Clock, MapPin, ShieldCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
-  title: "যোগাযোগ | Projukti Labs",
+  title: "Contact Us | Projukti Labs",
   description:
-    "Projukti Labs-এর সাথে যোগাযোগ করুন। সরাসরি ইঞ্জিনিয়ারিং ইনকোয়ারি, টেকনিক্যাল কনসালটেশন ও প্রজেক্ট প্রস্তাবনা।",
+    "Get in touch with Projukti Labs. Direct engineering inquiries, technical consultations, and project proposals.",
 };
 
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-16">
-      {/* Header */}
+      {/* 1. Header */}
       <div className="max-w-3xl space-y-4">
-        <Badge variant="accent">সরাসরি ইঞ্জিনিয়ারিং চ্যানেল</Badge>
+        <Badge variant="accent">DIRECT ENGINEERING CHANNEL</Badge>
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-text-primary">
-          আমাদের ইঞ্জিনিয়ারিং টিমের সাথে যোগাযোগ করুন
+          Get in Touch with Our Engineering Team
         </h1>
         <p className="text-lg text-text-muted leading-relaxed">
-          আমাদের সেবা, টেকনিক্যাল আর্কিটেকচার বা আপনার আসন্ন প্রজেক্ট নিয়ে কোনো প্রশ্ন থাকলে সরাসরি মেসেজ পাঠান। আমরা সাধারণত ২৪ কার্যঘণ্টার মধ্যে প্রতিটি বার্তার উত্তর দিই।
+          Have a question about our services, software architecture, or an upcoming project? Send us a direct message.
+          We typically respond within 24 business hours.
         </p>
       </div>
 
@@ -34,14 +35,14 @@ export default function ContactPage() {
         <div className="lg:col-span-5 space-y-6">
           <div className="rounded-xl border border-border bg-surface/50 p-6 sm:p-8 space-y-6">
             <h3 className="text-lg font-bold text-text-primary border-b border-border pb-3">
-              স্টুডিও তথ্য ও যোগাযোগ
+              Studio Information &amp; Direct Channels
             </h3>
 
             <div className="space-y-4 text-sm text-text-muted">
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-text-primary">অফিসিয়াল ইমেল</p>
+                  <p className="font-semibold text-text-primary">Official Email</p>
                   <a
                     href="mailto:contact@projuktilabs.tech"
                     className="text-accent hover:underline font-mono text-xs sm:text-sm"
@@ -54,25 +55,25 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-text-primary">রেসপন্স SLA</p>
-                  <p className="text-xs">সর্বোচ্চ ২৪ কার্যঘণ্টার মধ্যে সরাসরি ইঞ্জিনিয়ারিং রেসপন্স।</p>
+                  <p className="font-semibold text-text-primary">Response SLA</p>
+                  <p className="text-xs">Guaranteed engineering response within 24 business hours.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-text-primary">লোকেশন</p>
-                  <p className="text-xs">ঢাকা, বাংলাদেশ · বিশ্বব্যাপী ক্লায়েন্ট সেবা।</p>
+                  <p className="font-semibold text-text-primary">Location</p>
+                  <p className="text-xs">Bangladesh · Serving domestic &amp; international clients.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <ShieldCheck className="h-5 w-5 text-accent shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-text-primary">গোপনীয়তা ও নিরাপত্তা</p>
+                  <p className="font-semibold text-text-primary">Privacy &amp; NDA Protection</p>
                   <p className="text-xs">
-                    আপনার প্রজেক্টের তথ্য ও যোগাযোগের বিবরণ সম্পূর্ণ গোপন ও সুরক্ষিত রাখা হয়।
+                    Your project details, proprietary ideas, and contact information remain strictly confidential.
                   </p>
                 </div>
               </div>
@@ -80,13 +81,14 @@ export default function ContactPage() {
           </div>
 
           <div className="rounded-xl border border-border/60 bg-surface/30 p-6 space-y-3">
-            <h4 className="font-semibold text-text-primary text-sm">বিস্তারিত কোটেশন প্রয়োজন?</h4>
+            <h4 className="font-semibold text-text-primary text-sm">Need a Formal Scope &amp; Quotation?</h4>
             <p className="text-xs text-text-muted leading-relaxed">
-              আপনার বাজেট, সময়সীমা ও নির্দিষ্ট ফিচারের তালিকা প্রস্তুত থাকলে আমাদের কোটেশন ফর্মটি ব্যবহার করুন—যাতে দ্রুত প্রস্তাবনা দেওয়া সম্ভব হয়।
+              If you have defined project goals, target milestones, and a budget range, use our structured quote wizard
+              for a detailed Scope of Work (SOW) proposal.
             </p>
             <Button variant="outline" size="sm" asChild className="w-full mt-2">
               <Link href="/get-a-quote">
-                প্রজেক্ট কোটেশন ফর্ম খুলুন
+                Open Project Quotation Form
                 <ArrowRight className="ml-2 h-3.5 w-3.5" />
               </Link>
             </Button>

@@ -75,7 +75,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
   return (
     <div className="space-y-4">
       {/* Search and Filters Bar */}
-      <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-sm">
+      <div className="bg-card border border-border rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shadow-warm-sm">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted" aria-hidden="true" />
           <input
@@ -83,7 +83,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="নাম, ইমেল বা রেফারেন্স কোড দিয়ে খুঁজুন…"
-            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full pl-9 pr-3 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary placeholder:text-text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
           />
         </div>
 
@@ -92,7 +92,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="w-full sm:w-auto px-3 py-2 text-xs bg-surface-elevated border border-border rounded-lg text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[44px]"
+            className="w-full sm:w-auto px-3 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
           >
             <option value="all">সকল স্ট্যাটাস</option>
             <option value="new">নতুন (New)</option>
@@ -127,8 +127,8 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                 <div
                   key={inq.id}
                   onClick={() => setActiveInquiry(inq)}
-                  className={`bg-card border rounded-xl p-3.5 sm:p-4 cursor-pointer transition-all hover:border-border-hover hover:bg-card-hover ${
-                    isSelected ? "border-accent ring-1 ring-accent bg-accent/5" : "border-border shadow-xs"
+                  className={`bg-card border rounded-2xl p-4 sm:p-5 cursor-pointer transition-all duration-300 shadow-warm-sm hover:shadow-warm-md hover:border-border-hover ${
+                    isSelected ? "border-brand-orange ring-1 ring-brand-orange bg-brand-orange-soft/25" : "border-border"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -191,7 +191,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
         </div>
 
         {/* Detail Panel Column (1 Col) */}
-        <div className="bg-card border border-border rounded-xl p-4 sm:p-5 h-fit sticky top-20">
+        <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 h-fit sticky top-20 shadow-warm-sm">
           {activeInquiry ? (
             <div className="space-y-4">
               <div className="border-b border-border pb-3">

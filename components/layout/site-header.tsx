@@ -33,10 +33,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-text-primary text-lg group">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-surface-elevated border border-border group-hover:border-accent transition-colors">
-            <span className="text-accent text-sm font-black">PL</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-surface border border-border group-hover:border-brand-orange transition-colors shadow-xs">
+            <span className="text-brand-orange-strong dark:text-accent text-sm font-black">PL</span>
           </div>
-          <span>Projukti Labs</span>
+          <span className="font-extrabold tracking-tight">Projukti Labs</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -48,10 +48,10 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 text-sm font-medium rounded-md transition-colors",
+                  "px-3 py-1.5 text-sm font-medium rounded-lg transition-colors",
                   isActive
-                    ? "text-accent bg-surface-elevated"
-                    : "text-text-secondary hover:text-text-primary hover:bg-surface"
+                    ? "text-text-primary font-semibold bg-surface-muted shadow-2xs"
+                    : "text-text-secondary hover:text-text-primary hover:bg-surface-muted/60"
                 )}
               >
                 {link.label}
@@ -88,7 +88,7 @@ export function SiteHeader() {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="border-b border-border bg-surface-elevated md:hidden animate-in slide-in-from-top-2">
+        <div className="border-b border-border bg-card/95 backdrop-blur-md md:hidden shadow-lg animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4 sm:px-6">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
@@ -98,10 +98,10 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block px-3 py-2.5 rounded-lg text-base font-medium transition-colors",
+                    "block px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors",
                     isActive
-                      ? "text-accent bg-surface-muted font-semibold"
-                      : "text-text-secondary hover:text-text-primary hover:bg-surface"
+                      ? "text-text-primary bg-surface-muted font-semibold"
+                      : "text-text-secondary hover:text-text-primary hover:bg-surface-muted/50"
                   )}
                 >
                   {link.label}

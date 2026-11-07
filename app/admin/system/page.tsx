@@ -19,6 +19,8 @@ import { getSafeEnvironmentSummary } from "@/lib/env";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { Activity, Database, Server, Shield, Terminal } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "সিস্টেম মনিটরিং ও ব্যাকআপ | Projukti Labs Admin",
 };

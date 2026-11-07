@@ -4,6 +4,8 @@ import { getNotifications } from "@/lib/automation/processor";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { NotificationsView } from "./notifications-view";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "নোটিফিকেশন সেন্টার | Projukti Labs Admin",
 };

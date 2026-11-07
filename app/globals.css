@@ -1,7 +1,37 @@
 @import "tailwindcss";
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+
 :root {
   /* Default: Dark-First Precision System */
+  color-scheme: dark;
   --background: #09090B;
   --foreground: #FAFAFA;
   --surface: #111113;
@@ -16,6 +46,7 @@
   --border: #27272A;
   --border-strong: #3F3F46;
   --border-hover: #52525B;
+  --border-subtle: #1C1C1F;
   --border-accent: rgba(255, 223, 32, 0.35);
 
   --text-primary: #FAFAFA;
@@ -27,44 +58,81 @@
   --accent-foreground: #09090B;
   --accent-text: #FFDF20;
 
+  --brand-orange: #FF7D0C;
+  --brand-orange-secondary: #FE9332;
+  --brand-orange-soft: rgba(255, 125, 12, 0.15);
+  --brand-orange-bg: rgba(255, 125, 12, 0.08);
+  --brand-orange-strong: #FE9332;
+
+  --primary: #FFDF20;
+  --primary-foreground: #09090B;
+  --secondary: #18181B;
+  --secondary-foreground: #FAFAFA;
+
   --success: #22C55E;
   --warning: #F59E0B;
   --danger: #EF4444;
   --info: #818CF8;
   --ring: #FFDF20;
+
+  --shadow-warm-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-warm-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-warm-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
 }
 
 [data-theme="light"] {
-  --background: #FAFAFA;
-  --foreground: #09090B;
+  /* Phase 15: Exact ChaiCode Warm Ambient Cream System */
+  color-scheme: light;
+  --background: #FAF5ED;
+  --foreground: #141413;
   --surface: #FFFFFF;
-  --surface-elevated: #F4F4F5;
-  --surface-muted: #E4E4E7;
-  --surface-glass: rgba(255, 255, 255, 0.9);
+  --surface-elevated: #FFFFFF;
+  --surface-muted: #F4EDE3;
+  --surface-glass: rgba(255, 255, 255, 0.90);
 
   --card: #FFFFFF;
-  --card-hover: #F4F4F5;
-  --card-foreground: #09090B;
+  --card-hover: #FDFBF8;
+  --card-foreground: #141413;
 
-  --border: #E4E4E7;
-  --border-strong: #D4D4D8;
-  --border-hover: #A1A1AA;
-  --border-accent: rgba(202, 138, 4, 0.4);
+  --border: #E8DFD5;
+  --border-strong: #D6CABA;
+  --border-hover: #B8A894;
+  --border-subtle: #F0E8DD;
+  --border-accent: rgba(255, 125, 12, 0.40);
 
-  --text-primary: #09090B;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
+  --text-primary: #141413;
+  --text-secondary: #555048;
+  --text-muted: #7E776C;
 
-  --accent: #EAB308;
-  --accent-hover: #CA8A04;
-  --accent-foreground: #09090B;
-  --accent-text: #854D0E;
+  /* Primary Button: Sleek Black button with white text (ChaiCode style) */
+  --accent: #141413;
+  --accent-hover: #262626;
+  --accent-foreground: #FFFFFF;
+  
+  /* Highlighted text: Warm golden amber / brown from ChaiCode reference */
+  --accent-text: #8A5F35;
+
+  --brand-orange: #FF7D0C;
+  --brand-orange-secondary: #FE9332;
+  --brand-orange-soft: #FFF0E2;
+  --brand-orange-bg: #FFF7ED;
+  --brand-orange-strong: #8A5F35;
+
+  --primary: #141413;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FFFFFF;
+  --secondary-foreground: #141413;
 
   --success: #16A34A;
   --warning: #D97706;
   --danger: #DC2626;
-  --info: #4F46E5;
-  --ring: #EAB308;
+  --info: #2563EB;
+  --ring: #FF7D0C;
+
+  /* ChaiCode Warm Multi-Layer Depth Shadows */
+  --shadow-warm-sm: 0 1px 3px rgba(60, 40, 20, 0.04), 0 4px 12px -2px rgba(180, 120, 60, 0.05);
+  --shadow-warm-md: 0 2px 6px rgba(60, 40, 20, 0.04), 0 10px 24px -4px rgba(180, 120, 60, 0.08);
+  --shadow-warm-lg: 0 8px 16px rgba(60, 40, 20, 0.04), 0 20px 40px -8px rgba(180, 120, 60, 0.10);
 }
 
 @theme inline {
@@ -84,6 +152,7 @@
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-border-hover: var(--border-hover);
+  --color-border-subtle: var(--border-subtle);
   --color-border-accent: var(--border-accent);
 
   --color-text-primary: var(--text-primary);
@@ -95,6 +164,17 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-text: var(--accent-text);
 
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-secondary: var(--brand-orange-secondary);
+  --color-brand-orange-soft: var(--brand-orange-soft);
+  --color-brand-orange-bg: var(--brand-orange-bg);
+  --color-brand-orange-strong: var(--brand-orange-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
@@ -102,9 +182,18 @@
   --color-ring: var(--ring);
 
   --font-bangla: var(--font-hind-siliguri), system-ui, sans-serif;
-  --font-sans: var(--font-hind-siliguri), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-hind-siliguri), var(--font-manrope), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-manrope), var(--font-hind-siliguri), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --font-accent: var(--font-caveat), cursive;
+
+  --animate-spin-slow: spin-slow 8s linear infinite;
+  --animate-float-slow: float-slow 6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+
+  --shadow-warm-sm: var(--shadow-warm-sm);
+  --shadow-warm-md: var(--shadow-warm-md);
+  --shadow-warm-lg: var(--shadow-warm-lg);
 }
 
 * {
@@ -114,7 +203,7 @@
 body {
   background-color: var(--background);
   color: var(--text-primary);
-  font-family: var(--font-hind-siliguri), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-hind-siliguri), var(--font-manrope), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

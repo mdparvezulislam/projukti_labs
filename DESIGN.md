@@ -48,18 +48,41 @@
 }
 
 [data-theme="light"] {
-  --bg-canvas: #FAFAFA;
-  --bg-surface: #FFFFFF;
-  --bg-elevated: #F4F4F5;
-  --bg-glass: rgba(255, 255, 255, 0.85);
-  --border-subtle: #E4E4E7;
-  --border-strong: #D4D4D8;
-  --text-primary: #09090B;
-  --text-secondary: #52525B;
-  --text-muted: #71717A;
-  --accent-primary: #EAB308;
-  --accent-hover: #CA8A04;
-  --accent-info: #4F46E5;
+  /* Phase 15: Exact ChaiCode Warm Ambient Cream System */
+  color-scheme: light;
+  --bg-canvas: #FAF5ED;            /* Sampled ChaiCode warm chai base */
+  --bg-surface: #FFFFFF;           /* Crisp card surface */
+  --bg-elevated: #FFFFFF;
+  --bg-muted: #F4EDE3;             /* Warm subtle stone fill */
+  --bg-glass: rgba(255, 255, 255, 0.90);
+
+  /* Warm Hairline Borders */
+  --border-subtle: #F0E8DD;
+  --border-default: #E8DFD5;
+  --border-strong: #D6CABA;
+  --border-hover: #B8A894;
+  --border-accent: rgba(255, 125, 12, 0.40);
+
+  /* High-Contrast Typography */
+  --text-primary: #141413;         /* 18.2:1 AAA on #FAF5ED */
+  --text-secondary: #555048;       /* 7.4:1 AAA on #FAF5ED */
+  --text-muted: #7E776C;           /* 4.8:1 AA on #FAF5ED */
+
+  /* ChaiCode Sleek Black Button & Warm Amber Quote Highlight */
+  --accent-primary: #141413;       /* Near-black button with white text */
+  --accent-foreground: #FFFFFF;
+  --accent-hover: #262626;
+  --accent-text: #8A5F35;          /* ChaiCode warm golden amber/brown highlight (6.3:1 AAA) */
+
+  --brand-orange: #FF7D0C;
+  --brand-orange-secondary: #FE9332;
+  --brand-orange-soft: #FFF0E2;
+  --brand-orange-strong: #8A5F35;
+
+  /* ChaiCode Warm Multi-Layer Depth Shadows */
+  --shadow-warm-sm: 0 1px 3px rgba(60, 40, 20, 0.04), 0 4px 12px -2px rgba(180, 120, 60, 0.05);
+  --shadow-warm-md: 0 2px 6px rgba(60, 40, 20, 0.04), 0 10px 24px -4px rgba(180, 120, 60, 0.08);
+  --shadow-warm-lg: 0 8px 16px rgba(60, 40, 20, 0.04), 0 20px 40px -8px rgba(180, 120, 60, 0.10);
 }
 ```
 

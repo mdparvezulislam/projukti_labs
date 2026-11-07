@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { AnimatedGradientBadge } from "@/components/ui/animated-gradient-badge";
 import {
   ArrowRight,
   CheckCircle2,
@@ -11,162 +12,301 @@ import {
   Zap,
   Code2,
   ChevronRight,
+  Sparkles,
+  Layers,
+  Cpu,
+  MessageSquare,
+  FileCheck2,
 } from "lucide-react";
-import { getPageSections } from "@/lib/cms";
+import { getPageSections, getCmsPortfolio } from "@/lib/cms";
+import { VERIFIED_PORTFOLIO_PROJECTS } from "@/lib/cms/seed";
 
 export const metadata = {
-  title: "Projukti Labs | ডিজিটাল সলিউশন ও আধুনিক সফটওয়্যার ইঞ্জিনিয়ারিং স্টুডিও",
+  title: "Projukti Labs | Building Digital Solutions. Engineering the Future.",
   description:
-    "আল্ট্রা-ফাস্ট ওয়েব প্ল্যাটফর্ম, মেটা পিক্সেল ও CAPI সমন্বিত হাই-কনভার্টিং ল্যান্ডিং পেজ এবং নির্ভরযোগ্য ই-কমার্স ইঞ্জিনিয়ারিং স্টুডিও।",
+    "Projukti Labs is a technology-focused digital solutions studio building modern websites, e-commerce platforms, business applications and practical software solutions.",
 };
 
 export default async function HomePage() {
   const homeSections = await getPageSections("home");
   const heroSection = homeSections.find((s) => s.sectionKey === "hero");
   const heroContent = (heroSection?.content as Record<string, string>) || {};
-  const heroTitle = heroSection?.title;
-  const heroSubtitle = heroSection?.subtitle || "আমরা তৈরি করি অবিশ্বাস্য দ্রুতগতির ওয়েব প্ল্যাটফর্ম, ভেরিফাইড মেটা পিক্সেল ও ট্র্যাকিং যুক্ত কনভার্শন ল্যান্ডিং পেজ এবং নির্ভরযোগ্য ই-কমার্স ইঞ্জিন—বাংলাদেশ ও আন্তর্জাতিক ব্যবসার জন্য।";
-  const badgeText = heroContent.badge || "অফিসিয়াল স্টুডিও লঞ্চ | ৩টি প্রধান সার্ভিস ক্যাটাগরি";
-  const ctaPrimaryText = heroContent.ctaPrimaryText || "প্রজেক্টের বাজেট ও কোটেশন চান";
+  const heroTitle = heroSection?.title || "Consistency and Engineering";
+  const heroSubtitle =
+    heroSection?.subtitle ||
+    "Software is everywhere. We engineer what is rare: An Unmatched, High-Performance Software Engineering Experience with direct architect communication, fixed transparent pricing, modern Next.js architecture, and long-term technical support.";
+  const badgeText = heroContent.badge || "PROFESSIONAL DIGITAL SOLUTIONS";
+  const ctaPrimaryText = heroContent.ctaPrimaryText || "Start a Project";
   const ctaPrimaryLink = heroContent.ctaPrimaryLink || "/get-a-quote";
-  const ctaSecondaryText = heroContent.ctaSecondaryText || "আমাদের সেবাসমূহ দেখুন";
-  const ctaSecondaryLink = heroContent.ctaSecondaryLink || "/services";
+  const ctaSecondaryText = heroContent.ctaSecondaryText || "Explore Our Work";
+  const ctaSecondaryLink = heroContent.ctaSecondaryLink || "/portfolio";
+
+  // Fetch verified portfolio projects from CMS / fallback
+  const cmsProjects = await getCmsPortfolio();
+  const displayProjects = cmsProjects.length > 0 ? cmsProjects.slice(0, 4) : VERIFIED_PORTFOLIO_PROJECTS.slice(0, 4);
 
   return (
-    <div className="flex flex-col gap-24 sm:gap-32 pb-20">
-      {/* 1. Hero Section */}
-      <section className="relative pt-12 sm:pt-20 lg:pt-24 overflow-hidden">
-        {/* Subtle grid backdrop */}
-        <div
-          className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#27272a15_1px,transparent_1px),linear-gradient(to_bottom,#27272a15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"
-          aria-hidden="true"
-        />
+    <div className="flex flex-col gap-24 sm:gap-32 pb-24">
+      {/* 1. Hero Section: ChaiCode Inspired Split Architecture */}
+      <section className="relative pt-8 sm:pt-16 lg:pt-24 pb-8 sm:pb-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: Heading, Subtitle with highlighted quote, CTAs */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              {/* Animated Gradient Pill Badge */}
+              <div className="inline-flex">
+                <AnimatedGradientBadge chevron icon={<Sparkles className="h-3.5 w-3.5 text-brand-orange" />}>
+                  {badgeText}
+                </AnimatedGradientBadge>
+              </div>
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs sm:text-sm text-text-muted">
-            <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse" />
-            <span className="font-medium text-text-primary">{badgeText}</span>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-primary leading-[1.06]">
+                {heroTitle.includes("and") ? (
+                  <>
+                    {heroTitle.split("and")[0]} <br />
+                    <span className="text-text-primary">and {heroTitle.split("and")[1]?.trim()}</span>
+                  </>
+                ) : (
+                  heroTitle
+                )}
+              </h1>
+
+              <p className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl">
+                {heroSubtitle.includes("An Unmatched") ? (
+                  <>
+                    Software is everywhere. We engineer what is rare:{" "}
+                    <span className="text-accent-text font-semibold">
+                      &ldquo;An Unmatched, High-Performance Software Engineering Experience&rdquo;
+                    </span>{" "}
+                    with direct architect communication, fixed transparent pricing, modern Next.js architecture, and long-term technical support.
+                  </>
+                ) : (
+                  heroSubtitle
+                )}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <Button size="lg" variant="primary" asChild className="rounded-xl px-6 h-12 shadow-warm-sm hover:shadow-warm-md text-sm font-bold">
+                  <Link href={ctaPrimaryLink}>
+                    {ctaPrimaryText}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="rounded-xl px-6 h-12 bg-card/90 border-border hover:bg-surface-muted text-sm font-semibold">
+                  <Link href={ctaSecondaryLink}>
+                    {ctaSecondaryText}
+                    <ChevronRight className="ml-1.5 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Column: Founder & Engineering Showcase with Soft Feathered Ambient Fade */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md lg:max-w-none [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] pb-8">
+                {/* Showcase Card with Warm Depth */}
+                <div className="rounded-3xl border border-border bg-card/95 p-6 sm:p-7 shadow-warm-lg backdrop-blur-md space-y-6">
+                  {/* Founder Identity Header */}
+                  <div className="flex items-center gap-4 border-b border-border/80 pb-5">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-tr from-brand-orange-strong to-brand-orange text-white font-black flex items-center justify-center text-2xl shadow-warm-sm shrink-0">
+                      PI
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-text-primary tracking-tight">Md Parvezul Islam</h2>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          Live Studio
+                        </span>
+                      </div>
+                      <p className="text-xs text-accent-text font-semibold mt-0.5">
+                        Founder &amp; Principal Software Architect
+                      </p>
+                      <p className="text-[11px] text-text-muted mt-0.5">
+                        projuktilabs.tech · Serving Bangladesh &amp; Global Clients
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Architecture Metrics Grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl border border-border bg-surface-muted/50 p-3 space-y-1">
+                      <div className="text-[10px] uppercase font-mono text-text-muted font-bold">Speed Target</div>
+                      <div className="text-lg font-extrabold text-brand-orange-strong font-mono">&lt; 1.2s LCP</div>
+                      <div className="text-[10px] text-text-muted">Edge optimized</div>
+                    </div>
+                    <div className="rounded-xl border border-border bg-surface-muted/50 p-3 space-y-1">
+                      <div className="text-[10px] uppercase font-mono text-text-muted font-bold">Code Safety</div>
+                      <div className="text-lg font-extrabold text-text-primary font-mono">100% Type-Safe</div>
+                      <div className="text-[10px] text-text-muted">Strict TypeScript</div>
+                    </div>
+                    <div className="rounded-xl border border-border bg-surface-muted/50 p-3 space-y-1">
+                      <div className="text-[10px] uppercase font-mono text-text-muted font-bold">Edge Network</div>
+                      <div className="text-lg font-extrabold text-brand-orange-strong font-mono">300+ PoPs</div>
+                      <div className="text-[10px] text-text-muted">Cloudflare Workers</div>
+                    </div>
+                    <div className="rounded-xl border border-border bg-surface-muted/50 p-3 space-y-1">
+                      <div className="text-[10px] uppercase font-mono text-text-muted font-bold">Accessibility</div>
+                      <div className="text-lg font-extrabold text-text-primary font-mono">WCAG 2.1 AA</div>
+                      <div className="text-[10px] text-text-muted">Universal standard</div>
+                    </div>
+                  </div>
+
+                  {/* Direct Channel SLA Box */}
+                  <div className="rounded-xl border border-border bg-brand-orange-soft/40 p-3.5 flex items-center justify-between text-xs">
+                    <div>
+                      <span className="font-bold text-text-primary">Direct Architectural Consultation</span>
+                      <p className="text-[11px] text-text-secondary mt-0.5">24h initial Scope of Work (SOW) review</p>
+                    </div>
+                    <Link
+                      href="/founder"
+                      className="inline-flex items-center gap-1 font-bold text-accent-text hover:underline text-xs shrink-0 p-1"
+                    >
+                      Profile <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h1 className="mx-auto max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
-            {heroTitle ? (
-              heroTitle
-            ) : (
-              <>
-                ডিজিটাল সলিউশন নির্মাণ।{" "}
-                <span className="text-accent underline decoration-accent/30 decoration-wavy decoration-from-font">
-                  ভবিষ্যতের প্রযুক্তি ইঞ্জিনিয়ারিং।
-                </span>
-              </>
-            )}
-          </h1>
-
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl text-text-muted leading-relaxed">
-            {heroSubtitle}
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Button size="lg" variant="primary" asChild className="w-full sm:w-auto">
-              <Link href={ctaPrimaryLink}>
-                {ctaPrimaryText}
-                <ArrowRight className="ml-2 h-4 w-4" />
+          {/* Trending Solutions Row (Direct ChaiCode Section Pattern) */}
+          <div className="pt-12 sm:pt-16 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-2 border-b border-border pb-4">
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary">
+                  Trending Solutions
+                </h2>
+                <p className="text-sm text-text-secondary mt-1">
+                  Latest and most impactful engineering services that{" "}
+                  <span className="text-accent-text font-semibold">
+                    Combine Architectural Excellence
+                  </span>{" "}
+                  with real-world business results.
+                </p>
+              </div>
+              <Link
+                href="/services"
+                className="text-xs font-bold text-text-primary hover:text-accent-text inline-flex items-center gap-1"
+              >
+                View All Services <ChevronRight className="h-3.5 w-3.5" />
               </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <Link href={ctaSecondaryLink}>{ctaSecondaryText}</Link>
-            </Button>
-          </div>
-
-          {/* Engineering Metrics Ticker */}
-          <div className="pt-12 sm:pt-16">
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 rounded-xl border border-border/80 bg-surface/50 p-6 sm:grid-cols-4 backdrop-blur-xs">
-              <div className="space-y-1 text-center">
-                <p className="font-mono text-2xl sm:text-3xl font-extrabold text-accent">&lt; ১.২s</p>
-                <p className="text-xs uppercase tracking-wider text-text-muted">মোবাইল LCP স্পিড টার্গেট</p>
-              </div>
-              <div className="space-y-1 text-center">
-                <p className="font-mono text-2xl sm:text-3xl font-extrabold text-text-primary">১০০%</p>
-                <p className="text-xs uppercase tracking-wider text-text-muted">টাইপ-সেফ API কন্ট্রাক্ট</p>
-              </div>
-              <div className="space-y-1 text-center">
-                <p className="font-mono text-2xl sm:text-3xl font-extrabold text-accent">৩০০+ PoPs</p>
-                <p className="text-xs uppercase tracking-wider text-text-muted">Cloudflare এজ ডেলিভারি</p>
-              </div>
-              <div className="space-y-1 text-center">
-                <p className="font-mono text-2xl sm:text-3xl font-extrabold text-text-primary">WCAG ২.১ AA</p>
-                <p className="text-xs uppercase tracking-wider text-text-muted">এক্সেসিবল ও ইনক্লুসিভ UI</p>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Launch Services Bento Preview */}
+      {/* 2. Introduction Section: Technology Built Around Your Business */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <Badge variant="accent">ABOUT PROJUKTI LABS</Badge>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
+            Technology Built Around Your Business
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
+            We combine thoughtful design, reliable engineering and practical technology to build digital solutions that are useful, maintainable and built around real business needs.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="rounded-2xl border border-border bg-card p-8 space-y-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Sparkles className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-text-primary">Thoughtful Design</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              Clean, intuitive interfaces created with purposeful typography and clear hierarchy. We focus on clarity and user experience, not visual clutter or unnecessary animations.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-8 space-y-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Cpu className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-text-primary">Reliable Engineering</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              Built on modern web technologies including Next.js, TypeScript, and edge cloud architectures. We write type-safe code designed for long-term stability and effortless maintenance.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-8 space-y-4 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Layers className="h-6 w-6" />
+            </div>
+            <h3 className="text-xl font-bold text-text-primary">Practical Solutions</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              We focus on solving practical business problems. From verified ad tracking to automated courier integrations, every feature has a clear operational purpose.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Services Section: What We Do */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
           <div className="space-y-3">
-            <Badge variant="accent">লঞ্চ সার্ভিস ক্যাটালগ</Badge>
+            <Badge variant="accent">WHAT WE DO</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-              ৩টি সুনির্দিষ্ট সার্ভিস। শতভাগ নিবেদিত ইঞ্জিনিয়ারিং।
+              Focused Digital Solutions
             </h2>
-            <p className="text-text-muted max-w-2xl text-base sm:text-lg">
-              অপ্রয়োজনীয় সাধারণ সেবায় শক্তি অপচয় না করে, আমরা ৩টি গভীর ও অত্যন্ত চাহিদাসম্পন্ন প্রযুক্তি সার্ভিসে সর্বোচ্চ মনোযোগ দিচ্ছি।
+            <p className="text-text-secondary max-w-2xl text-base sm:text-lg">
+              We focus our engineering on three active service areas to deliver well-engineered, reliable results for businesses and entrepreneurs.
             </p>
           </div>
-          <Button variant="ghost" asChild className="self-start md:self-auto">
-            <Link href="/services" className="inline-flex items-center gap-1 text-accent">
-              সব সেবাসমূহ ও প্যাকেজ মূল্য
+          <Button variant="ghost" asChild className="self-start md:self-auto hover:text-brand-orange-strong dark:hover:text-accent">
+            <Link href="/services" className="inline-flex items-center gap-1 font-semibold">
+              Explore All Services
               <ChevronRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Card 1: Web Development & Design */}
-          <Card className="flex flex-col justify-between border-border bg-surface/40 hover:border-accent/40 transition-colors">
+          {/* Service 1: Web Development & Design */}
+          <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                <Globe className="h-6 w-6 text-accent" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+                <Globe className="h-6 w-6" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">সক্রিয় সেবা ০১</Badge>
-                <CardTitle className="text-2xl text-text-primary">ওয়েব ডেভেলপমেন্ট ও ডিজাইন</CardTitle>
-                <CardDescription className="text-text-muted mt-2">
-                  Next.js এবং Cloudflare এজ ক্লাউডে নির্মিত হাই-স্পিড আধুনিক ওয়েবসাইট ও কনভার্শন প্ল্যাটফর্ম।
+                <Badge variant="outline" className="mb-2">Active Service 01</Badge>
+                <CardTitle className="text-2xl text-text-primary">Web Development &amp; Design</CardTitle>
+                <CardDescription className="text-text-secondary mt-2">
+                  Fast, responsive, modern websites and conversion landing pages engineered with Next.js and deployed to edge infrastructure.
                 </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="rounded-lg border border-border/60 bg-background/60 p-4 space-y-2">
+              <div className="rounded-xl border border-border bg-surface-muted/60 p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-accent">ফ্ল্যাগশিপ সলিউশন</span>
-                  <Badge variant="accent" className="text-[10px]">উচ্চ চাহিদা</Badge>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-orange-strong dark:text-accent font-mono">Flagship Solution</span>
+                  <Badge variant="accent" className="text-[10px]">High Demand</Badge>
                 </div>
-                <h3 className="font-semibold text-text-primary text-sm">ল্যান্ডিং পেজ, মেটা পিক্সেল ও অ্যানালিটিক্স</h3>
-                <p className="text-xs text-text-muted">
-                  ডুয়াল মেটা পিক্সেল ও সার্ভার CAPI ইভেন্ট ডেডুপ্লিকেশন সাথে সাব-১.২s মোবাইল স্পিড।
+                <h3 className="font-bold text-text-primary text-sm">Landing Page with Meta Pixel</h3>
+                <p className="text-xs text-text-secondary">
+                  High-converting landing page with dual-layer Meta Pixel + Conversions API (CAPI) deduplication and sub-1.2s mobile loading.
                 </p>
               </div>
 
-              <ul className="space-y-2 text-xs text-text-muted">
+              <ul className="space-y-2.5 text-xs text-text-secondary">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>সাব-সেকেন্ড Core Web Vitals পারফরম্যান্স টার্গেট</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Sub-second mobile Core Web Vitals target</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>মেটা ইভেন্টস ম্যানেজার টেস্ট টুলে শতভাগ ভেরিফিকেশন</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Verified Meta Events Manager deduplication</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>কাস্টম করপোরেট ও মার্কেটিং প্ল্যাটফর্ম</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>WCAG 2.1 AA accessible, responsive design</span>
                 </li>
               </ul>
 
               <div className="pt-2">
-                <Button variant="outline" asChild className="w-full">
+                <Button variant="outline" asChild className="w-full bg-card">
                   <Link href="/services/landing-page-meta-pixel">
-                    ল্যান্ডিং পেজ সলিউশন দেখুন
+                    View Landing Page Solution
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -174,51 +314,51 @@ export default async function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Card 2: E-commerce & Digital Commerce */}
-          <Card className="flex flex-col justify-between border-border bg-surface/40 hover:border-accent/40 transition-colors">
+          {/* Service 2: E-commerce & Digital Commerce */}
+          <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                <ShoppingCart className="h-6 w-6 text-accent" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+                <ShoppingCart className="h-6 w-6" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">সক্রিয় সেবা ০২</Badge>
-                <CardTitle className="text-2xl text-text-primary">ই-কমার্স ও ডিজিটাল কমার্স</CardTitle>
-                <CardDescription className="text-text-muted mt-2">
-                  প্রোডাকশন-গ্রেড স্টোরফ্রন্ট, নিরাপদ চেকআউট ইঞ্জিন এবং লোকাল (বিকাশ/নগদ) ও গ্লোবাল পেমেন্ট ইন্টিগ্রেশন।
+                <Badge variant="outline" className="mb-2">Active Service 02</Badge>
+                <CardTitle className="text-2xl text-text-primary">E-commerce &amp; Digital Commerce</CardTitle>
+                <CardDescription className="text-text-secondary mt-2">
+                  Production-grade online store platforms with frictionless checkouts, local payment gateways, and automated courier APIs.
                 </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="rounded-lg border border-border/60 bg-background/60 p-4 space-y-2">
+              <div className="rounded-xl border border-border bg-surface-muted/60 p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-accent">ফ্ল্যাগশিপ সলিউশন</span>
-                  <Badge variant="accent" className="text-[10px]">বাণিজ্যিক স্কেল</Badge>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-orange-strong dark:text-accent font-mono">Flagship Solution</span>
+                  <Badge variant="accent" className="text-[10px]">Commercial Scale</Badge>
                 </div>
-                <h3 className="font-semibold text-text-primary text-sm">কমপ্লিট ই-কমার্স প্ল্যাটফর্ম</h3>
-                <p className="text-xs text-text-muted">
-                  বিকাশ, নগদ, SSLCommerz ও Stripe সহ সিমলেস চেকআউট ও অ্যাডমিন অর্ডার ম্যানেজমেন্ট।
+                <h3 className="font-bold text-text-primary text-sm">Complete E-commerce Website</h3>
+                <p className="text-xs text-text-secondary">
+                  Full store setup with bKash, Nagad, SSLCommerz, or Stripe checkout and automated parcel booking integrations.
                 </p>
               </div>
 
-              <ul className="space-y-2 text-xs text-text-muted">
+              <ul className="space-y-2.5 text-xs text-text-secondary">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>স্টুডিওর পক্ষ থেকে ০% প্ল্যাটফর্ম সেলস কমিশন রয়্যালটি</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>0% platform sales royalty fees from our studio</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>অটোমেটেড কুরিয়ার বুকিং এপিআই ও SMS কনফার্মেশন</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Automated courier booking and SMS alerts</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>কার্ট ড্রপ-অফ প্রতিরোধে ফ্র্রিকশনলেস ২-স্টেপ চেকআউট</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Optimized checkout flow to minimize cart abandonment</span>
                 </li>
               </ul>
 
               <div className="pt-2">
-                <Button variant="outline" asChild className="w-full">
+                <Button variant="outline" asChild className="w-full bg-card">
                   <Link href="/services/complete-ecommerce-website">
-                    ই-কমার্স প্ল্যাটফর্ম দেখুন
+                    View E-commerce Platform
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -226,51 +366,51 @@ export default async function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Card 3: Maintenance & Technical Support */}
-          <Card className="flex flex-col justify-between border-border bg-surface/40 hover:border-accent/40 transition-colors">
+          {/* Service 3: Maintenance & Technical Support */}
+          <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 text-accent">
-                <ShieldCheck className="h-6 w-6 text-accent" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+                <ShieldCheck className="h-6 w-6" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">সক্রিয় সেবা ০৩</Badge>
-                <CardTitle className="text-2xl text-text-primary">ওয়েবসাইট মেইনটেন্যান্স ও টেক সাপোর্ট</CardTitle>
-                <CardDescription className="text-text-muted mt-2">
-                  এসএলএ-সমর্থিত মাসিক ইঞ্জিনিয়ারিং পার্টনারশিপ, সিকিউরিটি আপডেট ও ব্যাকআপ ড্রিল।
+                <Badge variant="outline" className="mb-2">Active Service 03</Badge>
+                <CardTitle className="text-2xl text-text-primary">Maintenance &amp; Support</CardTitle>
+                <CardDescription className="text-text-secondary mt-2">
+                  Proactive care plans, 24/7 uptime monitoring, security patches, encrypted backups, and dedicated developer hours.
                 </CardDescription>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="rounded-lg border border-border/60 bg-background/60 p-4 space-y-2">
+              <div className="rounded-xl border border-border bg-surface-muted/60 p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-accent">ফ্ল্যাগশিপ সলিউশন</span>
-                  <Badge variant="accent" className="text-[10px]">গ্যারান্টেড SLA অপশন</Badge>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-orange-strong dark:text-accent font-mono">Flagship Solution</span>
+                  <Badge variant="accent" className="text-[10px]">Guaranteed SLA</Badge>
                 </div>
-                <h3 className="font-semibold text-text-primary text-sm">প্রোঅ্যাক্টিভ কেয়ার রিটেইনার</h3>
-                <p className="text-xs text-text-muted">
-                  বেসিক থেকে কাস্টম এন্টারপ্রাইজ—১ ঘণ্টা থেকে ৪৮ ঘণ্টা জরুরি রেসপন্স টাইম অপশন।
+                <h3 className="font-bold text-text-primary text-sm">Website Maintenance Retainer</h3>
+                <p className="text-xs text-text-secondary">
+                  From basic health care to custom enterprise support with 1-hour to 48-hour response SLAs.
                 </p>
               </div>
 
-              <ul className="space-y-2 text-xs text-text-muted">
+              <ul className="space-y-2.5 text-xs text-text-secondary">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>সার্বক্ষণিক স্বয়ংক্রিয় আপটাইম ও SSL মনিটরিং</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Automated uptime and SSL monitoring alerts</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>সাপ্তাহিক অফ-সাইট ব্যাকআপ ও রিস্টোরেশন ড্রিল</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Regular off-site backups and restore drills</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                  <span>নতুন ফিচার ও পরিবর্তনের জন্য ডেডিকেটেড ডেভেলপার আওয়ার</span>
+                  <CheckCircle2 className="h-4 w-4 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>Dedicated developer hours for ongoing updates</span>
                 </li>
               </ul>
 
               <div className="pt-2">
-                <Button variant="outline" asChild className="w-full">
+                <Button variant="outline" asChild className="w-full bg-card">
                   <Link href="/services/website-maintenance">
-                    রিটেইনার প্ল্যান দেখুন
+                    View Retainer Plans
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -280,153 +420,263 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Why Projukti Labs (Engineering Philosophy) */}
+      {/* 4. Selected Projects Section (Portfolio) */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border pb-8">
+          <div className="space-y-3">
+            <Badge variant="accent">OUR WORK</Badge>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
+              Selected Projects &amp; Systems
+            </h2>
+            <p className="text-text-secondary max-w-2xl text-base sm:text-lg">
+              Explore live platforms, internal developer engines, and software prototypes developed by Projukti Labs.
+            </p>
+          </div>
+          <Button variant="ghost" asChild className="self-start md:self-auto hover:text-brand-orange-strong dark:hover:text-accent">
+            <Link href="/portfolio" className="inline-flex items-center gap-1 font-semibold">
+              View Full Portfolio
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {displayProjects.map((project) => {
+            const badgeText = project.badge || "Live Platform";
+            const badgeVariant = badgeText.toLowerCase().includes("live")
+              ? "accent"
+              : badgeText.toLowerCase().includes("development")
+              ? "info"
+              : "outline";
+
+            return (
+              <Card
+                key={project.id}
+                className="flex flex-col justify-between"
+              >
+                <CardHeader className="space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-xs text-brand-orange-strong dark:text-accent uppercase tracking-wider font-semibold">
+                      {project.category}
+                    </span>
+                    <Badge variant={badgeVariant}>
+                      {badgeText}
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-2xl text-text-primary">{project.title}</CardTitle>
+                  <CardDescription className="text-text-secondary line-clamp-3 text-sm leading-relaxed">
+                    {project.overview}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {project.stack && project.stack.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {project.stack.slice(0, 5).map((tech: string) => (
+                        <span
+                          key={tech}
+                          className="rounded-md border border-border bg-surface-muted/60 px-2.5 py-0.5 font-mono text-[11px] text-text-secondary"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="pt-2 border-t border-border flex items-center justify-between">
+                    <span className="text-xs text-text-muted font-medium">
+                      {project.projectType || "Software System"}
+                    </span>
+                    <Button variant="ghost" size="sm" asChild className="text-brand-orange-strong dark:text-accent hover:text-brand-orange-strong p-0 font-semibold">
+                      <Link href="/portfolio" className="inline-flex items-center gap-1 text-xs">
+                        View Details
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5. Why Work With Us (6 Pillars) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="accent">প্রযুক্তি ল্যাবস স্ট্যান্ডার্ড</Badge>
+          <Badge variant="accent">WHY PROJUKTI LABS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-            জেনেরিক এজেন্সির চেয়ে ইঞ্জিনিয়ারিং সততা ও পারফরম্যান্সকে আমরা বেশি প্রাধান্য দিই
+            Engineering Discipline Over Agency Clichés
           </h2>
-          <p className="text-text-muted text-base sm:text-lg">
-            অধিকাংশ এজেন্সি অপ্রয়োজনীয় ভারী প্লাগইন দিয়ে স্লো সাইট বানায় যা ট্রাফিকের চাপে ভেঙে পড়ে। আমরা তৈরি করি হালকা, দ্রুতগতির ও অত্যন্ত টেকসই আধুনিক সফটওয়্যার সিস্টেম।
+          <p className="text-text-secondary text-base sm:text-lg">
+            We avoid bloated templates, hidden subcontracting, and artificial marketing claims. We build reliable software systems that work.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="rounded-xl border border-border bg-surface/30 p-8 space-y-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/10 text-accent">
-              <Zap className="h-5 w-5 text-accent" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <MessageSquare className="h-5 w-5" />
             </div>
-            <h3 className="text-xl font-bold text-text-primary">এজ পারফরম্যান্স ফার্স্ট</h3>
-            <p className="text-sm text-text-muted leading-relaxed">
-              বিলম্বের প্রতি মিলিসেকেন্ড ব্যবসায় ক্ষতি করে। আমরা Cloudflare-এর গ্লোবাল এজ নেটওয়ার্কে কনটেন্ট ডিস্ট্রিবিউট করি, যা ভিজিটরদের কাছে পলকের মধ্যে পেজ পৌঁছে দেয়।
+            <h3 className="text-lg font-bold text-text-primary">Direct Technical Communication</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Speak directly with an engineer who understands your architecture and requirements. No non-technical middlemen or lost requirements.
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-surface/30 p-8 space-y-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/10 text-accent">
-              <Code2 className="h-5 w-5 text-accent" />
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Code2 className="h-5 w-5" />
             </div>
-            <h3 className="text-xl font-bold text-text-primary">টাইপ-সেফ ও মেইনটেইনেবল</h3>
-            <p className="text-sm text-text-muted leading-relaxed">
-              TypeScript, Zod স্কিমা ভ্যালিডেশন এবং টাইপড SQL কন্ট্রাক্ট ব্যবহার করে আমরা রানটাইম এরর দূর করি। ফলে আপনার প্রতিষ্ঠান পায় দীর্ঘমেয়াদে স্কেলেবল ও ক্লিন কোডবেস।
+            <h3 className="text-lg font-bold text-text-primary">Modern Architecture</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Clean, maintainable codebases built with Next.js, TypeScript, and edge cloud technologies that scale smoothly as your business grows.
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-surface/30 p-8 space-y-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/10 text-accent">
-              <ShieldCheck className="h-5 w-5 text-accent" />
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Zap className="h-5 w-5" />
             </div>
-            <h3 className="text-xl font-bold text-text-primary">প্রোঅ্যাক্টিভ সাপোর্ট ও সততা</h3>
-            <p className="text-sm text-text-muted leading-relaxed">
-              লঞ্চের পরেই ক্লায়েন্টকে একা ছেড়ে যাই না। আমাদের মেইনটেন্যান্স প্ল্যানে রয়েছে ব্যাকআপ ভেরিফিকেশন, ডিপেন্ডেন্সি প্যাচিং এবং প্রিন্সিপাল আর্কিটেক্টের সাথে সরাসরি যোগাযোগ।
+            <h3 className="text-lg font-bold text-text-primary">Performance Focused</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Fast loading times, optimized asset delivery, and sub-second response benchmarks designed to keep visitors engaged and maximize conversions.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <Layers className="h-5 w-6" />
+            </div>
+            <h3 className="text-lg font-bold text-text-primary">Practical Solutions</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Features your business actually needs, avoiding unnecessary plugins, third-party bloat, and costly technical debt.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <FileCheck2 className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold text-text-primary">Transparent Process</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Clear scope of work, defined milestone deliverables, upfront pricing, and interactive staging previews before launch.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
+              <ShieldCheck className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold text-text-primary">Reliable Support</h3>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              Ongoing technical care, security updates, and automated backups after launch to keep your systems running smoothly.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 4. The 6-Step Engineering Process */}
+      {/* 6. How We Work (Our 6-Step Process) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="space-y-4 max-w-2xl">
-          <Badge variant="accent">ডেভেলপমেন্ট লাইফসাইকেল</Badge>
+          <Badge variant="accent">OUR PROCESS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-            আমরা যেভাবে প্রোডাকশন সিস্টেম তৈরি করি
+            A Clear, Disciplined Development Process
           </h2>
-          <p className="text-text-muted text-base">
-            একটি সুশৃঙ্খল ও মাইলফলক-ভিত্তিক কর্মপদ্ধতি—যা নিশ্চিত করে স্বচ্ছতা, সময়ের সঠিক মূল্যায়ন এবং সফল ডেপ্লয়মেন্ট।
+          <p className="text-text-secondary text-base">
+            From initial consultation to deployment and maintenance, every milestone is structured for clarity, speed, and reliability.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              step: "০১",
-              title: "রিসার্চ ও আর্কিটেকচার",
-              desc: "আপনার বিজনেস টার্গেট, কনভার্শন গোল, পেমেন্ট প্রয়োজন এবং কারিগরি স্পেসিফিকেশনের পুঙ্খানুপুঙ্খ বিশ্লেষণ।",
+              step: "01",
+              title: "Discover",
+              desc: "Understanding your business goals, target audience, technical requirements, and payment or integration needs.",
             },
             {
-              step: "০২",
-              title: "ডিজাইন সিস্টেম ও UX",
-              desc: "WCAG 2.1 AA মানদণ্ড মেনে ব্র্যান্ডের জন্য নির্দিষ্ট ডিজাইন টোকেন, ওয়্যারফ্রেম ও টাইপোগ্রাফি তৈরি।",
+              step: "02",
+              title: "Plan",
+              desc: "Defining a clear scope of work, architectural blueprint, milestone schedule, and fixed budget estimate.",
             },
             {
-              step: "০৩",
-              title: "এজ কোডিং ও ইঞ্জিনিয়ারিং",
-              desc: "Next.js App Router, Cloudflare Workers এবং কঠোর TypeScript কন্ট্রাক্টে ক্লিন কোড তৈরি।",
+              step: "03",
+              title: "Design",
+              desc: "Crafting intuitive, accessible interfaces adhering to WCAG 2.1 AA standards and your specific brand guidelines.",
             },
             {
-              step: "০৪",
-              title: "টেলিমেট্রি ও QA ভেরিফিকেশন",
-              desc: "Playwright ব্রাউজার টেস্ট, মেটা ইভেন্ট ম্যানেজার টেস্ট টুল এবং Core Web Vitals অডিট।",
+              step: "04",
+              title: "Develop",
+              desc: "Building with type-safe TypeScript, Next.js, and edge databases, maintaining clean modular code throughout.",
             },
             {
-              step: "০৫",
-              title: "জিরো-ডাউনটাইম লঞ্চ",
-              desc: "DNS মাইগ্রেশন, SSL সার্টিফিকেট হার্ডেনিং, CDN ক্যাশ ওয়ার্মিং এবং প্রোডাকশন স্মোক টেস্ট।",
+              step: "05",
+              title: "Deliver",
+              desc: "Rigorous browser testing, telemetry verification, zero-downtime DNS migration, and production readiness checks.",
             },
             {
-              step: "০৬",
-              title: "SLA কেয়ার ও অপ্টিমাইজেশন",
-              desc: "সার্বক্ষণিক সাইট আপটাইম ট্র্যাকিং, অফ-সাইট ব্যাকআপ এবং নিয়মিত মাসিক পারফরম্যান্স টিউনিং।",
+              step: "06",
+              title: "Support",
+              desc: "Continuous uptime monitoring, automated database backups, security patches, and ongoing technical maintenance.",
             },
           ].map((item) => (
             <div
               key={item.step}
-              className="relative rounded-lg border border-border/70 bg-surface/40 p-6 space-y-3"
+              className="relative rounded-2xl border border-border bg-card p-6 space-y-3 shadow-[0_2px_8px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md hover:border-border-hover transition-all duration-200"
             >
-              <div className="font-mono text-xs font-bold text-accent">{item.step}</div>
+              <div className="font-mono text-xs font-bold text-brand-orange-strong dark:text-accent">{item.step}</div>
               <h3 className="text-lg font-bold text-text-primary">{item.title}</h3>
-              <p className="text-xs text-text-muted leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-text-secondary leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 5. Founder Spotlight */}
+      {/* 7. Founder & Leadership Spotlight */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-border bg-gradient-to-b from-surface/60 to-surface/20 p-8 sm:p-12 lg:p-16">
+        <div className="rounded-3xl border border-border bg-card/90 dark:bg-surface/60 p-8 sm:p-12 lg:p-16 shadow-[0_4px_24px_rgba(0,0,0,0.04)] dark:shadow-none backdrop-blur-xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-6">
-              <Badge variant="accent">নেতৃত্ব ও সরাসরি কোডিং</Badge>
+              <Badge variant="accent">FOUNDER &amp; LEADERSHIP</Badge>
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-text-primary">
-                সিনিয়র ইঞ্জিনিয়ারের সরাসরি সম্পৃক্ততা। মধ্যবর্তী অ্যাকাউন্ট ম্যানেজারের ঝামেলা নেই।
+                Hands-on Software Leadership. Direct Communication with the Lead Architect.
               </h2>
-              <p className="text-text-muted text-base sm:text-lg leading-relaxed">
-                Projukti Labs পরিচালিত হচ্ছে <strong>মো. পারভেজুল ইসলাম</strong> (Md Parvezul Islam), প্রিন্সিপাল সফটওয়্যার আর্কিটেক্টের সরাসরি তত্ত্বাবধানে। আমাদের সাথে কাজ করার সময় আপনার আর্কিটেকচার ব্লুপ্রিন্ট, টেকনিক্যাল স্পেসিফিকেশন ও কোড রিভিউ সরাসরি সিনিয়র ইঞ্জিনিয়ারিং লিড দ্বারা সম্পন্ন হয়।
+              <p className="text-text-secondary text-base sm:text-lg leading-relaxed">
+                Projukti Labs is led by <strong>Md Parvezul Islam</strong>, Founder &amp; Principal Software Architect. When you partner with us, your system architecture, technical specifications, and code reviews are directly guided by a dedicated engineering lead.
               </p>
-              <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-                বিজ্ঞাপনের জন্য কনভার্শন-ক্রিটিক্যাল ল্যান্ডিং পেজ হোক কিংবা একাধিক গেটওয়েযুক্ত ই-কমার্স প্ল্যাটফর্ম—আমরা শতভাগ পেশাদারিত্ব ও স্বচ্ছতার সাথে কাজ করি।
+              <p className="text-text-secondary text-sm sm:text-base leading-relaxed italic border-l-2 border-brand-orange-strong dark:border-accent pl-4">
+                &ldquo;I founded Projukti Labs to build technology that is honest, fast, and built around real business value—without unnecessary agency layers or inflated promises.&rdquo;
               </p>
 
               <div className="pt-2 flex flex-wrap gap-4">
-                <Button variant="outline" asChild>
+                <Button variant="outline" asChild className="bg-card">
                   <Link href="/founder">
-                    ফাউন্ডার প্রোফাইল ও ম্যানিফেস্টো পড়ুন
+                    Read Founder Profile
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
                 <Button variant="ghost" asChild>
-                  <Link href="/about">স্টুডিও সম্পর্কে জানুন</Link>
+                  <Link href="/about">About Projukti Labs</Link>
                 </Button>
               </div>
             </div>
 
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-sm rounded-xl border border-border bg-surface p-6 text-center space-y-4 shadow-xl">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent/40 bg-accent/10 font-mono text-3xl font-extrabold text-accent">
+              <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center space-y-4 shadow-md">
+                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-brand-orange/40 dark:border-accent/40 bg-brand-orange-soft dark:bg-accent/10 font-mono text-3xl font-extrabold text-brand-orange-strong dark:text-accent">
                   PI
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-text-primary">মো. পারভেজুল ইসলাম</h3>
-                  <p className="text-xs text-accent uppercase tracking-wider font-semibold mt-1">
-                    ফাউন্ডার ও প্রিন্সিপাল সফটওয়্যার আর্কিটেক্ট
+                  <h3 className="text-xl font-bold text-text-primary">Md Parvezul Islam</h3>
+                  <p className="text-xs text-brand-orange-strong dark:text-accent uppercase tracking-wider font-semibold mt-1">
+                    Founder &amp; Principal Software Architect
                   </p>
-                  <p className="text-xs text-text-muted mt-2">
-                    সিস্টেম আর্কিটেকচার · এজ কম্পিউটিং · Next.js · ক্লাউড ইনফ্রাস্ট্রাকচার
+                  <p className="text-xs text-text-secondary mt-2">
+                    System Architecture · Edge Computing · Next.js · Cloud Infrastructure
                   </p>
                 </div>
                 <div className="pt-2 border-t border-border flex justify-center gap-2">
-                  <Badge variant="outline" className="text-[10px]">ভেরিফাইড টেকনিক্যাল লিড</Badge>
+                  <Badge variant="outline" className="text-[10px]">Verified Technical Lead</Badge>
                   <Badge variant="outline" className="text-[10px]">projuktilabs.tech</Badge>
                 </div>
               </div>
@@ -435,27 +685,27 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. High-Impact Conversion Banner */}
+      {/* 8. Final CTA Banner */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border border-accent/40 bg-surface/90 p-8 sm:p-12 text-center space-y-6">
+        <div className="relative overflow-hidden rounded-3xl border border-brand-orange/30 dark:border-accent/40 bg-card/95 dark:bg-surface/90 p-8 sm:p-14 text-center space-y-6 shadow-lg backdrop-blur-xs">
           <div className="mx-auto max-w-2xl space-y-3">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-text-primary">
-              একটি অসাধারণ ডিজিটাল প্রোডাক্ট বানাতে প্রস্তুত?
+              Have a Project in Mind?
             </h2>
-            <p className="text-text-muted text-base sm:text-lg">
-              আপনার প্রজেক্টের প্রয়োজনীয়তা আমাদের জানান। ২৪ ঘণ্টার মধ্যে আমরা আপনার লক্ষ্য পর্যালোচনা করে বিস্তারিত স্কোপ অব ওয়ার্ক ও কোটেশন পাঠাব।
+            <p className="text-text-secondary text-base sm:text-lg">
+              Let&apos;s discuss your requirements and build a digital solution that works for your business. We typically reply within 24 business hours.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Button size="lg" variant="primary" asChild className="w-full sm:w-auto">
+            <Button size="lg" variant="primary" asChild className="w-full sm:w-auto shadow-sm">
               <Link href="/get-a-quote">
-                অফিসিয়াল কোটেশন রিকোয়েস্ট করুন
+                Discuss Your Project
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <Link href="/contact">একটি টেকনিক্যাল আলোচনার সময় নির্ধারণ করুন</Link>
+            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto bg-card">
+              <Link href="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>

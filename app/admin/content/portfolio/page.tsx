@@ -4,6 +4,8 @@ import { getCmsPortfolio } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { PortfolioManager } from "./portfolio-manager";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "পোর্টফোলিও সিএমএস | Projukti Labs Admin",
 };

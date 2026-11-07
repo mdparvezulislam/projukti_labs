@@ -6,6 +6,8 @@ import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
 import { getAllCategories } from "@/modules/blog/data";
 import { getCmsBlogPosts } from "@/lib/cms";
 
+export const instant = false;
+
 export const metadata = {
   title: "প্রযুক্তি ব্লগ ও টেকনোলজি ইনসাইটস | Projukti Labs",
   description:
@@ -49,28 +51,29 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
       {/* 1. Editorial Hero */}
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-2">
-          <Badge variant="accent">প্রযুক্তি ব্লগ ও নলেজ হাব</Badge>
+          <Badge variant="accent">TECHNOLOGY &amp; ARCHITECTURE INSIGHTS</Badge>
           <span className="font-mono text-xs text-text-muted">Projukti Labs Editorial</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
-          প্রযুক্তি, ব্যবসা ও সফটওয়্যার আর্কিটেকচার ইনসাইটস
+          Engineering, Commerce &amp; Architecture Insights
         </h1>
-        <p className="text-base sm:text-lg text-text-muted leading-relaxed">
-          বাংলাদেশি ব্যবসা প্রতিষ্ঠান, স্টার্টআপ উদ্যোক্তা এবং টেক লিডারদের জন্য আধুনিক ওয়েব প্রযুক্তি, ই-কমার্স স্কেলিং, মেটা পিক্সেল ট্র্যাকিং এবং পারফরম্যান্স অপটিমাইজেশন নিয়ে আমাদের কারিগরি বিশ্লেষণ।
+        <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
+          Technical deep-dives, e-commerce architectures, conversion tracking breakdowns, and web performance guides
+          from the engineers at Projukti Labs.
         </p>
       </div>
 
       {/* 2. Category Filter Pills */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-border/80 pb-6">
+      <div className="flex flex-wrap items-center gap-2 border-b border-border pb-6">
         <Link
           href="/blog"
           className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
             !selectedCategory
-              ? "bg-accent text-accent-foreground font-semibold"
-              : "border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-border-strong"
+              ? "bg-accent text-accent-foreground font-semibold shadow-xs"
+              : "border border-border bg-card text-text-secondary hover:text-text-primary hover:border-border-hover shadow-2xs"
           }`}
         >
-          সব প্রবন্ধ ({allPosts.length})
+          All Articles ({allPosts.length})
         </Link>
         {categories.map((cat) => (
           <Link
@@ -78,8 +81,8 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
             href={`/blog/category/${cat.slug}`}
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
               selectedCategory === cat.slug
-                ? "bg-accent text-accent-foreground font-semibold"
-                : "border border-border bg-surface text-text-secondary hover:text-text-primary hover:border-border-strong"
+                ? "bg-accent text-accent-foreground font-semibold shadow-xs"
+                : "border border-border bg-card text-text-secondary hover:text-text-primary hover:border-border-hover shadow-2xs"
             }`}
           >
             {cat.name}
@@ -89,28 +92,28 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
 
       {/* 3. Featured Article (When viewing all posts without search) */}
       {!selectedCategory && !query && featuredPost && (
-        <div className="rounded-2xl border border-accent/40 bg-surface/60 p-6 sm:p-10 transition-all hover:border-accent">
+        <div className="rounded-3xl border border-border bg-card p-6 sm:p-10 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-md transition-all">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
               <div className="flex items-center gap-3">
                 <Badge variant="accent">বিশেষ ফিচার্ড প্রবন্ধ</Badge>
                 <Badge variant="outline">{featuredPost.categoryName}</Badge>
                 <span className="flex items-center gap-1 text-xs text-text-muted font-mono">
-                  <Clock className="h-3.5 w-3.5 text-accent" />
+                  <Clock className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent" />
                   {featuredPost.readingTimeMinutes} মিনিট পড়ার সময়
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-text-primary hover:text-accent transition-colors leading-snug">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-text-primary hover:text-brand-orange-strong dark:hover:text-accent transition-colors leading-snug">
                 <Link href={`/blog/${featuredPost.slug}`}>{featuredPost.title}</Link>
               </h2>
 
-              <p className="text-sm sm:text-base text-text-muted leading-relaxed line-clamp-3">
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed line-clamp-3">
                 {featuredPost.excerpt}
               </p>
 
               <div className="flex items-center gap-4 pt-2">
-                <Button variant="primary" asChild>
+                <Button variant="primary" asChild className="shadow-xs">
                   <Link href={`/blog/${featuredPost.slug}`}>
                     সম্পূর্ণ প্রবন্ধ পড়ুন
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -123,12 +126,12 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
             </div>
 
             <div className="lg:col-span-4 flex justify-center">
-              <div className="w-full rounded-xl border border-border/80 bg-background/80 p-6 text-center space-y-3">
-                <BookOpen className="h-12 w-12 text-accent mx-auto" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-text-primary">
+              <div className="w-full rounded-2xl border border-border bg-surface-muted/60 p-6 text-center space-y-3">
+                <BookOpen className="h-12 w-12 text-brand-orange-strong dark:text-accent mx-auto" />
+                <p className="text-xs font-bold uppercase tracking-wider text-text-primary">
                   Projukti Insights
                 </p>
-                <p className="text-xs text-text-muted leading-relaxed">
+                <p className="text-xs text-text-secondary leading-relaxed">
                   গবেষণাধর্মী কারিগরি বিশ্লেষণ ও রিয়েল-ওয়ার্ল্ড সফটওয়্যার কেস স্টাডি।
                 </p>
               </div>
@@ -139,9 +142,9 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
 
       {/* 4. Article Grid */}
       <div className="space-y-6">
-        <div className="flex items-center justify-between border-b border-border/60 pb-3">
+        <div className="flex items-center justify-between border-b border-border pb-3">
           <h2 className="text-xl font-bold text-text-primary flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-accent" />
+            <BookOpen className="h-5 w-5 text-brand-orange-strong dark:text-accent" />
             {selectedCategory ? `${categories.find((c) => c.slug === selectedCategory)?.name || "ক্যাটাগরি"} বিষয়ক প্রবন্ধ` : "সর্বশেষ প্রকাশিত প্রবন্ধসমূহ"}
           </h2>
           <span className="text-xs text-text-muted font-mono">
@@ -150,10 +153,10 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
         </div>
 
         {posts.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-border p-12 text-center space-y-3">
+          <div className="rounded-2xl border border-dashed border-border p-12 text-center space-y-3 bg-card/60">
             <p className="text-base font-semibold text-text-primary">কোনো প্রবন্ধ পাওয়া যায়নি</p>
-            <p className="text-xs text-text-muted">অনুগ্রহ করে অন্য কোনো ক্যাটাগরি নির্বাচন করুন।</p>
-            <Button variant="outline" size="sm" asChild className="mt-2">
+            <p className="text-xs text-text-secondary">অনুগ্রহ করে অন্য কোনো ক্যাটাগরি নির্বাচন করুন।</p>
+            <Button variant="outline" size="sm" asChild className="mt-2 bg-card">
               <Link href="/blog">সব প্রবন্ধ দেখুন</Link>
             </Button>
           </div>
@@ -162,22 +165,22 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
             {posts.map((post) => (
               <Card
                 key={post.id}
-                className="flex flex-col justify-between border-border bg-surface/40 hover:border-accent/40 transition-all hover:-translate-y-0.5"
+                className="flex flex-col justify-between"
               >
                 <CardHeader className="space-y-3">
                   <div className="flex items-center justify-between">
                     <Badge variant="outline" className="text-[11px]">{post.categoryName}</Badge>
                     <span className="flex items-center gap-1 text-[11px] text-text-muted font-mono">
-                      <Clock className="h-3 w-3 text-accent" />
+                      <Clock className="h-3 w-3 text-brand-orange-strong dark:text-accent" />
                       {post.readingTimeMinutes} মিনিট
                     </span>
                   </div>
 
-                  <CardTitle className="text-lg font-bold text-text-primary leading-snug line-clamp-2 hover:text-accent transition-colors">
+                  <CardTitle className="text-lg font-bold text-text-primary leading-snug line-clamp-2 hover:text-brand-orange-strong dark:hover:text-accent transition-colors">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </CardTitle>
 
-                  <CardDescription className="text-xs text-text-muted leading-relaxed line-clamp-3">
+                  <CardDescription className="text-xs text-text-secondary leading-relaxed line-clamp-3">
                     {post.excerpt}
                   </CardDescription>
                 </CardHeader>
@@ -187,14 +190,14 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
                     {post.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded bg-background/80 px-2 py-0.5 text-[10px] text-text-muted font-mono"
+                        className="rounded-md border border-border bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-secondary font-mono"
                       >
                         #{tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="border-t border-border/50 pt-3 flex items-center justify-between">
+                  <div className="border-t border-border pt-3 flex items-center justify-between">
                     <span className="text-[11px] text-text-muted font-mono flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       {new Date(post.publishedAt).toLocaleDateString("bn-BD", {
@@ -205,9 +208,9 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
                     </span>
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="text-xs font-semibold text-accent hover:underline flex items-center gap-1"
+                      className="text-xs font-semibold text-brand-orange-strong dark:text-accent hover:underline flex items-center gap-1"
                     >
-                      পড়ুন <ArrowRight className="h-3 w-3" />
+                      Read Article <ArrowRight className="h-3 w-3" />
                     </Link>
                   </div>
                 </CardContent>
@@ -218,22 +221,23 @@ export default async function BlogIndexPage({ searchParams }: BlogPageProps) {
       </div>
 
       {/* 5. Consultation & Quote CTA Banner */}
-      <div className="rounded-2xl border border-accent/40 bg-surface/80 p-8 sm:p-12 text-center space-y-6">
+      <div className="rounded-3xl border border-brand-orange/30 dark:border-accent/40 bg-card/95 dark:bg-surface/80 p-8 sm:p-12 text-center space-y-6 shadow-md backdrop-blur-xs">
         <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-          আপনার ব্যবসার জন্য কি একটি হাই-পারফরম্যান্স ওয়েবসাইট প্রয়োজন?
+          Need a High-Performance Digital Solution for Your Business?
         </h2>
-        <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
-          আমাদের সফটওয়্যার আর্কিটেক্টদের সঙ্গে আপনার প্রজেক্টের কারিগরি পরিকল্পনা আলোচনা করুন এবং একটি স্বচ্ছ কোটেশন গ্রহণ করুন।
+        <p className="text-text-secondary text-sm sm:text-base max-w-xl mx-auto">
+          Discuss your technical specifications, timeline, and milestones with our software architects to receive a
+          transparent Scope of Work (SOW) proposal.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button variant="primary" asChild>
+          <Button variant="primary" asChild className="shadow-xs">
             <Link href="/get-a-quote">
-              কোটেশন রিকোয়েস্ট করুন
+              Request a Project Quote
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button variant="outline" asChild>
-            <Link href="/services">আমাদের সেবাসমূহ দেখুন</Link>
+          <Button variant="outline" asChild className="bg-card">
+            <Link href="/services">Explore Our Services</Link>
           </Button>
         </div>
       </div>

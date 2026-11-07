@@ -66,7 +66,13 @@ export function AdminLayoutShell({
       )}
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden relative">
+        {/* Soft ChaiCode Ambient Warm Glow for Admin Area */}
+        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none opacity-100 dark:opacity-0 transition-opacity">
+          <div className="absolute -top-32 right-1/4 w-[600px] h-[500px] rounded-full bg-gradient-to-b from-[#FCE4C0]/40 via-[#FDF0DC]/20 to-transparent blur-3xl" />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[450px] h-[450px] rounded-full bg-gradient-to-tl from-[#FCE2C4]/35 via-transparent to-transparent blur-3xl" />
+        </div>
+
         <AdminHeader
           title={title}
           subtitle={subtitle}
@@ -74,7 +80,7 @@ export function AdminLayoutShell({
           onToggleMobileMenu={() => setMobileDrawerOpen(true)}
         />
 
-        <main className="flex-1 overflow-y-auto px-3 py-3 sm:px-6 sm:py-5 pb-20 md:pb-6">
+        <main className="flex-1 overflow-y-auto px-3 py-3 sm:px-6 sm:py-5 pb-20 md:pb-6 relative">
           <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
             {children}
           </div>

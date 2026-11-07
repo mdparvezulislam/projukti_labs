@@ -18,15 +18,15 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Info */}
           <div className="md:col-span-1 space-y-3">
-            <Link href="/" className="flex items-center gap-2 font-bold text-text-primary text-lg">
-              <span className="text-accent font-black">PL</span>
+            <Link href="/" className="flex items-center gap-2 font-bold text-text-primary text-lg group">
+              <span className="text-brand-orange-strong dark:text-accent font-black">PL</span>
               <span>Projukti Labs</span>
             </Link>
             <p className="text-sm text-text-muted leading-relaxed">
               Building Digital Solutions. Engineering the Future. A technology-focused digital solutions studio building modern websites, e-commerce platforms, and practical software solutions.
             </p>
             <p className="text-xs text-text-muted">
-              Founded by <Link href="/founder" className="text-text-primary hover:text-accent font-semibold transition-colors">Md Parvezul Islam</Link>
+              Founded by <Link href="/founder" className="text-text-primary hover:text-brand-orange-strong dark:hover:text-accent font-semibold transition-colors">Md Parvezul Islam</Link>
               <br />
               <span className="text-text-muted/80">Founder &amp; Principal Software Architect</span>
             </p>
@@ -52,17 +52,17 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/services/landing-page-meta-pixel" className="text-accent hover:underline">
+                <Link href="/services/landing-page-meta-pixel" className="text-brand-orange-strong dark:text-accent hover:underline">
                   Landing Page with Meta Pixel
                 </Link>
               </li>
               <li>
-                <Link href="/services/complete-ecommerce-website" className="text-accent hover:underline">
+                <Link href="/services/complete-ecommerce-website" className="text-brand-orange-strong dark:text-accent hover:underline">
                   Complete E-commerce Website
                 </Link>
               </li>
               <li>
-                <Link href="/services/website-maintenance" className="text-accent hover:underline">
+                <Link href="/services/website-maintenance" className="text-brand-orange-strong dark:text-accent hover:underline">
                   Website Maintenance Retainer
                 </Link>
               </li>
@@ -103,13 +103,13 @@ export function SiteFooter() {
             <div className="pt-1">
               <Link
                 href="/get-a-quote"
-                className="inline-flex items-center text-sm font-semibold text-accent hover:underline underline-offset-4"
+                className="inline-flex items-center text-sm font-semibold text-brand-orange-strong dark:text-accent hover:underline underline-offset-4"
               >
                 Request a Quote &rarr;
               </Link>
             </div>
             <p className="text-xs text-text-muted pt-2 font-mono">
-              Email: <a href="mailto:contact@projuktilabs.tech" className="text-text-secondary hover:text-accent transition-colors">contact@projuktilabs.tech</a>
+              Email: <a href="mailto:contact@projuktilabs.tech" className="text-text-secondary hover:text-brand-orange-strong dark:hover:text-accent transition-colors">contact@projuktilabs.tech</a>
             </p>
           </div>
         </div>

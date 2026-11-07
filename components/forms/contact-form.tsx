@@ -44,12 +44,16 @@ export function ContactForm() {
         error?: { message?: string };
       };
       if (!res.ok || !json.success || !json.data) {
-        throw new Error(json.error?.message || "ইনকোয়ারি সাবমিট করা সম্ভব হয়নি। অনুগ্রহ করে তথ্য যাচাই করুন।");
+        throw new Error(
+          json.error?.message || "Failed to submit inquiry. Please verify your input and try again."
+        );
       }
 
       setSubmittedRef(json.data.referenceCode);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "একটি অপ্রত্যাশিত ত্রুটি ঘটেছে। অনুগ্রহ করে পুনরায় চেষ্টা করুন।");
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -70,22 +74,23 @@ export function ContactForm() {
           <CheckCircle2 className="h-10 w-10 text-accent" />
         </div>
         <div className="space-y-2">
-          <Badge variant="accent">বার্তা সফলভাবে গৃহীত হয়েছে</Badge>
-          <h3 className="text-2xl font-bold text-text-primary">ধন্যবাদ, {fullName}!</h3>
+          <Badge variant="accent">Message Received Successfully</Badge>
+          <h3 className="text-2xl font-bold text-text-primary">Thank you, {fullName}!</h3>
           <p className="text-text-muted text-sm max-w-md mx-auto leading-relaxed">
-            আপনার বার্তাটি আমাদের সফটওয়্যার আর্কিটেক্টদের রিভিউ কিউতে সংরক্ষিত হয়েছে। আমরা আপনার চাহিদা পর্যালোচনা করে দ্রুত যোগাযোগ করব।
+            Your inquiry has been queued for review by our lead software architect. We will review your requirements
+            and respond within 24 business hours.
           </p>
         </div>
 
         <div className="mx-auto max-w-xs rounded-lg border border-border bg-background p-4 text-center">
-          <p className="text-xs uppercase tracking-wider text-text-muted font-mono">আপনার রেফারেন্স ট্র্যাকিং কোড</p>
+          <p className="text-xs uppercase tracking-wider text-text-muted font-mono">Reference Tracking Code</p>
           <div className="mt-2 flex items-center justify-center gap-2">
             <span className="font-mono text-xl font-bold text-accent-text">{submittedRef}</span>
             <button
               type="button"
               onClick={copyReferenceCode}
               className="rounded p-1 text-text-muted hover:text-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
-              aria-label="রেফারেন্স কোড কপি করুন"
+              aria-label="Copy reference tracking code"
             >
               {copied ? <Check className="h-4 w-4 text-accent-text" /> : <Copy className="h-4 w-4" />}
             </button>
@@ -99,7 +104,7 @@ export function ContactForm() {
             setProjectBrief("");
           }}
         >
-          আরেকটি বার্তা পাঠান
+          Send Another Message
         </Button>
       </Card>
     );
@@ -110,7 +115,10 @@ export function ContactForm() {
       <CardContent className="p-6 sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           {error && (
-            <div className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300" role="alert">
+            <div
+              className="rounded-md border border-red-500/30 bg-red-500/15 p-4 text-sm text-red-700 dark:text-red-300"
+              role="alert"
+            >
               {error}
             </div>
           )}
@@ -118,7 +126,7 @@ export function ContactForm() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="contact-fullName" className="text-sm font-medium text-text-primary">
-                আপনার নাম <span className="text-accent-text">*</span>
+                Full Name <span className="text-accent-text">*</span>
               </label>
               <Input
                 id="contact-fullName"
@@ -126,13 +134,13 @@ export function ContactForm() {
                 required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder="যেমন: মোঃ পারভেজুল ইসলাম"
+                placeholder="e.g., Alex Rahman"
               />
             </div>
 
             <div className="space-y-2">
               <label htmlFor="contact-email" className="text-sm font-medium text-text-primary">
-                অফিসিয়াল ইমেইল <span className="text-accent-text">*</span>
+                Business Email <span className="text-accent-text">*</span>
               </label>
               <Input
                 id="contact-email"
@@ -149,7 +157,7 @@ export function ContactForm() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="contact-phone" className="text-sm font-medium text-text-primary">
-                ফোন / হোয়াটসঅ্যাপ নম্বর <span className="text-xs text-text-muted">(ঐচ্ছিক)</span>
+                Phone / WhatsApp <span className="text-xs text-text-muted">(Optional)</span>
               </label>
               <Input
                 id="contact-phone"
@@ -162,21 +170,21 @@ export function ContactForm() {
 
             <div className="space-y-2">
               <label htmlFor="contact-company" className="text-sm font-medium text-text-primary">
-                কোম্পানি বা ব্র্যান্ডের নাম <span className="text-xs text-text-muted">(ঐচ্ছিক)</span>
+                Company / Organization <span className="text-xs text-text-muted">(Optional)</span>
               </label>
               <Input
                 id="contact-company"
                 name="companyName"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="আপনার প্রতিষ্ঠান / ব্র্যান্ড"
+                placeholder="Your Company or Project"
               />
             </div>
           </div>
 
           <div className="space-y-2">
             <label htmlFor="contact-brief" className="text-sm font-medium text-text-primary">
-              প্রজেক্টের বিবরণ বা বার্তার বিষয় <span className="text-accent">*</span>
+              Project Brief or Message <span className="text-accent">*</span>
             </label>
             <Textarea
               id="contact-brief"
@@ -185,13 +193,13 @@ export function ContactForm() {
               rows={4}
               value={projectBrief}
               onChange={(e) => setProjectBrief(e.target.value)}
-              placeholder="আপনার প্রজেক্টের লক্ষ্য, কারিগরি চাহিদা বা সেবাসমূহ সম্পর্কে বিস্তারিত লিখুন..."
+              placeholder="Tell us about your project requirements, technical challenges, or questions..."
             />
           </div>
 
           <Button type="submit" variant="primary" loading={loading} className="w-full sm:w-auto">
             <Send className="mr-2 h-4 w-4" />
-            বার্তা পাঠান
+            Send Message
           </Button>
         </form>
       </CardContent>

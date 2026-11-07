@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth/admin";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
+
+export const dynamic = "force-dynamic";
 import Link from "next/link";
 import {
   LayoutTemplate,

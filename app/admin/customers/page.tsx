@@ -4,6 +4,8 @@ import { getCustomers } from "@/lib/crm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { UserCheck, Mail, Phone, Building } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "গ্রাহক ডিরেক্টরি | Projukti Labs Admin",
 };

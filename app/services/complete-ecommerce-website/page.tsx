@@ -18,9 +18,9 @@ import {
 import { getServiceBySlug } from "@/modules/services/data";
 
 export const metadata = {
-  title: "কমপ্লিট ই-কমার্স প্ল্যাটফর্ম | Projukti Labs",
+  title: "Complete E-commerce Platform | Projukti Labs",
   description:
-    "বিকাশ, নগদ, SSLCommerz ও Stripe পেমেন্ট গেটওয়ে, অটোমেটেড কুরিয়ার ট্র্যাকিং এবং ০% প্ল্যাটফর্ম সেলস কমিশন সম্বলিত পূর্ণাঙ্গ ই-কমার্স সলিউশন।",
+    "Production-grade e-commerce solutions with bKash, Nagad, SSLCommerz, and Stripe payment gateways, automated courier APIs, and 0% studio sales royalty.",
 };
 
 export default function CompleteEcommercePage() {
@@ -32,31 +32,33 @@ export default function CompleteEcommercePage() {
       {/* 1. Hero Section */}
       <div className="max-w-4xl space-y-6">
         <div className="inline-flex items-center gap-2">
-          <Badge variant="accent">ফ্ল্যাগশিপ সেবা</Badge>
-          <Badge variant="outline">ই-কমার্স ও ডিজিটাল কমার্স</Badge>
-          <span className="font-mono text-xs text-accent">০% প্ল্যাটফর্ম সেলস কমিশন</span>
+          <Badge variant="accent">FLAGSHIP SOLUTION</Badge>
+          <Badge variant="outline">E-commerce &amp; Digital Commerce</Badge>
+          <span className="font-mono text-xs text-accent">0% Platform Sales Royalty</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
-          কমপ্লিট প্রোডাকশন-রেডি{" "}
+          Complete Production-Ready{" "}
           <span className="text-accent underline decoration-accent/40 decoration-wavy">
-            ই-কমার্স প্ল্যাটফর্ম
+            E-commerce Platform
           </span>
         </h1>
 
         <p className="text-lg sm:text-xl text-text-muted leading-relaxed max-w-3xl">
-          উচ্চগতির ডিজিটাল কমার্স ইঞ্জিন—যা নিশ্চিত করে দ্রুততম প্রোডাক্ট ব্রাউজিং, ফ্র্রিকশনলেস চেকআউট এবং স্বয়ংক্রিয় পার্সেল বুকিং। লোকাল পেমেন্ট (বিকাশ, নগদ, SSLCommerz) এবং আন্তর্জাতিক কার্ড প্রসেসিং (Stripe) ইন্টিগ্রেশনসহ সম্পূর্ণ রেডি সলিউশন।
+          A high-speed digital commerce engine engineered for instant product browsing, frictionless 2-step checkouts,
+          and automated courier booking. Complete with local mobile payments (bKash, Nagad, SSLCommerz) and
+          international card processing (Stripe).
         </p>
 
         <div className="flex flex-wrap gap-4 pt-4">
           <Button size="lg" variant="primary" asChild>
             <Link href="/get-a-quote?service=complete-ecommerce-website&package=growth-storefront">
-              গ্রোথ স্টোরফ্রন্ট শুরু করুন
+              Start with Growth Storefront
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href="#pricing-tiers">কমার্স প্যাকেজসমূহ তুলনা করুন</Link>
+            <Link href="#pricing-tiers">Compare Commerce Packages</Link>
           </Button>
         </div>
       </div>
@@ -64,12 +66,12 @@ export default function CompleteEcommercePage() {
       {/* 2. Visual Commerce Architecture Diagram */}
       <div className="rounded-2xl border border-border bg-surface/40 p-6 sm:p-10 space-y-8">
         <div className="space-y-2 max-w-2xl">
-          <Badge variant="accent">প্ল্যাটফর্ম আর্কিটেকচার</Badge>
+          <Badge variant="accent">COMMERCE ARCHITECTURE</Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            এন্ড-টু-এন্ড কমার্স ফ্লো ও ইন্টিগ্রেশন
+            End-to-End Commerce Flow &amp; Integrations
           </h2>
           <p className="text-xs sm:text-sm text-text-muted">
-            চেকআউটের ঝামেলা দূর করতে, দ্রুত পার্সেল পাঠাতে এবং ক্লায়েন্টের ডাটা সম্পূর্ণ সুরক্ষিত রাখতে বিশেষভাবে নির্মিত।
+            Engineered to minimize cart abandonment, automate shipping logistics, and keep customer data secure.
           </p>
         </div>
 
@@ -77,70 +79,71 @@ export default function CompleteEcommercePage() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <div className="rounded-xl border border-border/80 bg-background/80 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold text-accent">মডিউল ০১</span>
+              <span className="font-mono text-xs font-bold text-accent">Module 01</span>
               <Smartphone className="h-4 w-4 text-text-muted" />
             </div>
-            <h3 className="font-bold text-text-primary text-sm">আল্ট্রা-ফাস্ট স্টোরফ্রন্ট</h3>
+            <h3 className="font-bold text-text-primary text-sm">Ultra-Fast Storefront</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              তাৎক্ষণিক প্রোডাক্ট লোডিং, মাল্টি-ক্যাটাগরি ফিল্টার, সার্চ অটো-কমপ্লিট এবং রেসপন্সিভ মোবাইল-ফার্স্ট ইন্টারফেস।
+              Instant category filtering, search auto-complete, and mobile-first product cards optimized for conversion.
             </p>
           </div>
 
           <div className="rounded-xl border border-border/80 bg-background/80 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold text-accent">মডিউল ০২</span>
+              <span className="font-mono text-xs font-bold text-accent">Module 02</span>
               <ShoppingCart className="h-4 w-4 text-accent" />
             </div>
-            <h3 className="font-bold text-text-primary text-sm">২-স্টেপ চেকআউট</h3>
+            <h3 className="font-bold text-text-primary text-sm">2-Step Checkout Flow</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              সাব-১০০ms কার্ট আপডেট, গেস্ট চেকআউট সুবিধা, সেভড ডেলিভারি অ্যাড্রেস এবং ডিসকাউন্ট কুপন ক্যালকুলেশন।
+              Sub-100ms cart updates, frictionless guest checkout, saved customer details, and automated coupon rules.
             </p>
           </div>
 
           <div className="rounded-xl border border-border/80 bg-background/80 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold text-accent">মডিউল ০৩</span>
+              <span className="font-mono text-xs font-bold text-accent">Module 03</span>
               <CreditCard className="h-4 w-4 text-text-muted" />
             </div>
-            <h3 className="font-bold text-text-primary text-sm">পেমেন্ট গেটওয়ে</h3>
+            <h3 className="font-bold text-text-primary text-sm">Payment Gateways</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              বিকাশ PGW, নগদ, SSLCommerz ও Stripe সরাসরি ক্লায়েন্টের মার্চেন্ট অ্যাকাউন্টে ওয়েবহুক ভেরিফিকেশনসহ সংযুক্ত।
+              bKash PGW, Nagad, SSLCommerz, and Stripe connected directly to your merchant account with verified webhooks.
             </p>
           </div>
 
           <div className="rounded-xl border border-border/80 bg-background/80 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold text-accent">মডিউল ০৪</span>
+              <span className="font-mono text-xs font-bold text-accent">Module 04</span>
               <Truck className="h-4 w-4 text-accent" />
             </div>
-            <h3 className="font-bold text-text-primary text-sm">অটোমেটেড কুরিয়ার</h3>
+            <h3 className="font-bold text-text-primary text-sm">Automated Courier API</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              পাঠাও / স্টেডফাস্ট এপিআই দিয়ে এক ক্লিকে পার্সেল বুকিং, ট্র্যাকিং কোড জেনারেশন ও ট্রানজ্যাকশনাল SMS অ্যালার্ট।
+              One-click parcel dispatch to Pathao and Steadfast, automatic tracking number generation, and SMS alerts.
             </p>
           </div>
 
           <div className="rounded-xl border border-accent/60 bg-accent/5 p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-mono text-xs font-bold text-accent">মডিউল ০৫</span>
+              <span className="font-mono text-xs font-bold text-accent">Module 05</span>
               <Database className="h-4 w-4 text-accent" />
             </div>
-            <h3 className="font-bold text-text-primary text-sm">অ্যাডমিন ড্যাশবোর্ড</h3>
+            <h3 className="font-bold text-text-primary text-sm">Admin Control Center</h3>
             <p className="text-xs text-text-muted leading-relaxed">
-              রিয়েল-টাইম ইনভেন্টরি, অর্ডার স্ট্যাটাস ট্র্যাকিং, প্রিন্টযোগ্য ইনভয়েস PDF এবং সেলস রিপোর্টিং।
+              Centralized inventory management, order fulfillment queues, printable invoice PDFs, and sales analytics.
             </p>
           </div>
         </div>
       </div>
 
-      {/* 3. Honest Third-Party Fee Transparency */}
+      {/* 3. Honest Operating Fee Transparency */}
       <div className="rounded-xl border border-border bg-surface/30 p-6 sm:p-8 space-y-6">
         <div className="space-y-2 max-w-2xl">
-          <Badge variant="outline">সম্পূর্ণ সততা ও স্বচ্ছতা</Badge>
+          <Badge variant="outline">HONEST PRICING</Badge>
           <h3 className="text-2xl font-bold text-text-primary">
-            থার্ড-পার্টি ফি ও অপারেটিং খরচের স্পষ্ট বিবরণ
+            Third-Party Fees &amp; Operating Cost Transparency
           </h3>
           <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
-            সাধারণ SaaS প্ল্যাটফর্ম যেখানে আপনার প্রতি বিক্রয়ের ওপর ১% থেকে ২% কমিশন কেটে নেয়, সেখানে Projukti Labs চার্জ করে <strong>০% প্ল্যাটফর্ম সেলস কমিশন</strong>। আপনার স্টোরের পূর্ণ মালিকানা আপনার।
+            Unlike closed SaaS platforms that charge 1% to 2% royalties on every item you sell, Projukti Labs charges{" "}
+            <strong>0% platform sales royalty</strong>. You own 100% of your store and database.
           </p>
         </div>
 
@@ -148,30 +151,33 @@ export default function CompleteEcommercePage() {
           <div className="rounded-lg border border-border/80 bg-background/60 p-4 space-y-2">
             <h4 className="font-bold text-text-primary text-sm flex items-center gap-2">
               <Coins className="h-4 w-4 text-accent" />
-              পেমেন্ট গেটওয়ে মার্চেন্ট ফি
+              Gateway Processing Fees
             </h4>
             <p className="text-xs text-text-muted leading-relaxed">
-              লেনদেনের মার্চেন্ট ফি (বিকাশের জন্য আনুমানিক ১.৫%, SSLCommerz-এর জন্য ২%–২.৫%, Stripe-এর জন্য ২.৯%) সরাসরি পেমেন্ট প্রোভাইডারকে প্রদেয়। স্টুডিও কোনো মধ্যবর্তী চার্জ নেয় না।
+              Standard processing fees (bKash ~1.5%, SSLCommerz ~2%–2.5%, Stripe ~2.9%) are paid directly to your chosen
+              provider. Our studio adds zero surcharge.
             </p>
           </div>
 
           <div className="rounded-lg border border-border/80 bg-background/60 p-4 space-y-2">
             <h4 className="font-bold text-text-primary text-sm flex items-center gap-2">
               <Smartphone className="h-4 w-4 text-accent" />
-              SMS নোটিফিকেশন চার্জ
+              Transactional SMS Credits
             </h4>
             <p className="text-xs text-text-muted leading-relaxed">
-              অর্ডারের ট্রানজ্যাকশনাল SMS ক্রেডিট (বাংলাদেশে সাধারণত প্রতি SMS আনুমানিক ৳ ০.২৫ থেকে ৳ ০.৪০) ক্লায়েন্ট সরাসরি টেলিকম এগ্রিগেটর (Greenweb, BulkSMSBD ইত্যাদি) থেকে কিনবেন।
+              SMS credits for order receipts (typically ৳ 0.25 to ৳ 0.40 per SMS in Bangladesh) are procured directly
+              from telecom providers (Greenweb, BulkSMSBD, etc.).
             </p>
           </div>
 
           <div className="rounded-lg border border-border/80 bg-background/60 p-4 space-y-2">
             <h4 className="font-bold text-text-primary text-sm flex items-center gap-2">
               <Truck className="h-4 w-4 text-accent" />
-              কুরিয়ার ডেলিভারি চার্জ
+              Courier Delivery Fees
             </h4>
             <p className="text-xs text-text-muted leading-relaxed">
-              পার্সেল ডেলিভারি ফি এবং ক্যাশ অন ডেলিভারি (COD) পেমেন্ট সেটেলমেন্ট সরাসরি আপনার চুক্তিবদ্ধ কুরিয়ার পার্টনারের (স্টেডফাস্ট, পাঠাও, পেপারফ্লাই) সাথে নিষ্পত্তি হবে।
+              Shipping charges and Cash on Delivery (COD) settlements remain entirely between your business and your
+              courier partner (Steadfast, Pathao, Paperfly).
             </p>
           </div>
         </div>
@@ -180,9 +186,9 @@ export default function CompleteEcommercePage() {
       {/* 4. Deliverables vs Exclusions Breakdown */}
       <div className="space-y-8 border-t border-border pt-12">
         <div className="max-w-2xl space-y-2">
-          <Badge variant="accent">স্কোপের পরিধি</Badge>
+          <Badge variant="accent">SCOPE CLARITY</Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            অন্তর্ভুক্ত ডেলিভারেবলস বনাম সার্ভিসের আওতাবহির্ভূত বিষয়
+            Included Deliverables vs. Out of Scope
           </h2>
         </div>
 
@@ -191,7 +197,7 @@ export default function CompleteEcommercePage() {
           <div className="rounded-xl border border-accent/30 bg-surface/40 p-6 sm:p-8 space-y-4">
             <h3 className="text-lg font-bold text-accent flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-accent" />
-              আমরা যা প্রদান করি
+              What We Deliver
             </h3>
             <ul className="space-y-3 text-xs sm:text-sm text-text-muted">
               {service?.deliverables.map((item, i) => (
@@ -207,7 +213,7 @@ export default function CompleteEcommercePage() {
           <div className="rounded-xl border border-border bg-surface/20 p-6 sm:p-8 space-y-4">
             <h3 className="text-lg font-bold text-text-muted flex items-center gap-2">
               <XCircle className="h-5 w-5 text-text-muted" />
-              সার্ভিসের আওতাবহির্ভূত
+              Out of Scope
             </h3>
             <ul className="space-y-3 text-xs sm:text-sm text-text-muted">
               {service?.exclusions.map((item, i) => (
@@ -224,12 +230,12 @@ export default function CompleteEcommercePage() {
       {/* 5. Pricing Tiers */}
       <div id="pricing-tiers" className="space-y-12 border-t border-border pt-16">
         <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <Badge variant="accent">কমার্স প্যাকেজসমূহ</Badge>
+          <Badge variant="accent">COMMERCE TIERS</Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-text-primary">
-            ই-কমার্স প্ল্যাটফর্ম প্যাকেজ অপশন
+            E-commerce Platform Package Options
           </h2>
           <p className="text-text-muted text-sm sm:text-base">
-            ফিক্সড মাইলফলক বিনিয়োগ। সোর্স কোডের পূর্ণাঙ্গ মালিকানা এবং জিরো প্ল্যাটফর্ম সেলস কমিশন।
+            Fixed milestone investments. Full source code ownership and 0% studio royalties.
           </p>
         </div>
 
@@ -244,14 +250,14 @@ export default function CompleteEcommercePage() {
               <CardHeader className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-lg text-text-primary">{pkg.name}</span>
-                  {pkg.popular && <Badge variant="accent">সেরা ভ্যালু</Badge>}
+                  {pkg.popular && <Badge variant="accent">Best Value</Badge>}
                 </div>
                 <div className="space-y-1">
                   <div className="font-mono text-3xl font-extrabold text-accent">
-                    {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "কাস্টম স্কোপ"}
+                    {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "Custom Scope"}
                   </div>
                   <div className="text-xs text-text-muted font-mono">
-                    {pkg.priceUsd ? `অথবা $${pkg.priceUsd} USD` : "টেইলর্ড এন্টারপ্রাইজ স্কোপ"} · পূর্ণ মালিকানা
+                    {pkg.priceUsd ? `or $${pkg.priceUsd} USD` : "Tailored Enterprise Scope"} · Full Ownership
                   </div>
                 </div>
                 <CardDescription className="text-xs text-text-muted leading-relaxed">
@@ -262,7 +268,7 @@ export default function CompleteEcommercePage() {
               <CardContent className="space-y-6">
                 <div className="space-y-2 border-t border-border/60 pt-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-text-primary">
-                    অন্তর্ভুক্ত সুবিধাসমূহ:
+                    Included Features:
                   </p>
                   <ul className="space-y-2 text-xs text-text-muted">
                     {pkg.deliverables.map((del, dIdx) => (
@@ -285,7 +291,7 @@ export default function CompleteEcommercePage() {
                         pkg.slug
                       )}`}
                     >
-                      {pkg.name} বেছে নিন
+                      Select {pkg.name}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -299,31 +305,37 @@ export default function CompleteEcommercePage() {
       {/* 6. Service FAQ */}
       <div className="space-y-8 border-t border-border pt-16">
         <div className="max-w-2xl space-y-2">
-          <Badge variant="outline">কমার্স জিজ্ঞাসা</Badge>
+          <Badge variant="outline">FREQUENTLY ASKED QUESTIONS</Badge>
           <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            ই-কমার্স সম্পর্কিত সাধারণ প্রশ্নোত্তর
+            E-commerce Platform FAQ
           </h2>
         </div>
 
         <div className="space-y-3 max-w-4xl">
           <AccordionItem
-            title="আপনারা বিকাশ ও নগদ পেমেন্ট গেটওয়ে কীভাবে সংযুক্ত করেন?"
+            title="How do you integrate bKash and Nagad payment gateways?"
             defaultOpen={true}
           >
             <p className="text-sm text-text-muted leading-relaxed">
-              আমরা অফিসিয়াল বিকাশ পেমেন্ট গেটওয়ে (PGW) এবং নগদ মার্চেন্ট এপিআই ইন্টিগ্রেট করি। গ্রাহক পেমেন্ট গেটওয়ের নিরাপদ উইন্ডোতে ওটিপি দিয়ে পেমেন্ট সম্পন্ন করেন এবং তাৎক্ষণিকভাবে অর্ডারের কনফার্মেশন পেয়ে যান। ক্লাউড সার্ভারের নিরাপদ ওয়েবহুকের মাধ্যমে স্বয়ংক্রিয়ভাবে অর্ডারের স্ট্যাটাস &apos;Paid&apos; হয়ে যায়।
+              We integrate the official bKash Payment Gateway (PGW) and Nagad Merchant APIs. Customers authorize
+              payments within a secure pop-up window using their PIN/OTP, and webhooks on our edge server automatically
+              mark the order as &apos;Paid&apos; upon settlement.
             </p>
           </AccordionItem>
 
-          <AccordionItem title="আমরা কি একই সাথে বাংলাদেশি টাকা এবং আন্তর্জাতিক ডলার গ্রহণ করতে পারব?">
+          <AccordionItem title="Can we accept payments in both BDT (Bangladeshi Taka) and USD (US Dollars)?">
             <p className="text-sm text-text-muted leading-relaxed">
-              হ্যাঁ। আমাদের গ্রোথ এবং স্কেল প্যাকেজে ডুয়াল কারেন্সি সাপোর্ট রয়েছে: বাংলাদেশি গ্রাহকরা বিকাশ/নগদ/SSLCommerz-এর মাধ্যমে টাকায় পেমেন্ট করবেন, আর আন্তর্জাতিক গ্রাহকরা Stripe-এর মাধ্যমে সরাসরি ভিসা/মাস্টারকার্ড ডলারে পে করতে পারবেন।
+              Yes. Our Growth Storefront and Scale OS tiers support dual-currency setups: local shoppers pay in Taka via
+              bKash, Nagad, or SSLCommerz, while international buyers can checkout in USD via Stripe using Visa,
+              Mastercard, or American Express.
             </p>
           </AccordionItem>
 
-          <AccordionItem title="স্টোর লঞ্চের পর আপনারা কি টেকনিক্যাল সাপোর্ট প্রদান করেন?">
+          <AccordionItem title="Is post-launch technical support included?">
             <p className="text-sm text-text-muted leading-relaxed">
-              প্রতিটি কমার্স প্রজেক্টের সাথে ৩০ দিনের ফ্রি টেকনিক্যাল ওয়ারেন্টি অন্তর্ভুক্ত থাকে—যাতে যেকোনো বাগ বা পেমেন্ট গেটওয়ে সমস্যা তৎক্ষণাৎ সমাধান করা হয়। এরপর নিয়মিত সিকিউরিটি আপডেট, অটোমেটেড ব্যাকআপ এবং সেলস অপ্টিমাইজেশনের জন্য আমাদের মাসিক বিজনেস কেয়ার বা প্রায়োরিটি কেয়ার রিটেইনার বেছে নেওয়া যায়।
+              Yes. Every e-commerce deployment comes with a 30-day technical warranty covering any bug fixes, webhook
+              adjustments, or gateway troubleshooting. Beyond 30 days, our monthly Business Care or Priority Care
+              retainers provide continuous maintenance and uptime guarantees.
             </p>
           </AccordionItem>
         </div>
@@ -332,20 +344,20 @@ export default function CompleteEcommercePage() {
       {/* 7. Bottom Conversion Banner */}
       <div className="rounded-2xl border border-accent/40 bg-surface/80 p-8 sm:p-12 text-center space-y-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-          আপনার হাই-পারফরম্যান্স অনলাইন শপ শুরু করতে প্রস্তুত?
+          Ready to Launch Your High-Performance Online Store?
         </h2>
         <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
-          অফিসিয়াল প্রজেক্ট কোটেশন রিকোয়েস্ট করুন অথবা পেমেন্ট গেটওয়ে ও কুরিয়ার ইন্টিগ্রেশন নিয়ে আমাদের ইঞ্জিনিয়ারিং টিমের সাথে সরাসরি পরামর্শ করুন।
+          Request a project quotation or discuss your payment gateway and courier logistics with our lead engineer.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Button variant="primary" asChild>
             <Link href="/get-a-quote?service=complete-ecommerce-website">
-              ই-কমার্স কোটেশন চান
+              Request E-commerce Quote
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/contact">একটি টেকনিক্যাল আলোচনার সময় নির্ধারণ করুন</Link>
+            <Link href="/contact">Schedule Technical Discussion</Link>
           </Button>
         </div>
       </div>

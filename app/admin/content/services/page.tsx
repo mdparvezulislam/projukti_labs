@@ -4,6 +4,8 @@ import { getCmsServices } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { ServicesManager } from "./services-manager";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "সার্ভিস ও প্যাকেজ সিএমএস | Projukti Labs Admin",
 };

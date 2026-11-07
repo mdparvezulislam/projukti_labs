@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "ড্যাশবোর্ড ওভারভিউ | Projukti Labs Admin",
 };
@@ -73,7 +75,7 @@ export default async function AdminDashboardPage() {
       subtitle="Projukti Labs — কেন্দ্রীয় ব্যবস্থাপনা, সিআরএম ও লাইভ মেট্রিক্স"
     >
       {/* Welcome Banner & Quick Action Buttons */}
-      <div className="bg-card border border-border rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-warm-sm">
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-base sm:text-lg font-bold text-text-primary tracking-tight">
@@ -112,7 +114,7 @@ export default async function AdminDashboardPage() {
             <Link
               key={card.label}
               href={card.href}
-              className="bg-card border border-border rounded-xl p-3.5 sm:p-4 hover:border-border-hover transition-all group flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="bg-card border border-border rounded-2xl p-4 sm:p-5 shadow-warm-sm hover:shadow-warm-md hover:border-border-hover transition-all duration-300 group flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] sm:text-xs font-medium text-text-muted line-clamp-1">
@@ -138,7 +140,7 @@ export default async function AdminDashboardPage() {
       {/* Two-Column Section: Recent Inquiries & Activity Feed */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Recent Inquiries (2 Cols) */}
-        <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4 sm:p-5 space-y-3">
+        <div className="lg:col-span-2 bg-card border border-border rounded-2xl p-4 sm:p-5 space-y-3 shadow-warm-sm">
           <div className="flex items-center justify-between border-b border-border pb-3">
             <div>
               <h3 className="text-sm font-bold text-text-primary tracking-tight">
@@ -166,7 +168,7 @@ export default async function AdminDashboardPage() {
               {metrics.recentInquiries.map((inq) => (
                 <div
                   key={inq.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-surface-elevated/70 border border-border/60 hover:border-border transition-colors text-xs gap-3"
+                  className="flex items-center justify-between p-3 rounded-xl bg-surface-muted/60 border border-border hover:border-border-hover transition-colors text-xs gap-3"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
@@ -183,7 +185,7 @@ export default async function AdminDashboardPage() {
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium uppercase bg-accent/15 text-accent-text border border-accent/20">
+                    <span className="inline-block px-2 py-0.5 rounded text-[10px] font-medium uppercase bg-brand-orange-soft text-brand-orange-strong border border-brand-orange/20 font-semibold">
                       {inq.status}
                     </span>
                     <div className="text-[10px] text-text-muted mt-0.5">
@@ -197,7 +199,7 @@ export default async function AdminDashboardPage() {
         </div>
 
         {/* Recent Audit Activities (1 Col) */}
-        <div className="bg-card border border-border rounded-xl p-4 sm:p-5 space-y-3">
+        <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 space-y-3 shadow-warm-sm">
           <div className="flex items-center justify-between border-b border-border pb-3">
             <div>
               <h3 className="text-sm font-bold text-text-primary tracking-tight">

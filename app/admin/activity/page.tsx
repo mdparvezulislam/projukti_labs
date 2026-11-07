@@ -6,6 +6,8 @@ import { desc } from "drizzle-orm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { History, ShieldCheck, Clock, User } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "অডিট ও অ্যাক্টিভিটি লগ | Projukti Labs Admin",
 };

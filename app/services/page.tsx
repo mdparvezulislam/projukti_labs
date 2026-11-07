@@ -2,17 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import {
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { getFutureCategories } from "@/modules/services/data";
 import { getCmsServices } from "@/lib/cms";
 
 export const metadata = {
-  title: "সেবাসমূহ ও সলিউশন | Projukti Labs",
+  title: "Services & Solutions | Projukti Labs",
   description:
-    "আমাদের সুনির্দিষ্ট ৩টি সক্রিয় সেবা: ওয়েব ডেভেলপমেন্ট ও ডিজাইন, ই-কমার্স ও ডিজিটাল কমার্স, এবং প্রোঅ্যাক্টিভ মেইনটেন্যান্স ও টেকনিক্যাল সাপোর্ট।",
+    "Explore our core engineering services: Web Development & Design, E-commerce & Digital Commerce, and Proactive Website Maintenance & Technical Support.",
 };
 
 export default async function ServicesPage() {
@@ -22,41 +19,42 @@ export default async function ServicesPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-24">
-      {/* Hero Header */}
+      {/* 1. Hero Header */}
       <div className="max-w-3xl space-y-6">
         <div className="inline-flex items-center gap-2">
-          <Badge variant="accent">লঞ্চ সার্ভিস ক্যাটালগ</Badge>
-          <Badge variant="outline">৩টি সক্রিয় ক্যাটাগরি</Badge>
+          <Badge variant="accent">ACTIVE SERVICES</Badge>
+          <Badge variant="outline">3 Core Verticals</Badge>
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary leading-tight">
-          প্রোডাক্টাইজড ইঞ্জিনিয়ারিং সার্ভিস ও স্বচ্ছ সমাধান
+          Engineering Services &amp; Digital Solutions
         </h1>
-        <p className="text-lg sm:text-xl text-text-muted leading-relaxed">
-          আমরা সুনির্দিষ্ট স্কোপ এবং মাইলফলক-ভিত্তিক সফটওয়্যার সেবা প্রদান করি—কোনো লুকানো বা অপ্রত্যাশিত খরচ ছাড়াই। প্রতিটি প্যাকেজে রয়েছে স্পষ্ট ডেলিভারেবলস, টেকনিক্যাল স্পেসিফিকেশন এবং লঞ্চ-পরবর্তী সাপোর্ট।
+        <p className="text-lg sm:text-xl text-text-secondary leading-relaxed">
+          We deliver scoped, milestone-based software engineering services with transparent pricing and no unexpected
+          fees. Every engagement includes clear deliverables, technical specifications, and post-launch support.
         </p>
       </div>
 
-      {/* Active Service Categories Deep-Dive */}
+      {/* 2. Active Service Categories */}
       <div className="space-y-20">
         {activeCategories.map((cat, catIdx) => (
           <div
             key={cat.id}
             id={cat.slug}
-            className="rounded-2xl border border-border bg-surface/30 p-6 sm:p-10 space-y-8"
+            className="rounded-3xl border border-border bg-card/90 dark:bg-surface/30 p-6 sm:p-10 space-y-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] dark:shadow-none"
           >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/80 pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-accent">সার্ভিস ক্যাটাগরি ০{catIdx + 1}</span>
-                  <Badge variant="accent">সক্রিয় সেবা</Badge>
+                  <span className="font-mono text-xs font-bold text-brand-orange-strong dark:text-accent">Service Vertical 0{catIdx + 1}</span>
+                  <Badge variant="accent">Active</Badge>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">{cat.name}</h2>
-                <p className="text-sm text-text-muted max-w-2xl">{cat.description}</p>
+                <p className="text-sm text-text-secondary max-w-2xl">{cat.description}</p>
               </div>
 
-              <Button variant="outline" asChild className="self-start sm:self-center">
+              <Button variant="outline" asChild className="self-start sm:self-center bg-card">
                 <Link href={`/get-a-quote?service=${cat.services[0]?.slug || cat.slug}`}>
-                  এই ক্যাটাগরির কোটেশন চান
+                  Request Category Quote
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -67,40 +65,41 @@ export default async function ServicesPage() {
               {cat.services.map((srv) => (
                 <Card
                   key={srv.id}
-                  className={`flex flex-col justify-between border-border bg-surface/50 ${
-                    srv.isFlagship ? "ring-1 ring-accent/30" : ""
-                  }`}
+                  className={`flex flex-col justify-between ${srv.isFlagship ? "ring-1 ring-brand-orange/40 dark:ring-accent/30" : ""
+                    }`}
                 >
                   <CardHeader className="space-y-3">
                     <div className="flex items-center justify-between">
                       {srv.isFlagship ? (
-                        <Badge variant="accent">★ ফ্ল্যাগশিপ সলিউশন</Badge>
+                        <Badge variant="accent">★ Flagship Solution</Badge>
                       ) : (
-                        <Badge variant="outline">স্ট্যান্ডার্ড প্যাকেজ</Badge>
+                        <Badge variant="outline">Standard Package</Badge>
                       )}
-                      <span className="font-mono text-xs text-text-muted">{srv.packages.length}টি প্যাকেজ অপশন</span>
+                      <span className="font-mono text-xs text-text-muted">
+                        {srv.packages.length} Package Tier{srv.packages.length > 1 ? "s" : ""}
+                      </span>
                     </div>
 
                     <CardTitle className="text-xl sm:text-2xl text-text-primary">{srv.name}</CardTitle>
-                    <CardDescription className="text-xs sm:text-sm text-text-muted">
+                    <CardDescription className="text-xs sm:text-sm text-text-secondary">
                       {srv.tagline}
                     </CardDescription>
                   </CardHeader>
 
                   <CardContent className="space-y-6">
-                    <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                    <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                       {srv.description}
                     </p>
 
                     {/* Technical Highlights */}
                     <div className="space-y-2">
                       <p className="text-xs font-semibold uppercase tracking-wider text-text-primary">
-                        কারিগরি বৈশিষ্ট্য:
+                        Technical Highlights:
                       </p>
-                      <ul className="space-y-1.5 text-xs text-text-muted">
+                      <ul className="space-y-1.5 text-xs text-text-secondary">
                         {srv.technicalHighlights.slice(0, 3).map((th, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <CheckCircle2 className="h-3.5 w-3.5 text-accent shrink-0 mt-0.5" />
+                            <CheckCircle2 className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent shrink-0 mt-0.5" />
                             <span>{th}</span>
                           </li>
                         ))}
@@ -108,10 +107,10 @@ export default async function ServicesPage() {
                     </div>
 
                     {/* Pricing Tiers Preview */}
-                    <div className="rounded-lg border border-border/60 bg-background/60 p-4 space-y-3">
+                    <div className="rounded-xl border border-border bg-surface-muted/60 p-4 space-y-3">
                       <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-text-muted">
-                        <span>প্যাকেজসমূহ</span>
-                        <span>শুরুর বাজেট</span>
+                        <span>Packages</span>
+                        <span>Starting At</span>
                       </div>
                       <div className="space-y-2">
                         {srv.packages.map((pkg) => (
@@ -122,9 +121,9 @@ export default async function ServicesPage() {
                             <span className="font-medium text-text-primary">
                               {pkg.name} {pkg.popular ? "★" : ""}
                             </span>
-                            <span className="font-mono font-semibold text-accent">
-                              {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "কাস্টম স্কোপ"}
-                              {pkg.billingPeriod === "monthly" ? " / মাস" : ""}
+                            <span className="font-mono font-bold text-brand-orange-strong dark:text-accent">
+                              {pkg.priceBdt ? `৳ ${pkg.priceBdt.toLocaleString()}` : "Custom Scope"}
+                              {pkg.billingPeriod === "monthly" ? " / mo" : ""}
                             </span>
                           </div>
                         ))}
@@ -133,16 +132,16 @@ export default async function ServicesPage() {
 
                     <div className="pt-2 flex flex-col sm:flex-row gap-3">
                       {srv.isFlagship ? (
-                        <Button variant="primary" asChild className="w-full">
+                        <Button variant="primary" asChild className="w-full shadow-xs">
                           <Link href={`/services/${srv.slug}`}>
-                            বিস্তারিত আর্কিটেকচার ও প্যাকেজ দেখুন
+                            View Details &amp; Packages
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>
                       ) : (
-                        <Button variant="outline" asChild className="w-full">
+                        <Button variant="outline" asChild className="w-full bg-card">
                           <Link href={`/get-a-quote?service=${srv.slug}`}>
-                            এই সার্ভিসের কোটেশন চান
+                            Request Quote
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>
@@ -156,15 +155,16 @@ export default async function ServicesPage() {
         ))}
       </div>
 
-      {/* Future Categories (Coming Soon / Pipeline) */}
+      {/* 3. Future Categories (Roadmap / Pipeline) */}
       <div className="space-y-8 border-t border-border pt-16">
         <div className="max-w-3xl space-y-3">
-          <Badge variant="outline">ভবিষ্যৎ রোডম্যাপ</Badge>
+          <Badge variant="outline">ROADMAP</Badge>
           <h2 className="text-3xl font-extrabold text-text-primary">
-            ভবিষ্যৎ সম্প্রসারণ ও গবেষণা পাইপলাইন
+            Future Capabilities &amp; Pipeline
           </h2>
-          <p className="text-text-muted text-sm sm:text-base leading-relaxed">
-            ইঞ্জিনিয়ারিং শ্রেষ্ঠত্ব ও মানের প্রতি দায়বদ্ধ থেকে নিচের প্রযুক্তি খাতগুলো বর্তমানে আমাদের কৌশলগত গবেষণা ও সম্প্রসারণ প্রক্রিয়ায় রয়েছে। প্রাথমিক লঞ্চে এগুলো সক্রিয় সেলস সার্ভিস হিসেবে রাখা হয়নি।
+          <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
+            Committed to engineering excellence, these areas are currently part of our strategic research pipeline.
+            They are not offered as active commercial services during initial launch.
           </p>
         </div>
 
@@ -172,36 +172,39 @@ export default async function ServicesPage() {
           {futureCategories.map((future) => (
             <div
               key={future.id}
-              className="rounded-xl border border-dashed border-border/80 bg-surface/20 p-6 space-y-3 opacity-80 hover:opacity-100 transition-opacity"
+              className="rounded-2xl border border-dashed border-border bg-card/70 dark:bg-surface/20 p-6 space-y-3 shadow-2xs hover:border-border-hover transition-colors"
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-text-muted uppercase">গবেষণাধীন</span>
-                <Badge variant="outline" className="text-[10px] text-text-muted">শীঘ্রই আসছে</Badge>
+                <span className="font-mono text-xs text-text-muted uppercase font-medium">In Research</span>
+                <Badge variant="outline" className="text-[10px] text-text-muted">
+                  Coming Soon
+                </Badge>
               </div>
               <h3 className="text-lg font-bold text-text-primary">{future.name}</h3>
-              <p className="text-xs text-text-muted leading-relaxed">{future.tagline}</p>
+              <p className="text-xs text-text-secondary leading-relaxed">{future.tagline}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* CTA Banner */}
-      <div className="rounded-2xl border border-accent/40 bg-surface/80 p-8 sm:p-12 text-center space-y-6">
+      {/* 4. Custom Scope CTA Banner */}
+      <div className="rounded-3xl border border-brand-orange/30 dark:border-accent/40 bg-card/95 dark:bg-surface/80 p-8 sm:p-12 text-center space-y-6 shadow-md backdrop-blur-xs">
         <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-          আপনার প্রজেক্টের জন্য কাস্টম ইঞ্জিনিয়ারিং স্কোপ প্রয়োজন?
+          Need a Custom Engineering Scope?
         </h2>
-        <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
-          আপনার প্রজেক্টের প্রয়োজনীয়তা যদি একাধিক প্রযুক্তি খাত জুড়ে বিস্তৃত হয় বা বিশেষ আর্কিটেকচার দাবি করে, আমরা আপনার স্পেসিফিকেশন পর্যালোচনা করতে প্রস্তুত।
+        <p className="text-text-secondary text-sm sm:text-base max-w-xl mx-auto">
+          If your project requirements span multiple technical domains or demand custom architecture, we are ready to
+          review your technical specifications.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button variant="primary" asChild>
+          <Button variant="primary" asChild className="shadow-xs">
             <Link href="/get-a-quote">
-              কাস্টম কোটেশন রিকোয়েস্ট করুন
+              Request a Custom Quote
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button variant="outline" asChild>
-            <Link href="/contact">একটি টেকনিক্যাল আলোচনার সময় নির্ধারণ করুন</Link>
+          <Button variant="outline" asChild className="bg-card">
+            <Link href="/contact">Schedule Technical Discussion</Link>
           </Button>
         </div>
       </div>

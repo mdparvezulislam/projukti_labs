@@ -17,6 +17,8 @@ import {
 import { getCmsBlogPostBySlug } from "@/lib/cms";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 
+export const instant = false;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

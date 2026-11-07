@@ -4,6 +4,8 @@ import { getInquiries } from "@/lib/crm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { InquiryManager } from "./inquiry-manager";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "ইনকোয়ারি ম্যানেজমেন্ট | Projukti Labs Admin",
 };

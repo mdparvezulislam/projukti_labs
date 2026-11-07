@@ -4,6 +4,8 @@ import { getLeads } from "@/lib/crm";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { LeadManager } from "./lead-manager";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "লিড পাইপলাইন | Projukti Labs Admin",
 };

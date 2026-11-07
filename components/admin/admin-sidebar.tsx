@@ -91,14 +91,14 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
           onClick={onCloseMobile}
           className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
-          <div className="h-7 w-7 rounded bg-accent text-accent-foreground font-black flex items-center justify-center text-sm">
+          <div className="h-7 w-7 rounded-lg bg-primary text-primary-foreground font-black flex items-center justify-center text-xs shadow-xs">
             PL
           </div>
           <div>
             <div className="text-sm font-bold tracking-tight text-text-primary leading-none">
               Projukti Labs
             </div>
-            <div className="text-[10px] text-accent font-medium mt-0.5">Admin OS v1.0</div>
+            <div className="text-[10px] text-accent-text font-semibold mt-0.5">Admin OS v1.0</div>
           </div>
         </Link>
         <Link
@@ -131,8 +131,8 @@ export function AdminSidebar({ user, onCloseMobile }: AdminSidebarProps) {
                     className={cn(
                       "flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent min-h-[40px]",
                       isActive
-                        ? "bg-accent/15 text-accent-text font-semibold shadow-xs"
-                        : "text-text-muted hover:text-text-primary hover:bg-card-hover"
+                        ? "bg-brand-orange-soft text-brand-orange-strong font-semibold shadow-xs"
+                        : "text-text-muted hover:text-text-primary hover:bg-surface-muted"
                     )}
                   >
                     <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-accent-text" : "text-text-muted")} aria-hidden="true" />
