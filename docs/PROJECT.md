@@ -4,7 +4,7 @@
 **Domain:** `projuktilabs.tech`  
 **Founder:** Md Parvezul Islam (Principal Software Architect)  
 **Tagline:** Building Digital Solutions. Engineering the Future.  
-**Baseline Version:** v1.7 Production Release (Phases 01–17 Complete — Live Cloudflare Production Deployment Verified on https://projuktilabs.tech/)  
+**Baseline Version:** v1.8 Production Release (Phases 01–18 Complete — Full Cloudflare Infrastructure Automation Live on https://projuktilabs.tech/)  
 **Primary Target Market:** Bangladesh (`bn-BD`, `Asia/Dhaka`, default currency BDT ৳)  
 **Language Policy:** Bangla-First / Bangla-Primary with selective English technical terms  
 
