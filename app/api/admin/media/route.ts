@@ -180,7 +180,7 @@ export async function DELETE(req: NextRequest) {
       const referencedPortfolio = await db
         .select({ id: portfolioProjects.id, title: portfolioProjects.title })
         .from(portfolioProjects)
-        .where(eq(portfolioProjects.coverImage, asset.url))
+        .where(eq(portfolioProjects.linkUrl, asset.url))
         .limit(1);
 
       if (referencedPortfolio.length > 0) {
