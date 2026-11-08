@@ -5,8 +5,6 @@ interface RouteParams {
   params: Promise<{ key: string[] }>;
 }
 
-export const dynamic = "force-dynamic";
-
 export async function GET(req: NextRequest, { params }: RouteParams) {
   try {
     const resolvedParams = await params;

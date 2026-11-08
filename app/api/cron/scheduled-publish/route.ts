@@ -3,8 +3,6 @@ import { processScheduledBlogPosts } from "@/lib/automation/processor";
 import { getAdminSession } from "@/lib/auth/admin";
 import { logger } from "@/lib/logger";
 
-export const dynamic = "force-dynamic";
-
 /**
  * Handles automated scheduled blog publishing for Cloudflare Cron Triggers,
  * authorized webhooks, or authenticated admin manual runs.

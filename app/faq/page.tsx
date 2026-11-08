@@ -61,7 +61,7 @@ export default async function FAQPage() {
         {categories.map((cat, catIdx) => (
           <div key={cat.category} className="space-y-6">
             <h2 className="text-xl font-bold text-text-primary flex items-center gap-2 border-b border-border pb-3">
-              <HelpCircle className="h-5 w-5 text-accent" />
+              <HelpCircle className="h-5 w-5 text-brand-orange-strong dark:text-accent" />
               {cat.category}
             </h2>
             <div className="space-y-3">
@@ -71,7 +71,7 @@ export default async function FAQPage() {
                   title={item.question}
                   defaultOpen={catIdx === 0 && itemIdx === 0}
                 >
-                  <p className="text-sm text-text-muted leading-relaxed whitespace-pre-line">
+                  <p className="text-sm text-text-secondary leading-relaxed whitespace-pre-line">
                     {item.answer}
                   </p>
                 </AccordionItem>
@@ -82,11 +82,11 @@ export default async function FAQPage() {
       </div>
 
       {/* 3. CTA Footer */}
-      <div className="rounded-2xl border border-border bg-surface/60 p-8 sm:p-12 text-center space-y-6">
-        <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-10 text-center space-y-4 shadow-sm">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
           Have a Question Not Listed Here?
         </h2>
-        <p className="text-text-muted text-sm sm:text-base max-w-xl mx-auto">
+        <p className="text-text-secondary text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
           Contact our team directly. We are happy to discuss custom technical requirements, integrations, or specific
           architecture considerations.
         </p>

@@ -31,27 +31,27 @@ export default function DesignSystemPreviewPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           <div className="rounded-xl border border-border p-4 bg-background">
             <div className="text-xs font-mono text-text-muted">--background</div>
-            <div className="text-sm font-semibold text-text-primary mt-1">#09090B</div>
+            <div className="text-sm font-semibold text-text-primary mt-1">Canvas Fill</div>
           </div>
           <div className="rounded-xl border border-border p-4 bg-surface">
             <div className="text-xs font-mono text-text-muted">--surface</div>
-            <div className="text-sm font-semibold text-text-primary mt-1">#111113</div>
+            <div className="text-sm font-semibold text-text-primary mt-1">Surface Card</div>
           </div>
           <div className="rounded-xl border border-border p-4 bg-surface-elevated">
             <div className="text-xs font-mono text-text-muted">--surface-elevated</div>
-            <div className="text-sm font-semibold text-text-primary mt-1">#18181B</div>
+            <div className="text-sm font-semibold text-text-primary mt-1">Elevated Card</div>
           </div>
           <div className="rounded-xl border border-border p-4 bg-accent text-accent-foreground">
             <div className="text-xs font-mono opacity-80">--accent (CTA)</div>
-            <div className="text-sm font-bold mt-1">#FFDF20</div>
+            <div className="text-sm font-bold mt-1">Primary Signal</div>
           </div>
-          <div className="rounded-xl border border-border p-4 bg-surface-elevated text-success">
-            <div className="text-xs font-mono opacity-80">--success</div>
-            <div className="text-sm font-semibold mt-1">#22C55E</div>
+          <div className="rounded-xl border border-border p-4 bg-surface text-brand-orange-strong dark:text-accent">
+            <div className="text-xs font-mono text-text-muted">--accent-text</div>
+            <div className="text-sm font-bold mt-1">Highlight Brand</div>
           </div>
-          <div className="rounded-xl border border-border p-4 bg-surface-elevated text-info">
-            <div className="text-xs font-mono opacity-80">--info</div>
-            <div className="text-sm font-semibold mt-1">#818CF8</div>
+          <div className="rounded-xl border border-border p-4 bg-surface text-success">
+            <div className="text-xs font-mono text-text-muted">--success</div>
+            <div className="text-sm font-semibold mt-1">Status Verified</div>
           </div>
         </div>
       </section>
