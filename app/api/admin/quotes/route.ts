@@ -1,6 +1,13 @@
 import { NextRequest } from "next/server";
 import { requireAdminAuth, logAdminAudit } from "@/lib/auth/admin";
-import { getQuotes, getQuoteById, createQuote, updateQuoteStatus } from "@/lib/crm";
+import {
+  getQuotes,
+  getQuoteById,
+  createQuote,
+  updateQuoteStatus,
+  upsertCustomer,
+  updateLeadStage,
+} from "@/lib/crm";
 import { apiSuccess, apiError } from "@/lib/validation/api";
 import { z } from "zod";
 
@@ -103,6 +110,26 @@ export async function PATCH(req: NextRequest) {
     }
 
     await updateQuoteStatus(id, status);
+
+    // If accepted, auto-promote client to verified Customer and Lead to 'won'
+    if (status === "accepted") {
+      try {
+        await upsertCustomer({
+          fullName: existing.clientName,
+          email: existing.clientEmail,
+          phone: existing.clientPhone,
+          companyName: existing.clientCompany,
+          status: "client",
+        });
+
+        if (existing.leadId) {
+          await updateLeadStage(existing.leadId, "won");
+        }
+      } catch {
+        // Progression error should not block quote status update
+      }
+    }
+
     await logAdminAudit({
       userId: auth.user.id,
       userEmail: auth.user.email,

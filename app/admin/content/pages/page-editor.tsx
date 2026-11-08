@@ -80,6 +80,50 @@ export function PageEditor({ initialSections }: PageEditorProps) {
   const [ctaSecondaryText, setCtaSecondaryText] = useState(ctaContent.secondaryText || "Contact Us");
   const [ctaSecondaryLink, setCtaSecondaryLink] = useState(ctaContent.secondaryLink || "/contact");
 
+  // Page level selector
+  const [selectedPage, setSelectedPage] = useState<"home" | "about" | "founder" | "contact">("home");
+
+  // About Page State
+  const aboutHeroSec = sections.find((s) => s.pageSlug === "about" && s.sectionKey === "hero");
+  const aboutHeroContent = (aboutHeroSec?.content as Record<string, string>) || {};
+  const [aboutHeroTitle, setAboutHeroTitle] = useState(aboutHeroSec?.title || "Building Digital Solutions. Engineering the Future.");
+  const [aboutHeroSubtitle, setAboutHeroSubtitle] = useState(
+    aboutHeroSec?.subtitle ||
+      "Projukti Labs is a technology-driven software and digital solutions studio founded by Md Parvezul Islam. We combine thoughtful design, reliable engineering, and practical technology to help businesses establish their digital presence, improve operations, and grow online."
+  );
+  const [aboutHeroBadge, setAboutHeroBadge] = useState(aboutHeroContent.badge || "STUDIO MISSION & PHILOSOPHY");
+
+  const aboutStorySec = sections.find((s) => s.pageSlug === "about" && s.sectionKey === "story");
+  const [aboutStoryTitle, setAboutStoryTitle] = useState(aboutStorySec?.title || "From Practical Beginnings to a Disciplined Engineering Studio");
+  const [aboutStoryDesc, setAboutStoryDesc] = useState(
+    aboutStorySec?.subtitle ||
+      "Originally established under the brand Projukti Solution Bd, the studio evolved into Projukti Labs to reflect a deeper dedication to modern web architecture, edge computing, and disciplined digital product development."
+  );
+
+  // Founder Page State
+  const founderHeroSec = sections.find((s) => s.pageSlug === "founder" && s.sectionKey === "hero");
+  const founderHeroContent = (founderHeroSec?.content as Record<string, string>) || {};
+  const [founderName, setFounderName] = useState(founderHeroSec?.title || "Md Parvezul Islam");
+  const [founderBio, setFounderBio] = useState(
+    founderHeroSec?.subtitle ||
+      "Md Parvezul Islam is the founder of Projukti Labs and a software-focused technology builder interested in designing and developing practical digital products. His work spans modern web development, e-commerce systems, business applications, backend architecture, automation, and high-performance search engines."
+  );
+  const [founderQuote, setFounderQuote] = useState(
+    founderHeroContent.quote ||
+      "I founded Projukti Labs based on a straightforward principle: software must be fast, honest, and genuinely useful for business operations—engineered cleanly without unnecessary layers or artificial claims."
+  );
+
+  // Contact Page State
+  const contactHeroSec = sections.find((s) => s.pageSlug === "contact" && s.sectionKey === "hero");
+  const contactHeroContent = (contactHeroSec?.content as Record<string, string>) || {};
+  const [contactTitle, setContactTitle] = useState(contactHeroSec?.title || "Get in Touch with Our Engineering Team");
+  const [contactSubtitle, setContactSubtitle] = useState(
+    contactHeroSec?.subtitle ||
+      "Have a question about our services, software architecture, or an upcoming project? Send us a direct message. We typically respond within 24 business hours."
+  );
+  const [contactEmail, setContactEmail] = useState(contactHeroContent.email || "contact@projuktilabs.tech");
+  const [contactHours, setContactHours] = useState(contactHeroContent.hours || "Sunday - Thursday, 10 AM - 7 PM (BST)");
+
   const saveSection = async (sectionPayload: {
     id: string;
     pageSlug: string;
@@ -105,7 +149,9 @@ export function PageEditor({ initialSections }: PageEditorProps) {
       if (res.ok && data.success) {
         setStatusMessage("সেকশন সফলভাবে Cloudflare D1 ডাটাবেসে সংরক্ষিত হয়েছে।");
         setSections((prev) => {
-          const idx = prev.findIndex((s) => s.sectionKey === sectionPayload.sectionKey);
+          const idx = prev.findIndex(
+            (s) => s.sectionKey === sectionPayload.sectionKey && s.pageSlug === sectionPayload.pageSlug
+          );
           if (idx >= 0) {
             const next = [...prev];
             next[idx] = {
@@ -211,6 +257,58 @@ export function PageEditor({ initialSections }: PageEditorProps) {
     });
   };
 
+  const handleSaveAboutHero = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveSection({
+      id: aboutHeroSec?.id || "sec_about_hero",
+      pageSlug: "about",
+      sectionKey: "hero",
+      title: aboutHeroTitle,
+      subtitle: aboutHeroSubtitle,
+      content: { badge: aboutHeroBadge },
+      sortOrder: 1,
+    });
+  };
+
+  const handleSaveAboutStory = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveSection({
+      id: aboutStorySec?.id || "sec_about_story",
+      pageSlug: "about",
+      sectionKey: "story",
+      title: aboutStoryTitle,
+      subtitle: aboutStoryDesc,
+      content: {},
+      sortOrder: 2,
+    });
+  };
+
+  const handleSaveFounderHero = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveSection({
+      id: founderHeroSec?.id || "sec_founder_hero",
+      pageSlug: "founder",
+      sectionKey: "hero",
+      title: founderName,
+      subtitle: founderBio,
+      content: { quote: founderQuote },
+      sortOrder: 1,
+    });
+  };
+
+  const handleSaveContactHero = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveSection({
+      id: contactHeroSec?.id || "sec_contact_hero",
+      pageSlug: "contact",
+      sectionKey: "hero",
+      title: contactTitle,
+      subtitle: contactSubtitle,
+      content: { email: contactEmail, hours: contactHours },
+      sortOrder: 1,
+    });
+  };
+
   return (
     <div className="space-y-6 max-w-4xl">
       {statusMessage && (
@@ -220,8 +318,71 @@ export function PageEditor({ initialSections }: PageEditorProps) {
         </div>
       )}
 
-      {/* Tab Navigation */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-border text-xs scrollbar-none">
+      {/* Page Level Selector */}
+      <div className="flex items-center gap-2 p-1.5 bg-surface-muted/60 border border-border rounded-2xl w-fit flex-wrap shadow-warm-xs">
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedPage("home");
+            setActiveTab("hero");
+            setStatusMessage(null);
+          }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all min-h-[36px] ${
+            selectedPage === "home"
+              ? "bg-card text-brand-orange-strong dark:text-accent shadow-xs border border-border"
+              : "text-text-muted hover:text-text-primary"
+          }`}
+        >
+          হোমপেজ (Home)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedPage("about");
+            setStatusMessage(null);
+          }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all min-h-[36px] ${
+            selectedPage === "about"
+              ? "bg-card text-brand-orange-strong dark:text-accent shadow-xs border border-border"
+              : "text-text-muted hover:text-text-primary"
+          }`}
+        >
+          অ্যাবাউট (About)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedPage("founder");
+            setStatusMessage(null);
+          }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all min-h-[36px] ${
+            selectedPage === "founder"
+              ? "bg-card text-brand-orange-strong dark:text-accent shadow-xs border border-border"
+              : "text-text-muted hover:text-text-primary"
+          }`}
+        >
+          ফাউন্ডার (Founder)
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedPage("contact");
+            setStatusMessage(null);
+          }}
+          className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all min-h-[36px] ${
+            selectedPage === "contact"
+              ? "bg-card text-brand-orange-strong dark:text-accent shadow-xs border border-border"
+              : "text-text-muted hover:text-text-primary"
+          }`}
+        >
+          যোগাযোগ (Contact)
+        </button>
+      </div>
+
+      {/* Tab Navigation (Home only) */}
+      {selectedPage === "home" && (
+        <>
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-border text-xs scrollbar-none">
         <button
           type="button"
           onClick={() => {
@@ -724,6 +885,237 @@ export function PageEditor({ initialSections }: PageEditorProps) {
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}
               <span>CTA সেভ করুন</span>
+            </button>
+          </div>
+        </form>
+      )}
+      </>
+      )}
+
+      {/* ABOUT PAGE EDITOR */}
+      {selectedPage === "about" && (
+        <div className="space-y-6">
+          <form onSubmit={handleSaveAboutHero} className="bg-card border border-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-warm-sm">
+            <div className="border-b border-border pb-3 flex items-center justify-between">
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-text-primary">১. অ্যাবাউট হিরো ও মিশন</h3>
+                <p className="text-xs text-text-muted mt-0.5">/about পেজের মূল শিরোনাম ও ভূমিকা</p>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-muted text-text-muted border border-border">
+                about : hero
+              </span>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">ট্যাগলাইন / ব্যাজ</label>
+              <input
+                type="text"
+                value={aboutHeroBadge}
+                onChange={(e) => setAboutHeroBadge(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">পেজ শিরোনাম *</label>
+              <input
+                type="text"
+                required
+                value={aboutHeroTitle}
+                onChange={(e) => setAboutHeroTitle(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">মিশন ও বিস্তারিত বিবরণ *</label>
+              <textarea
+                rows={3}
+                required
+                value={aboutHeroSubtitle}
+                onChange={(e) => setAboutHeroSubtitle(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
+              />
+            </div>
+
+            <div className="pt-3 border-t border-border flex items-center justify-end">
+              <button
+                type="submit"
+                disabled={saving}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
+              >
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}
+                <span>হিরো সেকশন সেভ করুন</span>
+              </button>
+            </div>
+          </form>
+
+          <form onSubmit={handleSaveAboutStory} className="bg-card border border-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-warm-sm">
+            <div className="border-b border-border pb-3 flex items-center justify-between">
+              <div>
+                <h3 className="text-sm sm:text-base font-bold text-text-primary">২. কোম্পানির প্রেক্ষাপট ও যাত্রা</h3>
+                <p className="text-xs text-text-muted mt-0.5">আমাদের পেছনের গল্প ও রূপান্তর</p>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-muted text-text-muted border border-border">
+                about : story
+              </span>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">সেকশন শিরোনাম</label>
+              <input
+                type="text"
+                value={aboutStoryTitle}
+                onChange={(e) => setAboutStoryTitle(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">পটভূমি বর্ণনা</label>
+              <textarea
+                rows={4}
+                value={aboutStoryDesc}
+                onChange={(e) => setAboutStoryDesc(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
+              />
+            </div>
+
+            <div className="pt-3 border-t border-border flex items-center justify-end">
+              <button
+                type="submit"
+                disabled={saving}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
+              >
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}
+                <span>স্টোরি সেকশন সেভ করুন</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* FOUNDER PAGE EDITOR */}
+      {selectedPage === "founder" && (
+        <form onSubmit={handleSaveFounderHero} className="bg-card border border-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-warm-sm">
+          <div className="border-b border-border pb-3 flex items-center justify-between">
+            <div>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">ফাউন্ডার পরিচিতি ও আর্কিটেক্ট উক্তি</h3>
+              <p className="text-xs text-text-muted mt-0.5">/founder পেজের প্রোফাইল ও দর্শন</p>
+            </div>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-muted text-text-muted border border-border">
+              founder : hero
+            </span>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-text-primary">ফাউন্ডারের নাম *</label>
+            <input
+              type="text"
+              required
+              value={founderName}
+              onChange={(e) => setFounderName(e.target.value)}
+              className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-text-primary">প্রোফাইল বায়ো / বিবরণ *</label>
+            <textarea
+              rows={4}
+              required
+              value={founderBio}
+              onChange={(e) => setFounderBio(e.target.value)}
+              className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-text-primary">ফাউন্ডারের উক্তি / ম্যানিফেস্টো</label>
+            <textarea
+              rows={3}
+              value={founderQuote}
+              onChange={(e) => setFounderQuote(e.target.value)}
+              className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed italic"
+            />
+          </div>
+
+          <div className="pt-3 border-t border-border flex items-center justify-end">
+            <button
+              type="submit"
+              disabled={saving}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
+            >
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}
+              <span>ফাউন্ডার প্রোফাইল সেভ করুন</span>
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* CONTACT PAGE EDITOR */}
+      {selectedPage === "contact" && (
+        <form onSubmit={handleSaveContactHero} className="bg-card border border-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-warm-sm">
+          <div className="border-b border-border pb-3 flex items-center justify-between">
+            <div>
+              <h3 className="text-sm sm:text-base font-bold text-text-primary">যোগাযোগ পেজ বিবরণ ও চ্যানেল</h3>
+              <p className="text-xs text-text-muted mt-0.5">/contact পেজের হেডার ও সাপোর্ট সময়সূচি</p>
+            </div>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-muted text-text-muted border border-border">
+              contact : hero
+            </span>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-text-primary">পেজ শিরোনাম *</label>
+            <input
+              type="text"
+              required
+              value={contactTitle}
+              onChange={(e) => setContactTitle(e.target.value)}
+              className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold text-text-primary">হেডার বিবরণ</label>
+            <textarea
+              rows={3}
+              value={contactSubtitle}
+              onChange={(e) => setContactSubtitle(e.target.value)}
+              className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange leading-relaxed"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">অফিসিয়াল ইমেল</label>
+              <input
+                type="email"
+                value={contactEmail}
+                onChange={(e) => setContactEmail(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+              />
+            </div>
+            <div className="space-y-1.5">
+              <label className="block text-xs font-semibold text-text-primary">সাপোর্ট সময়সূচি / SLA</label>
+              <input
+                type="text"
+                value={contactHours}
+                onChange={(e) => setContactHours(e.target.value)}
+                className="w-full px-3.5 py-2 text-xs bg-surface-muted/60 border border-border rounded-xl text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange min-h-[44px]"
+              />
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-border flex items-center justify-end">
+            <button
+              type="submit"
+              disabled={saving}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-accent-foreground text-xs font-bold transition-all hover:bg-accent-hover shadow-warm-sm min-h-[44px]"
+            >
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Save className="h-4 w-4" aria-hidden="true" />}
+              <span>যোগাযোগ তথ্য সেভ করুন</span>
             </button>
           </div>
         </form>

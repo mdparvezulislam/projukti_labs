@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { requireAdminAuth, logAdminAudit } from "@/lib/auth/admin";
-import { getInquiries, getInquiryById, updateInquiryStatus } from "@/lib/crm";
+import { getInquiries, getInquiryById, updateInquiryStatus, convertInquiryToLead } from "@/lib/crm";
 import { apiSuccess, apiError } from "@/lib/validation/api";
 import { z } from "zod";
 
@@ -64,6 +64,47 @@ export async function PATCH(req: NextRequest) {
       return apiError("FORBIDDEN", "এই অ্যাকশনের জন্য পর্যাপ্ত অনুমতি নেই।", 403);
     }
     return apiError("SERVER_ERROR", "ইনকোয়ারি আপডেট করা যায়নি।", 500);
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const auth = await requireAdminAuth(req, ["owner", "admin", "support"]);
+    const body = (await req.json()) as { action?: string; inquiryId?: string };
+
+    if (body.action === "convert_to_lead") {
+      if (!body.inquiryId) {
+        return apiError("BAD_REQUEST", "ইনকোয়ারি আইডি প্রয়োজন।", 400);
+      }
+
+      const result = await convertInquiryToLead(body.inquiryId);
+
+      await logAdminAudit({
+        userId: auth.user.id,
+        userEmail: auth.user.email,
+        action: "convert_inquiry_to_lead",
+        resourceType: "inquiry",
+        resourceId: body.inquiryId,
+        details: { leadId: result.lead.id, customerId: result.customer.id },
+        req,
+      });
+
+      return apiSuccess({
+        message: "ইনকোয়ারি সফলভাবে লিড ও কাস্টমার রেকর্ডে কনভার্ট করা হয়েছে।",
+        lead: result.lead,
+        customer: result.customer,
+      });
+    }
+
+    return apiError("BAD_REQUEST", "অসমর্থিত অ্যাকশন।", 400);
+  } catch (err) {
+    if (err instanceof Error && err.message === "UNAUTHORIZED") {
+      return apiError("UNAUTHORIZED", "অননুমোদিত অ্যাক্সেস।", 401);
+    }
+    if (err instanceof Error && err.message === "FORBIDDEN") {
+      return apiError("FORBIDDEN", "এই অ্যাকশনের জন্য পর্যাপ্ত অনুমতি নেই।", 403);
+    }
+    return apiError("SERVER_ERROR", "কনভার্সন ব্যর্থ হয়েছে।", 500);
   }
 }
 

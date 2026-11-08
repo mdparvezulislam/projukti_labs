@@ -9,6 +9,12 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  React.useEffect(() => {
+    // Log unexpected client-side crash in development or monitoring
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Global Error Caught:", error);
+    }
+  }, [error]);
   return (
     <html lang="bn">
       <body className="min-h-screen flex items-center justify-center p-6 bg-amber-50/20 text-neutral-900 font-sans">
@@ -32,3 +38,4 @@ export default function GlobalError({
     </html>
   );
 }
+

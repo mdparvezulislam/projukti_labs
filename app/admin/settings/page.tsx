@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getAdminSession } from "@/lib/auth/admin";
+import { getAdminSession, getAdminUsersList } from "@/lib/auth/admin";
 import { getSiteSettings } from "@/lib/cms";
 import { AdminLayoutShell } from "@/components/admin/admin-layout-shell";
 import { SettingsEditor } from "./settings-editor";
@@ -16,7 +16,10 @@ export default async function AdminSettingsPage() {
     redirect("/admin/login");
   }
 
-  const settings = await getSiteSettings();
+  const [settings, adminUsers] = await Promise.all([
+    getSiteSettings(),
+    getAdminUsersList(),
+  ]);
 
   return (
     <AdminLayoutShell
@@ -26,9 +29,9 @@ export default async function AdminSettingsPage() {
         role: auth.user.role,
       }}
       title="বিজনেস ও ওয়েবসাইট সেটিংস"
-      subtitle="স্টুডিওর সাধারণ তথ্য, এসইও পলিসি এবং নোটিফিকেশন কনফিগারেশন"
+      subtitle="স্টুডিওর সাধারণ তথ্য, এসইও পলিসি, সোশ্যাল প্রোফাইল, অ্যানালিটিক্স ও টিম অ্যাক্সেস"
     >
-      <SettingsEditor initialSettings={settings} />
+      <SettingsEditor initialSettings={settings} adminUsers={adminUsers} />
     </AdminLayoutShell>
   );
 }

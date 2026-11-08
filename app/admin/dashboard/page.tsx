@@ -17,6 +17,13 @@ import {
   Briefcase,
   Layers,
   ShieldCheck,
+  Database,
+  HardDrive,
+  Cpu,
+  Zap,
+  Image as ImageIcon,
+  LayoutGrid,
+  UserCheck,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -97,12 +104,49 @@ export default async function AdminDashboardPage() {
       href: "/admin/content/services",
     },
     {
-      label: "D1 ক্লাউড ডাটাবেস",
-      value: "সক্রিয় (Healthy)",
-      subtext: "২১টি টেবিল • ব্যাকআপ প্রোটোকল সচল",
-      icon: ShieldCheck,
-      href: "/admin/system",
+      label: "কাস্টমার ডিরেক্টরি",
+      value: "সক্রিয় রেকর্ড",
+      subtext: "লিড থেকে রূপান্তরিত বিশ্বস্ত ক্লায়েন্ট",
+      icon: UserCheck,
+      href: "/admin/customers",
     },
+  ];
+
+  const operationalServices = [
+    {
+      name: "Cloudflare D1 Relational DB",
+      status: "সক্রিয় ও সুস্থ",
+      detail: "২১টি স্কিমা টেবিল • রিয়েলটাইম সিঙ্ক",
+      icon: Database,
+    },
+    {
+      name: "Cloudflare R2 Media Storage",
+      status: "সংযুক্ত ও প্রস্তুত",
+      detail: "ডাইরেক্ট অ্যাসেট আপলোড ইঞ্জিন",
+      icon: HardDrive,
+    },
+    {
+      name: "Scheduled Publishing Cron",
+      status: "স্বয়ংক্রিয় শিডিউলিং সচল",
+      detail: "মিনিট-লেভেল অটো পাবলিশ প্রসেসর",
+      icon: Cpu,
+    },
+    {
+      name: "CRM Business Automation",
+      status: "পাইপলাইন অটোমেশন সচল",
+      detail: "ইনকোয়ারি → লিড → কোট → ক্লায়েন্ট",
+      icon: Zap,
+    },
+  ];
+
+  const quickShortcuts = [
+    { label: "ইনকোয়ারি", href: "/admin/inquiries", icon: Inbox },
+    { label: "পাইপলাইন লিড", href: "/admin/leads", icon: Users },
+    { label: "কোট তৈরি", href: "/admin/quotes", icon: FileCheck },
+    { label: "কাস্টমার", href: "/admin/customers", icon: UserCheck },
+    { label: "ব্লগ স্টুডিও", href: "/admin/content/blog", icon: Sparkles },
+    { label: "মিডিয়া লাইব্রেরি", href: "/admin/media", icon: ImageIcon },
+    { label: "ওয়েবসাইট সিএমএস", href: "/admin/content/pages", icon: LayoutGrid },
   ];
 
   return (
@@ -115,7 +159,7 @@ export default async function AdminDashboardPage() {
       title="বিজনেস অপারেটিং সিস্টেম"
       subtitle="Projukti Labs — কেন্দ্রীয় ব্যবস্থাপনা, সিআরএম ও লাইভ মেট্রিক্স"
     >
-      {/* Welcome Banner & Quick Action Buttons */}
+      {/* Welcome Banner */}
       <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-warm-sm">
         <div>
           <div className="flex items-center gap-2">
@@ -144,6 +188,65 @@ export default async function AdminDashboardPage() {
             <Sparkles className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent" aria-hidden="true" />
             <span>ব্লগ লিখুন</span>
           </Link>
+        </div>
+      </div>
+
+      {/* Operational Health Bar */}
+      <div className="bg-card border border-border rounded-2xl p-3 sm:p-4 shadow-warm-sm space-y-2">
+        <div className="flex items-center justify-between border-b border-border pb-2">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+            <h3 className="text-xs font-bold text-text-primary">সিস্টেম অপারেশনাল হেলথ ও ক্লাউড ব্যাকবোন</h3>
+          </div>
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold">
+            100% OPERATIONAL
+          </span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+          {operationalServices.map((svc) => {
+            const Icon = svc.icon;
+            return (
+              <div
+                key={svc.name}
+                className="p-2.5 rounded-xl bg-surface-elevated border border-border flex items-center gap-2.5"
+              >
+                <div className="h-8 w-8 rounded-lg bg-surface flex items-center justify-center text-accent shrink-0 border border-border">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span className="text-[11px] font-bold text-text-primary truncate">{svc.status}</span>
+                  </div>
+                  <div className="text-[10px] text-text-muted truncate">{svc.name}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 7 Quick Action Shortcuts */}
+      <div className="bg-card border border-border rounded-2xl p-3 sm:p-4 shadow-warm-sm">
+        <div className="text-[11px] font-bold text-text-muted uppercase tracking-wider mb-2.5">
+          দ্রুত অ্যাকশন শর্টকাট
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+          {quickShortcuts.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl bg-surface-elevated border border-border hover:border-accent hover:bg-surface-elevated/80 transition-all text-center group min-h-[52px]"
+              >
+                <Icon className="h-4 w-4 text-text-muted group-hover:text-accent transition-colors" aria-hidden="true" />
+                <span className="text-[11px] font-semibold text-text-primary group-hover:text-accent transition-colors line-clamp-1">
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
 

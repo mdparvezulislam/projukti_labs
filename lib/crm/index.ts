@@ -341,6 +341,129 @@ export async function upsertCustomer(data: {
   }
 }
 
+export async function updateCustomer(
+  id: string,
+  data: {
+    fullName?: string;
+    phone?: string | null;
+    companyName?: string | null;
+    country?: string;
+    status?: string;
+    notes?: string | null;
+  }
+) {
+  const db = getDb();
+  await db
+    .update(customers)
+    .set({
+      ...data,
+      updatedAt: new Date(),
+    })
+    .where(eq(customers.id, id));
+
+  return getCustomerById(id);
+}
+
+export async function getCustomerDetails(id: string) {
+  const db = getDb();
+  const customer = await getCustomerById(id);
+  if (!customer) return null;
+
+  const emailLower = customer.email.toLowerCase();
+
+  const customerInquiries = await db
+    .select()
+    .from(inquiries)
+    .where(eq(sql`lower(${inquiries.email})`, emailLower))
+    .orderBy(desc(inquiries.createdAt));
+
+  const customerQuotes = await db
+    .select()
+    .from(quotes)
+    .where(eq(sql`lower(${quotes.clientEmail})`, emailLower))
+    .orderBy(desc(quotes.createdAt));
+
+  const inquiryIds = customerInquiries.map((i) => i.id);
+  const customerLeads =
+    inquiryIds.length > 0
+      ? await db
+          .select()
+          .from(leads)
+          .where(or(...inquiryIds.map((iid) => eq(leads.inquiryId, iid))))
+          .orderBy(desc(leads.createdAt))
+      : [];
+
+  const notes = await db
+    .select()
+    .from(internalNotes)
+    .where(and(eq(internalNotes.entityType, "customer"), eq(internalNotes.entityId, id)))
+    .orderBy(desc(internalNotes.createdAt));
+
+  return {
+    customer,
+    inquiries: customerInquiries,
+    quotes: customerQuotes,
+    leads: customerLeads,
+    notes,
+  };
+}
+
+export async function convertInquiryToLead(inquiryId: string) {
+  const db = getDb();
+  const inquiry = await getInquiryById(inquiryId);
+  if (!inquiry) throw new Error("INQUIRY_NOT_FOUND");
+
+  // Check if lead already exists for this inquiry
+  const existingLead = await db.select().from(leads).where(eq(leads.inquiryId, inquiryId)).limit(1);
+  let leadRecord = existingLead[0];
+
+  if (!leadRecord) {
+    let estimatedValueBdt: number | null = null;
+    if (inquiry.budgetRange) {
+      const match = inquiry.budgetRange.match(/\d+/g);
+      if (match && match.length > 0) {
+        estimatedValueBdt = parseInt(match[0]) * 1000;
+      }
+    }
+
+    const leadTitle = `${inquiry.fullName}${inquiry.companyName ? ` (${inquiry.companyName})` : ""} - ${inquiry.inquiryType.toUpperCase()}`;
+    leadRecord = (await createLead({
+      inquiryId,
+      title: leadTitle,
+      stage: "contacted",
+      priority: "medium",
+      estimatedValueBdt,
+    })) as typeof leads.$inferSelect;
+  }
+
+  // Upsert customer
+  const customer = await upsertCustomer({
+    fullName: inquiry.fullName,
+    email: inquiry.email,
+    phone: inquiry.phoneWhatsapp,
+    companyName: inquiry.companyName,
+    country: inquiry.country || "Bangladesh",
+    status: "lead",
+  });
+
+  // Update inquiry status to "discussing" if still "new"
+  if (inquiry.status === "new" || inquiry.status === "contacted") {
+    await updateInquiryStatus(inquiryId, "discussing");
+  }
+
+  // Add internal note
+  await addInternalNote({
+    id: `not_${crypto.randomUUID().replace(/-/g, "").slice(0, 12)}`,
+    entityType: "inquiry",
+    entityId: inquiryId,
+    authorName: "System",
+    content: `ইনকোয়ারি থেকে লিড পাইপলাইনে রূপান্তর সম্পন্ন (Lead ID: ${leadRecord.id})।`,
+    createdAt: new Date(),
+  });
+
+  return { lead: leadRecord, customer };
+}
+
 // ==========================================
 // Internal Notes
 // ==========================================

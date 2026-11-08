@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Search,
   Filter,
@@ -13,6 +14,7 @@ import {
   Send,
   FileText,
   User,
+  UserCheck,
 } from "lucide-react";
 import { Inquiry } from "@/db/schema";
 
@@ -35,6 +37,7 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
     initialInquiries.length > 0 ? initialInquiries[0] : null
   );
   const [updating, setUpdating] = useState(false);
+  const [convertingLead, setConvertingLead] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
   // Notes state
@@ -108,6 +111,33 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
       setStatusMessage("আপডেট করতে ব্যর্থ হয়েছে।");
     } finally {
       setUpdating(false);
+    }
+  };
+
+  const handleConvertToLead = async () => {
+    if (!activeInquiry) return;
+    setConvertingLead(true);
+    setStatusMessage(null);
+    try {
+      const res = await fetch("/api/admin/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "convert_to_lead", inquiryId: activeInquiry.id }),
+      });
+      const data = (await res.json()) as { success?: boolean; data?: { message?: string } };
+      if (res.ok && data.success) {
+        setStatusMessage("ইনকোয়ারি সফলভাবে লিড ও কাস্টমার প্রোফাইলে কনভার্ট করা হয়েছে।");
+        setActiveInquiry((prev) => (prev ? { ...prev, status: "discussing" } : null));
+        setInquiriesList((prev) =>
+          prev.map((it) => (it.id === activeInquiry.id ? { ...it, status: "discussing" } : it))
+        );
+      } else {
+        setStatusMessage("কনভার্সন ব্যর্থ হয়েছে।");
+      }
+    } catch {
+      setStatusMessage("সার্ভার ত্রুটি হয়েছে।");
+    } finally {
+      setConvertingLead(false);
     }
   };
 
@@ -309,6 +339,26 @@ export function InquiryManager({ initialInquiries }: InquiryManagerProps) {
                     <span>আপডেট হচ্ছে…</span>
                   </div>
                 )}
+              </div>
+
+              {/* Quick CRM Action Buttons */}
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  type="button"
+                  disabled={convertingLead || activeInquiry.status === "won"}
+                  onClick={handleConvertToLead}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-accent text-accent-foreground text-xs font-bold hover:bg-accent-hover disabled:opacity-50 min-h-[40px] transition-all"
+                >
+                  {convertingLead ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <UserCheck className="h-3.5 w-3.5" />}
+                  <span>লিডে রূপান্তর করুন</span>
+                </button>
+                <Link
+                  href={`/admin/quotes?clientName=${encodeURIComponent(activeInquiry.fullName)}&clientEmail=${encodeURIComponent(activeInquiry.email)}&clientPhone=${encodeURIComponent(activeInquiry.phoneWhatsapp || "")}&clientCompany=${encodeURIComponent(activeInquiry.companyName || "")}`}
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-card border border-border text-xs font-semibold text-text-primary hover:border-border-hover min-h-[40px] transition-all"
+                >
+                  <FileText className="h-3.5 w-3.5 text-accent-text" />
+                  <span>কোট তৈরি</span>
+                </Link>
               </div>
 
               {/* Contact Information */}

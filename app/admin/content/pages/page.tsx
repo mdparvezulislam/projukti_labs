@@ -16,7 +16,14 @@ export default async function AdminPagesPage() {
     redirect("/admin/login");
   }
 
-  const initialSections = await getPageSections("home");
+  const [homeSections, aboutSections, founderSections, contactSections] = await Promise.all([
+    getPageSections("home"),
+    getPageSections("about"),
+    getPageSections("founder"),
+    getPageSections("contact"),
+  ]);
+
+  const initialSections = [...homeSections, ...aboutSections, ...founderSections, ...contactSections];
 
   return (
     <AdminLayoutShell
@@ -25,8 +32,8 @@ export default async function AdminPagesPage() {
         email: auth.user.email,
         role: auth.user.role,
       }}
-      title="হোমপেজ ও সেকশন এডিটর"
-      subtitle="ওয়েবসাইটের প্রধান হিরো টেক্সট, সাবটাইটেল এবং অ্যাকশন বাটন নিয়ন্ত্রণ"
+      title="ওয়েবসাইট পেজ ও সেকশন এডিটর"
+      subtitle="হোমপেজ, অ্যাবাউট, ফাউন্ডার প্রোফাইল ও যোগাযোগ পেজের টেক্সট ও কন্টেন্ট নিয়ন্ত্রণ"
     >
       <PageEditor initialSections={initialSections} />
     </AdminLayoutShell>

@@ -1,10 +1,10 @@
 import { NextRequest } from "next/server";
 import { requireAdminAuth, logAdminAudit } from "@/lib/auth/admin";
 import { getDb } from "@/lib/db";
-import { mediaAssets } from "@/db/schema";
+import { mediaAssets, blogPosts, portfolioProjects } from "@/db/schema";
 import { getCloudflareBindings } from "@/lib/env";
 import { apiSuccess, apiError } from "@/lib/validation/api";
-import { desc, like } from "drizzle-orm";
+import { desc, like, eq, or } from "drizzle-orm";
 
 export async function GET(req: NextRequest) {
   try {
@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
     const db = getDb();
     const assetId = `med_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
 
-    await db.insert(mediaAssets).values({
+    const newAsset = {
       id: assetId,
       fileName: fileName || url.split("/").pop() || "image.jpg",
       fileSize: fileSize || 0,
@@ -128,21 +128,104 @@ export async function POST(req: NextRequest) {
       category: category || "blog",
       uploadedBy: auth.user.email,
       createdAt: new Date(),
-    });
+    };
+
+    await db.insert(mediaAssets).values(newAsset);
 
     return apiSuccess({
       configured: true,
-      asset: {
-        id: assetId,
-        url,
-        fileName,
-        altText,
-      },
+      asset: newAsset,
     });
   } catch (err) {
     if (err instanceof Error && err.message === "UNAUTHORIZED") {
       return apiError("UNAUTHORIZED", "অননুমোদিত অ্যাক্সেস।", 401);
     }
     return apiError("SERVER_ERROR", "মিডিয়া আপলোড ব্যর্থ হয়েছে।", 500);
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const auth = await requireAdminAuth(req, ["owner", "admin"]);
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    const force = searchParams.get("force") === "true";
+
+    if (!id) {
+      return apiError("BAD_REQUEST", "মিডিয়া আইডি প্রদান করা আবশ্যক।", 400);
+    }
+
+    const db = getDb();
+    const [asset] = await db.select().from(mediaAssets).where(eq(mediaAssets.id, id)).limit(1);
+    if (!asset) {
+      return apiError("NOT_FOUND", "মিডিয়া রেকর্ড পাওয়া যায়নি।", 404);
+    }
+
+    // Check references in blog posts or portfolio if not forced
+    if (!force) {
+      const referencedPosts = await db
+        .select({ id: blogPosts.id, title: blogPosts.title })
+        .from(blogPosts)
+        .where(or(eq(blogPosts.coverImage, asset.url), eq(blogPosts.ogImage, asset.url)))
+        .limit(1);
+
+      if (referencedPosts.length > 0) {
+        return apiError(
+          "CONFLICT",
+          `এই ছবিটি "${referencedPosts[0].title}" ব্লগে ব্যবহৃত হচ্ছে। নিশ্চিত হয়ে মুছে ফেলতে Force Delete সিলেক্ট করুন।`,
+          409
+        );
+      }
+
+      const referencedPortfolio = await db
+        .select({ id: portfolioProjects.id, title: portfolioProjects.title })
+        .from(portfolioProjects)
+        .where(eq(portfolioProjects.coverImage, asset.url))
+        .limit(1);
+
+      if (referencedPortfolio.length > 0) {
+        return apiError(
+          "CONFLICT",
+          `এই ছবিটি "${referencedPortfolio[0].title}" পোর্টফোলিও প্রজেক্টে ব্যবহৃত হচ্ছে। নিশ্চিত হয়ে মুছে ফেলতে Force Delete সিলেক্ট করুন।`,
+          409
+        );
+      }
+    }
+
+    // Attempt R2 deletion if key is in /api/media/...
+    if (asset.url.startsWith("/api/media/")) {
+      const bindings = getCloudflareBindings();
+      const r2Bucket = bindings.R2_BUCKET as { delete?: (key: string) => Promise<unknown> } | undefined;
+      const fileKey = asset.url.replace("/api/media/", "");
+      if (r2Bucket && typeof r2Bucket.delete === "function") {
+        try {
+          await r2Bucket.delete(fileKey);
+        } catch {
+          // Continue deleting metadata
+        }
+      }
+    }
+
+    await db.delete(mediaAssets).where(eq(mediaAssets.id, id));
+
+    await logAdminAudit({
+      userId: auth.user.id,
+      userEmail: auth.user.email,
+      action: "delete_media_asset",
+      resourceType: "media",
+      resourceId: id,
+      details: { fileName: asset.fileName, url: asset.url },
+      req,
+    });
+
+    return apiSuccess({ success: true, message: "মিডিয়া ফাইল সফলভাবে ডিলিট করা হয়েছে।" });
+  } catch (err) {
+    if (err instanceof Error && err.message === "UNAUTHORIZED") {
+      return apiError("UNAUTHORIZED", "অননুমোদিত অ্যাক্সেস।", 401);
+    }
+    if (err instanceof Error && err.message === "FORBIDDEN") {
+      return apiError("FORBIDDEN", "শুধুমাত্র Owner এবং Admin মিডিয়া মুছে ফেলতে পারেন।", 403);
+    }
+    return apiError("SERVER_ERROR", "মিডিয়া ডিলিট ব্যর্থ হয়েছে।", 500);
   }
 }

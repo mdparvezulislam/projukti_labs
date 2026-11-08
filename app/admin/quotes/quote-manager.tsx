@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Quote } from "@/db/schema";
 import { Plus, Search, CheckCircle2, Loader2, Trash2 } from "lucide-react";
 
@@ -25,6 +25,27 @@ export function QuoteManager({ initialQuotes }: QuoteManagerProps) {
     { description: "ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট ও আর্কিটেকচার", amountBdt: 45000 },
   ]);
   const [validDays, setValidDays] = useState(14);
+
+  // Pre-fill from URL query parameters (e.g. from Inquiry or Customer screen)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const qName = params.get("clientName");
+    const qEmail = params.get("clientEmail");
+    const qPhone = params.get("clientPhone");
+    const qCompany = params.get("clientCompany");
+
+    if (qName || qEmail) {
+      const timer = setTimeout(() => {
+        if (qName) setClientName(qName);
+        if (qEmail) setClientEmail(qEmail);
+        if (qPhone) setClientPhone(qPhone);
+        if (qCompany) setClientCompany(qCompany);
+        setIsModalOpen(true);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const totalBdt = items.reduce((sum, it) => sum + (Number(it.amountBdt) || 0), 0);
 

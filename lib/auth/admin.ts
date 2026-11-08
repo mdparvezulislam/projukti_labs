@@ -172,6 +172,32 @@ export async function requireAdminAuth(
   return auth;
 }
 
+export type SafeAdminUser = Omit<AdminUser, "passwordHash" | "passwordSalt">;
+
+/**
+ * Returns list of registered admin users (excluding sensitive password hash) for settings & management.
+ */
+export async function getAdminUsersList(): Promise<SafeAdminUser[]> {
+  try {
+    const db = getDb();
+    const rows = await db
+      .select({
+        id: adminUsers.id,
+        email: adminUsers.email,
+        name: adminUsers.name,
+        role: adminUsers.role,
+        isActive: adminUsers.isActive,
+        lastLoginAt: adminUsers.lastLoginAt,
+        createdAt: adminUsers.createdAt,
+        updatedAt: adminUsers.updatedAt,
+      })
+      .from(adminUsers);
+    return rows;
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Records an immutable audit log entry in Cloudflare D1.
  */

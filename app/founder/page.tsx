@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ArrowRight, Cpu, ShieldCheck, Terminal, Award, Search, Database } from "lucide-react";
+import { getPageSections } from "@/lib/cms";
 
 export const metadata = {
   title: "Founder Profile — Md Parvezul Islam | Projukti Labs",
@@ -10,7 +11,18 @@ export const metadata = {
     "Md Parvezul Islam is the Founder & Principal Software Architect of Projukti Labs. Explore his technical manifesto, engineering background, and product-building philosophy.",
 };
 
-export default function FounderPage() {
+export default async function FounderPage() {
+  const sections = await getPageSections("founder");
+  const heroSec = sections.find((s) => s.sectionKey === "hero");
+  const heroContent = (heroSec?.content as Record<string, string>) || {};
+  const founderName = heroSec?.title || "Md Parvezul Islam";
+  const founderBio =
+    heroSec?.subtitle ||
+    "Md Parvezul Islam is the founder of Projukti Labs and a software-focused technology builder interested in designing and developing practical digital products. His work spans modern web development, e-commerce systems, business applications, backend architecture, automation, and high-performance search engines.";
+  const founderQuote =
+    heroContent.quote ||
+    "I founded Projukti Labs based on a straightforward principle: software must be fast, honest, and genuinely useful for business operations—engineered cleanly without unnecessary layers or artificial claims.";
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-12 sm:space-y-16">
       {/* 1. Hero Header */}
@@ -22,19 +34,15 @@ export default function FounderPage() {
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
-            Md Parvezul Islam
+            {founderName}
           </h1>
 
           <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
-            Md Parvezul Islam is the founder of Projukti Labs and a software-focused technology builder interested in
-            designing and developing practical digital products. His work spans modern web development, e-commerce
-            systems, business applications, backend architecture, automation, and high-performance search engines.
+            {founderBio}
           </p>
 
           <p className="text-xs sm:text-sm text-text-muted leading-relaxed italic border-l-2 border-brand-orange-strong dark:border-accent pl-3 sm:pl-4">
-            &ldquo;I founded Projukti Labs based on a straightforward principle: software must be fast, honest, and
-            genuinely useful for business operations—engineered cleanly without unnecessary layers or artificial
-            claims.&rdquo;
+            &ldquo;{founderQuote}&rdquo;
           </p>
 
           <div className="flex flex-wrap gap-3 pt-1">

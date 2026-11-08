@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ArrowRight, Shield, Zap, Compass, Users, Code2, Server } from "lucide-react";
+import { getPageSections } from "@/lib/cms";
 
 export const metadata = {
   title: "About Us | Projukti Labs — Engineering Philosophy & Story",
@@ -10,23 +11,35 @@ export const metadata = {
     "Learn about Projukti Labs — our software engineering philosophy, architectural discipline, and dedication to building modern, reliable digital solutions for businesses in Bangladesh and globally.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const sections = await getPageSections("about");
+  const heroSec = sections.find((s) => s.sectionKey === "hero");
+  const heroContent = (heroSec?.content as Record<string, string>) || {};
+  const heroBadge = heroContent.badge || "STUDIO MISSION & PHILOSOPHY";
+  const heroTitle = heroSec?.title || "Building Digital Solutions. Engineering the Future.";
+  const heroSubtitle =
+    heroSec?.subtitle ||
+    "Projukti Labs is a technology-driven software and digital solutions studio founded by Md Parvezul Islam. We combine thoughtful design, reliable engineering, and practical technology to help businesses establish their digital presence, improve operations, and grow online.";
+
+  const storySec = sections.find((s) => s.sectionKey === "story");
+  const storyTitle = storySec?.title || "From Practical Beginnings to a Disciplined Engineering Studio";
+  const storyDesc =
+    storySec?.subtitle ||
+    "Originally established under the brand Projukti Solution Bd, the studio evolved into Projukti Labs to reflect a deeper dedication to modern web architecture, edge computing, and disciplined digital product development.";
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-14 space-y-12 sm:space-y-16">
       {/* 1. Hero Header */}
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-2">
-          <Badge variant="accent">STUDIO MISSION &amp; PHILOSOPHY</Badge>
+          <Badge variant="accent">{heroBadge}</Badge>
           <Badge variant="outline">projuktilabs.tech</Badge>
         </div>
         <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-text-primary leading-tight">
-          Building Digital Solutions. Engineering the Future.
+          {heroTitle}
         </h1>
         <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
-          Projukti Labs is a technology-driven software and digital solutions studio founded by{" "}
-          <strong className="text-text-primary font-semibold">Md Parvezul Islam</strong>. We combine
-          thoughtful design, reliable engineering, and practical technology to help businesses establish their
-          digital presence, improve operations, and grow online.
+          {heroSubtitle}
         </p>
       </div>
 
@@ -35,12 +48,10 @@ export default function AboutPage() {
         <div className="lg:col-span-5 space-y-4">
           <Badge variant="outline">OUR BACKGROUND</Badge>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
-            From Practical Beginnings to a Disciplined Engineering Studio
+            {storyTitle}
           </h2>
           <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-            Originally established under the brand <em>Projukti Solution Bd</em>, the studio evolved into{" "}
-            <strong className="text-text-primary">Projukti Labs</strong> to reflect a deeper dedication to modern web
-            architecture, edge computing, and disciplined digital product development.
+            {storyDesc}
           </p>
           <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
             Many businesses in Bangladesh and emerging markets struggle with slow, fragile websites that break under

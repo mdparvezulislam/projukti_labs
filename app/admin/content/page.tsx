@@ -8,6 +8,7 @@ import {
   BookOpen,
   FolderKanban,
   HelpCircle,
+  Image as ImageIcon,
   ArrowRight,
   Database,
 } from "lucide-react";
@@ -43,6 +44,13 @@ export default async function AdminContentHubPage() {
       icon: BookOpen,
       href: "/admin/content/blog",
       countLabel: "৫টি প্রকাশিত পোস্ট",
+    },
+    {
+      title: "মিডিয়া লাইব্রেরি ও স্টোরেজ",
+      description: "ব্লগ কাভার ইমেজ, পোর্টফোলিও স্ক্রিনশট এবং ডিজিটাল অ্যাসেট ফাইল আপলোড ও ম্যানেজমেন্ট।",
+      icon: ImageIcon,
+      href: "/admin/media",
+      countLabel: "ইমেজ ও ফাইল রিপোজিটরি",
     },
     {
       title: "পোর্টফোলিও ও কেস স্টাডি",
