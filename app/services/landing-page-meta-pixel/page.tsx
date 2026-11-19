@@ -38,7 +38,7 @@ export default function LandingPageMetaPixelPage() {
 
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
           High-Converting Landing Pages with{" "}
-          <span className="text-accent underline decoration-accent/40 decoration-wavy">
+          <span className="text-brand-orange-strong dark:text-accent font-extrabold">
             Meta Pixel &amp; CAPI
           </span>
         </h1>

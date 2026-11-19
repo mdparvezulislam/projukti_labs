@@ -39,7 +39,7 @@ export default function CompleteEcommercePage() {
 
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
           Complete Production-Ready{" "}
-          <span className="text-accent underline decoration-accent/40 decoration-wavy">
+          <span className="text-brand-orange-strong dark:text-accent font-extrabold">
             E-commerce Platform
           </span>
         </h1>

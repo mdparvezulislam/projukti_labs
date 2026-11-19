@@ -284,7 +284,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       )}
 
       {/* 3. Article Content (HTML & Markdown dual support) */}
-      <main className="prose prose-invert max-w-none">
+      <main className="prose dark:prose-invert max-w-none text-text-secondary">
         <MarkdownRenderer content={post.content} format={post.contentFormat} />
       </main>
 

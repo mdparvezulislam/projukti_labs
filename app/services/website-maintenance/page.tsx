@@ -37,7 +37,7 @@ export default function WebsiteMaintenancePage() {
 
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.1]">
           Proactive Website Maintenance &amp;{" "}
-          <span className="text-accent underline decoration-accent/40 decoration-wavy">
+          <span className="text-brand-orange-strong dark:text-accent font-extrabold">
             Technical Retainer
           </span>
         </h1>

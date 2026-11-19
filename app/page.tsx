@@ -34,9 +34,6 @@ export default async function HomePage() {
   const heroSection = homeSections.find((s) => s.sectionKey === "hero");
   const heroContent = (heroSection?.content as Record<string, string>) || {};
   const heroTitle = heroSection?.title || "Consistency and Engineering";
-  const heroSubtitle =
-    heroSection?.subtitle ||
-    "Software is everywhere. We engineer what is rare: An Unmatched, High-Performance Software Engineering Experience with direct architect communication, fixed transparent pricing, modern Next.js architecture, and long-term technical support.";
   const badgeText = heroContent.badge || "PROFESSIONAL DIGITAL SOLUTIONS";
   const ctaPrimaryText = heroContent.ctaPrimaryText || "Start a Project";
   const ctaPrimaryLink = heroContent.ctaPrimaryLink || "/get-a-quote";
@@ -107,17 +104,11 @@ export default async function HomePage() {
               </h1>
 
               <p className="text-sm sm:text-base lg:text-lg text-text-secondary leading-relaxed max-w-xl">
-                {heroSubtitle.includes("An Unmatched") ? (
-                  <>
-                    Software is everywhere. We engineer what is rare:{" "}
-                    <span className="text-accent-text font-semibold">
-                      &ldquo;An Unmatched, High-Performance Software Engineering Experience&rdquo;
-                    </span>{" "}
-                    with direct architect communication, fixed transparent pricing, modern Next.js architecture, and long-term technical support.
-                  </>
-                ) : (
-                  heroSubtitle
-                )}
+                Software is everywhere. We focus on what matters:{" "}
+                <span className="text-accent-text font-semibold">
+                  direct architect communication
+                </span>
+                , fixed transparent pricing, modern Next.js architecture, and dependable long-term technical support.
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -360,13 +351,13 @@ export default async function HomePage() {
               <div className="pt-1 flex flex-col sm:flex-row gap-2.5">
                 <Button variant="primary" asChild className="w-full min-h-[44px] shadow-xs">
                   <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-                    <span>Launch Live App</span>
+                    <span>Visit Platform &amp; Purchase</span>
                     <ArrowUpRight className="ml-1.5 h-4 w-4" />
                   </a>
                 </Button>
                 <Button variant="outline" asChild className="w-full bg-card min-h-[44px]">
                   <Link href="/services/projukti-landing">
-                    <span>Architecture</span>
+                    <span>Architecture &amp; Pricing</span>
                     <ArrowRight className="ml-1.5 h-4 w-4" />
                   </Link>
                 </Button>

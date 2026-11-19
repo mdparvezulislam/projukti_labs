@@ -63,13 +63,13 @@ export default async function ServicesPage() {
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
             <Button size="lg" variant="primary" asChild className="rounded-xl px-5 h-11 text-xs sm:text-sm font-bold min-h-[44px]">
               <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-                <span>Launch Live App</span>
+                <span>Visit &amp; Purchase Platform</span>
                 <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="rounded-xl px-5 h-11 bg-card text-xs sm:text-sm font-semibold min-h-[44px]">
               <Link href="/services/projukti-landing">
-                <span>View Architecture</span>
+                <span>Architecture &amp; Pricing</span>
                 <ChevronRight className="ml-1.5 h-4 w-4" />
               </Link>
             </Button>
@@ -177,16 +177,16 @@ export default async function ServicesPage() {
                       {srv.slug === "projukti-landing" ? (
                         <>
                           <Button variant="primary" asChild className="w-full shadow-xs">
+                            <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
+                              Visit &amp; Purchase
+                              <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                            </a>
+                          </Button>
+                          <Button variant="outline" asChild className="w-full bg-card">
                             <Link href={`/services/${srv.slug}`}>
                               Architecture &amp; Pricing
                               <ArrowRight className="ml-1.5 h-4 w-4" />
                             </Link>
-                          </Button>
-                          <Button variant="outline" asChild className="w-full bg-card">
-                            <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-                              Live Platform
-                              <ArrowUpRight className="ml-1.5 h-4 w-4" />
-                            </a>
                           </Button>
                         </>
                       ) : srv.isFlagship ? (

@@ -97,13 +97,13 @@ export function SponsoredProductShowcase() {
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Button size="lg" variant="primary" asChild className="rounded-xl px-5 h-11 shadow-warm-sm text-xs sm:text-sm font-bold min-h-[44px]">
               <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-                <span>Launch Live Platform</span>
+                <span>Visit &amp; Purchase Platform</span>
                 <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="rounded-xl px-5 h-11 bg-card border-border hover:bg-surface-muted text-xs sm:text-sm font-semibold min-h-[44px]">
               <Link href="/services/projukti-landing">
-                <span>Explore Architecture</span>
+                <span>Architecture &amp; Pricing</span>
                 <ChevronRight className="ml-1.5 h-4 w-4" />
               </Link>
             </Button>
@@ -209,7 +209,7 @@ export function SponsoredProductShowcase() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs font-bold text-brand-orange-strong dark:text-accent hover:underline shrink-0 p-1"
           >
-            <span>Visit Platform</span>
+            <span>Visit Platform &amp; Purchase</span>
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>

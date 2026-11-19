@@ -46,7 +46,7 @@ export default function ProjuktiLandingServicePage() {
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text-primary leading-[1.08]">
           Projukti Landing —{" "}
-          <span className="text-brand-orange-strong dark:text-accent underline decoration-brand-orange/40 decoration-wavy">
+          <span className="text-brand-orange-strong dark:text-accent font-extrabold">
             Next-Gen E-commerce
           </span>{" "}
           Platform
@@ -62,7 +62,7 @@ export default function ProjuktiLandingServicePage() {
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <Button size="lg" variant="primary" asChild className="rounded-xl px-5 h-11 shadow-warm-sm text-sm font-bold min-h-[44px]">
             <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-              Launch Live Platform (lp.projuktilabs.tech)
+              Visit Platform &amp; Purchase (lp.projuktilabs.tech)
               <ArrowUpRight className="ml-2 h-4 w-4" />
             </a>
           </Button>
@@ -415,7 +415,7 @@ export default function ProjuktiLandingServicePage() {
                     className="w-full rounded-xl min-h-[44px] font-bold text-xs"
                   >
                     <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
-                      Start with {pkg.name}
+                      Purchase / Start on lp.projuktilabs.tech
                       <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
                     </a>
                   </Button>

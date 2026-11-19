@@ -22,7 +22,7 @@ export function MarkdownRenderer({
     const cleanHtml = sanitizeHtml(content);
     return (
       <div
-        className={`prose prose-invert max-w-none text-text-secondary leading-relaxed space-y-4 ${className}`}
+        className={`prose dark:prose-invert max-w-none text-text-secondary leading-relaxed space-y-4 ${className}`}
         dangerouslySetInnerHTML={{ __html: cleanHtml }}
       />
     );
