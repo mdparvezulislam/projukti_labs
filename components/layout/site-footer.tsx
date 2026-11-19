@@ -37,6 +37,11 @@ export function SiteFooter() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/services/projukti-landing" className="text-brand-orange-strong dark:text-accent font-bold hover:underline inline-flex items-center gap-1.5">
+                  <span>Projukti Landing (Flagship SaaS)</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/services/web-development" className="hover:text-accent transition-colors">
                   Web Development &amp; Design
                 </Link>
@@ -73,6 +78,17 @@ export function SiteFooter() {
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary font-mono">Studio</h4>
             <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="https://lp.projuktilabs.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-orange-strong dark:text-accent font-semibold hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Projukti Landing (Live SaaS)</span>
+                  <span className="text-[10px]">↗</span>
+                </a>
+              </li>
               <li>
                 <Link href="/about" className="hover:text-accent transition-colors">About Us</Link>
               </li>

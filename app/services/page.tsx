@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, ArrowUpRight, ChevronRight } from "lucide-react";
 import { getFutureCategories } from "@/modules/services/data";
 import { getCmsServices } from "@/lib/cms";
 
@@ -32,6 +32,49 @@ export default async function ServicesPage() {
           We deliver scoped, milestone-based software engineering services with transparent pricing and no unexpected
           fees. Every engagement includes clear deliverables, technical specifications, and post-launch support.
         </p>
+      </div>
+
+      {/* Sponsored Product Spotlight: Projukti Landing */}
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 border-brand-orange/40 bg-card p-6 sm:p-8 lg:p-10 shadow-warm-md">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-brand-orange text-white">
+                <Sparkles className="h-3.5 w-3.5" />
+                Featured Flagship Product
+              </span>
+              <span className="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+                Live: lp.projuktilabs.tech
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-text-primary">
+              Projukti Landing — High-Performance E-commerce SaaS
+            </h2>
+            <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+              Our flagship multi-tenant landing page builder and conversion platform engineered for Bangladeshi D2C brands and Facebook marketers. Features 0–54ms TTFB global edge speed, live BD Courier fraud score verification, and 1-click Steadfast &amp; Pathao dispatch.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-text-muted pt-1">
+              <span className="rounded-md bg-surface-muted px-2 py-1 border border-border">⚡ 0–54 ms TTFB</span>
+              <span className="rounded-md bg-surface-muted px-2 py-1 border border-border">🛡️ BD Courier Fraud Guard</span>
+              <span className="rounded-md bg-surface-muted px-2 py-1 border border-border">📦 1-Click Steadfast &amp; Pathao</span>
+              <span className="rounded-md bg-surface-muted px-2 py-1 border border-border">🎯 100% Meta CAPI</span>
+            </div>
+          </div>
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 shrink-0">
+            <Button size="lg" variant="primary" asChild className="rounded-xl px-5 h-11 text-xs sm:text-sm font-bold min-h-[44px]">
+              <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
+                <span>Launch Live App</span>
+                <ArrowUpRight className="ml-1.5 h-4 w-4" />
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="rounded-xl px-5 h-11 bg-card text-xs sm:text-sm font-semibold min-h-[44px]">
+              <Link href="/services/projukti-landing">
+                <span>View Architecture</span>
+                <ChevronRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
 
       {/* 2. Active Service Categories */}
@@ -130,8 +173,23 @@ export default async function ServicesPage() {
                       </div>
                     </div>
 
-                    <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                      {srv.isFlagship ? (
+                    <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
+                      {srv.slug === "projukti-landing" ? (
+                        <>
+                          <Button variant="primary" asChild className="w-full shadow-xs">
+                            <Link href={`/services/${srv.slug}`}>
+                              Architecture &amp; Pricing
+                              <ArrowRight className="ml-1.5 h-4 w-4" />
+                            </Link>
+                          </Button>
+                          <Button variant="outline" asChild className="w-full bg-card">
+                            <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
+                              Live Platform
+                              <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                            </a>
+                          </Button>
+                        </>
+                      ) : srv.isFlagship ? (
                         <Button variant="primary" asChild className="w-full shadow-xs">
                           <Link href={`/services/${srv.slug}`}>
                             View Details &amp; Packages

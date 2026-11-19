@@ -25,17 +25,25 @@ describe("Phase 05: Services Catalog Integrity & Scope Boundary", () => {
     }
   });
 
-  it("should have exactly 3 flagship productized services", () => {
+  it("should have exactly 4 flagship productized services including Projukti Landing", () => {
     const flagships = getFlagshipServices();
-    expect(flagships.length).toBe(3);
+    expect(flagships.length).toBe(4);
 
     const slugs = flagships.map((f) => f.slug);
+    expect(slugs).toContain("projukti-landing");
     expect(slugs).toContain("landing-page-meta-pixel");
     expect(slugs).toContain("complete-ecommerce-website");
     expect(slugs).toContain("website-maintenance");
   });
 
   it("should provide valid packages and deliverables for each flagship service", () => {
+    const pl = getServiceBySlug("projukti-landing");
+    expect(pl).toBeDefined();
+    expect(pl?.isFlagship).toBe(true);
+    expect(pl?.packages.length).toBe(3);
+    expect(pl?.deliverables.length).toBeGreaterThan(0);
+    expect(pl?.exclusions.length).toBeGreaterThan(0);
+
     const lp = getServiceBySlug("landing-page-meta-pixel");
     expect(lp).toBeDefined();
     expect(lp?.packages.length).toBeGreaterThanOrEqual(3);

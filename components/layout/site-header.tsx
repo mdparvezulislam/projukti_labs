@@ -11,6 +11,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services/projukti-landing", label: "Projukti Landing", isProduct: true },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
@@ -48,13 +49,18 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-3 py-1.5 text-xs font-medium rounded-full transition-colors",
+                  "px-3 py-1.5 text-xs font-medium rounded-full transition-colors inline-flex items-center gap-1.5",
                   isActive
                     ? "text-text-primary font-bold bg-surface-muted shadow-2xs"
                     : "text-text-secondary hover:text-text-primary hover:bg-surface-muted/60"
                 )}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {link.isProduct && (
+                  <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-brand-orange text-white leading-none">
+                    SaaS
+                  </span>
+                )}
               </Link>
             );
           })}
@@ -98,13 +104,18 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors",
+                    "flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors",
                     isActive
                       ? "text-text-primary bg-surface-muted font-bold"
                       : "text-text-secondary hover:text-text-primary hover:bg-surface-muted/50"
                   )}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {link.isProduct && (
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-orange text-white leading-none">
+                      Flagship SaaS
+                    </span>
+                  )}
                 </Link>
               );
             })}

@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { AnimatedGradientBadge } from "@/components/ui/animated-gradient-badge";
 import {
   ArrowRight,
+  ArrowUpRight,
   CheckCircle2,
   Globe,
   ShoppingCart,
@@ -18,6 +19,7 @@ import {
   MessageSquare,
   FileCheck2,
 } from "lucide-react";
+import { SponsoredProductShowcase } from "@/components/marketing/sponsored-product-showcase";
 import { getPageSections, getCmsPortfolio } from "@/lib/cms";
 import { VERIFIED_PORTFOLIO_PROJECTS } from "@/lib/cms/seed";
 
@@ -204,11 +206,11 @@ export default async function HomePage() {
           </div>
 
           {/* Trending Solutions Row (Direct ChaiCode Section Pattern) */}
-          <div className="pt-8 sm:pt-12 space-y-3">
+          <div className="pt-8 sm:pt-12 space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-2 border-b border-border pb-3">
               <div>
                 <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
-                  Trending Solutions
+                  Trending Solutions &amp; Flagship Products
                 </h2>
                 <p className="text-xs sm:text-sm text-text-secondary mt-0.5">
                   Latest and most impactful engineering services that{" "}
@@ -225,6 +227,9 @@ export default async function HomePage() {
                 View All Services <ChevronRight className="h-3.5 w-3.5" />
               </Link>
             </div>
+
+            {/* Sponsored Flagship Product Showcase */}
+            <SponsoredProductShowcase />
           </div>
         </div>
       </section>
@@ -278,12 +283,17 @@ export default async function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-border pb-6">
           <div className="space-y-2">
-            <Badge variant="accent">WHAT WE DO</Badge>
+            <div className="flex items-center gap-2">
+              <Badge variant="accent">WHAT WE DO</Badge>
+              <Badge variant="outline" className="border-brand-orange/40 text-brand-orange-strong dark:text-accent font-semibold">
+                Core Verticals &amp; Flagship SaaS
+              </Badge>
+            </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-text-primary">
               Focused Digital Solutions
             </h2>
             <p className="text-text-secondary max-w-2xl text-sm sm:text-base">
-              We focus our engineering on three active service areas to deliver well-engineered, reliable results for businesses and entrepreneurs.
+              We focus our engineering on four active service areas—including our high-performance flagship SaaS platform and productized client engineering services.
             </p>
           </div>
           <Button variant="ghost" asChild className="self-start md:self-auto hover:text-brand-orange-strong dark:hover:text-accent">
@@ -294,15 +304,84 @@ export default async function HomePage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-3">
-          {/* Service 1: Web Development & Design */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
+          {/* Service 1: Projukti Landing (Flagship SaaS Platform) */}
+          <Card className="flex flex-col justify-between ring-2 ring-brand-orange/40 bg-card shadow-warm-sm">
+            <CardHeader className="space-y-3 p-5 sm:p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-orange text-white shadow-xs">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-700 dark:text-emerald-400 font-bold bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live Platform
+                </span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline">Active Service 01</Badge>
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-brand-orange text-white">
+                    Flagship SaaS
+                  </span>
+                </div>
+                <CardTitle className="text-xl sm:text-2xl text-text-primary">Projukti Landing — E-commerce Platform</CardTitle>
+                <CardDescription className="text-text-secondary mt-1.5 text-xs sm:text-sm">
+                  Sub-100ms edge e-commerce landing platform engineered for Bangladeshi D2C brands, COD merchants, and ad conversion.
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-5 p-5 sm:p-6 pt-0 sm:pt-0">
+              <div className="rounded-xl border border-brand-orange/30 bg-surface-muted/60 p-3.5 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-orange-strong dark:text-accent font-mono">Sponsored Product</span>
+                  <Badge variant="accent" className="text-[10px]">0–54ms TTFB</Badge>
+                </div>
+                <h3 className="font-bold text-text-primary text-sm">Automated BD Courier Fraud Guard &amp; Dispatch</h3>
+                <p className="text-xs text-text-secondary">
+                  Live buyer fraud scoring across Steadfast &amp; Pathao, 1-click parcel dispatch, and 100% Meta Pixel + CAPI deduplication.
+                </p>
+              </div>
+
+              <ul className="space-y-2 text-xs text-text-secondary">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>0–54 ms TTFB edge speed on Cloudflare Workers</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>BD Courier live database fraud scan stops return loss</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-brand-orange-strong dark:text-accent shrink-0" />
+                  <span>1-Click courier booking with thermal POS invoices</span>
+                </li>
+              </ul>
+
+              <div className="pt-1 flex flex-col sm:flex-row gap-2.5">
+                <Button variant="primary" asChild className="w-full min-h-[44px] shadow-xs">
+                  <a href="https://lp.projuktilabs.tech" target="_blank" rel="noopener noreferrer">
+                    <span>Launch Live App</span>
+                    <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="w-full bg-card min-h-[44px]">
+                  <Link href="/services/projukti-landing">
+                    <span>Architecture</span>
+                    <ArrowRight className="ml-1.5 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Service 2: Web Development & Design */}
           <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-3 p-5 sm:p-6">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
                 <Globe className="h-5 w-5" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">Active Service 01</Badge>
+                <Badge variant="outline" className="mb-2">Active Service 02</Badge>
                 <CardTitle className="text-xl sm:text-2xl text-text-primary">Web Development &amp; Design</CardTitle>
                 <CardDescription className="text-text-secondary mt-1.5 text-xs sm:text-sm">
                   Fast, responsive, modern websites and conversion landing pages engineered with Next.js and deployed to edge infrastructure.
@@ -347,14 +426,14 @@ export default async function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Service 2: E-commerce & Digital Commerce */}
+          {/* Service 3: E-commerce & Digital Commerce */}
           <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-3 p-5 sm:p-6">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
                 <ShoppingCart className="h-5 w-5" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">Active Service 02</Badge>
+                <Badge variant="outline" className="mb-2">Active Service 03</Badge>
                 <CardTitle className="text-xl sm:text-2xl text-text-primary">E-commerce &amp; Digital Commerce</CardTitle>
                 <CardDescription className="text-text-secondary mt-1.5 text-xs sm:text-sm">
                   Production-grade online store platforms with frictionless checkouts, local payment gateways, and automated courier APIs.
@@ -399,14 +478,14 @@ export default async function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Service 3: Maintenance & Technical Support */}
+          {/* Service 4: Maintenance & Technical Support */}
           <Card className="flex flex-col justify-between">
             <CardHeader className="space-y-3 p-5 sm:p-6">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-orange-soft text-brand-orange-strong dark:bg-accent/10 dark:text-accent">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <div>
-                <Badge variant="outline" className="mb-2">Active Service 03</Badge>
+                <Badge variant="outline" className="mb-2">Active Service 04</Badge>
                 <CardTitle className="text-xl sm:text-2xl text-text-primary">Maintenance &amp; Support</CardTitle>
                 <CardDescription className="text-text-secondary mt-1.5 text-xs sm:text-sm">
                   Proactive care plans, 24/7 uptime monitoring, security patches, encrypted backups, and dedicated developer hours.

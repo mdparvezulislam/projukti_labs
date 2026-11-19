@@ -14,6 +14,45 @@ import { count, eq, like } from "drizzle-orm";
 
 export const VERIFIED_PORTFOLIO_PROJECTS = [
   {
+    id: "prj_projukti_landing",
+    slug: "projukti-landing",
+    title: "Projukti Landing — E-commerce Platform",
+    category: "SaaS Platform & E-commerce",
+    badge: "Live Flagship Product",
+    projectType: "In-House SaaS Platform",
+    overview:
+      "A high-performance, multi-tenant e-commerce landing page builder and conversion management platform engineered specifically for Bangladeshi direct-to-consumer (D2C) brands, Facebook ad marketers, and Cash-on-Delivery (COD) merchants. Features global edge speed (0-54ms TTFB), BD Courier fraud detection, 1-click Steadfast/Pathao courier booking, and 100% Meta CAPI tracking.",
+    metrics: [
+      { label: "Edge Latency", value: "0–54ms TTFB" },
+      { label: "Fraud Guard", value: "BD Courier Live" },
+      { label: "Dispatch", value: "1-Click Courier" },
+      { label: "Ad Telemetry", value: "100% Meta CAPI" },
+    ],
+    stack: [
+      "Next.js 16 (App Router)",
+      "React 19",
+      "Cloudflare Workers",
+      "ViNext (Vite 8)",
+      "Cloudflare D1 (SQLite)",
+      "Drizzle ORM",
+      "Tailwind CSS v4",
+      "ImageKit CDN",
+    ],
+    deliverables: [
+      "Multi-tenant landing page platform architecture serving merchants from single edge runtime",
+      "BD Courier live API integration with 15-minute risk cache and delivery success rate scoring",
+      "Direct API integrations with Steadfast and Pathao couriers with automatic tracking code generation",
+      "Dual-layer client Pixel and server-side CAPI event dispatch with deterministic 1:1 event deduplication",
+      "Zero-code custom domain routing with automated Cloudflare SSL certificates",
+      "3-Second mobile COD checkout form with dynamic delivery zone calculation and WhatsApp confirmation",
+    ],
+    linkUrl: "https://lp.projuktilabs.tech",
+    linkText: "Visit Live Platform (lp.projuktilabs.tech)",
+    isFeatured: true,
+    sortOrder: 0,
+    isPublished: true,
+  },
+  {
     id: "prj_01",
     slug: "unique-store-bd",
     title: "Unique Store BD",
